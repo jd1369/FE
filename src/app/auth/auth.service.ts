@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 @Injectable({
@@ -9,11 +9,11 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   private apiURL = 'http://localhost:1369';
-  baseUrl =environment.baseUrl;
+  baseUrl = environment.baseUrl;
   private tokenKey = 'authToken';
   private isAuthenticated$ = new BehaviorSubject<boolean>(this.hasToken());
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   private hasToken(): boolean {
     return !!localStorage.getItem(this.tokenKey);
@@ -26,10 +26,10 @@ export class AuthService {
 
 
 
-  
-  getOtp(phoneNumber:string){
+
+  getOtp(phoneNumber: string) {
     return this.http
-    .post(`${this.baseUrl}generateOtp/`+phoneNumber, { phoneNumber })
+      .post(`${this.baseUrl}generateOtp/` + phoneNumber, { phoneNumber })
   }
 
   login(phoneNumber: string, otp: string) {
@@ -39,25 +39,30 @@ export class AuthService {
         tap((response) => {
           localStorage.setItem(this.tokenKey, response.token);
           console.log(response.token)
-          this.loginWithtoken(response.token).subscribe({
+          this.loginWithToken(response.token).subscribe({
             next: (response: any) => {
               if (response) {
                 console.log(response)
               }
             },
             error: (err: any) => {
-              // this.errorhandlerService.handleError(err);
+              
               console.log("error")
             },
           });
           this.isAuthenticated$.next(true);
-          
+
         })
       );
   }
 
-  loginWithtoken(token:string){
-    return this.http.post(`${this.baseUrl}`+'loginWithToken',{token})
+  loginWithToken(token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+    });
+    
+  //  return this.http.post(this.baseUrl +'loginWithToken', { headers });
+    return this.http.post(this.baseUrl +'loginWithToken', token,{headers});
   }
 
 
@@ -71,24 +76,25 @@ export class AuthService {
     this.router.navigate(['/base/home']);
   }
 
-  getToken(): string | null {
-    return localStorage.getItem('authToken'); // Replace with your key
-  }
-  
-  saveToken(token: string): void {
-    localStorage.setItem('authToken', token); // Save token after refresh
-  }
-  
-  removeToken(): void {
-    localStorage.removeItem('authToken'); // Remove token on logout
+  setToken(token: string): void {
+    localStorage.setItem(this.tokenKey, token);
   }
 
+  
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
+  }
+
+
+  clearToken(): void {
+    localStorage.removeItem(this.tokenKey); 
+  }
   refreshToken() {
-    const refreshToken = localStorage.getItem('refreshToken'); // Replace with your refresh token key
+    const refreshToken = localStorage.getItem('refreshToken'); 
     return this.http.post<{ token: string }>('/api/refreshToken', { refreshToken }).pipe(
       map((response) => response.token)
     );
   }
-  
+
 
 }

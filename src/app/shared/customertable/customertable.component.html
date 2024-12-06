@@ -1,12 +1,6 @@
 <div class="table-container1">
 <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <!-- Position Column -->
-    <ng-container matColumnDef="customerId">
-      <mat-header-cell *matHeaderCellDef> Customer Id. </mat-header-cell>
-      <mat-cell *matCellDef="let customerData"> {{customerData.customerID}} </mat-cell>
-    </ng-container>
-
-    <!-- Name Column -->
+   
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
       <mat-cell *matCellDef="let customerData"> {{customerData.name}} </mat-cell>
@@ -22,6 +16,36 @@
     <ng-container matColumnDef="emailId">
       <mat-header-cell *matHeaderCellDef> Email Id </mat-header-cell>
       <mat-cell *matCellDef="let customerData"> {{customerData.emailId}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="companyName">
+      <mat-header-cell *matHeaderCellDef>Company Name </mat-header-cell>
+      <mat-cell *matCellDef="let customerData"> {{customerData.companyName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="servicesClickedOn">
+      <mat-header-cell *matHeaderCellDef>Services Clicked</mat-header-cell>
+      <mat-cell *matCellDef="let customerData"> {{customerData.servicesClickedOn}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="subServicesClickedOn">
+      <mat-header-cell *matHeaderCellDef>Sub-Services Clicked</mat-header-cell>
+      <mat-cell *matCellDef="let customerData"> {{customerData.subServicesClickedOn}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="user">
+      <mat-header-cell *matHeaderCellDef>User </mat-header-cell>
+      <mat-cell *matCellDef="let customerData"> {{customerData.user}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="admin">
+      <mat-header-cell *matHeaderCellDef> Admin </mat-header-cell>
+      <mat-cell *matCellDef="let customerData"> {{customerData.admin}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="createdDate">
+      <mat-header-cell *matHeaderCellDef> Created Date </mat-header-cell>
+      <mat-cell *matCellDef="let customerData"> {{customerData.createdDate}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

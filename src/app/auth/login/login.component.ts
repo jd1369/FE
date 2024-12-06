@@ -32,27 +32,41 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-
       const { phoneNumber, otp } = this.loginForm.value;
+  
+      // First login request to get the token
       this.authService.login(phoneNumber, otp).subscribe({
         next: (response: any) => {
-          if (response) {
-           console.log(response);
-           console.log(this.token)
-           this.authService.loginWithtoken(this.token)
-           this.toastr.showSuccessMessage('Login Successful!', 'Success');
-          //  this.router.navigate(['/base'])
+          if (response && response.token) { // Assuming the response contains the token
+            console.log(response);
+            const token = response.token;
+            const bearerToken = `Bearer ${token}`;
+            console.log(bearerToken)
+
+            this.authService.setToken(token);
+            this.authService.loginWithToken(bearerToken).subscribe({
+              next: (loginResponse: any) => {
+                if (loginResponse) {
+                  console.log('Login with token successful:', loginResponse);
+                }
+              },
+              error: (err: any) => {
+                console.error('Login with token failed', err);
+              }
+            });
+  
+            // Show success message
+            this.toastr.showSuccessMessage('Login Successful!', 'Success');
+            // this.router.navigate(['/base']);
           }
         },
         error: (err: any) => {
-          console.log("error");
-          console.error('Login failed', err)
+          console.error('Login failed', err);
         },
       });
     }
-    console.log("qwqe")
+    console.log("Form submission attempted.");
   }
-
   getOtp(){
     const phoneNumber = this.loginForm.value.phoneNumber
     this.authService.getOtp(phoneNumber).subscribe({

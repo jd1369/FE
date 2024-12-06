@@ -1,1 +1,29 @@
-<p>contactustable works!</p>
+<div class="table-container1">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let contactData"> {{contactData.name}} </mat-cell>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef>Email </mat-header-cell>
+            <mat-cell *matCellDef="let contactData"> {{contactData.email}} </mat-cell>
+        </ng-container>
+
+
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="projectDetials">
+            <mat-header-cell *matHeaderCellDef> Project Details </mat-header-cell>
+            <mat-cell *matCellDef="let contactData"> {{contactData.phoneNumber}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

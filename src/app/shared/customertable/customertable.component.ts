@@ -10,7 +10,7 @@ import { CustomertableService } from './customertable.service';
   styleUrls: ['./customertable.component.scss']
 })
 export class CustomertableComponent implements OnInit {
-  displayedColumns: string[] = ['customerId', 'name', 'phoneNumber', 'emailId'];
+  displayedColumns: string[] = ['name', 'phoneNumber', 'emailId', 'companyName','servicesClickedOn','subServicesClickedOn','user','admin','createdDate'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource(); // MatTableDataSource for pagination
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
