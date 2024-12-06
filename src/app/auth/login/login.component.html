@@ -15,7 +15,7 @@
   <div class="modal-body">
     <form [formGroup]="loginForm">
 
-      <div class="row justify-content-center align-items-center" style="padding-top: 40px;">
+      <div class="row justify-content-center align-items-center" style="padding-top: 30px;">
         <div class="col-lg-6 form-style">
           <div class="form-group pb-2">
             <fieldset>
@@ -29,17 +29,11 @@
         <div class="col-lg-6 form-style">
           <div class="form-group pb-2">
             <fieldset class="otp-fieldset">
-              <div class="otp-inputs">
-                <input type="text" class="form-control" id="otp" formControlName="otp" placeholder=" OTP" />
-                <!-- <input type="text" maxlength="1" class="otp-input" formControlName="otp1" />
-                <input type="text" maxlength="1" class="otp-input" formControlName="otp2"  />
-                <input type="text" maxlength="1" class="otp-input" formControlName="otp3"  />
-                <input type="text" maxlength="1" class="otp-input" formControlName="otp4"  />
-                <input type="text" maxlength="1" class="otp-input" formControlName="otp5" />
-                <input type="text" maxlength="1" class="otp-input" formControlName="otp6"  />    -->
+              <div class="d-flex align-items-center otp-inputs">
+                <input type="text" class="form-control" id="otp" formControlName="otp" placeholder="OTP" style="flex: 1; margin-left: 50px;" />
+                <span class="link" (click)="getOtp()" style="margin-left: 30px; cursor: pointer;">Get OTP</span>
               </div>
             </fieldset>
-            <p style="text-align:right;padding-top: 10px;" ><span class="link" (click)="getOtp()">Get OTP</span></p>
           </div>
         </div>
       </div>

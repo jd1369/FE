@@ -44,6 +44,7 @@ import { CarouselModule } from 'primeng/carousel'
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ContactustableComponent } from './shared/contactustable/contactustable.component';
+
 @NgModule({
   declarations: [
     AboutComponent,

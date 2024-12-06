@@ -3,7 +3,7 @@
 <nav class="navbar" [style.background-color]="navbarBackground">
   <div class="container-fluid">
     <div class="logo">
-      <a [style.color]="textColor">Elephant</a>
+      <a [style.color] ="textColor"  routerLink="/base/home" routerLinkActive="active">Elephant</a>
     </div>
     <ul class="nav-links" [class.active]="isMenuOpen">
       <li><a [style.color]="textColor" routerLink="/base/home" routerLinkActive="active">Home</a></li>

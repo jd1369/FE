@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
@@ -38,14 +38,26 @@ export class AuthService {
       .pipe(
         tap((response) => {
           localStorage.setItem(this.tokenKey, response.token);
+          console.log(response.token)
+          this.loginWithtoken(response.token).subscribe({
+            next: (response: any) => {
+              if (response) {
+                console.log(response)
+              }
+            },
+            error: (err: any) => {
+              // this.errorhandlerService.handleError(err);
+              console.log("error")
+            },
+          });
           this.isAuthenticated$.next(true);
           
         })
       );
   }
 
-  loginWithtoken(tok:string){
-    return this.http.post(`${this.baseUrl}`+'loginWithToken',{tok})
+  loginWithtoken(token:string){
+    return this.http.post(`${this.baseUrl}`+'loginWithToken',{token})
   }
 
 
@@ -59,7 +71,24 @@ export class AuthService {
     this.router.navigate(['/base/home']);
   }
 
-  getToken() {
-    return localStorage.getItem(this.tokenKey);
+  getToken(): string | null {
+    return localStorage.getItem('authToken'); // Replace with your key
   }
+  
+  saveToken(token: string): void {
+    localStorage.setItem('authToken', token); // Save token after refresh
+  }
+  
+  removeToken(): void {
+    localStorage.removeItem('authToken'); // Remove token on logout
+  }
+
+  refreshToken() {
+    const refreshToken = localStorage.getItem('refreshToken'); // Replace with your refresh token key
+    return this.http.post<{ token: string }>('/api/refreshToken', { refreshToken }).pipe(
+      map((response) => response.token)
+    );
+  }
+  
+
 }

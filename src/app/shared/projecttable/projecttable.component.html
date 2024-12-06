@@ -1,32 +1,16 @@
 <div class="table-container1">
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="projectId">
+        <ng-container matColumnDef="projectName">
             <mat-header-cell *matHeaderCellDef> Project Id. </mat-header-cell>
-            <mat-cell *matCellDef="let projectData"> {{projectData.projectId}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-            <mat-cell *matCellDef="let projectData"> {{projectData.name}} </mat-cell>
+            <mat-cell *matCellDef="let projectData"> {{projectData.projectName}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="projectDescription">
             <mat-header-cell *matHeaderCellDef> Project Description </mat-header-cell>
             <mat-cell *matCellDef="let projectData"> {{projectData.projectDescription}} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="projectCategory">
-            <mat-header-cell *matHeaderCellDef> Project Category </mat-header-cell>
-            <mat-cell *matCellDef="let projectData"> {{projectData.projectCategory}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="brandName">
-            <mat-header-cell *matHeaderCellDef>Brand Name</mat-header-cell>
-            <mat-cell *matCellDef="let projectData"> {{projectData.brandName}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="country">
-            <mat-header-cell *matHeaderCellDef>Country</mat-header-cell>
-            <mat-cell *matCellDef="let projectData"> {{projectData.country}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="state">
-            <mat-header-cell *matHeaderCellDef>State</mat-header-cell>
-            <mat-cell *matCellDef="let projectData"> {{projectData.state}} </mat-cell>
+        <ng-container matColumnDef="projectContent">
+            <mat-header-cell *matHeaderCellDef> Project content </mat-header-cell>
+            <mat-cell *matCellDef="let projectData"> {{projectData.projectContent}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="image">
             <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
