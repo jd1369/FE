@@ -13,23 +13,52 @@
   </div>
   <div class="container">
     <div class="modal-body">
-      <form [formGroup]="projectForm">
+      <form [formGroup]="blogForm">
   
-        <div class="row justify-content-center align-items-center">
+        <div class="row  " style="padding-top: 40px;">
           <div class="col-lg-6 form-style">
             <div class="form-group pb-2">
               <fieldset>
-                <input type="text" class="form-control" id="emailId" formControlName="emailId" placeholder="Enter Your Email Id" />
+                <input type="text" class="form-control" id="blogName" formControlName="blogName"
+                  placeholder="Blog Name" />
+              </fieldset>
+            </div>
+          </div>
+  
+          <div class="col-lg-6 form-style">
+            <div class="form-group pb-2">
+              <fieldset>
+                <input type="text" class="form-control" id="blogDescription" formControlName="blogDescription" placeholder="Blog Description" />
               </fieldset>
             </div>
           </div>
         </div>
-  
-        <div class="row justify-content-center align-items-center">
+
+        <div class="row  " style="padding-top: 40px;">
           <div class="col-lg-6 form-style">
             <div class="form-group pb-2">
               <fieldset>
-                <input type="text" class="form-control" id="empId" formControlName="empId" placeholder="OTP" />
+                <input type="text" class="form-control" id="blogContent" formControlName="blogContent"
+                  placeholder="Blog content" />
+              </fieldset>
+            </div>
+          </div>
+  
+          <div class="col-lg-6 form-style">
+            <div class="form-group pb-2">
+              <fieldset>
+                <input type="text" class="form-control" id="publishedDate" formControlName="publishedDate" placeholder="Published Date" />
+              </fieldset>
+            </div>
+          </div>
+        </div>
+
+        <div class="row  " style="padding-top: 40px;">
+  
+          <div class="col-lg-6 form-style">
+            <div class="form-group pb-2">
+              <fieldset>
+                <input type="text" class="form-control" id="image" formControlName="image" placeholder="Image" />
               </fieldset>
             </div>
           </div>

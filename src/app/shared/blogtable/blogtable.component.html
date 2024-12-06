@@ -1,10 +1,6 @@
 
 <div class="table-container1">
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="blogId">
-            <mat-header-cell *matHeaderCellDef> Blog Id. </mat-header-cell>
-            <mat-cell *matCellDef="let blogData"> {{blogData.blogId}} </mat-cell>
-        </ng-container>
         <ng-container matColumnDef="blogName">
             <mat-header-cell *matHeaderCellDef>Blog Name </mat-header-cell>
             <mat-cell *matCellDef="let blogData"> {{blogData.blogName}} </mat-cell>
@@ -17,13 +13,13 @@
             <mat-header-cell *matHeaderCellDef> Blog Content </mat-header-cell>
             <mat-cell *matCellDef="let blogData"> {{blogData.blogContent}} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="authorName">
-            <mat-header-cell *matHeaderCellDef>Author Name </mat-header-cell>
-            <mat-cell *matCellDef="let blogData"> {{blogData.authorName}} </mat-cell>
+        <ng-container matColumnDef="modifiedDate">
+            <mat-header-cell *matHeaderCellDef>Modified Date </mat-header-cell>
+            <mat-cell *matCellDef="let blogData"> {{blogData.modifiedDate}} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="publishingTimeOfBlog">
+        <ng-container matColumnDef="publishedDate">
             <mat-header-cell *matHeaderCellDef>Published Date </mat-header-cell>
-            <mat-cell *matCellDef="let blogData"> {{blogData.publishingTimeOfBlog}} </mat-cell>
+            <mat-cell *matCellDef="let blogData"> {{blogData.publishedDate}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="image">
             <mat-header-cell *matHeaderCellDef>Image </mat-header-cell>

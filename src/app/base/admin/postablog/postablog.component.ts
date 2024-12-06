@@ -7,7 +7,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./postablog.component.scss']
 })
 export class PostablogComponent implements OnInit {
-  projectForm!: FormGroup;
+  blogForm!: FormGroup;
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,

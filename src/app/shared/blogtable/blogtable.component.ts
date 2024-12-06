@@ -8,7 +8,7 @@ import { BlogtableService } from './blogtable.service';
   styleUrls: ['./blogtable.component.scss']
 })
 export class BlogtableComponent implements OnInit {
-  displayedColumns: string[] = ['blogId', 'blogName', 'blogDescription', 'blogContent','authorName','publishingTimeOfBlog','image'];
+  displayedColumns: string[] = ['blogName', 'blogDescription', 'blogContent','modifiedDate','publishedDate','image'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource(); // MatTableDataSource for pagination
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
