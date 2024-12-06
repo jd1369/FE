@@ -43,6 +43,7 @@ import { ToastModule } from 'primeng/toast';
 import { CarouselModule } from 'primeng/carousel'
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ContactustableComponent } from './shared/contactustable/contactustable.component';
 @NgModule({
   declarations: [
     AboutComponent,
@@ -66,7 +67,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ProjectsComponent,
     BlogComponent,
     SubservicesComponent,
-    ClientsComponent
+    ClientsComponent,
+    ContactustableComponent
   ],
   imports: [
     AccordionModule,
