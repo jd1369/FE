@@ -1,0 +1,118 @@
+/* Navbar CSS*/
+
+@media (max-width: 768px) {
+  .card {
+    padding: 15px;
+  }
+
+  .button {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  .navbar {
+    padding: 0.5rem 0.8rem;
+  }
+
+  .custom-spacing {
+    margin: 0 20px; /* Reduce spacing on smaller screens */
+  }
+}
+/* Card CSS*/
+.card {
+  background: #EDEDED;
+  border: 1px solid rgba(87, 158, 230, 0.3);
+  box-shadow: 0px 4px 10px rgba(14, 87, 161, 0.05);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 450px; /* Fixed height for the card */
+  height: auto;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/*table Css*/
+.table-container1 {
+  height: 345px; /* Set your desired height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+.table-container2 {
+  max-height: 544.4px;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+
+mat-table {
+  width: 100%; /* Make the table take up the full width of the container */
+}
+
+.h2{
+  margin:  0px 0px 0px
+}
+
+
+/* Pagination CSS*/
+
+.pagination {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination .page-link {
+  cursor: pointer;
+}
+
+.pagination .page-item.disabled .page-link {
+  cursor: not-allowed;
+  color: #ccc;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  color: white;
+}
+
+/* button CSS*/
+.button {
+  background-color: #F35422;
+  color: white;
+  border: none;
+  padding: 0.6rem 0.5rem;
+  font-size: 1.1rem;
+  border-radius: 5px; /* Slightly rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+  background-color: #d84315; /* Darker shade on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.button:focus {
+  outline: 2px solid #ff5722;
+  outline-offset: 2px;
+}
+
+.tile{
+  background-color: #7b7b7b;
+  position: relative;
+  top: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}

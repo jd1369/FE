@@ -1,0 +1,65 @@
+
+  
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="col">
+      <h4 class="modal-title">Register</h4>
+    </div>
+    <div class="col-sm-4">
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  <div class="container">
+    <div class="modal-body">
+      <form [formGroup]="registerForm">
+  
+        <div class="row justify-content-center align-items-center"style="padding-top: 40px;">
+          <div class="col-lg-6 form-style">
+            <div class="form-group pb-2">
+              <fieldset>
+                <input type="text" class="form-control" id="emailId" formControlName="emailId" placeholder="Enter Your Email Id" />
+              </fieldset>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center" style="padding-top: 20px;">
+            <div class="col-lg-6 form-style">
+              <div class="form-group pb-2">
+                <fieldset>
+                  <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Your Name" />
+                </fieldset>
+              </div>
+            </div>
+          </div>
+  
+        <div class="row justify-content-center align-items-center" style="padding-top: 20px;">
+          <div class="col-lg-6 form-style">
+            <div class="form-group pb-2">
+              <fieldset>
+                <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber" placeholder="PhoneNumber" />
+              </fieldset>
+            </div>
+          </div>
+        </div>
+  
+      </form>
+
+  
+      <div class="text-center " style="padding-top: 70px;">
+        <button type="button" class="btn btn-primary" (click)="activeModal.dismiss();onSubmit()">
+          Login
+        </button>
+  
+      </div>
+      <div class="text-center" style="padding-top: 10px;">
+        <p>Don’t have an account? <span class="register-link" (click)="openLoginModal();">Login Now</span></p>
+      </div>
+      
+  
+    </div>
+  </div>
+</div>

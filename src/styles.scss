@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
+@import '~@angular/material/theming';
+
+// Extend Angular Material's default typography.
+$default-typography: mat-typography-config();
+$custom-typography: map-merge(
+  $default-typography,
+  (
+    font-family: 'Manrope, sans-serif'
+  )
+);
+
+// Create the custom theme using the extended typography.
+$custom-theme: mat-light-theme((
+  typography: $custom-typography,
+));
+
+@include angular-material-theme($custom-theme);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Manrope', sans-serif; }

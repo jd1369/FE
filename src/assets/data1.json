@@ -1,0 +1,62 @@
+[
+    {
+      "customerId": "JDR@123",
+      "name": "JDR",
+      "emailId": "JDR@gmail.com",
+      "phoneNumber": "9987245563"
+    },
+    {
+      "customerId": "JDR@124",
+      "name": "ABC",
+      "emailId": "ABC@gmail.com",
+      "phoneNumber": "9987245564"
+    },
+    {
+      "customerId": "JDR@123",
+      "name": "JDR",
+      "emailId": "JDR@gmail.com",
+      "phoneNumber": "9987245563"
+    },
+    {
+      "customerId": "JDR@124",
+      "name": "ABC",
+      "emailId": "ABC@gmail.com",
+      "phoneNumber": "9987245564"
+    },
+    {
+      "customerId": "JDR@123",
+      "name": "JDR",
+      "emailId": "JDR@gmail.com",
+      "phoneNumber": "9987245563"
+    },
+    {
+      "customerId": "JDR@124",
+      "name": "ABC",
+      "emailId": "ABC@gmail.com",
+      "phoneNumber": "9987245564"
+    },
+    {
+      "customerId": "JDR@123",
+      "name": "JDR",
+      "emailId": "JDR@gmail.com",
+      "phoneNumber": "9987245563"
+    },
+    {
+      "customerId": "JDR@124",
+      "name": "ABC",
+      "emailId": "ABC@gmail.com",
+      "phoneNumber": "9987245564"
+    },
+    {
+      "customerId": "JDR@123",
+      "name": "JDR",
+      "emailId": "JDR@gmail.com",
+      "phoneNumber": "9987245563"
+    },
+    {
+      "customerId": "JDR@124",
+      "name": "ABC",
+      "emailId": "ABC@gmail.com",
+      "phoneNumber": "9987245564"
+    }
+  ]

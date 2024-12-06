@@ -1,0 +1,88 @@
+<div class="modal-header">
+  <div class="col">
+    <h4 class="modal-title">Add Project</h4>
+  </div>
+  <div class="col-sm-4">
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span>&times;</span>
+    </button>
+  </div>
+</div>
+<div class="container">
+  <div class="modal-body">
+    <form [formGroup]="projectForm">
+
+      <div class="row  " style="padding-top: 40px;">
+        <div class="col-lg-6 form-style">
+          <div class="form-group pb-2">
+            <fieldset>
+              <input type="text" class="form-control" id="projectName" formControlName="projectName"
+                placeholder="Project Name" />
+            </fieldset>
+          </div>
+        </div>
+
+        <div class="col-lg-6 form-style">
+          <div class="form-group pb-2">
+            <fieldset>
+              <input type="text" class="form-control" id="descp" formControlName="descp" placeholder="Description" />
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row " style="padding-top: 20px;">
+        <div class="col-lg-6 form-style">
+          <div class="form-group pb-2">
+            <fieldset>
+              <input type="text" class="form-control" id="catg" formControlName="catg" placeholder="Category" />
+            </fieldset>
+          </div>
+        </div>
+
+        <div class="col-lg-6 form-style">
+          <div class="form-group pb-2">
+            <fieldset>
+              <input type="text" class="form-control" id="name" formControlName="name" placeholder="Name" />
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="row " style="padding-top: 20px;">
+        <div class="col-lg-6 form-style">
+          <div class="form-group pb-2">
+            <fieldset>
+              <input type="text" class="form-control" id="country" formControlName="country" placeholder="Country" />
+            </fieldset>
+          </div>
+        </div>
+
+        <div class="col-lg-6 form-style">
+          <div class="form-group pb-2">
+            <fieldset>
+              <input type="text" class="form-control" id="state" formControlName="state" placeholder="State" />
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="padding-top: 20px;">
+        <div class="col-lg-6 form-style">
+          <div class="form-group pb-2">
+            <fieldset>
+              <input type="file" placeholder="img" (change)="onFileSelected($event)" accept="image/*" />
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+    <div class="text-center " style="padding-top: 50px;">
+      <button type="button" class="btn btn-primary" (click)="onSubmit();activeModal.dismiss()">
+        Submit
+      </button>
+
+    </div>
+  </div>
+</div>

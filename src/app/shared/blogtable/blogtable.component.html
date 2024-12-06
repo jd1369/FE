@@ -1,0 +1,45 @@
+
+<div class="table-container1">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="blogId">
+            <mat-header-cell *matHeaderCellDef> Blog Id. </mat-header-cell>
+            <mat-cell *matCellDef="let blogData"> {{blogData.blogId}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="blogName">
+            <mat-header-cell *matHeaderCellDef>Blog Name </mat-header-cell>
+            <mat-cell *matCellDef="let blogData"> {{blogData.blogName}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="blogDescription">
+            <mat-header-cell *matHeaderCellDef>Blog Description </mat-header-cell>
+            <mat-cell *matCellDef="let blogData"> {{blogData.blogDescription}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="blogContent">
+            <mat-header-cell *matHeaderCellDef> Blog Content </mat-header-cell>
+            <mat-cell *matCellDef="let blogData"> {{blogData.blogContent}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="authorName">
+            <mat-header-cell *matHeaderCellDef>Author Name </mat-header-cell>
+            <mat-cell *matCellDef="let blogData"> {{blogData.authorName}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="publishingTimeOfBlog">
+            <mat-header-cell *matHeaderCellDef>Published Date </mat-header-cell>
+            <mat-cell *matCellDef="let blogData"> {{blogData.publishingTimeOfBlog}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="image">
+            <mat-header-cell *matHeaderCellDef>Image </mat-header-cell>
+            <mat-cell *matCellDef="let blogData"> {{blogData.image}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            <mat-cell *matCellDef="let blogData">
+                <mat-icon *ngIf="!blogData.isEditing" (click)="onEdit(blogData)" style="color: #3416AD; cursor: pointer;">edit</mat-icon>
+                <mat-icon *ngIf="blogData.isEditing" (click)="onSave(blogData)" style="color: #24D600; cursor: pointer;">save</mat-icon>
+                &nbsp;&nbsp;&nbsp;
+                <mat-icon (click)="onDelete(blogData)" style="color: #FF0F0F; cursor: pointer;">delete</mat-icon>
+              </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

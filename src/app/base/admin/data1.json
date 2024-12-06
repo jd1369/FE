@@ -1,0 +1,62 @@
+[
+  {
+    "customerId": "JDR@123",
+    "name": "John Doe",
+    "emailId": "johndoe@gmail.com",
+    "phoneNumber": "9987245563"
+  },
+  {
+    "customerId": "JDR@124",
+    "name": "Jane Smith",
+    "emailId": "janesmith@gmail.com",
+    "phoneNumber": "9987245564"
+  },
+  {
+    "customerId": "JDR@125",
+    "name": "Robert Johnson",
+    "emailId": "robert.johnson@gmail.com",
+    "phoneNumber": "9987245565"
+  },
+  {
+    "customerId": "JDR@126",
+    "name": "Emily Davis",
+    "emailId": "emilydavis@gmail.com",
+    "phoneNumber": "9987245566"
+  },
+  {
+    "customerId": "JDR@127",
+    "name": "Michael Wilson",
+    "emailId": "michaelwilson@gmail.com",
+    "phoneNumber": "9987245567"
+  },
+  {
+    "customerId": "JDR@128",
+    "name": "Sarah Taylor",
+    "emailId": "sarahtaylor@gmail.com",
+    "phoneNumber": "9987245568"
+  },
+  {
+    "customerId": "JDR@129",
+    "name": "David Brown",
+    "emailId": "davidbrown@gmail.com",
+    "phoneNumber": "9987245569"
+  },
+  {
+    "customerId": "JDR@130",
+    "name": "Laura Martinez",
+    "emailId": "lauramartinez@gmail.com",
+    "phoneNumber": "9987245570"
+  },
+  {
+    "customerId": "JDR@131",
+    "name": "James Garcia",
+    "emailId": "jamesgarcia@gmail.com",
+    "phoneNumber": "9987245571"
+  },
+  {
+    "customerId": "JDR@132",
+    "name": "Sophia Anderson",
+    "emailId": "sophiaanderson@gmail.com",
+    "phoneNumber": "9987245572"
+  }
+]

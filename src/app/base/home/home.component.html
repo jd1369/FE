@@ -1,0 +1,78 @@
+<div style="background:#b8b8b857 ; float: right;">
+  <button class="toggle-button" (click)="toggleContent()">
+    <span class="slider" [class.active]="isToggled"></span>
+  </button>
+</div>
+
+  <div *ngIf="isToggled; else textContent">
+    <img src="your-image-path.jpg"  class="image-content" />
+  </div>
+  <ng-template #textContent>
+    <div class="heading">
+      <h1>
+        <span class="tag">Creative design agency, located in the heart of NYC.</span>
+      </h1>
+    </div>
+  </ng-template>
+
+<div class="carousel-container">
+  <!-- Carousel Section -->
+  <div class="carousel">
+    <div class="carousel-item" *ngFor="let item of visibleImages" [style.backgroundImage]="'url(' + item.image + ')'">
+      <div class="image-name">{{ item.name }}</div>
+    </div>
+  </div>
+
+  <!-- Text Section -->
+  <div class="carousel-text" [routerLink]="['/base/services']"> <!-- Add routerLink -->
+    <h2>View All Services >></h2>
+  </div>
+</div>
+
+<div class="heading">
+  <h1>
+    <span class="tag1">DD.NYC® is an award-winning Manhattan-based creative
+      agency founded in 2015, specializing in branding, web
+      design, packaging, and video storytelling. With over a
+      decade of teamwork and a combined 50+ years of
+      expertise, the agency delivers innovative and impactful
+      solutions tailored to a wide range of industries, including
+      real estate, healthcare, and lifestyle. See our work </span>
+  </h1>
+</div>
+
+
+<div style="background-color: #d4d4d491;">
+  <div class="stats-container">
+    <div class="stat-box">
+      <h1>300+</h1>
+      <div class="big-dash"></div>
+      <p style="line-height: 30px;"> successful agency projects - Brand Identity, Website Design, Product Packaging</p>
+    </div>
+    <div class="stat-box">
+      <h1>9</h1>
+      <div class="big-dash"></div>
+      <p style="line-height: 30px;">years in business improving digital design products for our customers</p>
+    </div>
+    <div class="stat-box">
+      <h1>9.8</h1>
+      <div class="big-dash"></div>
+      <p style="line-height: 30px;">average NPS* we receive from our clients</p>
+      <p style="line-height: 30px;" class="note">*Net Promoter Score - willingness to recommend a service from 1-10</p>
+    </div>
+  </div>
+  <div class="about-link">
+    <a href="#" style="text-align: left;">About Elephant &gt;</a>
+  </div>
+</div>
+
+<div>
+  <div class="heading">
+    <h1>
+      <span class="tag1">Elephant creates innovative design solutions that inspire,
+        Collaborate with a digital design agency that will make you proud.</span>
+    </h1>
+  </div>
+</div>
+
+<app-clients></app-clients>

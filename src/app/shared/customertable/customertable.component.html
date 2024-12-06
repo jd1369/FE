@@ -1,0 +1,31 @@
+<div class="table-container1">
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="customerId">
+      <mat-header-cell *matHeaderCellDef> Customer Id. </mat-header-cell>
+      <mat-cell *matCellDef="let customerData"> {{customerData.customerID}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let customerData"> {{customerData.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="phoneNumber">
+      <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
+      <mat-cell *matCellDef="let customerData"> {{customerData.phoneNumber}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="emailId">
+      <mat-header-cell *matHeaderCellDef> Email Id </mat-header-cell>
+      <mat-cell *matCellDef="let customerData"> {{customerData.emailId}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

@@ -1,0 +1,217 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Ensure full height for the root elements */
+html, body {
+  height: 100%; 
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  font-family: 'Manrope', sans-serif;
+  background-color: #fffcfc57
+}
+
+/* Body Flex Layout */
+body {
+  display: flex;
+  flex-direction: column; /* Arrange navbar, content, and footer vertically */
+  font-family: 'Manrope', sans-serif;
+  background-color: #fffcfc57
+}
+
+/* Navbar */
+/* Navbar styles */
+/* Navbar styles */
+.navbar {
+  background-color: #fffcfc; /* Default solid background color */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* When scrolling down, hide navbar */
+.navbar.navbar-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* When scrolling up, show navbar */
+.navbar.navbar-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Dropdown styles */
+/* Dropdown container */
+.navbar .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Initially hide the dropdown menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #333; /* Default background color */
+  min-width: 160px;
+  z-index: 1;
+  margin-top: 0.5rem; /* Space below the menu */
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Style for dropdown items */
+.dropdown-menu li {
+  padding: 10px;
+  list-style: none;
+}
+
+/* Change text color dynamically */
+.dropdown-menu li a {
+  color: white;  /* Default text color */
+  text-decoration: none;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-menu li a:hover {
+  background-color: #555;
+}
+
+/* Style the dropdown when the navbar background is set */
+.dropdown-menu {
+  background-color: #d4d4d491; /* Default navbar background, change as needed */
+}
+
+.dropdown-menu li a {
+  color: black; /* Default text color */
+}
+
+.dropdown-menu li a:hover {
+  background-color: #ff5733; /* Hover effect (you can change the color here) */
+}
+/* Navbar link styles */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ff5733;
+}
+
+/* Mobile Navbar */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: black;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+
+/* Main Content Area */
+#app-main {
+  flex: 1; /* Makes the main content expand and push the footer down */
+  min-width: 100%;
+  // padding: 20px; /* Add padding for content spacing */
+  box-sizing: border-box;
+  min-height: 100%;
+  background: rgb(203 203 203 / 0%);
+  padding: 71px  0px 0px 0px;
+}
+
+/* Footer */
+footer {
+  background-color: #000000;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1rem;
+  z-index: 1000;
+}
+
+/* Buttons */
+.button {
+  background-color: #F35422;
+  color: white;
+  border: none;
+  padding: 0.6rem 0.5rem;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+  background-color: #d84315;
+  transform: scale(1.05);
+}
+
+.button:focus {
+  outline: 2px solid #ff5722;
+  outline-offset: 2px;
+}
+
+/* Tile Section */
+.tile {
+  background-color: #ffffff;
+  position: relative;
+  top: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+/* Scrollbar Styling */
+#app-main::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for WebKit browsers */
+}

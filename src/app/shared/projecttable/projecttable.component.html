@@ -1,0 +1,48 @@
+<div class="table-container1">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="projectId">
+            <mat-header-cell *matHeaderCellDef> Project Id. </mat-header-cell>
+            <mat-cell *matCellDef="let projectData"> {{projectData.projectId}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let projectData"> {{projectData.name}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="projectDescription">
+            <mat-header-cell *matHeaderCellDef> Project Description </mat-header-cell>
+            <mat-cell *matCellDef="let projectData"> {{projectData.projectDescription}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="projectCategory">
+            <mat-header-cell *matHeaderCellDef> Project Category </mat-header-cell>
+            <mat-cell *matCellDef="let projectData"> {{projectData.projectCategory}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="brandName">
+            <mat-header-cell *matHeaderCellDef>Brand Name</mat-header-cell>
+            <mat-cell *matCellDef="let projectData"> {{projectData.brandName}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="country">
+            <mat-header-cell *matHeaderCellDef>Country</mat-header-cell>
+            <mat-cell *matCellDef="let projectData"> {{projectData.country}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="state">
+            <mat-header-cell *matHeaderCellDef>State</mat-header-cell>
+            <mat-cell *matCellDef="let projectData"> {{projectData.state}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="image">
+            <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
+            <mat-cell *matCellDef="let projectData"> {{projectData.image}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            <mat-cell *matCellDef="let projectData">
+                <mat-icon *ngIf="!projectData.isEditing" (click)="onEdit(projectData)" style="color: #3416AD; cursor: pointer;">edit</mat-icon>
+                <mat-icon *ngIf="projectData.isEditing" (click)="onSave(projectData)" style="color: #24D600; cursor: pointer;">save</mat-icon>
+                &nbsp;&nbsp;&nbsp;
+                <mat-icon (click)="onDelete(projectData)" style="color: #FF0F0F; cursor: pointer;">delete</mat-icon>
+              </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

@@ -1,0 +1,50 @@
+<div class="project-container">
+    <h1 style="text-align: center;">Lets do big things with big ideas at Elephant</h1>
+    <div>
+        <img style="height: 375px;" src="/assets/images/Location.png" alt="location">
+        <p style="text-align: center;margin-left: 480px;height: 10px;">_________</p>
+        <p style="font-size: 11px; margin-left: 565px;height: 20px;">+91 8008770440 &nbsp;&nbsp;+91 8008783823</p>
+        <p style="font-size: 11px; margin-left: 545px;">info@ elephantadagency.com</p>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="contactForm">
+            
+                <div class="col-lg-6 form-style">
+                    <div class="form-group pb-2">
+                        <fieldset>
+                            <input type="text" class="form-control" id="name" formControlName="name"
+                                placeholder="Your Name" />
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 form-style">
+                    <div class="form-group pb-2">
+                        <fieldset>
+                            <input type="text" class="form-control" id="emailId" formControlName="emailId"
+                                placeholder="Your EmailId" />
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col-lg-6 form-style">
+                    <div class="form-group pb-2">
+                        <fieldset>
+                            <input type="text" class="form-control" id="descp" formControlName="descp"
+                                placeholder="Tell us about your Project" />
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="col-lg-6 form-style">
+                    <div class="form-group pb-2">
+                        <button  style="margin-right: 255px;border-radius: 1px;width: 100px;"type="button" class="button" (click)="onSubmit()">
+                            Submit
+                          </button>
+                    </div>
+                </div>
+                </div>
+                
+        </form>
+    </div>
+</div>

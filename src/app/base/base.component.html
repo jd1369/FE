@@ -1,0 +1,50 @@
+
+
+<nav class="navbar" [style.background-color]="navbarBackground">
+  <div class="container-fluid">
+    <div class="logo">
+      <a [style.color]="textColor">Elephant</a>
+    </div>
+    <ul class="nav-links" [class.active]="isMenuOpen">
+      <li><a [style.color]="textColor" routerLink="/base/home" routerLinkActive="active">Home</a></li>
+      <li><a [style.color]="textColor" routerLink="/base/aboutus" routerLinkActive="active">Contact Us</a></li>
+      <li><a [style.color]="textColor" routerLink="/base/services" routerLinkActive="active">Services</a></li>
+      <li><a [style.color]="textColor" routerLink="/base/projects" routerLinkActive="active">Projects</a></li>
+
+      <li class="dropdown">
+        <a [style.color]="textColor" routerLink="/base/admin" routerLinkActive="active">Admin</a>
+        <!-- Admin Dropdown Menu -->
+        <ul class="dropdown-menu" [style.background-color]="navbarBackground">
+          <li><a [style.color]="textColor" (click)="addProject()">Add Project</a></li>
+          <li><a [style.color]="textColor" (click)="addService()">Add Service</a></li>
+          <li><a [style.color]="textColor" (click)="addSubService()">Add SubService</a></li>
+          <li><a [style.color]="textColor" (click)="newBanner()">New Banner</a></li>
+          <li><a [style.color]="textColor" (click)="postaBlog()">Post A Blog</a></li>
+        </ul>
+      </li>
+
+      <li><a [style.color]="textColor" routerLink="/base/about" routerLinkActive="active">About Us</a></li>
+      <div class="col"><button class="button" (click)="openLoginModal()">Login</button></div>
+    </ul>
+  </div>
+</nav>
+
+<!-- <div class="tile" >
+  <div class="container text-center">
+    <div class="row row-cols-lg-5 g-10">
+      <div class="col"><button class="button" (click)="addProject()">Add Project</button></div>
+      <div class="col"><button class="button" (click)="addService()">Add Service</button></div>
+      <div class="col"><button class="button" (click)="addSubService()">Add SubService</button></div>
+      <div class="col"><button class="button" (click)="newBanner()">New Banner</button></div>
+      <div class="col"><button class="button" (click)="postaBlog()">Post A Blog</button></div>
+    </div>
+  </div>
+</div> -->
+<div id="app-main">
+  <router-outlet></router-outlet>
+</div>
+
+
+<footer >
+      Elephant
+</footer>
