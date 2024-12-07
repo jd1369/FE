@@ -67,7 +67,6 @@ import { ContactustableComponent } from './shared/contactustable/contactustable.
     AboutusComponent,
     ProjectsComponent,
     BlogComponent,
-    SubservicesComponent,
     ClientsComponent,
     ContactustableComponent
   ],

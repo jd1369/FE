@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from './services.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-services',
@@ -9,7 +10,8 @@ import { ServicesService } from './services.service';
 })
 export class ServicesComponent implements OnInit {
   constructor(private http: HttpClient,
-    private servicesService:ServicesService
+    private servicesService:ServicesService,
+    private router: Router
   ) { }
 services:any;
 
@@ -23,6 +25,13 @@ services:any;
         this.services = data;
         console.log(this.services)
       });
+  }
+  navigateToRoute(): void {
+    this.router.navigate(['./subservices']); // Replace '/target-route' with your desired route
+  }
+
+  goToSubservice(): void {
+    this.router.navigate(['src/app/base/services/subservices/subservices.component.ts']);
   }
 
 }

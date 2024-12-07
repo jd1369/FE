@@ -9,7 +9,7 @@
     
     <div class="services-grid">
       <div class="service-item" *ngFor="let service of services">
-        <img [src]="service.icon" [alt]="service.name" />
+        <img routerLink="/services/subservices"  routerLinkActive="active" (click)="navigateToRoute()" [src]="service.icon" [alt]="service.name" />
         <p>{{ service.name }}</p>
       </div>
     </div>

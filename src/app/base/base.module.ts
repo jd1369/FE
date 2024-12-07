@@ -22,6 +22,7 @@ import {MatInputModule} from '@angular/material/input';
 import { AboutComponent } from './about/about.component';
 import { AppModule } from '../app.module';
 import { ClientsComponent } from '../shared/clients/clients.component';
+import { SubservicesComponent } from './services/subservices/subservices.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,11 @@ import { ClientsComponent } from '../shared/clients/clients.component';
         component: BaseComponent,
         children: [
           { path: 'admin', component: AdminComponent },
-          { path: 'services', component: ServicesComponent },
+          { path: 'services', component: ServicesComponent,children:[
+            {
+              path: 'subservices', component: SubservicesComponent
+            }
+          ] },
           { path: 'projects', component: ProjectsComponent },
           { path: 'home', component: HomeComponent },
           { path: 'aboutus', component: AboutusComponent },
