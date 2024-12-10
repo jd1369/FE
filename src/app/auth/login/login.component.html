@@ -72,14 +72,14 @@
     </div>
 
 
-    <form *ngIf="activeTab === 'register'" class="form-container">
+    <form [formGroup]="registerForm" *ngIf="activeTab === 'register'" class="form-container">
       <div class="input-container">
-        <input type="text" id="name" class="floating-input" placeholder=" " />
+        <input type="text" id="name" formControlName="name" class="floating-input" placeholder=" " />
         <label for="name" class="floating-label">Your Name</label>
       </div>
       <div class="input-container">
-        <input type="email" id="email" class="floating-input" placeholder=" " />
-        <label for="email" class="floating-label">Your Email</label>
+        <input type="emailId" id="emailId" formControlName="emailId" class="floating-input" placeholder=" " />
+        <label for="emailId" class="floating-label">Your Email</label>
       </div>
       <div class="input-group">
         <select class="country-code">
@@ -88,23 +88,25 @@
           <option>+44</option>
         </select>
         <div class="input-container">
-          <input type="text" id="phone" class="floating-input" placeholder=" " />
-          <label for="phone" class="floating-label">Phone Number</label>
+          <input type="text" id="phoneNumber" formControlName="phoneNumber" class="floating-input" placeholder=" " />
+          <label for="phoneNumber" class="floating-label">Phone Number</label>
         </div>
       </div>
-      <button type="submit">Create an Account</button>
-    </form>
+      <button (click)="Register()" type="submit">Create an Account</button>
+    </form> 
     
-    <form *ngIf="activeTab === 'login'" class="form-container">
+    <form [formGroup]="loginForm"*ngIf="activeTab === 'login'" class="form-container">
       <div class="input-container">
-        <input type="email" id="login-email" class="floating-input" placeholder=" " />
-        <label for="login-email" class="floating-label">Your Email</label>
+        <input type="text" id="phoneNumber"  formControlName="phoneNumber" class="floating-input" placeholder=" " />
+        <label for="phoneNumber" class="floating-label">Phone Number</label>
       </div>
       <div class="input-container">
-        <input type="text" id="otp" class="floating-input" placeholder=" " />
+        <input type="text" id="otp"  formControlName="otp" class="floating-input" placeholder=" " />
         <label for="otp" class="floating-label">OTP</label>
+        
       </div>
-      <button type="submit">Login</button>
+      <span class="link" (click)="getOtp()" style="margin-left: 30px;text-align: right; cursor: pointer;">Get OTP</span>
+      <button (click)="Login()" type="submit">Login</button>
     </form>
     
   </div>

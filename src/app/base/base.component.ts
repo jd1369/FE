@@ -22,6 +22,8 @@ export class BaseComponent implements OnInit {
   isAdminDropdownOpen = false;
   navbarBackground = '#d4d4d491'; 
   textColor = 'black';
+  user:any;
+  admin:any
   
   constructor(
     private modalService: NgbModal,
@@ -29,6 +31,8 @@ export class BaseComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.admin = JSON.parse(localStorage.getItem('admin') || '{}');
     this.isAdminPage = this.route.snapshot.routeConfig?.path === 'admin';
   }
   

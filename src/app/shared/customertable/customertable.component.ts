@@ -18,6 +18,7 @@ export class CustomertableComponent implements OnInit {
   constructor(private customerService: CustomertableService) {}
 
   ngOnInit(): void {
+    
    
     this.getCustomerData()
     

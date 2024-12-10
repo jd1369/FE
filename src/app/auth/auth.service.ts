@@ -12,6 +12,8 @@ export class AuthService {
   private apiURL = 'http://localhost:1369';
   baseUrl = environment.baseUrl;
   private tokenKey = 'authToken';
+   private user = 'user';
+   private admin = 'admin'
   private isAuthenticated$ = new BehaviorSubject<boolean>(this.hasToken());
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -39,11 +41,19 @@ export class AuthService {
       .pipe(
         tap((response) => {
           localStorage.setItem(this.tokenKey, response.token);
+          
           console.log(response.token)
           this.loginWithToken(response.token).subscribe({
             next: (response: any) => {
               if (response) {
+                console.log("acsa")
                 console.log(response)
+                
+                localStorage.setItem(this.user, response.user);
+                console.log(response.user)
+                console.log("acsa")
+                localStorage.setItem(this.admin, response.admin);
+                console.log("acsa")
               }
             },
             error: (err: any) => {
@@ -88,10 +98,22 @@ export class AuthService {
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }
+  getUser(): string | null {
+    return localStorage.getItem(this.user);
+  }
+  getAdmin(): string | null {
+    return localStorage.getItem(this.admin);
+  }
 
 
   clearToken(): void {
     localStorage.removeItem(this.tokenKey);
+  }
+  clearUser(): void {
+    localStorage.removeItem(this.user);
+  }
+  clearAmin(): void {
+    localStorage.removeItem(this.admin);
   }
   refreshToken() {
     const refreshToken = localStorage.getItem('refreshToken');

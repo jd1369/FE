@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 @Injectable({
@@ -6,11 +6,18 @@ import { environment } from 'src/environments/environment';
 })
 export class CustomertableService {
   baseUrl =environment.baseUrl;
+  token :any;
   constructor(
     private http: HttpClient
   ) { }
 
   getCustomerList() {
-    return this.http.get(this.baseUrl+'fetchAllClients')
+    const token = localStorage.getItem('authToken');
+    console.log(token)
+    const headers = new HttpHeaders({
+      Token: `Bearer ${token}`,
+    });
+    console.log(headers)
+    return this.http.get(`${this.baseUrl}fetchAllClients`, { headers });
   }
 }

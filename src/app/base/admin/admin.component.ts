@@ -19,7 +19,8 @@ import { ActivatedRoute } from '@angular/router';
 export class AdminComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions!: Highcharts.Options 
-  
+  user:any;
+  admin:any;
   constructor(
     private http: HttpClient,
     private modalService: NgbModal,
@@ -29,7 +30,9 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
    
-    
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.admin = JSON.parse(localStorage.getItem('admin') || '{}');
+    console.log(this.user)
     this.chartOptions = {
       chart: {
         type: 'pie',

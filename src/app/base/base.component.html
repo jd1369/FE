@@ -13,7 +13,8 @@
       <li><a [style.color]="textColor" routerLink="/base/projects" routerLinkActive="active">Projects</a></li>
 
       <!-- Admin dropdown with mouse enter/leave events -->
-      <li class="dropdown" 
+      <!--  -->
+      <li class="dropdown" *ngIf="admin"
           (mouseenter)="onAdminHover(true)"
           (mouseleave)="onAdminHover(false)"> <!-- Trigger when mouse leaves Admin link -->
         <a [style.color]="textColor" routerLink="/base/admin" routerLinkActive="active">Admin <span>&#62;</span></a>
