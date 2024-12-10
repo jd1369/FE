@@ -2,7 +2,7 @@
   
 <div class="modal-header">
     <div class="col">
-      <h4 class="modal-title">Login</h4>
+      <h4 class="modal-title">Post A Blog</h4>
     </div>
     <div class="col-sm-4">
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -47,7 +47,7 @@
           <div class="col-lg-6 form-style">
             <div class="form-group pb-2">
               <fieldset>
-                <input type="text" class="form-control" id="publishedDate" formControlName="publishedDate" placeholder="Published Date" />
+                <input type="text" class="form-control" id="authorName" formControlName="authorName" placeholder="Author Name" />
               </fieldset>
             </div>
           </div>
@@ -55,11 +55,13 @@
 
         <div class="row  " style="padding-top: 40px;">
   
-          <div class="col-lg-6 form-style">
-            <div class="form-group pb-2">
-              <fieldset>
-                <input type="text" class="form-control" id="image" formControlName="image" placeholder="Image" />
-              </fieldset>
+          <div class="row" style="padding-top: 20px;">
+            <div class="col-lg-6 form-style">
+              <div class="form-group pb-2">
+                <fieldset>
+                  <input type="file" placeholder="image" (change)="onFileSelected($event)" accept="image/*" />
+                </fieldset>
+              </div>
             </div>
           </div>
         </div>
@@ -67,8 +69,8 @@
       </form>
   
       <div class="text-center ">
-        <button type="button" class="btn btn-primary" (click)="activeModal.dismiss()">
-          Login
+        <button type="button" class="btn btn-primary" (click)="onSubmit();activeModal.dismiss()">
+          Post
         </button>
   
       </div>

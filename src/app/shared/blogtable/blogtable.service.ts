@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -9,7 +9,13 @@ export class BlogtableService {
   baseUrl=environment.baseUrl;
   constructor(private http: HttpClient) { }
   getBlogList() {
-    return this.http.get('assets/data1.json')
+    const token = localStorage.getItem('authToken');
+    console.log(token)
+    const headers = new HttpHeaders({
+      Token: `Bearer ${token}`,
+    });
+    console.log(headers)
+    return this.http.get(`${this.baseUrl}fetchAllBlogContent`, { headers });
   }
 
   updateProject(project: any): Observable<any> {

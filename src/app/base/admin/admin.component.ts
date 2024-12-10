@@ -10,6 +10,7 @@ import { AddsubserviceComponent } from './addsubservice/addsubservice.component'
 import { AddserviceComponent } from './addservice/addservice.component';
 import { AddprojectComponent } from './addproject/addproject.component';
 import { ActivatedRoute } from '@angular/router';
+import { AdminService } from './admin.service';
 
 @Component({
   selector: 'app-admin',
@@ -17,19 +18,20 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  Highcharts: typeof Highcharts = Highcharts;
-  chartOptions!: Highcharts.Options 
-  user:any;
-  admin:any;
+  // Highcharts: typeof Highcharts = Highcharts;
+  chartOptions: any;
+  Highcharts = require('highcharts');
+  user: any;
+  admin: any;
   constructor(
     private http: HttpClient,
     private modalService: NgbModal,
-    
+    private adminservice: AdminService
   ) { }
- 
+
 
   ngOnInit(): void {
-   
+
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
     this.admin = JSON.parse(localStorage.getItem('admin') || '{}');
     console.log(this.user)
@@ -46,7 +48,7 @@ export class AdminComponent implements OnInit {
       series: [{
         type: 'pie',
         name: 'Values',
-        data: [
+        data:  [
           { name: 'Radio', y: 30 },
           { name: 'Cinema', y: 50 },
           { name: 'TV', y: 20 },
@@ -63,11 +65,18 @@ export class AdminComponent implements OnInit {
         },
       },
     };
+    this.getChartData()
   }
 
 
-  getProjectData(){
+  getChartData() {
+    this.adminservice.getChartList().subscribe(data => {
+      console.log(data)
+      console.log(this.chartOptions.series[0])
+      this.chartOptions.series[0].data = data; // Update chart data dynamically with fetched data
+    });
   }
+
 
 
   onActionClick(customerId: number) {
@@ -76,27 +85,27 @@ export class AdminComponent implements OnInit {
 
 
 
-  addProject(clickFrom?: any){
-    const modalRef = this.modalService.open(AddprojectComponent,{size:'lg'});
+  addProject(clickFrom?: any) {
+    const modalRef = this.modalService.open(AddprojectComponent, { size: 'lg' });
     modalRef.componentInstance.clickFrom = clickFrom;
   };
 
-  addService(clickFrom?: any){
-    const modalRef = this.modalService.open(AddserviceComponent,{size:'lg'});
+  addService(clickFrom?: any) {
+    const modalRef = this.modalService.open(AddserviceComponent, { size: 'lg' });
     modalRef.componentInstance.clickFrom = clickFrom;
   };
 
-  addSubService(clickFrom?: any){
-    const modalRef = this.modalService.open(AddsubserviceComponent,{size:'lg'});
+  addSubService(clickFrom?: any) {
+    const modalRef = this.modalService.open(AddsubserviceComponent, { size: 'lg' });
     modalRef.componentInstance.clickFrom = clickFrom;
   };
 
-  newBanner(){
+  newBanner() {
 
   };
 
-  postaBlog(clickFrom?: any){
-    const modalRef = this.modalService.open(PostablogComponent,{size:'lg'});
+  postaBlog(clickFrom?: any) {
+    const modalRef = this.modalService.open(PostablogComponent, { size: 'lg' });
     modalRef.componentInstance.clickFrom = clickFrom;
   }
 }

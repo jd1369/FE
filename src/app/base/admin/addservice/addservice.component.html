@@ -13,23 +13,23 @@
   </div>
   <div class="container">
     <div class="modal-body">
-      <form [formGroup]="projectForm">
+      <form [formGroup]="serviceForm">
   
         <div class="row justify-content-center align-items-center">
           <div class="col-lg-6 form-style">
             <div class="form-group pb-2">
               <fieldset>
-                <input type="text" class="form-control" id="emailId" formControlName="emailId" placeholder="Enter Your Email Id" />
+                <input type="text" class="form-control" id="name" formControlName="name" placeholder="Service Name" />
               </fieldset>
             </div>
           </div>
         </div>
   
-        <div class="row justify-content-center align-items-center">
+        <div class="row" style="padding-top: 20px;">
           <div class="col-lg-6 form-style">
             <div class="form-group pb-2">
               <fieldset>
-                <input type="text" class="form-control" id="empId" formControlName="empId" placeholder="OTP" />
+                <input type="file" placeholder="img" (change)="onFileSelected($event)" accept="image/*" />
               </fieldset>
             </div>
           </div>
@@ -38,8 +38,8 @@
       </form>
   
       <div class="text-center ">
-        <button type="button" class="btn btn-primary" (click)="activeModal.dismiss()">
-          Login
+        <button type="button" class="btn btn-primary" (click)="activeModal.dismiss();onSubmit()">
+          Submit
         </button>
   
       </div>
