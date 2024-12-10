@@ -1,19 +1,27 @@
 p.a{
     margin-top: 90px;
     font-size: 16px;
+    font-family: 'Real Text', Arial, sans-serif;
 }
 
 p.b{
     margin-top: 45px;
     font-size: 16px;
+    font-family: 'Real Text', Arial, sans-serif;
+}
+
+p.c{
+  font-family: 'Real Text', Arial, sans-serif;
 }
 
 .button{
     margin-left: 233px;
+    font-family: 'Real Text', Arial, sans-serif;
 }
 
-.heading{
+.h1{
     padding: 100px;
+    font-family: 'Real Text', Arial, sans-serif;
 }
 
 /* General Container */
@@ -28,7 +36,7 @@ p.b{
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 40px;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Real Text', Arial, sans-serif;
   }
   
   .features {
@@ -101,5 +109,6 @@ p.b{
     padding: 7px 12px;
     margin-top: 40px;
     cursor: pointer;
+    font-family: 'Real Text', Arial, sans-serif;
   }
   

@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
     
   }
   updateVisibleImages(): void {
-    const numImages = 3; // Number of visible images at a time
+    const numImages = 4; // Number of visible images at a time
     this.visibleImages = Array.from({ length: numImages }).map((_, i) => {
       return this.images[(this.currentIndex + i) % this.images.length];
     });

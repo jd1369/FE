@@ -15,63 +15,72 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BaseComponent implements OnInit {
   isAdminPage: boolean = false;
-  isMenuOpen:boolean = false;
+  isMenuOpen: boolean = false;
   lastScrollTop = 0; 
   isDropdownOpen = false;
   navbarVisible = true; 
   isAdminDropdownOpen = false;
   navbarBackground = '#d4d4d491'; 
   textColor = 'black';
+  
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    
     this.isAdminPage = this.route.snapshot.routeConfig?.path === 'admin';
   }
   
-
   openLoginModal(clickFrom?: any) {
     const modalRef = this.modalService.open(LoginComponent,{size:'lg'});
     modalRef.componentInstance.clickFrom = clickFrom;
   };
+  
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
+
+  onAdminHover(isHovered: boolean) {
+    this.isAdminDropdownOpen = isHovered;  // Expands navbar when hovering over the "Admin" link
+  }
+
+  // Optional: Add this method to handle navbar collapsing when mouse leaves navbar
+  onNavbarMouseLeave() {
+    this.isAdminDropdownOpen = false; // Collapse navbar when cursor leaves the navbar
+  }
+
   toggleAdminDropdown() {
     this.isAdminDropdownOpen = !this.isAdminDropdownOpen;
+    const navbar = document.querySelector('.navbar');
+    const appMain = document.querySelector('#app-main');
+
+    if (this.isAdminDropdownOpen) {
+      navbar?.classList.add('expanded');
+      appMain?.classList.add('has-expanded-navbar'); // Add padding-top to main content
+    } else {
+      navbar?.classList.remove('expanded');
+      appMain?.classList.remove('has-expanded-navbar'); // Reset padding-top
+    }
   }
-  showDropdown(state: boolean) {
-    this.isDropdownOpen = state;
-  }
-  
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-   
     if (currentScroll <= 0) {
-      this.navbarBackground = '#d4d4d491'; 
+      this.navbarBackground = '#d4d4d491';
       this.textColor = 'black'; 
-      this.navbarVisible = true; 
+      this.navbarVisible = true;
     } else if (currentScroll > this.lastScrollTop) {
-      
       this.navbarVisible = false;
       this.textColor = 'black'; 
       this.navbarBackground = '#000000'; 
     } else {
-     
       this.navbarVisible = true;
       this.textColor = 'white'; 
       this.navbarBackground = '#000000';  
     }
-
-   
     this.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-
     
     if (this.navbarVisible) {
       document.querySelector('.navbar')?.classList.add('navbar-visible');
@@ -82,28 +91,24 @@ export class BaseComponent implements OnInit {
     }
   }
 
-
-  addProject(clickFrom?: any){
-    const modalRef = this.modalService.open(AddprojectComponent,{size:'lg'});
+  // Modal opening functions
+  addProject(clickFrom?: any) {
+    const modalRef = this.modalService.open(AddprojectComponent, { size: 'lg' });
     modalRef.componentInstance.clickFrom = clickFrom;
-  };
+  }
 
-  addService(clickFrom?: any){
-    const modalRef = this.modalService.open(AddserviceComponent,{size:'lg'});
-    modalRef.componentInstance.clickFrom = clickFrom;
-  };
+  addSubService() {
+    const modalRef = this.modalService.open(AddsubserviceComponent, { size: 'lg' });
+  }
 
-  addSubService(clickFrom?: any){
-    const modalRef = this.modalService.open(AddsubserviceComponent,{size:'lg'});
-    modalRef.componentInstance.clickFrom = clickFrom;
-  };
+  addService() {
+    const modalRef = this.modalService.open(AddserviceComponent, { size: 'lg' });
+  }
 
+  postaBlog() {
+    const modalRef = this.modalService.open(PostablogComponent, { size: 'lg' });
+  }
   newBanner(){
 
-  };
-
-  postaBlog(clickFrom?: any){
-    const modalRef = this.modalService.open(PostablogComponent,{size:'lg'});
-    modalRef.componentInstance.clickFrom = clickFrom;
   }
 }

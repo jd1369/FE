@@ -3,12 +3,20 @@
     margin: 20px;
     background-color: #fffcfc57
   }
+  .ser{
+    padding:300px 50px 300px 83px
+
+  }
   
   .services-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 items per row */
-    gap: 20px; /* Space between items */
-    padding: 20px;
+    display: grid
+;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 150px;
+    align-items: center;
+    justify-content: space-between;
+    justify-items: center;
+    
   }
   
   .service-item {
@@ -19,8 +27,8 @@
   }
   
   .service-item img {
-    width: 196px;
-    height: 100px;
+    width: 116.2px;
+    height: 51px;
   }
   
   .service-item p {
@@ -40,10 +48,25 @@
     }
   }  
 
-  .big-dash {
-    width: 80%; /* Adjust the width as needed for the dash */
-    height: 4px; /* Thickness of the dash */
-    background-color: #000; /* Color of the dash */
-    margin: 10px auto; /* Center the dash and add spacing */
-    display: block;
-    }
+  .dash-text {
+    display: flex;
+    align-items: center;
+    margin-left:-76px;
+    margin-bottom: 61px;
+    font-family: 'Real Text', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  
+  .dash-text::before {
+    content: '';
+    width: 100px; /* Adjust the length of the line */
+    border-top: 2px solid #696969; /* Solid line style */
+    margin-right: 10px; /* Space between the line and text */
+  }
+  
+  .dash-text span {
+    font-size: 20px; /* Adjust text size */
+    color: #696969 /* Text color */
+  }
+  

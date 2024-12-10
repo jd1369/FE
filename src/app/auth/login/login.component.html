@@ -1,5 +1,4 @@
-
-<div class="modal-content">
+<!-- <div class="modal-content">
 <div class="modal-header">
   <div class="col">
     <h4 class="modal-title">Login</h4>
@@ -51,4 +50,62 @@
     </div>
   </div>
 </div>
+</div> -->
+
+
+<div class="modal-container">
+
+  <div class="left-section">
+    <img src="https://via.placeholder.com/500x800" alt="Left Section Image" />
+  </div>
+
+
+  <div class="right-section">
+
+    <div class="tabs">
+      <button class="tab-button" [class.active]="activeTab === 'register'" (click)="setActiveTab('register')">
+        Register
+      </button>
+      <button class="tab-button" [class.active]="activeTab === 'login'" (click)="setActiveTab('login')">
+        Login
+      </button>
+    </div>
+
+
+    <form *ngIf="activeTab === 'register'" class="form-container">
+      <div class="input-container">
+        <input type="text" id="name" class="floating-input" placeholder=" " />
+        <label for="name" class="floating-label">Your Name</label>
+      </div>
+      <div class="input-container">
+        <input type="email" id="email" class="floating-input" placeholder=" " />
+        <label for="email" class="floating-label">Your Email</label>
+      </div>
+      <div class="input-group">
+        <select class="country-code">
+          <option>+91</option>
+          <option>+1</option>
+          <option>+44</option>
+        </select>
+        <div class="input-container">
+          <input type="text" id="phone" class="floating-input" placeholder=" " />
+          <label for="phone" class="floating-label">Phone Number</label>
+        </div>
+      </div>
+      <button type="submit">Create an Account</button>
+    </form>
+    
+    <form *ngIf="activeTab === 'login'" class="form-container">
+      <div class="input-container">
+        <input type="email" id="login-email" class="floating-input" placeholder=" " />
+        <label for="login-email" class="floating-label">Your Email</label>
+      </div>
+      <div class="input-container">
+        <input type="text" id="otp" class="floating-input" placeholder=" " />
+        <label for="otp" class="floating-label">OTP</label>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    
+  </div>
 </div>

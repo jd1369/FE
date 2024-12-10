@@ -12,24 +12,72 @@
   top: 0px;
   right: 0px}
 
-.tag{
-display: block; 
-  font-size: 89px;
-  line-height: 1.2; 
-  word-wrap: break-word;   
-}
+  .tag {
+    display: inline-block;    
+    font-size: 100px;           
+    line-height: 0.9;
+    white-space: nowrap;      
+    font-style: normal;
+    font-family: 'Real Text', Arial, sans-serif;
+    word-wrap: normal;        
+    z-index: 7;
+    letter-spacing: -6px;
+  }
+  
 
-.tag1{
-display: block; 
-  font-size: 42px;
-  line-height: 1.5; 
-  word-wrap: break-word;   
-}
 
 .heading{
-padding: 132px 121px 145px 159px;
+padding: 173px 121px 145px 70px;
 background-color: #d4d4d491
 }
+
+.heading2 {
+  display: flex;
+  justify-content: center; /* Centers the heading horizontally */
+  align-items: center;    /* Centers the heading vertically */
+  height: 100vh;          /* Full viewport height */
+  padding: 20px;          /* Add some padding */
+  background-color: #ffffff; /* Optional background color */
+  box-sizing: border-box; /* Ensures padding doesn't affect centering */
+  text-align: left;       /* Aligns text to the left */
+}
+
+h1 {
+  max-width: 800px;       /* Limit the width of the content for proper alignment */
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;              /* Removes default margin */
+}
+.highlight {
+  color: #ff4a00;         /* Orange color for the link */
+  font-weight: bold;
+  text-decoration: none;  /* Removes underline */
+  font-size: 28px;
+}
+
+.tag1 {
+  display: block;   
+  font-size: 28px;
+  width: 630px;   
+  line-height: 1.25; 
+  margin-left: 282px;  /* Ensures proper block formatting for the text */
+  font-family: 'Real Text', Arial, sans-serif;
+}
+
+.highlight {
+  color: #ff4a00;         /* Orange color for the link */
+  font-weight: bold;
+  text-decoration: none;  /* Removes underline */
+  font-family: 'Real Text', Arial, sans-serif;
+}
+
+.highlight:hover {
+  text-decoration: underline; /* Adds underline on hover */
+}
+
+
+
 
 .carousel-container {
 display: flex;
@@ -48,12 +96,12 @@ flex-wrap: nowrap; /* Prevent wrapping */
 overflow: hidden; /* Hide extra images */
 width: 369%; /* Decrease carousel width */
 transition: transform 1s ease-in-out;
-padding: 20px 0px 20px 0px
+padding: 20px 0px 20px 95px
 }
 
 .carousel-item {
 flex-shrink: 0;
-width: 500px; /* Match imageWidth in TypeScript */
+width: 370px; /* Match imageWidth in TypeScript */
 height: 300px;
 background-size: cover;
 background-position: center;
@@ -107,29 +155,23 @@ transform: translateY(0);
 }
 
 .stats-container {
-display: flex;
-justify-content: space-around;
-align-items: flex-start;
-padding: 20px;
-text-align: center;
+  display: flex;
+  justify-content: space-around; /* Ensures proper spacing between items */
+  align-items: flex-start;
+  padding: 20px;
+  text-align: left; /* Aligns content within each stat-box */
 }
 
 .stat-box {
-flex: 1;
-max-width: 300px;
-margin: 0 10px;
+  flex: 1;
+  max-width: 300px;
+  margin: 0 10px; /* Adds more spacing between columns */
 }
 
 h1 {
 font-size: 60px;
 margin: 0;
 line-height: 80px;
-}
-
-p {
-font-size: 16px;
-color: #333;
-margin: 10px 0 0;
 }
 
 .note {
@@ -139,28 +181,21 @@ font-size: 0.8rem;
 
 .about-link {
 text-align: left;
-margin-top: 20px;
-margin-left: 20px; /* Optional: Add a margin for better spacing */
-float: right;
+margin-top: 80px;
+font-size: 22px;
+//margin-left: 20px; /* Optional: Add a margin for better spacing */
+font-family: 'Real Text', Arial, sans-serif;
 }
 
 .about-link a {
 text-decoration: none;
 color: #ff4500;
-font-size: 1rem;
+font-size: 22px;
 font-weight: bold;
 }
 
 .about-link a:hover {
 text-decoration: underline;
-}
-
-.big-dash {
-width: 80%; /* Adjust the width as needed for the dash */
-height: 4px; /* Thickness of the dash */
-background-color: #000; /* Color of the dash */
-margin: 10px auto; /* Center the dash and add spacing */
-display: block;
 }
 
 
@@ -202,4 +237,71 @@ display: block;
 
 .toggle-button:hover {
   background-color: #F35422;
+}
+
+
+.detail {
+  font-size: 36px; /* Adjusted for smaller text size */
+  font-family: 'Real Text', Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1.2; /* Controls spacing between lines */
+  display: block; /* Ensures proper block-level alignment */
+  text-align: left;
+  width: 111%; /* Ensures text uses the full width */
+  white-space: normal; /* Allows text wrapping */
+  margin-top: 10px; /* Adds spacing between the dash and text */
+}
+
+.detail2 {
+  font-size: 100px; /* Adjusted for large numbers */
+  font-family: 'Real Text', Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1; /* Slightly tighter spacing for large numbers */
+  display: block;
+  padding-bottom: 30px;
+  border-bottom: 1px solid;
+}
+
+
+
+.quote-container {
+  position: relative;
+ width: 100%;
+  font-family: 'Real Text', Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: left;
+  //background:#b8b8b857
+}
+
+.quote-text {
+  font-size: 92px;
+  font-weight: 400;
+  line-height: 1.03;
+  letter-spacing: -0.05em; 
+  display: inline-block;
+  padding: 159px 10px 107px 95px;
+  text-align: left;
+  width: 100%;
+  height: 100%;
+  top:0;
+  bottom: 0;
+  left: 0;
+}
+
+.quote-start {
+  font-size: 76px; /* Adjust size of the opening quote */
+  color: #f97316; /* Orange color for quotation marks */
+  position: absolute;
+  top: 28;
+  left: 94px; /* Adjust position to match the design */
+  padding-top: 109px;
+}
+
+.quote-end {
+  font-size: 76px; /* Adjust size of the closing quote */
+  color: #f97316; /* Orange color for quotation marks */
+  float: right;
+  margin-top: -143px; /* Aligns with the last line of the quote */
+  margin-right: 160px;
 }

@@ -11,6 +11,9 @@ import { ToasterService } from 'src/app/shared/toaster/toaster.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  modalWidth: string = '800px'; // Default modal width
+  modalHeight: string = '600px'; // Default modal height
+  activeTab: string = 'login';
   loginForm!: FormGroup;
   token:any
   user:any;
@@ -29,7 +32,9 @@ export class LoginComponent implements OnInit {
       otp:['',Validators.required],
     });
   }
-
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
   onSubmit() {
     if (this.loginForm.valid) {
       const { phoneNumber, otp } = this.loginForm.value;

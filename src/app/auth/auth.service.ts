@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Token } from '@angular/compiler';
 @Injectable({
   providedIn: 'root',
 })
@@ -46,7 +47,7 @@ export class AuthService {
               }
             },
             error: (err: any) => {
-              
+
               console.log("error")
             },
           });
@@ -58,11 +59,14 @@ export class AuthService {
 
   loginWithToken(token: string): Observable<any> {
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
+      Token: `Bearer ${token}`,
     });
-    
-  //  return this.http.post(this.baseUrl +'loginWithToken', { headers });
-    return this.http.post(this.baseUrl +'loginWithToken', token,{headers});
+
+    //  return this.http.post(this.baseUrl +'loginWithToken', { headers });
+    return this.http.post(this.baseUrl + 'loginWithToken', {},
+      {
+        headers,
+      });
   }
 
 
@@ -80,17 +84,17 @@ export class AuthService {
     localStorage.setItem(this.tokenKey, token);
   }
 
-  
+
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }
 
 
   clearToken(): void {
-    localStorage.removeItem(this.tokenKey); 
+    localStorage.removeItem(this.tokenKey);
   }
   refreshToken() {
-    const refreshToken = localStorage.getItem('refreshToken'); 
+    const refreshToken = localStorage.getItem('refreshToken');
     return this.http.post<{ token: string }>('/api/refreshToken', { refreshToken }).pipe(
       map((response) => response.token)
     );

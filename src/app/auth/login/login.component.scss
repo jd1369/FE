@@ -1,85 +1,196 @@
-.otp-fieldset {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  .otp-input {
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin: 0 5px;
-  }
-  
-  .otp-input:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  .otp-input::placeholder {
-    color: #ccc;
-  }
-  
-.btn-primary {
-    background: #000000;
-    width: 160px;
-    height: 40px;
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 22px;
-    color: #FFFFFF;
+/* Modal Container */
+.modal-container {
+  display: flex;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+  border-bottom: 4px solid #333;
+  border-bottom: 4px solid #d91b3c; /* Red border */
+  border-bottom: 4px solid #d91b3c; /* Red border */
 }
-.modal-content {
-    min-height: 480px;
-  }
-.modal-header {
-    padding: 5px;
+.modal-container::after {
 
+  background-color: #333; /* Dark grey color */
+ // margin-top: -4px; /* Adjust this value to ensure no gap between the red and dark gray borders */
+}
+/* Left Half (Image Section) */
+.left-section {
+  flex: 1;
+  background: #f4f4f4;
 }
 
-.link{
+.left-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Right Half (Form Section) */
+.right-section {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  
+  background: white;
+  min-height: 400px; /* Set a minimum height */
+}
+
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-button {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  background: none;
   cursor: pointer;
 }
-.login-link {
-    color: #F35422;
-    cursor: pointer;
-    font-weight: 100;
-  }
-.parah{
-    padding-top: 70px;
-}
-.modal-title {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 36px;
-    color: #010101;
-    margin-left: 334px;
-    font-size: 33px;
-    margin-top: 13px;
+
+.tab-button.active {
+  font-weight: bold;
+  color: #d91b3c;
+  border-bottom: 2px solid #d91b3c;
 }
 
-.close {
-    width: 30px;
-    height: 30px;
-    background: rgba(240, 240, 240, 0.75);
-    border: none;
-    font-size: 17px;
-    border-radius: 50%;
-    position: absolute; 
-    top: 10px; 
-    right: 10px; 
-    cursor: pointer;
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  
+  gap: 15px;
+}
 
+form h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+form label {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
 }
 
 
+form input,
+form select {
+  border-radius:0;
+  padding: 10px;
+  border: none; /* Remove all other borders */
+  border-bottom: 2px solid #bfbfbf; /* Add a bottom border */
+ // border-radius: 4px;
+  font-size: 14px;
+  outline: 0;
+}
+
+form .checkbox-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 12px;
+}
+
+form button {
+  background: #d91b3c;
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background: #c11635;
+}
 
 
+/* Form Styling */
+.form-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100% ;
+}
+
+/* Input Group Styling */
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between the dropdown and the input */
+}
+
+.country-code {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  //border-radius: 4px;
+  outline: none;
+  background: white;
+  width: 80px; /* Set a fixed width for dropdown */
+  appearance: none; /* Remove default browser styles */
+  box-sizing: border-box;
+  text-align: center; /* Center-align the text */
+}
+
+/* Input Container */
+.input-container {
+  position: relative;
+  width: 100%;
+  flex: 1;
+}
+
+/* Floating Input */
+.floating-input {
+  width: 100%;
+  padding: 10px;
+  padding-top: 20px; /* Space for the label */
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  box-sizing: border-box;
+  background: none;
+}
+
+/* Floating Label */
+.floating-label {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #aaa;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+/* On Focus or Value */
+.floating-input:focus + .floating-label,
+.floating-input:not(:placeholder-shown) + .floating-label {
+  top: 0;
+  font-size: 12px;
+ // color: #007bff;
+}
 

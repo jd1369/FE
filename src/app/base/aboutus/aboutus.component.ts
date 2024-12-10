@@ -1,5 +1,6 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 @Component({
   selector: 'app-aboutus',
   templateUrl: './aboutus.component.html',

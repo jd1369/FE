@@ -14,6 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
+import {MatListModule} from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -23,7 +24,7 @@ import { AboutComponent } from './about/about.component';
 import { AppModule } from '../app.module';
 import { ClientsComponent } from '../shared/clients/clients.component';
 import { SubservicesComponent } from './services/subservices/subservices.component';
-
+import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [
   ],
@@ -33,6 +34,9 @@ import { SubservicesComponent } from './services/subservices/subservices.compone
     ReactiveFormsModule,
     NgbModule,
     MatTableModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY' // Replace with your API key
+    }),
     
     MatPaginatorModule,
     MatButtonModule,
@@ -41,6 +45,7 @@ import { SubservicesComponent } from './services/subservices/subservices.compone
     MatSlideToggleModule,
     BrowserAnimationsModule,
     MatSortModule,
+    MatListModule,
     MatFormFieldModule,
     MatInputModule,
     AppModule,

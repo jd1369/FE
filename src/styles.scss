@@ -1,21 +1,86 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
-@import '~@angular/material/theming';
 
-// Extend Angular Material's default typography.
-$default-typography: mat-typography-config();
-$custom-typography: map-merge(
-  $default-typography,
-  (
-    font-family: 'Manrope, sans-serif'
-  )
-);
 
-// Create the custom theme using the extended typography.
-$custom-theme: mat-light-theme((
-  typography: $custom-typography,
-));
+@font-face {
+  font-family: 'Real Text';
+  src: url('assets/fonts/Real Text Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
 
-@include angular-material-theme($custom-theme);
+@font-face {
+  font-family: 'Real Text';
+  src: url('assets/fonts/Real Text Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Real Text';
+  src: url('assets/fonts/Real Text Demibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Real Text';
+  src: url('assets/fonts/Real Text Extlight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Real Text';
+  src: url('assets/fonts/Real Text Extrabold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Real Text';
+  src: url('assets/fonts/Real Text Hairline.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Real Text';
+  src: url('assets/fonts/Real Text Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Real Text';
+  src: url('assets/fonts/Real Text Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Real Text';
+  src: url('assets/fonts/Real Text Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Real Text';
+  src: url('assets/fonts/Real Text Semilight.otf') format('opentype');
+  font-weight: 350;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Real Text';
+  src: url('assets/fonts/Real Text Ultralight.otf') format('opentype');
+  font-weight: 150;
+  font-style: normal;
+}
+
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Manrope', sans-serif; }
+body {
+  margin: 0;
+  font-family: 'Real Text', Arial, sans-serif;
+  font-weight: normal;
+}

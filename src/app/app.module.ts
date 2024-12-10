@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
+import {MatListModule} from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
@@ -44,6 +45,7 @@ import { CarouselModule } from 'primeng/carousel'
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ContactustableComponent } from './shared/contactustable/contactustable.component';
+import { EyepopupComponent } from './shared/eyepopup/eyepopup.component';
 
 @NgModule({
   declarations: [
@@ -68,13 +70,15 @@ import { ContactustableComponent } from './shared/contactustable/contactustable.
     ProjectsComponent,
     BlogComponent,
     ClientsComponent,
-    ContactustableComponent
+    ContactustableComponent,
+    EyepopupComponent
   ],
   imports: [
     AccordionModule,
     ButtonModule,
     TagModule,
     BrowserModule,
+    MatListModule,
     CarouselModule,
     BrowserAnimationsModule,
     AppRoutingModule,

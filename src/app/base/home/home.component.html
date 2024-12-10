@@ -9,9 +9,10 @@
   </div>
   <ng-template #textContent>
     <div class="heading">
-      <h1>
-        <span class="tag">Creative design agency, located in the heart of NYC.</span>
-      </h1>
+      <ul style="list-style: none;padding: 0;">
+        <li class="tag">Creative design agency,</li>
+        <li class="tag">located in the heart of NYC.</li>
+      </ul>
     </div>
   </ng-template>
 
@@ -37,7 +38,7 @@
       decade of teamwork and a combined 50+ years of
       expertise, the agency delivers innovative and impactful
       solutions tailored to a wide range of industries, including
-      real estate, healthcare, and lifestyle. See our work </span>
+      real estate, healthcare, and lifestyle.<a href="#" class="highlight">See our work &rsaquo;</a></span>
   </h1>
 </div>
 
@@ -45,34 +46,34 @@
 <div style="background-color: #d4d4d491;">
   <div class="stats-container">
     <div class="stat-box">
-      <h1>300+</h1>
-      <div class="big-dash"></div>
-      <p style="line-height: 30px;"> successful agency projects - Brand Identity, Website Design, Product Packaging</p>
+      <p class="detail2">300+ <p>
+      <p class="detail"> successful agency projects - Brand Identity, Website Design, Product Packaging</p>
+      <div  class="about-link">
+        <a [routerLink]="['/base/aboutus']" href="#" >About Elephant &gt;</a>
+      </div>
     </div>
     <div class="stat-box">
-      <h1>9</h1>
+      <p class="detail2">9 </p>
       <div class="big-dash"></div>
-      <p style="line-height: 30px;">years in business improving digital design products for our customers</p>
+      <p class="detail">years in business improving digital design products for our customers</p>
     </div>
     <div class="stat-box">
-      <h1>9.8</h1>
+      <p class="detail2">9.8</p>
       <div class="big-dash"></div>
-      <p style="line-height: 30px;">average NPS* we receive from our clients</p>
-      <p style="line-height: 30px;" class="note">*Net Promoter Score - willingness to recommend a service from 1-10</p>
+      <p  class="detail">average NPS* we receive from our clients</p>    
     </div>
-  </div>
-  <div  class="about-link">
-    <a [routerLink]="['/base/aboutus']" href="#" style="text-align: right;">About Elephant &gt;</a>
-  </div>
+  </div> 
 </div>
 
-<div>
-  <div class="heading">
-    <h1>
-      <span class="tag1">Elephant creates innovative design solutions that inspire,
-        Collaborate with a digital design agency that will make you proud.</span>
-    </h1>
-  </div>
+<div style="background-color: #d4d4d491;">
+<div class="quote-container">
+  <span class="quote-start">“</span>
+  <p class="quote-text">
+    DD.NYC® creates innovative design solutions that inspire.<br />
+    Collaborate with a digital design agency that will make you proud.
+  </p>
+  <span class="quote-end">”</span>
+</div>
 </div>
 
 <app-clients></app-clients>

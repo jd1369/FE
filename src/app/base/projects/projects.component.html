@@ -1,26 +1,40 @@
 <div class="header">
-    <h1>
-      WE TAKE PRIDE IN EVERY <span class="highlight">DETAIL</span>, 
-      EVERY <span class="highlight">PROJECT</span>, AND EVERY <span class="highlight">SUCCESS</span>
-    </h1>
-    <p>
-      Our commitment to excellence drives us through every project we undertake. From the initial brainstorming 
-      sessions to the final deliverables, we meticulously craft each detail to ensure it meets the highest standards.
-    </p>
-  </div>
-  
-  <div class="grid">
-    <div class="card" *ngFor="let item of items">
-      <img [src]="item.image" alt="Project image">
-      <h3>{{ item.title }}</h3>
-      <p>{{ item.subtitle }}</p>
+  <h1>
+    WE TAKE PRIDE IN EVERY <span class="highlight">DETAIL</span>, 
+    EVERY <span class="highlight">PROJECT</span>, AND EVERY <span class="highlight">SUCCESS</span>
+  </h1>
+  <p>
+    Our commitment to excellence drives us through every project we undertake. From the initial brainstorming 
+    sessions to the final deliverables, we meticulously craft each detail to ensure it meets the highest standards.
+  </p>
+</div>
+
+<div class="grid">
+  <div class="card" *ngFor="let item of items">
+    <div class="card-header">
+      <i class="fas fa-eye" (click)="openPopup(item)" title="View Details"></i>
     </div>
+    <img [src]="item.image" alt="Project image">
+    <h3>{{ item.title }}</h3>
+    <p>{{ item.subtitle }}</p>
   </div>
-  <div class="pagination-controls">
-    <pagination-controls 
+</div>
+
+<div class="pagination-controls">
+  <pagination-controls 
     (pageChange)="onPageChange($event)" 
     [maxSize]="5" 
     [autoHide]="true" 
- >
-  </pagination-controls>
+  ></pagination-controls>
+</div>
+
+<!-- Popup -->
+<div class="popup" *ngIf="popupVisible">
+  <div class="popup-content">
+    <!-- Close button inside the popup -->
+    <span class="close" (click)="hidePopup()">&times;</span>
+    <!-- Display details of the selected item -->
+    <h2>{{ popupItem?.title }}</h2>
+    <p>{{ popupItem?.description || popupItem?.subtitle }}</p>
   </div>
+</div>

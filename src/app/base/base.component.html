@@ -1,9 +1,10 @@
-
-
-<nav class="navbar" [style.background-color]="navbarBackground">
+<nav class="navbar" 
+     [style.background-color]="navbarBackground"
+     [class.expanded]="isAdminDropdownOpen"
+     (mouseleave)="onNavbarMouseLeave()">  <!-- Added event for when mouse leaves navbar -->
   <div class="container-fluid">
     <div class="logo">
-      <a [style.color] ="textColor"  routerLink="/base/home" routerLinkActive="active">Elephant</a>
+      <a [style.color]="textColor" routerLink="/base/home" routerLinkActive="active">Elephant</a>
     </div>
     <ul class="nav-links" [class.active]="isMenuOpen">
       <li><a [style.color]="textColor" routerLink="/base/home" routerLinkActive="active">Home</a></li>
@@ -11,9 +12,11 @@
       <li><a [style.color]="textColor" routerLink="/base/services" routerLinkActive="active">Services</a></li>
       <li><a [style.color]="textColor" routerLink="/base/projects" routerLinkActive="active">Projects</a></li>
 
-      <li class="dropdown">
-        <a [style.color]="textColor" routerLink="/base/admin" routerLinkActive="active">Admin</a>
-        <!-- Admin Dropdown Menu -->
+      <!-- Admin dropdown with mouse enter/leave events -->
+      <li class="dropdown" 
+          (mouseenter)="onAdminHover(true)"
+          (mouseleave)="onAdminHover(false)"> <!-- Trigger when mouse leaves Admin link -->
+        <a [style.color]="textColor" routerLink="/base/admin" routerLinkActive="active">Admin <span>&#62;</span></a>
         <ul class="dropdown-menu" [style.background-color]="navbarBackground">
           <li><a [style.color]="textColor" (click)="addProject()">Add Project</a></li>
           <li><a [style.color]="textColor" (click)="addService()">Add Service</a></li>
@@ -24,27 +27,72 @@
       </li>
 
       <li><a [style.color]="textColor" routerLink="/base/about" routerLinkActive="active">About Us</a></li>
-      <div class="col"><button class="button" (click)="openLoginModal()">Login</button></div>
     </ul>
+    <button class="button login-button" (click)="openLoginModal()">Login</button>
   </div>
 </nav>
 
-<!-- <div class="tile" >
-  <div class="container text-center">
-    <div class="row row-cols-lg-5 g-10">
-      <div class="col"><button class="button" (click)="addProject()">Add Project</button></div>
-      <div class="col"><button class="button" (click)="addService()">Add Service</button></div>
-      <div class="col"><button class="button" (click)="addSubService()">Add SubService</button></div>
-      <div class="col"><button class="button" (click)="newBanner()">New Banner</button></div>
-      <div class="col"><button class="button" (click)="postaBlog()">Post A Blog</button></div>
-    </div>
-  </div>
-</div> -->
 <div id="app-main">
   <router-outlet></router-outlet>
 </div>
 
+<div class="dd-nyc-container">
+  <div class="call-to-action">
+    <p>Starting a new project or want to collaborate with us?</p><a href="#">Let's talk ></a><p>hello&#64;dd.nyc</p>
+  </div>
 
-<footer >
-      Elephant
-</footer>
+  <div class="content-section">
+    <div class="section">
+      <div class="dash"></div>
+      <h6>Company</h6>
+      <ul>
+        <li>Work</li>
+        <li>Agency</li>
+        <li>Services</li>
+        <li>Industries</li>
+        <li>Client Testimonials</li>
+        <li>Contact</li>
+        <li>Website Accessibility</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="dash"></div>
+      <h6>Services</h6>
+      <ul>
+        <li>Web Design</li>
+        <li>WordPress Websites</li>
+        <li>Branding</li>
+        <li>Packaging Design</li>
+        <li>Graphic Design</li>
+        <li>Real Estate Design</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="dash"></div>
+      <h6>Address</h6>
+      <ul>
+        <li>85 Broad Street</li>
+        <li>17th Floor, Suite 17.005</li>
+        <li>New York, NY 10004</li>
+        <li>+1 212 380 1761</li>
+        <li>hello&#64;dd.nyc</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="dash"></div>
+      <h6>Connect</h6>
+      <ul>
+        <li>Behance</li>
+        <li>Dribbble</li>
+        <li>Instagram</li>
+        <li>Careers</li>
+        <li>Email</li>
+        <li>Contact</li>
+        <li>New Project?</li>
+      </ul>
+    </div>
+  </div>
+</div>
