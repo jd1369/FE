@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -10,10 +10,14 @@ export class AddprojectService {
   constructor(private http: HttpClient) { }
   
   addProject(data: FormData): Observable<any> {
-    return this.http.post(this.baseUrl+'postProject', data);
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      Token: `Bearer ${token}`,
+    });
+    return this.http.post(this.baseUrl+'postProject', data,{headers});
   }
 
-  uploadImage(file:FormData){
-    return this.http.post(this.baseUrl+'upload',file)
+  uploadImage(formData: any) {
+    return this.http.post(this.baseUrl+'upload', formData);
   }
 }

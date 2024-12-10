@@ -25,7 +25,7 @@
         <div class="col-lg-6 form-style">
           <div class="form-group pb-2">
             <fieldset>
-              <input type="text" class="form-control" id="descp" formControlName="descp" placeholder="Description" />
+              <input type="text" class="form-control" id="projectDescription" formControlName="projectDescription" placeholder="Description" />
             </fieldset>
           </div>
         </div>
@@ -36,36 +36,13 @@
         <div class="col-lg-6 form-style">
           <div class="form-group pb-2">
             <fieldset>
-              <input type="text" class="form-control" id="catg" formControlName="catg" placeholder="Category" />
+              <input type="text" class="form-control" id="projectContent" formControlName="projectContent" placeholder="Content" />
             </fieldset>
           </div>
         </div>
 
-        <div class="col-lg-6 form-style">
-          <div class="form-group pb-2">
-            <fieldset>
-              <input type="text" class="form-control" id="name" formControlName="name" placeholder="Name" />
-            </fieldset>
-          </div>
-        </div>
       </div>
-      <div class="row " style="padding-top: 20px;">
-        <div class="col-lg-6 form-style">
-          <div class="form-group pb-2">
-            <fieldset>
-              <input type="text" class="form-control" id="country" formControlName="country" placeholder="Country" />
-            </fieldset>
-          </div>
-        </div>
 
-        <div class="col-lg-6 form-style">
-          <div class="form-group pb-2">
-            <fieldset>
-              <input type="text" class="form-control" id="state" formControlName="state" placeholder="State" />
-            </fieldset>
-          </div>
-        </div>
-      </div>
       <div class="row" style="padding-top: 20px;">
         <div class="col-lg-6 form-style">
           <div class="form-group pb-2">
@@ -79,7 +56,7 @@
     </form>
 
     <div class="text-center " style="padding-top: 50px;">
-      <button type="button" class="btn btn-primary" (click)="onSubmit();activeModal.dismiss()">
+      <button type="button" class="btn btn-primary" (click)="activeModal.dismiss();onSubmit()">
         Submit
       </button>
 
