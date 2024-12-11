@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   visibleImages: any[] = [];
   currentIndex = 0;
   autoScrollInterval: any;
+  url: string = '';
   isAnimating = false;
   isToggled: boolean = false;
   constructor(
@@ -33,10 +34,10 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Clone the first image and append it to the end of the images array
+    this.getBanner();
     this.updateVisibleImages();
     this.startAutoScroll();
-    
+     console.log(this.url)
   }
   updateVisibleImages(): void {
     const numImages = 4; // Number of visible images at a time
@@ -44,10 +45,12 @@ export class HomeComponent implements OnInit {
       return this.images[(this.currentIndex + i) % this.images.length];
     });
   }
+  
 
   toggleContent() {
-   // this.isToggled = !this.isToggled;
-  }
+  this.isToggled = !this.isToggled;
+  this.getBanner();
+}
 
   startAutoScroll(): void {
     this.autoScrollInterval = setInterval(() => {
@@ -69,5 +72,18 @@ export class HomeComponent implements OnInit {
 
   ngOnDestroy(): void {
     clearInterval(this.autoScrollInterval);
+  }
+
+  getBanner(){
+    this.homeService.getBanner().subscribe({
+      next:(response:any)=>{
+        console.log(response)
+        this.url =response.url
+        console.log(this.url)
+      },
+      error:(err:any)=>{
+        console.log(err)
+      }
+    })
   }
 }

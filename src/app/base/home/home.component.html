@@ -5,7 +5,7 @@
 </div>
 
   <div *ngIf="isToggled; else textContent">
-    <img src="your-image-path.jpg"  class="image-content" />
+    <img [src]="url"  class="image-content" />
   </div>
   <ng-template #textContent>
     <div class="heading">

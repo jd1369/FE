@@ -38,6 +38,8 @@ import { SubservicesComponent } from './base/services/subservices/subservices.co
 import { ClientsComponent } from './shared/clients/clients.component';
 import {AccordionModule} from 'primeng/accordion';
 import {MenuItem} from 'primeng/api';         
+import { DropdownModule } from 'primeng/dropdown';  
+
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
@@ -46,7 +48,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ContactustableComponent } from './shared/contactustable/contactustable.component';
 import { EyepopupComponent } from './shared/eyepopup/eyepopup.component';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
 @NgModule({
   declarations: [
     AboutComponent,
@@ -80,9 +84,14 @@ import { EyepopupComponent } from './shared/eyepopup/eyepopup.component';
     BrowserModule,
     MatListModule,
     CarouselModule,
+    MatFormFieldModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    ToastModule,
+    InputTextModule,
+    TableModule,
     FormsModule,
+    DropdownModule,
     ReactiveFormsModule,
     HighchartsChartModule,
     NgxPaginationModule,

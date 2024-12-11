@@ -15,16 +15,42 @@
     <div class="modal-body">
       <form [formGroup]="serviceForm">
   
-        <div class="row justify-content-center align-items-center">
+        <div>
           <div class="col-lg-6 form-style">
             <div class="form-group pb-2">
-              <fieldset>
+              <fieldset class="d-flex align-items-center">
                 <input type="text" class="form-control" id="name" formControlName="name" placeholder="Service Name" />
+                <!-- Add Button -->&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary ml-2" (click)="addField()">+</button>
               </fieldset>
             </div>
           </div>
         </div>
-  
+        
+        
+        <div *ngFor="let field of additionalFields; let i = index" class="row align-items-center" style="padding-top: 20px;">
+          <div class="col-lg-5 form-style">
+            <div class="form-group pb-2">
+              <fieldset>
+                <input type="text" class="form-control" [(ngModel)]="field.name" placeholder="Field Name {{i + 1}}" />
+              </fieldset>
+            </div>
+          </div>
+          <div class="col-lg-5 form-style">
+            <div class="form-group pb-2">
+              <fieldset>
+                <input type="text" class="form-control" [(ngModel)]="field.value" placeholder="Field Value {{i + 1}}" />
+              </fieldset>
+            </div>
+          </div>
+          <div class="col-lg-1">
+            <button type="button" class="btn btn-danger" (click)="removeField(i)">&times;</button>
+          </div>
+        </div>
+        
+        <!-- Add Button -->
+        
+
         <div class="row" style="padding-top: 20px;">
           <div class="col-lg-6 form-style">
             <div class="form-group pb-2">
@@ -34,14 +60,12 @@
             </div>
           </div>
         </div>
-  
-      </form>
-  
-      <div class="text-center ">
-        <button type="button" class="btn btn-primary" (click)="activeModal.dismiss();onSubmit()">
+  </form>
+
+  <div class="text-center" style="padding-top: 20px;">
+      <button type="button" class="btn btn-primary" (click)="activeModal.dismiss(); onSubmit()">
           Submit
-        </button>
-  
-      </div>
-    </div>
+      </button>
   </div>
+</div>
+</div>
