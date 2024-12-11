@@ -2,45 +2,53 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProjecttableService } from './projecttable.service';
+import { EditprojectComponent } from './editproject/editproject.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-projecttable',
   templateUrl: './projecttable.component.html',
   styleUrls: ['./projecttable.component.scss']
 })
 export class ProjecttableComponent implements OnInit {
-  displayedColumns: string[] = ['projectName', 'projectDescription', 'projectContent','image','action'];
+  displayedColumns: string[] = ['projectName', 'projectDescription', 'projectContent', 'image', 'action'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource(); // MatTableDataSource for pagination
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private projectService: ProjecttableService) { }
+  constructor(private projectService: ProjecttableService,
+    private modalService: NgbModal,
+
+  ) { }
 
   ngOnInit(): void {
     this.getProjectData();
   }
 
-  getProjectData(){
+  getProjectData() {
     this.projectService.getProjectList().subscribe({
-     next: (response: any) => {
-       if (response) {
-        console.log(response)
-         this.dataSource.data = response;
-       }
-     },
-     error: (err: any) => {
-       // this.errorhandlerService.handleError(err);
-       console.log("error")
-     },
-   });
-   }
- 
-   ngAfterViewInit(): void {
-     this.dataSource.paginator = this.paginator; // Assign paginator to dataSource after the view is initialized
-   }
-
-   onEdit(row: any): void {
-    row.isEditing = true;
+      next: (response: any) => {
+        if (response) {
+          console.log(response)
+          this.dataSource.data = response;
+        }
+      },
+      error: (err: any) => {
+        // this.errorhandlerService.handleError(err);
+        console.log("error")
+      },
+    });
   }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator; // Assign paginator to dataSource after the view is initialized
+  }
+
+  onEdit(rowData: any): void {
+    const modalRef = this.modalService.open(EditprojectComponent);
+    modalRef.componentInstance.projectData = { ...rowData };
+
+  }
+
   onSave(row: any): void {
     row.isEditing = false;
     console.log('Saving row:', row);

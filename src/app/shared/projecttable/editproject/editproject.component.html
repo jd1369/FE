@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h4 class="modal-title">Edit Project</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+</div>
+<div class="modal-body">
+    <form #editForm="ngForm">
+        <div class="mb-3">
+            <label for="projectName" class="form-label">Project Name</label>
+            <input type="text" id="projectName" class="form-control" [(ngModel)]="projectData.projectName"
+                name="projectName" required />
+        </div>
+        <div class="mb-3">
+            <label for="projectDescription" class="form-label">Project Description</label>
+            <textarea id="projectDescription" class="form-control" [(ngModel)]="projectData.projectDescription"
+                name="projectDescription" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="projectContent" class="form-label">Project Content</label>
+            <textarea id="projectContent" class="form-control" [(ngModel)]="projectData.projectContent"
+                name="projectContent" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="images" class="form-label">Image</label>
+            <input type="text" id="images" class="form-control" [(ngModel)]="projectData.images" name="images"
+                required />
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+    <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+</div>

@@ -1,0 +1,66 @@
+.btn-primary {
+  background: #188725;
+  width: 160px;
+  height: 40px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 22px;
+  color: #FFFFFF;
+}
+
+.modal-header {
+  padding: 5px;
+  background-color: #000000;
+  
+  fieldset {
+      border: 2px solid #007bff; /* Light blue border */
+      padding: 15px;
+      border-radius: 8px;
+      width: 300px;
+      margin: 20px auto;
+      background-color: #f9f9f9; /* Light background color */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    }
+    
+    input[type="file"] {
+      display: block;
+      margin: 10px 0;
+      padding: 5px;
+      font-size: 14px;
+    }
+}
+.h4{
+  margin: 0 0px 0px;
+}
+
+.modal-title {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 36px;
+  color: #ffffff;
+  margin-top: 10px;
+
+}
+
+.close {
+  width: 30px;
+  height: 30px;
+  background: rgba(240, 240, 240, 0.75);
+  border: none;
+  font-size: 17px;
+  border-radius: 50%;
+  position: absolute; 
+  top: 10px; 
+  right: 10px; 
+  cursor: pointer;
+
+}
+
+
+
+
+

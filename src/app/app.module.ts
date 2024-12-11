@@ -39,7 +39,6 @@ import { ClientsComponent } from './shared/clients/clients.component';
 import {AccordionModule} from 'primeng/accordion';
 import {MenuItem} from 'primeng/api';         
 import { DropdownModule } from 'primeng/dropdown';  
-
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
@@ -51,6 +50,7 @@ import { EyepopupComponent } from './shared/eyepopup/eyepopup.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
+import { EditprojectComponent } from './shared/projecttable/editproject/editproject.component';
 @NgModule({
   declarations: [
     AboutComponent,
@@ -75,7 +75,8 @@ import { InputTextModule } from 'primeng/inputtext';
     BlogComponent,
     ClientsComponent,
     ContactustableComponent,
-    EyepopupComponent
+    EyepopupComponent,
+    EditprojectComponent
   ],
   imports: [
     AccordionModule,
