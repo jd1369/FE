@@ -26,6 +26,7 @@ import { ClientsComponent } from '../shared/clients/clients.component';
 import { AgmCoreModule } from '@agm/core';
 import { SubservicesComponent } from './subservices/subservices.component';
 import { BlogComponent } from './blog/blog.component';
+import { ProjectdetailsComponent } from './projectdetails/projectdetails.component';
 @NgModule({
   declarations: [
   
@@ -62,6 +63,7 @@ import { BlogComponent } from './blog/blog.component';
           { path: 'admin', component: AdminComponent },
           { path: 'services', component: ServicesComponent},
           { path: 'projects', component: ProjectsComponent },
+          { path: 'projectdetails', component: ProjectdetailsComponent },
           { path: 'home', component: HomeComponent },
           { path: 'aboutus', component: AboutusComponent },
           { path: 'about', component: AboutComponent },

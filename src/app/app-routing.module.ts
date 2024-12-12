@@ -9,6 +9,7 @@ import { AboutusComponent } from './base/aboutus/aboutus.component';
 import { AboutComponent } from './base/about/about.component';
 import { BlogComponent } from './base/blog/blog.component';
 import { SubservicesComponent } from './base/subservices/subservices.component';
+import { ProjectdetailsComponent } from './base/projectdetails/projectdetails.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'about', component: AboutComponent },
       { path: 'subservices', component: SubservicesComponent },
       { path: 'blog', component: BlogComponent },
+      { path: 'projectdetails', component: ProjectdetailsComponent },
     ],
   },
   { path: '', redirectTo: '/base/home', pathMatch: 'full' }

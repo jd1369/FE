@@ -51,7 +51,7 @@ import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { EditprojectComponent } from './shared/projecttable/editproject/editproject.component';
 import { EidtblogComponent } from './shared/blogtable/eidtblog/eidtblog.component';
-import { ProjectdetailsComponent } from './shared/projectdetails/projectdetails.component';
+import { ProjectdetailsComponent } from './base/projectdetails/projectdetails.component';
 @NgModule({
   declarations: [
     AboutComponent,
