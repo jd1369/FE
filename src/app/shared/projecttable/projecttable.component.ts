@@ -69,6 +69,7 @@ export class ProjecttableComponent implements OnInit {
       next: () => {
         console.log('Row deleted successfully');
         this.dataSource.data = this.dataSource.data.filter(item => item.customerID !== row.customerID);
+        this.getProjectData();
       },
       error: (err: any) => {
         console.error('Error deleting row:', err);

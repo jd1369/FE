@@ -19,9 +19,13 @@ export class BlogtableService {
   }
 
   updateProject(project: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/projects/${project.customerID}`, project); // Replace `customerID` with your unique identifier field
+    return this.http.put<any>(`${this.baseUrl}/projects/${project}`, project); // Replace `customerID` with your unique identifier field
   }
-  deleteProject(customerID: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/projects/${customerID}`);
-  }
+  deleteProject(blogId: number): Observable<void> {
+    const token = localStorage.getItem('authToken');
+    console.log(token)
+    const headers = new HttpHeaders({
+      Token: `Bearer ${token}`,
+    });
+    return this.http.delete<void>(`${this.baseUrl}deleteBlogById/${blogId}`,{headers});  }
 }

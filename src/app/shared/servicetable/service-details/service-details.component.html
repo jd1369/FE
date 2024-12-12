@@ -1,0 +1,43 @@
+<div class="modal-header">
+    <h4 class="modal-title">Edit Service Details</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+  </div>
+  
+  <div class="modal-body">
+    <form [formGroup]="editForm">
+      <!-- Static Fields -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Project Name</label>
+        <input type="text" id="name" class="form-control" formControlName="projectName" required />
+      </div>
+  
+      <div class="mb-3">
+        <label for="image" class="form-label">Image</label>
+        <input type="text" id="image" class="form-control" formControlName="image" required />
+      </div>
+  
+      <!-- Dynamic Fields (FormArray) -->
+      <div formArrayName="fields">
+        <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="d-flex mb-3">
+          
+          <!-- Type (Editable) -->
+          <div class="col-5">
+            <label for="type-{{i}}" class="form-label">Type</label>
+            <input type="text" id="type-{{i}}" class="form-control" formControlName="type" />
+          </div>
+  
+          <!-- Value (Editable) -->
+          <div class="col-7">
+            <label for="value-{{i}}" class="form-label">Value</label>
+            <input type="text" id="value-{{i}}" class="form-control" formControlName="value" />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+    <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+  </div>
+  

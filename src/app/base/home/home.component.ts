@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   url: string = '';
   isAnimating = false;
   isToggled: boolean = false;
+  switchBanner:any
   constructor(
     private http: HttpClient,
     private homeService:HomeService
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit {
     this.getBanner();
     this.updateVisibleImages();
     this.startAutoScroll();
-     console.log(this.url)
+     console.log(this.url);
   }
   updateVisibleImages(): void {
     const numImages = 4; // Number of visible images at a time
@@ -48,9 +49,10 @@ export class HomeComponent implements OnInit {
   
 
   toggleContent() {
-  this.isToggled = !this.isToggled;
+  console.log(this.switchBanner)
   this.getBanner();
 }
+
 
   startAutoScroll(): void {
     this.autoScrollInterval = setInterval(() => {
@@ -79,6 +81,7 @@ export class HomeComponent implements OnInit {
       next:(response:any)=>{
         console.log(response)
         this.url =response.url
+        this.switchBanner = response.switchBanner
         console.log(this.url)
       },
       error:(err:any)=>{

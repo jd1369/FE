@@ -16,6 +16,12 @@
             <mat-header-cell *matHeaderCellDef> Email Id </mat-header-cell>
             <mat-cell *matCellDef="let projectData"> {{projectData.emailId}} </mat-cell>
         </ng-container>
+        <ng-container matColumnDef="view">
+            <mat-header-cell *matHeaderCellDef> View </mat-header-cell>
+            <mat-cell *matCellDef="let projectData">
+                <i class="fa fa-eye" style="color: #007bff; cursor: pointer;" (click)="showPopup(projectData)"></i>
+            </mat-cell>
+        </ng-container>
         <ng-container matColumnDef="action">
             <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
             <mat-cell *matCellDef="let projectData">
@@ -29,4 +35,27 @@
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
 </div>
+
+<div class="popup" *ngIf="popupVisible">
+    <div class="popup-content">
+      <!-- Close button inside the popup -->
+      <span class="close" (click)="hidePopup()">&times;</span>
+  
+      <!-- Display details of the selected item -->
+      <h2>{{ popupItem?.name }}</h2>
+      <p><strong>Customer ID:</strong> {{ popupItem?.customerID }}</p>
+      <p><strong>Phone Number:</strong> {{ popupItem?.phoneNumber }}</p>
+      <p><strong>Email:</strong> {{ popupItem?.emailId }}</p>
+  
+      <!-- Display fields dynamically -->
+      <div *ngFor="let field of getFieldKeys(popupItem?.fields)">
+        <!-- Access the inner key-value pair and display it -->
+        <div *ngFor="let innerKey of getInnerKeys(popupItem?.fields, field)">
+          <p>{{ innerKey }} = {{ getFieldValue(popupItem?.fields, field, innerKey) }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

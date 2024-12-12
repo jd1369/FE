@@ -72,10 +72,11 @@ export class BlogtableComponent implements OnInit {
 
   onDelete(row: any): void {
     console.log('Delete clicked for:', row);
-    this.blogService.deleteProject(row.customerID).subscribe({
+    this.blogService.deleteProject(row.projectId).subscribe({
       next: () => {
         console.log('Row deleted successfully');
         this.dataSource.data = this.dataSource.data.filter(item => item.customerID !== row.customerID);
+        this.getBlogData();
       },
       error: (err: any) => {
         console.error('Error deleting row:', err);

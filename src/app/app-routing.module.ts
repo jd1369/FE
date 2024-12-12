@@ -9,7 +9,7 @@ import { AboutusComponent } from './base/aboutus/aboutus.component';
 import { AboutComponent } from './base/about/about.component';
 import { BlogComponent } from './base/blog/blog.component';
 import { SubservicesComponent } from './base/subservices/subservices.component';
-import { ProjectdetailsComponent } from './base/projectdetails/projectdetails.component';
+import { ProjectdetailsComponent } from './shared/projectdetails/projectdetails.component';
 
 const routes: Routes = [
   {

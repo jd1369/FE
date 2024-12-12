@@ -1,0 +1,15 @@
+/* CSS for dynamic key-value fields */
+.dynamic-field {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+  
+  .dynamic-field label {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .dynamic-field input {
+    flex: 2;
+  }
+  

@@ -20,22 +20,15 @@ import { BaseService } from './base.service';
 export class BaseComponent implements OnInit {
   baseUrl = environment.baseUrl;
   isAdminPage: boolean = false;
-  isMenuOpen: boolean = false;
-  lastScrollTop = 0;
-  isScrolled = false; 
-  isDropdownOpen = false;
-  navbarVisible = true;
-  isAdminDropdownOpen = false;
-  navbarBackground = '#d4d4d491';
-  textColor = 'black';
+  isScrolled = false;
   selectedFile: File | null = null;
   uploadedImageUrl: string = '';
-  loginButtonColor = 'darkgreen';
-  loginButtonTextColor = 'white';
   user: any;
   admin: any;
   url: any;
+  dropdownVisible = false;
   bannerForm!:FormGroup;
+  mobileMenuOpen: boolean = false;
   @ViewChild('fileInput') fileInputRef!: ElementRef<HTMLInputElement>;
   constructor(
     private modalService: NgbModal,
@@ -48,6 +41,7 @@ export class BaseComponent implements OnInit {
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
     this.admin = JSON.parse(localStorage.getItem('admin') || '{}');
+    
     this.isAdminPage = this.route.snapshot.routeConfig?.path === 'admin';
     console.log(this.url);
     const now = new Date();
@@ -63,14 +57,7 @@ export class BaseComponent implements OnInit {
 
     }
 
-    setupInitialNavbarState() {
-      // Initialize navbar colors for the default state
-      this.navbarBackground = '#d4d4d491';
-      this.textColor = 'black';
-      this.loginButtonColor = 'darkgreen';
-      this.loginButtonTextColor = 'white';
-    }
-  
+
 
   ngAfterViewInit() {
     // Ensure the reference is available after the view is initialized
@@ -84,64 +71,19 @@ export class BaseComponent implements OnInit {
     modalRef.componentInstance.clickFrom = clickFrom;
   };
 
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
-
+ 
   
-  onAdminHover(isHovered: boolean) {
-    const navbar = document.querySelector('.navbar');
-    
-    if (isHovered) {
-      navbar?.classList.add('expanded'); // Add expanded class when hovering over Admin
-    } else {
-      navbar?.classList.remove('expanded'); // Remove expanded class when leaving Admin
-    }
-  }
-
+ 
   // Optional: Add this method to handle navbar collapsing when mouse leaves navbar
-  onNavbarMouseLeave() {
-    this.isAdminDropdownOpen = false; // Collapse dropdown on mouse leave
+  
+  toggleDropdown(visible: boolean) {
+    this.dropdownVisible = visible;
   }
-
-  toggleAdminDropdown() {
-    this.isAdminDropdownOpen = !this.isAdminDropdownOpen;
-    const navbar = document.querySelector('.navbar');
-    const appMain = document.querySelector('#app-main');
-
-    if (this.isAdminDropdownOpen) {
-      navbar?.classList.add('expanded');
-      appMain?.classList.add('has-expanded-navbar'); // Add padding-top to main content
-    } else {
-      navbar?.classList.remove('expanded');
-      appMain?.classList.remove('has-expanded-navbar'); // Reset padding-top
-    }
-  }
-
   
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (currentScroll > 0) {
-      this.isScrolled = true;
-      this.navbarBackground = 'darkgreen'; // Navbar color when scrolled
-      this.textColor = 'white'; // Text color when scrolled
-      this.loginButtonColor = 'black'; // Login button color when scrolled
-      this.loginButtonTextColor = 'white'; // Login button text color
-    } 
-    if(currentScroll = 0){
-      this.isScrolled = true;
-      this.navbarBackground = '#fffcfc';
-      this.textColor = 'white';
-    }
-    else {
-      this.isScrolled = false;
-      this.setupInitialNavbarState(); // Reset to default state
-    }
-
-    this.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    this.isScrolled = window.scrollY > 0; // Change threshold as needed
   }
 
 
@@ -239,5 +181,14 @@ export class BaseComponent implements OnInit {
   }
    submitProject(formData: FormData): void {
    
+  }
+
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  // Scroll event listener (example)
+  onScroll() {
+    this.isScrolled = window.scrollY > 50; // Modify the value as needed
   }
 }

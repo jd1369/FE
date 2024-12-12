@@ -1,41 +1,57 @@
-<nav class="navbar" [style.background-color]="navbarBackground" [class.expanded]="isAdminDropdownOpen"
-  (mouseleave)="onNavbarMouseLeave()"> <!-- Added event for when mouse leaves navbar -->
-  <div class="container-fluid">
-    <div class="logo">
-      <a [style.color]="textColor" routerLink="/base/home" routerLinkActive="active">Elephant</a>
-    </div>
-    <ul class="nav-links" [class.active]="isMenuOpen">
-      <li><a [style.color]="textColor" routerLink="/base/home" routerLinkActive="active">Home</a></li>
-      <li><a [style.color]="textColor" routerLink="/base/aboutus" routerLinkActive="active">Contact Us</a></li>
-      <li><a [style.color]="textColor" routerLink="/base/services" routerLinkActive="active">Services</a></li>
-      <li><a [style.color]="textColor" routerLink="/base/projects" routerLinkActive="active">Projects</a></li>
-      <!-- <li><a [style.color]="textColor" routerLink="/base/blog" routerLinkActive="active">Blog</a></li> -->
 
-      <!-- Admin dropdown with mouse enter/leave events -->
-      <li class="dropdown" (mouseenter)="onAdminHover(true)" (mouseleave)="onAdminHover(false)">
-        <a [style.color]="textColor" routerLink="/base/admin" routerLinkActive="active">Admin <span><i class="fa-solid fa-greater-than fa-2xs"></i></span></a>
-        <ul class="dropdown-menu" [style.background-color]="isScrolled ? 'transparent' : navbarBackground">
-          <li><a [style.color]="textColor" (click)="addProject()">Add Project</a></li>
-          <li><a [style.color]="textColor" (click)="addService()">Add Service</a></li>
-          <li><a [style.color]="textColor" (click)="addSubService()">Add SubService</a></li>
-          <li>
-            <a [style.color]="textColor" (click)="fileInputRef.nativeElement.click()">New Banner</a>
+<nav [ngClass]="{'scrolled': isScrolled}" class="navbar">
+  <div class="navbar-content">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Logo" />
+    </div>
+    <div class="nav-links">
+      <a routerLink="/base/home" routerLinkActive="active">Home</a>
+      <a routerLink="/base/aboutus" routerLinkActive="active">Contact Us</a>
+      <a routerLink="/base/services" routerLinkActive="active">Services</a>
+      <div class="dropdown" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
+        <a routerLink="/base/admin" routerLinkActive="active">Admin</a>
+        <ul class="dropdown-menu" *ngIf="dropdownVisible">
+          <li><a (click)="addProject()">Add Project</a></li>
+          <li><a (click)="addService()">Add Service</a></li>
+          <li><a (click)="addSubService()">Add SubService</a></li>
+          <li><a (click)="fileInputRef.nativeElement.click()">New Banner</a>
             <input #fileInput type="file" placeholder="img" (change)="onFileSelected($event);onSubmit();"
               accept="image/*" style="display: none;" />
           </li>
-          <li><a [style.color]="textColor" (click)="postaBlog()">Post A Blog</a></li>
+          <li><a (click)="postaBlog()">Post A Blog</a></li>
         </ul>
-      </li>
+      </div>
+      <a routerLink="/base/about" routerLinkActive="active">About Us</a>
+      <a routerLink="/base/projects" routerLinkActive="active">Project</a>
+    </div>
+    <div class="login">
+      <button (click)="openLoginModal()">Login</button>
+    </div>
 
-      <li><a [style.color]="textColor" routerLink="/base/about" routerLinkActive="active">About Us</a></li>
-    </ul>
-    <button class="button login-button" (click)="openLoginModal()">Login</button>
+    <!-- Hamburger Menu for mobile -->
+    <div class="hamburger" (click)="toggleMobileMenu()">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
   </div>
 </nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-nav" *ngIf="mobileMenuOpen">
+  <a routerLink="/base/home" routerLinkActive="active">Home</a>
+  <a routerLink="/base/aboutus" routerLinkActive="active">Contact Us</a>
+  <a routerLink="/base/services" routerLinkActive="active">Services</a>
+  <a routerLink="/base/about" routerLinkActive="active">About Us</a>
+  <a routerLink="/base/projects" routerLinkActive="active">Project</a>
+</div>
 
 <div id="app-main">
   <router-outlet></router-outlet>
 </div>
+
+
+
 
 <div class="dd-nyc-container">
   <div class="call-to-action">

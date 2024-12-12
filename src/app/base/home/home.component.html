@@ -4,7 +4,7 @@
   </button>
 </div>
 
-  <div *ngIf="isToggled; else textContent">
+  <div *ngIf="switchBanner; else textContent">
     <img [src]="url"  class="image-content" />
   </div>
   <ng-template #textContent>

@@ -26,7 +26,9 @@ import { ClientsComponent } from '../shared/clients/clients.component';
 import { AgmCoreModule } from '@agm/core';
 import { SubservicesComponent } from './subservices/subservices.component';
 import { BlogComponent } from './blog/blog.component';
-import { ProjectdetailsComponent } from './projectdetails/projectdetails.component';
+import { ProjectdetailsComponent } from '../shared/projectdetails/projectdetails.component';
+import { BrowserModule } from '@angular/platform-browser';
+
 @NgModule({
   declarations: [
   
@@ -36,6 +38,7 @@ import { ProjectdetailsComponent } from './projectdetails/projectdetails.compone
   ],
   imports: [
     CommonModule,
+    BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
     NgbModule,
@@ -54,7 +57,7 @@ import { ProjectdetailsComponent } from './projectdetails/projectdetails.compone
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
-    AppModule,
+    
     RouterModule.forChild([
       {
         path: '',
