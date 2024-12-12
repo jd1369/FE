@@ -1,0 +1,114 @@
+p.a{
+    margin-top: 90px;
+    font-size: 16px;
+    font-family: 'Real Text', Arial, sans-serif;
+}
+
+p.b{
+    margin-top: 45px;
+    font-size: 16px;
+    font-family: 'Real Text', Arial, sans-serif;
+}
+
+p.c{
+  font-family: 'Real Text', Arial, sans-serif;
+}
+
+.button{
+    margin-left: 233px;
+    font-family: 'Real Text', Arial, sans-serif;
+}
+
+.h1{
+    padding: 100px;
+    font-family: 'Real Text', Arial, sans-serif;
+}
+
+/* General Container */
+// .container {
+//     max-width: 1200px;
+//     margin: 0 auto;
+//     text-align: center;
+//     padding: 20px;
+//   }
+  
+  .header-text {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+    font-family: 'Real Text', Arial, sans-serif;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 65px;
+  }
+  
+  .feature-item {
+    flex: 1;
+    min-width: 250px;
+    max-width: 300px;
+    text-align: center;
+  }
+  
+  .icon {
+    height: 60px;
+    width: 60px;
+    margin: 0 auto 20px;
+  }
+  
+  .human-icon {
+    border: 2px solid black;
+    border-radius: 50%;
+    position: relative;
+  }
+  
+  .human-icon::before,
+  .human-icon::after {
+    content: "";
+    position: absolute;
+    background-color: black;
+  }
+  
+  .human-icon::before {
+    height: 20px;
+    width: 20px;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+  }
+  
+  .human-icon::after {
+    height: 20px;
+    width: 60%;
+    top: 35px;
+    left: 20%;
+    border-top: 2px solid black;
+  }
+  
+  .tech-icon {
+    background: radial-gradient(circle, black 2px, transparent 3px);
+    height: 60px;
+    width: 60px;
+  }
+  
+  .value-icon {
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    
+    height: 40px;
+    width: 30px;
+    transform: rotate(0deg);
+  }
+  
+  .view-work-button {
+    background: none;
+    border: 1px solid black;
+    padding: 7px 12px;
+    margin-top: 40px;
+    cursor: pointer;
+    font-family: 'Real Text', Arial, sans-serif;
+  }
+  

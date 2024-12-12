@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ProjectsService } from './projects.service';
+import { SharedserviceService } from 'src/app/shared/sharedservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
@@ -6,6 +10,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
+  constructor(private http: HttpClient,
+      private projectService:ProjectsService,
+      private sharedservice:SharedserviceService,
+      private router: Router
+    ) { }
   items: any[] = [
     {
       title: 'THE ADIDAS SUPER BOWL WINNING THROW',
@@ -56,16 +65,25 @@ export class ProjectsComponent implements OnInit {
   currentPage: number = 1;
   popupVisible = false;
   popupItem: any;
-
+  projects:any;
   ngOnInit() {
     this.updatePagedItems();
     console.log(this.popupItem); // Log the popupItem to check if the data is correctly assigned
 
   }
 
-  onPageChange(page: number) {
-    this.currentPage = page;
-    this.updatePagedItems();
+  sendData(data:any) {
+    console.log('123')
+    this.sharedservice.setProjectData(data);
+    this.router.navigate(['/app/shared/projectdetails'])
+  }
+
+  getProjects(): void {
+    this.projectService.getProjectList()
+      .subscribe(data => {
+        this.projects = data;
+        console.log(this.projects)
+      });
   }
 
   updatePagedItems() {

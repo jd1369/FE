@@ -34,7 +34,6 @@ import { AboutusComponent } from './base/aboutus/aboutus.component';
 import { AboutComponent } from './base/about/about.component';
 import { ProjectsComponent } from './base/projects/projects.component';
 import { BlogComponent } from './base/blog/blog.component';
-import { SubservicesComponent } from './base/services/subservices/subservices.component';
 import { ClientsComponent } from './shared/clients/clients.component';
 import {AccordionModule} from 'primeng/accordion';
 import {MenuItem} from 'primeng/api';         
@@ -51,6 +50,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { EditprojectComponent } from './shared/projecttable/editproject/editproject.component';
+import { EidtblogComponent } from './shared/blogtable/eidtblog/eidtblog.component';
+import { ProjectdetailsComponent } from './shared/projectdetails/projectdetails.component';
 @NgModule({
   declarations: [
     AboutComponent,
@@ -76,7 +77,9 @@ import { EditprojectComponent } from './shared/projecttable/editproject/editproj
     ClientsComponent,
     ContactustableComponent,
     EyepopupComponent,
-    EditprojectComponent
+    EditprojectComponent,
+    EidtblogComponent,
+    ProjectdetailsComponent
   ],
   imports: [
     AccordionModule,

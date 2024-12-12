@@ -6,16 +6,16 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class EditprojectService {
+export class ProjectdetailsService {
 baseUrl= environment.baseUrl;
   constructor(private http: HttpClient) { }
   
-  saveProject(projectData: any): Observable<any> {
+  getProjectDetails(service:any): Observable<any> {
     const token = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       Token: `Bearer ${token}`,
     });
-    return this.http.put(this.baseUrl+'updateProject', projectData,{headers});
+    return this.http.get(this.baseUrl+ service+'/fetchAllSubServicesForAService', {headers});
   }
 
   uploadImage(formData: any) {

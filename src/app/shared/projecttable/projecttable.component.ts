@@ -65,7 +65,7 @@ export class ProjecttableComponent implements OnInit {
 
   onDelete(row: any): void {
     console.log('Delete clicked for:', row);
-    this.projectService.deleteProject(row.customerID).subscribe({
+    this.projectService.deleteProject(row.projectId).subscribe({
       next: () => {
         console.log('Row deleted successfully');
         this.dataSource.data = this.dataSource.data.filter(item => item.customerID !== row.customerID);

@@ -20,6 +20,7 @@
   overflow: hidden;
 }
 
+
 /* Expanded navbar state */
 .navbar.expanded {
   min-height: 17.12rem; /* Adjust height when dropdown is open */
@@ -37,7 +38,7 @@
   position: absolute;
   top: 100%; /* Align below the dropdown trigger */
   left: 0;
-  background-color: #fffcfc;
+  background-color: transparent;
   padding: 1rem;
   z-index: 1001;
   opacity: 0; /* Start with invisible */
@@ -49,6 +50,7 @@
   display: block;
   opacity: 1; /* Fade in */
   transform: translateY(0); /* Slide down smoothly */
+  border: 0;
 }
 
 /* Keep navbar links fixed in place */
@@ -76,11 +78,6 @@
   position: relative; /* Keeps nav links in place */
 }
 
-/* Hover effect for navbar */
-.navbar:hover {
-  min-height: 17.12rem; /* Expands when hovering over the navbar */
-  padding: 1rem 2rem 2rem 2rem; /* Adjust padding */
-}
 
 /* Main Content Area */
 #app-main {

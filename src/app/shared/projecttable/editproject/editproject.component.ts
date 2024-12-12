@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditprojectService } from './editproject.service';
 
 @Component({
   selector: 'app-editproject',
@@ -7,14 +8,28 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./editproject.component.scss']
 })
 export class EditprojectComponent implements OnInit {
-  @Input() projectData: any;
-  constructor(public activeModal: NgbActiveModal) { }
+  @Input() projectData :any
+  constructor(public activeModal: NgbActiveModal,
+    private editService :EditprojectService
+  ) { }
 
   ngOnInit(): void {
+    this.projectData.lastModifiedDate = new Date().toISOString();
   }
 
   save() {
-    this.activeModal.close(this.projectData);
+    console.log(this.projectData)
+    this.editService.saveProject(this.projectData).subscribe({
+      next:(response:any) => {
+        console.log('Project saved successfully:', response);
+        
+        this.activeModal.close(this.projectData);
+      },
+      error:(err:any) => {
+        console.error('Error saving project:', err);
+        // Handle the error (e.g., show an error message)
+      }
+   });
   }
 
   close() {

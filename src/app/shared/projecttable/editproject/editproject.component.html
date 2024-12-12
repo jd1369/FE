@@ -20,6 +20,11 @@
                 name="projectContent" required></textarea>
         </div>
         <div class="mb-3">
+            <label for="lastModifiedDate" class="form-label">ModifiedDate</label>
+            <input type="date" id="lastModifiedDate" class="form-control" [(ngModel)]="projectData.lastModifiedDate" name="lastModifiedDate"
+                required />
+        </div>
+        <div class="mb-3">
             <label for="images" class="form-label">Image</label>
             <input type="text" id="images" class="form-control" [(ngModel)]="projectData.images" name="images"
                 required />

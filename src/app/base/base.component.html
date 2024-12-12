@@ -1,7 +1,5 @@
-<nav class="navbar" 
-     [style.background-color]="navbarBackground"
-     [class.expanded]="isAdminDropdownOpen"
-     (mouseleave)="onNavbarMouseLeave()">  <!-- Added event for when mouse leaves navbar -->
+<nav class="navbar" [style.background-color]="navbarBackground" [class.expanded]="isAdminDropdownOpen"
+  (mouseleave)="onNavbarMouseLeave()"> <!-- Added event for when mouse leaves navbar -->
   <div class="container-fluid">
     <div class="logo">
       <a [style.color]="textColor" routerLink="/base/home" routerLinkActive="active">Elephant</a>
@@ -11,20 +9,19 @@
       <li><a [style.color]="textColor" routerLink="/base/aboutus" routerLinkActive="active">Contact Us</a></li>
       <li><a [style.color]="textColor" routerLink="/base/services" routerLinkActive="active">Services</a></li>
       <li><a [style.color]="textColor" routerLink="/base/projects" routerLinkActive="active">Projects</a></li>
+      <!-- <li><a [style.color]="textColor" routerLink="/base/blog" routerLinkActive="active">Blog</a></li> -->
 
       <!-- Admin dropdown with mouse enter/leave events -->
-      <!--  -->
-      <li class="dropdown" *ngIf="admin"
-          (mouseenter)="onAdminHover(true)"
-          (mouseleave)="onAdminHover(false)"> <!-- Trigger when mouse leaves Admin link -->
-        <a [style.color]="textColor" routerLink="/base/admin" routerLinkActive="active">Admin <span>&#62;</span></a>
-        <ul class="dropdown-menu" [style.background-color]="navbarBackground">
+      <li class="dropdown" (mouseenter)="onAdminHover(true)" (mouseleave)="onAdminHover(false)">
+        <a [style.color]="textColor" routerLink="/base/admin" routerLinkActive="active">Admin <span><i class="fa-solid fa-greater-than fa-2xs"></i></span></a>
+        <ul class="dropdown-menu" [style.background-color]="isScrolled ? 'transparent' : navbarBackground">
           <li><a [style.color]="textColor" (click)="addProject()">Add Project</a></li>
           <li><a [style.color]="textColor" (click)="addService()">Add Service</a></li>
           <li><a [style.color]="textColor" (click)="addSubService()">Add SubService</a></li>
           <li>
             <a [style.color]="textColor" (click)="fileInputRef.nativeElement.click()">New Banner</a>
-            <input #fileInput type="file" placeholder="img" (change)="onFileSelected($event);onSubmit();" accept="image/*" style="display: none;"/>
+            <input #fileInput type="file" placeholder="img" (change)="onFileSelected($event);onSubmit();"
+              accept="image/*" style="display: none;" />
           </li>
           <li><a [style.color]="textColor" (click)="postaBlog()">Post A Blog</a></li>
         </ul>
@@ -42,7 +39,8 @@
 
 <div class="dd-nyc-container">
   <div class="call-to-action">
-    <p>Starting a new project or want to collaborate with us?</p><a href="#">Let's talk ></a><p>hello&#64;dd.nyc</p>
+    <p>Starting a new project or want to collaborate with us?</p><a href="#">Let's talk ></a>
+    <p>hello&#64;dd.nyc</p>
   </div>
 
   <div class="content-section">

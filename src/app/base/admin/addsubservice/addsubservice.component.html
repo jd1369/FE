@@ -1,47 +1,63 @@
 
   
 <div class="modal-header">
-    <div class="col">
-      <h4 class="modal-title">Login</h4>
-    </div>
-    <div class="col-sm-4">
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-  
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
+  <div class="col">
+    <h4 class="modal-title">Login</h4>
   </div>
-  <div class="container">
-    <div class="modal-body">
-      <form [formGroup]="projectForm">
-  
-        <div class="row justify-content-center align-items-center">
-          <div class="col-lg-6 form-style">
-            <div class="form-group pb-2">
-              <fieldset>
-                <input type="text" class="form-control" id="emailId" formControlName="emailId" placeholder="Enter Your Email Id" />
-              </fieldset>
-            </div>
+  <div class="col-sm-4">
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+<div class="container">
+  <div class="modal-body">
+    <form [formGroup]="subServiceForm">
+
+      <div>
+        <div class="col-lg-6 form-style">
+          <div class="form-group pb-2">
+            <fieldset class="d-flex align-items-center">
+              <input type="text" class="form-control" id="name" formControlName="name" placeholder="Service Name" />
+              <!-- Add Button -->&nbsp;&nbsp;&nbsp;
+              <button type="button" class="btn btn-secondary ml-2" (click)="addField()">+</button>
+            </fieldset>
           </div>
         </div>
-  
-        <div class="row justify-content-center align-items-center">
-          <div class="col-lg-6 form-style">
-            <div class="form-group pb-2">
-              <fieldset>
-                <input type="text" class="form-control" id="empId" formControlName="empId" placeholder="OTP" />
-              </fieldset>
-            </div>
-          </div>
-        </div>
-  
-      </form>
-  
-      <div class="text-center ">
-        <button type="button" class="btn btn-primary" (click)="activeModal.dismiss()">
-          Login
-        </button>
-  
       </div>
-    </div>
-  </div>
+      
+      
+      <div *ngFor="let field of additionalFields; let i = index" class="row align-items-center" style="padding-top: 20px;">
+        <div class="col-lg-5 form-style">
+          <div class="form-group pb-2">
+            <fieldset>
+              <input type="text" class="form-control" [(ngModel)]="field.name" placeholder="Field Name {{i + 1}}" />
+            </fieldset>
+          </div>
+        </div>
+        <div class="col-lg-5 form-style">
+          <div class="form-group pb-2">
+            <fieldset>
+              <input type="text" class="form-control" [(ngModel)]="field.value" placeholder="Field Value {{i + 1}}" />
+            </fieldset>
+          </div>
+        </div>
+        <div class="col-lg-1">
+          <button type="button" class="btn btn-danger" (click)="removeField(i)">&times;</button>
+        </div>
+      </div>
+      
+      <!-- Add Button -->
+      
+
+      
+</form>
+
+<div class="text-center" style="padding-top: 20px;">
+    <button type="button" class="btn btn-primary" (click)="activeModal.dismiss(); onSubmit()">
+        Submit
+    </button>
+</div>
+</div>
+</div>

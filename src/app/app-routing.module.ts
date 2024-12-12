@@ -7,7 +7,8 @@ import { ServicesComponent } from './base/services/services.component';
 import { ProjectsComponent } from './base/projects/projects.component';
 import { AboutusComponent } from './base/aboutus/aboutus.component';
 import { AboutComponent } from './base/about/about.component';
-import { SubservicesComponent } from './base/services/subservices/subservices.component';
+import { BlogComponent } from './base/blog/blog.component';
+import { SubservicesComponent } from './base/subservices/subservices.component';
 
 const routes: Routes = [
   {
@@ -15,13 +16,13 @@ const routes: Routes = [
     component: BaseComponent,
     children: [
       { path: 'admin', component: AdminComponent },
-      { path: 'services', component: ServicesComponent, children: [
-          { path: 'subservices', component: SubservicesComponent }  // Subservice route
-      ] },
+      { path: 'services', component: ServicesComponent },
       { path: 'projects', component: ProjectsComponent },
       { path: 'home', component: HomeComponent },
       { path: 'aboutus', component: AboutusComponent },
       { path: 'about', component: AboutComponent },
+      { path: 'subservices', component: SubservicesComponent },
+      { path: 'blog', component: BlogComponent },
     ],
   },
   { path: '', redirectTo: '/base/home', pathMatch: 'full' }

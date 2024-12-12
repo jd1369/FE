@@ -23,10 +23,15 @@ import {MatInputModule} from '@angular/material/input';
 import { AboutComponent } from './about/about.component';
 import { AppModule } from '../app.module';
 import { ClientsComponent } from '../shared/clients/clients.component';
-import { SubservicesComponent } from './services/subservices/subservices.component';
 import { AgmCoreModule } from '@agm/core';
+import { SubservicesComponent } from './subservices/subservices.component';
+import { BlogComponent } from './blog/blog.component';
 @NgModule({
   declarations: [
+  
+    
+  
+    SubservicesComponent
   ],
   imports: [
     CommonModule,
@@ -55,15 +60,13 @@ import { AgmCoreModule } from '@agm/core';
         component: BaseComponent,
         children: [
           { path: 'admin', component: AdminComponent },
-          { path: 'services', component: ServicesComponent,children:[
-            {
-              path: 'subservices', component: SubservicesComponent
-            }
-          ] },
+          { path: 'services', component: ServicesComponent},
           { path: 'projects', component: ProjectsComponent },
           { path: 'home', component: HomeComponent },
           { path: 'aboutus', component: AboutusComponent },
           { path: 'about', component: AboutComponent },
+          { path: 'subservices', component: SubservicesComponent },
+         { path: 'blog', component: BlogComponent },
         ],
       },
     ]),

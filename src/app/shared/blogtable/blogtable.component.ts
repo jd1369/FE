@@ -2,18 +2,26 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { BlogtableService } from './blogtable.service';
+import { Router } from '@angular/router';
+import { SharedserviceService } from '../sharedservice.service';
+import { EidtblogComponent } from './eidtblog/eidtblog.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-blogtable',
   templateUrl: './blogtable.component.html',
   styleUrls: ['./blogtable.component.scss']
 })
 export class BlogtableComponent implements OnInit {
-  displayedColumns: string[] = ['blogName', 'blogDescription', 'blogContent','modifiedDate','publishedDate','image'];
+  displayedColumns: string[] = ['blogName', 'blogDescription', 'blogContent','modifiedDate','publishedDate','image','action','view'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource(); // MatTableDataSource for pagination
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private blogService: BlogtableService) { }
+  constructor(private blogService: BlogtableService,
+     private router: Router,
+     private sharedservice :SharedserviceService,
+      private modalService: NgbModal,
+  ) { }
 
   ngOnInit(): void {
     this.getBlogData();
@@ -28,7 +36,7 @@ export class BlogtableComponent implements OnInit {
      },
      error: (err: any) => {
        // this.errorhandlerService.handleError(err);
-       console.log("error")
+       console.log(err)
      },
    });
    }
@@ -37,9 +45,17 @@ export class BlogtableComponent implements OnInit {
      this.dataSource.paginator = this.paginator; // Assign paginator to dataSource after the view is initialized
    }
 
-   onEdit(row: any): void {
-    row.isEditing = true;
-  }
+   onView(data:any){
+    console.log(data);
+    this.sharedservice.setblogdata(data);
+    this.router.navigate(['base/blog'], { state: { data: data } });
+   }
+
+    onEdit(rowData: any): void {
+       const modalRef = this.modalService.open(EidtblogComponent);
+       modalRef.componentInstance.blogData = { ...rowData };
+   
+     }
   onSave(row: any): void {
     row.isEditing = false;
     console.log('Saving row:', row);

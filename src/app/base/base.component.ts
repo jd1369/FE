@@ -22,6 +22,7 @@ export class BaseComponent implements OnInit {
   isAdminPage: boolean = false;
   isMenuOpen: boolean = false;
   lastScrollTop = 0;
+  isScrolled = false; 
   isDropdownOpen = false;
   navbarVisible = true;
   isAdminDropdownOpen = false;
@@ -29,6 +30,8 @@ export class BaseComponent implements OnInit {
   textColor = 'black';
   selectedFile: File | null = null;
   uploadedImageUrl: string = '';
+  loginButtonColor = 'darkgreen';
+  loginButtonTextColor = 'white';
   user: any;
   admin: any;
   url: any;
@@ -59,6 +62,14 @@ export class BaseComponent implements OnInit {
     });
 
     }
+
+    setupInitialNavbarState() {
+      // Initialize navbar colors for the default state
+      this.navbarBackground = '#d4d4d491';
+      this.textColor = 'black';
+      this.loginButtonColor = 'darkgreen';
+      this.loginButtonTextColor = 'white';
+    }
   
 
   ngAfterViewInit() {
@@ -77,13 +88,20 @@ export class BaseComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
+  
   onAdminHover(isHovered: boolean) {
-    this.isAdminDropdownOpen = isHovered;  // Expands navbar when hovering over the "Admin" link
+    const navbar = document.querySelector('.navbar');
+    
+    if (isHovered) {
+      navbar?.classList.add('expanded'); // Add expanded class when hovering over Admin
+    } else {
+      navbar?.classList.remove('expanded'); // Remove expanded class when leaving Admin
+    }
   }
 
   // Optional: Add this method to handle navbar collapsing when mouse leaves navbar
   onNavbarMouseLeave() {
-    this.isAdminDropdownOpen = false; // Collapse navbar when cursor leaves the navbar
+    this.isAdminDropdownOpen = false; // Collapse dropdown on mouse leave
   }
 
   toggleAdminDropdown() {
@@ -100,32 +118,32 @@ export class BaseComponent implements OnInit {
     }
   }
 
+  
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-    if (currentScroll <= 0) {
-      this.navbarBackground = '#d4d4d491';
-      this.textColor = 'black';
-      this.navbarVisible = true;
-    } else if (currentScroll > this.lastScrollTop) {
-      this.navbarVisible = false;
-      this.textColor = 'black';
-      this.navbarBackground = '#000000';
-    } else {
-      this.navbarVisible = true;
-      this.textColor = 'white';
-      this.navbarBackground = '#000000';
-    }
-    this.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-    if (this.navbarVisible) {
-      document.querySelector('.navbar')?.classList.add('navbar-visible');
-      document.querySelector('.navbar')?.classList.remove('navbar-hidden');
-    } else {
-      document.querySelector('.navbar')?.classList.add('navbar-hidden');
-      document.querySelector('.navbar')?.classList.remove('navbar-visible');
+    if (currentScroll > 0) {
+      this.isScrolled = true;
+      this.navbarBackground = 'darkgreen'; // Navbar color when scrolled
+      this.textColor = 'white'; // Text color when scrolled
+      this.loginButtonColor = 'black'; // Login button color when scrolled
+      this.loginButtonTextColor = 'white'; // Login button text color
+    } 
+    if(currentScroll = 0){
+      this.isScrolled = true;
+      this.navbarBackground = '#fffcfc';
+      this.textColor = 'white';
     }
+    else {
+      this.isScrolled = false;
+      this.setupInitialNavbarState(); // Reset to default state
+    }
+
+    this.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
   }
+
 
   // Modal opening functions
   addProject(clickFrom?: any) {
