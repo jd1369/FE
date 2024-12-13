@@ -14,9 +14,9 @@
     <div class="card-header">
       <i style="font-size: 1rem" class="fa fa-info fa-sm"  (click)="openPopup(item)" title="View Details"></i>
     </div>
-    <img (click)="sendData(item)" [src]="item.image" alt="Project image">
-    <h3>{{ item.title }}</h3>
-    <p>{{ item.subtitle }}</p>
+    <img (click)="sendData(item)" [src]="item.images" alt="Project image">
+    <h3>{{ item.projectDescription }}</h3>
+    <p>{{ item.projectContent }}</p>
   </div>
 </div>
 
@@ -28,7 +28,7 @@
     <!-- Close button inside the popup -->
     <span class="close" (click)="hidePopup()">&times;</span>
     <!-- Display details of the selected item -->
-    <h2>{{ popupItem?.title }}</h2>
-    <p>{{ popupItem?.description || popupItem?.subtitle }}</p>
+    <h2>{{ popupItem?.projectDescription }}</h2>
+    <p>{{ popupItem?.projectContent || popupItem?.subtitle }}</p>
   </div>
 </div>

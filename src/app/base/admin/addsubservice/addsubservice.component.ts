@@ -3,6 +3,8 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SharedserviceService } from 'src/app/shared/sharedservice.service';
 import { AddsubserviceService } from './addsubservice.service';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-addsubservice',
   templateUrl: './addsubservice.component.html',
@@ -10,14 +12,16 @@ import { AddsubserviceService } from './addsubservice.service';
 })
 export class AddsubserviceComponent implements OnInit {
   data: any;
+  projectData:any
   subServiceForm!: FormGroup
   additionalFields: { name: string, value: string }[] = []; // Array of name-value pairs
-
+  selectedFile: File | null = null;
+  baseUrl = environment.baseUrl;
   constructor(private sharedservice: SharedserviceService,
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
-    private addsubservice:AddsubserviceService
-    
+    private addsubservice:AddsubserviceService,
+     private http: HttpClient
 
   ) { }
 
@@ -54,7 +58,14 @@ export class AddsubserviceComponent implements OnInit {
     fieldsControl.removeAt(index);
   }
 
-  onSubmit(){
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
+  }
+
+  onSubmit(): void {
     if (this.subServiceForm.valid) {
       const formData: any = { ...this.subServiceForm.value };
   
@@ -64,18 +75,39 @@ export class AddsubserviceComponent implements OnInit {
         return acc;
       }, {});
       formData.fields = fieldsData;
-      this.addsubservice.addSubService(formData).subscribe({
-        next: (response: any) => {
-          console.log('Project added successfully:', response);
-        },
-        error: (err: any) => {
-          console.error('Error adding project:', err);
-        },
-      });
+      if (this.selectedFile) {
+        const fileUploadFormData = new FormData();
+        fileUploadFormData.append('file', this.selectedFile, this.selectedFile.name);
+        this.http.post(this.baseUrl + 'upload', fileUploadFormData, { responseType: 'json' })
+          .subscribe({
+            next: (uploadResponse: any) => {
+              const fileUrl = uploadResponse.fileUrl || uploadResponse.url || '';
+              formData.image = fileUrl;
+              this.submitProject(formData);
+            },
+            error: (err:any) => {
+              console.error('File upload failed!', err);
+            }
+          });
+      } else {
+        formData.image = [];
+        this.submitProject(formData);
+      }
+    } else {
+      console.error('Form is invalid!');
+    }
   }
 
-
-
-}
+  private submitProject(formData: any): void {
+    const serviceId = this.projectData.id;
+    this.addsubservice.addSubService(serviceId,formData).subscribe({
+      next: (response: any) => {
+        console.log('Project added successfully:', response);
+      },
+      error: (err: any) => {
+        console.error('Error adding project:', err);
+      },
+    });
+  }
 
 }

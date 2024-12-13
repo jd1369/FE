@@ -1,22 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { ServiceDetailsService } from './service-details.service';
-import { error } from 'highcharts';
-import { ToasterService } from '../../toaster/toaster.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ServiceDetailsService } from '../../service-details/service-details.service';
 
 @Component({
-  selector: 'app-service-details',
-  templateUrl: './service-details.component.html',
-  styleUrls: ['./service-details.component.scss']
+  selector: 'app-subservicemodal',
+  templateUrl: './subservicemodal.component.html',
+  styleUrls: ['./subservicemodal.component.scss']
 })
-export class ServiceDetailsComponent implements OnInit {
-  @Input() projectData: any;  // Data passed from the parent component
+export class SubservicemodalComponent implements OnInit {
+ @Input() projectData: any;  // Data passed from the parent component
   editForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private modalService: NgbModal,private serviceDetails:ServiceDetailsService,
-    private toastr :ToasterService,
-  ) {}
+  constructor(private fb: FormBuilder, private modalService: NgbModal,private serviceDetails:ServiceDetailsService) {}
 
   ngOnInit(): void {
     if (this.projectData) {
@@ -77,24 +73,21 @@ export class ServiceDetailsComponent implements OnInit {
       const serviceId = this.projectData.id;
 
       this.serviceDetails.saveStaticFields(serviceId,staticFields).subscribe({
-        next:(response) => {
+        next:(response:any) => {
           console.log('Static fields saved successfully:', response);
    
           this.serviceDetails.saveDynamicFields(serviceId,transformedFields).subscribe({
-            next:(response) => {
+            next:(response:any) => {
               console.log('Dynamic fields saved successfully:', response);
               this.close();
             },
-            error:(error) => {
+            error:(error:any) => {
               console.error('Error saving dynamic fields:', error);
             },
          } );
-         this.toastr.showSuccessMessage('Data Submitted Successfully');
-         this.modalService.dismissAll();
         },
-        error:(error) => {
+        error:(error:any) => {
           console.error('Error saving static fields:', error);
-          this.toastr.showSuccessMessage('Error While Submitting Successfully');
         }
       }) ;
     }

@@ -19,15 +19,11 @@
       <p>{{ item.subtitle }}</p>
     </div>
   </div>
+
   
-  
-  
-  <!-- Popup -->
   <div class="popup" *ngIf="popupVisible">
     <div class="popup-content">
-      <!-- Close button inside the popup -->
       <span class="close" (click)="hidePopup()">&times;</span>
-      <!-- Display details of the selected item -->
       <h2>{{ popupItem?.title }}</h2>
       <p>{{ popupItem?.description || popupItem?.subtitle }}</p>
     </div>

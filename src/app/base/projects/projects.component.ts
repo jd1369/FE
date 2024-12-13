@@ -11,79 +11,39 @@ import { Router } from '@angular/router';
 })
 export class ProjectsComponent implements OnInit {
   constructor(private http: HttpClient,
-      private projectService:ProjectsService,
-      private sharedservice:SharedserviceService,
+      private projectService: ProjectsService,
+      private sharedservice: SharedserviceService,
       private router: Router
     ) { }
-  items: any[] = [
-    {
-      title: 'THE ADIDAS SUPER BOWL WINNING THROW',
-      subtitle: 'Some descriptive text here', 
-      image: 'assets/service1.jpg',
-      description: 'detailed description of the Adidas Super Bowl winning throw project.'
-    },
-    {
-      title: 'THE ADIDAS SUPER BOWL WINNING THROW',
-      subtitle: 'Some  text here', 
-      image: 'assets/service1.jpg',
-      description: 'This is r Bowl winning throw project.'
-    },
-    {
-      title: 'THE ADIDAS SUPER BOWL WINNING THROW',
-      subtitle: 'Some descriptive text here', 
-      image: 'assets/service2.jpg',
-      description: 'This is a detailed description of the Adidas Super Bowl winning throw project.'
-    },
-    {
-      title: 'THE ADIDAS SUPER BOWL WINNING THROW',
-      subtitle: 'Some descriptive text here', 
-      image: 'assets/service3.jpg',
-      description: 'This is a detailed description of the Adidas Super Bowl winning throw project.'
-    },
-    {
-      title: 'THE ADIDAS SUPER BOWL WINNING THROW',
-      subtitle: 'Some descriptive text here', 
-      image: 'assets/service4.jpg',
-      description: 'This is a detailed description of the Adidas Super Bowl winning throw project.'
-    },
-    {
-      title: 'THE ADIDAS SUPER BOWL WINNING THROW',
-      subtitle: 'Some descriptive text here', 
-      image: 'assets/service4.jpg',
-      description: 'This is a detailed description of the Adidas Super Bowl winning throw project.'
-    },
-    {
-      title: 'THE ADIDAS SUPER BOWL WINNING THROW',
-      subtitle: 'Some descriptive text here', 
-      image: 'assets/service4.jpg',
-      description: 'This is a detailed description of the Adidas Super Bowl winning throw project.'
-    },
-  ];
+
+  // Initialize empty arrays for items and pagedItems
+  items:any;
   selectedItem: any = null;
   pagedItems: any[] = [];
   itemsPerPage: number = 6;
   currentPage: number = 1;
   popupVisible = false;
   popupItem: any;
-  projects:any;
+  projects: any;
+
   ngOnInit() {
-    this.updatePagedItems();
-    console.log(this.popupItem); // Log the popupItem to check if the data is correctly assigned
-
+    // Fetch projects on component initialization
+    this.getProjects();
   }
 
-  sendData(data:any) {
-    console.log('123')
+  sendData(data: any) {
+    console.log('123');
     this.sharedservice.setProjectData(data);
-    this.router.navigate(['base/projectdetails'])
+    this.router.navigate(['/projectdetails']);
   }
 
+  // Fetch projects from API
   getProjects(): void {
-    this.projectService.getProjectList()
-      .subscribe(data => {
-        this.projects = data;
-        console.log(this.projects)
-      });
+    this.projectService.getProjectList().subscribe(data => {
+      this.items = data; // Assign API data to items
+      this.updatePagedItems(); // Update pagedItems when items are fetched
+      console.log(this.items); // Log the fetched items
+    });
   }
 
   updatePagedItems() {
@@ -114,5 +74,11 @@ export class ProjectsComponent implements OnInit {
     console.log('hidePopupOnHover called');
     this.popupVisible = false;
     this.popupItem = null;
+  }
+
+  // Pagination logic
+  onPageChange(page: number) {
+    this.currentPage = page;
+    this.updatePagedItems();
   }
 }

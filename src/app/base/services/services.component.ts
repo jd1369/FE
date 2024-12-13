@@ -25,7 +25,7 @@ services:any;
   sendData(data:any) {
     console.log('123')
     this.sharedservice.setData(data);
-    this.router.navigate(['base/subservices'])
+    this.router.navigate(['/subdetails'])
   }
 
   fetchServices(): void {

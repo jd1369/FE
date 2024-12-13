@@ -11,6 +11,7 @@ import { AddserviceComponent } from './addservice/addservice.component';
 import { AddprojectComponent } from './addproject/addproject.component';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from './admin.service';
+import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 
 @Component({
   selector: 'app-admin',
@@ -26,7 +27,8 @@ export class AdminComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private modalService: NgbModal,
-    private adminservice: AdminService
+    private adminservice: AdminService,
+    private toastr:ToasterService
   ) { }
 
 

@@ -8,14 +8,15 @@ import { environment } from 'src/environments/environment';
 })
 export class AddsubserviceService {
 baseUrl= environment.baseUrl;
+
   constructor(private http: HttpClient) { }
   
-  addSubService(data: FormData): Observable<any> {
+  addSubService(serviceId:any,data: FormData): Observable<any> {
     const token = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       Token: `Bearer ${token}`,
     });
-    return this.http.post(this.baseUrl+'createService', data,{headers});
+    return this.http.post(this.baseUrl+serviceId+'/addSubService', data,{headers});
   }
 
 }

@@ -6,7 +6,6 @@ import { ProjectsService } from '../projects/projects.service';
 import { Router } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { SubservicesdetailsComponent } from 'src/app/shared/subservicesdetails/subservicesdetails.component';
 @Component({
   selector: 'app-subservices',
   templateUrl: './subservices.component.html',

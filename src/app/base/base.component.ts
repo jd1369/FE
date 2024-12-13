@@ -28,6 +28,7 @@ export class BaseComponent implements OnInit {
   user: any;
   admin: any;
   url: any;
+  loggedIn:any;
   dropdownVisible = false;
   bannerForm!:FormGroup;
   mobileMenuOpen: boolean = false;
@@ -44,7 +45,8 @@ export class BaseComponent implements OnInit {
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
     this.admin = JSON.parse(localStorage.getItem('admin') || '{}');
-    
+    this.loggedIn= JSON.parse(localStorage.getItem('loggedIn') || '{}');
+    console.log(this.loggedIn)
     this.isAdminPage = this.route.snapshot.routeConfig?.path === 'admin';
     console.log(this.url);
     const now = new Date();

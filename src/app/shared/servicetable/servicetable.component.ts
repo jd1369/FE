@@ -4,19 +4,24 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ServicetableService } from './servicetable.service';
 import { ServiceDetailsComponent } from './service-details/service-details.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SubserviceDetailsComponent } from './subservice-details/subservice-details.component';
+import { AddsubserviceComponent } from 'src/app/base/admin/addsubservice/addsubservice.component';
+import { ToasterService } from '../toaster/toaster.service';
+import { AddserviceComponent } from 'src/app/base/admin/addservice/addservice.component';
 @Component({
   selector: 'app-servicetable',
   templateUrl: './servicetable.component.html',
   styleUrls: ['./servicetable.component.scss']
 })
 export class ServicetableComponent implements OnInit {
-  displayedColumns: string[] = ['customerId', 'name', 'phoneNumber', 'emailId','view','action'];
+  displayedColumns: string[] = [ 'name', 'image','view','addSubService','editSubService','action'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource(); // MatTableDataSource for pagination
   popupVisible = false;
   popupItem: any = null;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private serviceServer: ServicetableService,
     private modalService: NgbModal,
+    private toastr :ToasterService,
     
   ) { }
 
@@ -43,33 +48,28 @@ export class ServicetableComponent implements OnInit {
    }
 
    
-  onEdit(row: any): void {
+  onEditService(row: any): void {
     const modalRef = this.modalService.open(ServiceDetailsComponent);
     modalRef.componentInstance.projectData = { ...row };  // Passing row data to the modal component
   }
-  onSave(row: any): void {
-    row.isEditing = false;
-    console.log('Saving row:', row);
 
-    this.serviceServer.updateProject(row).subscribe({
-      next: (response: any) => {
-        console.log('Row updated successfully:', response);
-      },
-      error: (err: any) => {
-        console.error('Error saving row:', err);
-      },
-    });
+  addSubService(row:any):void{
+    const modalRef = this.modalService.open(AddsubserviceComponent);
+    modalRef.componentInstance.projectData = { ...row }; 
   }
 
   onDelete(row: any): void {
     console.log('Delete clicked for:', row);
-    this.serviceServer.deleteProject(row.customerID).subscribe({
+    this.serviceServer.deleteProject(row.id).subscribe({
       next: () => {
         console.log('Row deleted successfully');
         this.dataSource.data = this.dataSource.data.filter(item => item.customerID !== row.customerID);
+        this.getServiceData();
+        this.toastr.showInfoMessage('Data Deleted Successfully');
       },
       error: (err: any) => {
         console.error('Error deleting row:', err);
+        this.toastr.showErrorMessage('Data Deleted Successfully');
       },
     });
   }
@@ -102,5 +102,11 @@ export class ServicetableComponent implements OnInit {
     this.popupItem = item;
     this.popupVisible = true;
   }
+
+  subservice(row:any){
+    const modalRef = this.modalService.open(SubserviceDetailsComponent);
+    modalRef.componentInstance.projectData = { ...row }; 
+  }
+  
 
 }

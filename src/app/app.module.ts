@@ -55,9 +55,10 @@ import { EidtblogComponent } from './shared/blogtable/eidtblog/eidtblog.componen
 import { ProjectdetailsComponent } from './shared/projectdetails/projectdetails.component';
 import { ServiceDetailsComponent } from './shared/servicetable/service-details/service-details.component';
 import { CamelizePipe } from './shared/servicetable/camelize-pipe.pipe';
-import { SubservicesdetailsComponent } from './shared/subservicesdetails/subservicesdetails.component';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { LoaderInterceptor } from './shared/loader/loader.interceptor';
+import { SubserviceDetailsComponent } from './shared/servicetable/subservice-details/subservice-details.component';
+import { SubservicemodalComponent } from './shared/servicetable/subservice-details/subservicemodal/subservicemodal.component';
 
 @NgModule({
   declarations: [
@@ -89,8 +90,9 @@ import { LoaderInterceptor } from './shared/loader/loader.interceptor';
     ProjectdetailsComponent,
     ServiceDetailsComponent,
     CamelizePipe,
-    SubservicesdetailsComponent,
-    LoaderComponent
+    LoaderComponent,
+    SubserviceDetailsComponent,
+    SubservicemodalComponent
   ],
   imports: [
     AccordionModule,

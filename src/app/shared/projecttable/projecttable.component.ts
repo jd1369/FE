@@ -32,7 +32,6 @@ export class ProjecttableComponent implements OnInit {
         if (response) {
           console.log(response)
           this.dataSource.data = response;
-          this.toastr.showErrorMessage('End Date is Not Selected');
         }
       },
       error: (err: any) => {

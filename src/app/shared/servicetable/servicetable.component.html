@@ -1,20 +1,14 @@
 <div class="table-container1">
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="customerId">
-            <mat-header-cell *matHeaderCellDef> Customer Id. </mat-header-cell>
-            <mat-cell *matCellDef="let projectData"> {{projectData.customerID}} </mat-cell>
-        </ng-container>
+      
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
             <mat-cell *matCellDef="let projectData"> {{projectData.name}} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="phoneNumber">
-            <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
-            <mat-cell *matCellDef="let projectData"> {{projectData.phoneNumber}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="emailId">
-            <mat-header-cell *matHeaderCellDef> Email Id </mat-header-cell>
-            <mat-cell *matCellDef="let projectData"> {{projectData.emailId}} </mat-cell>
+       
+        <ng-container matColumnDef="image">
+            <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+            <mat-cell *matCellDef="let projectData"> {{projectData.image}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="view">
             <mat-header-cell *matHeaderCellDef> View </mat-header-cell>
@@ -22,14 +16,28 @@
                 <i class="fa fa-eye" style="color: #007bff; cursor: pointer;" (click)="showPopup(projectData)"></i>
             </mat-cell>
         </ng-container>
+        <ng-container matColumnDef="addSubService">
+            <mat-header-cell *matHeaderCellDef> Add Sub Service </mat-header-cell>
+            <mat-cell *matCellDef="let projectData">
+                <i class="fa fa-plus" style="color: #007bff; cursor: pointer;" (click)="addSubService(projectData)"></i>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="editSubService">
+            <mat-header-cell *matHeaderCellDef>Edit Sub Service </mat-header-cell>
+            <mat-cell *matCellDef="let projectData">
+
+                <mat-icon (click)="subservice(projectData)" style="color: #3416AD; cursor: pointer;">edit</mat-icon>
+
+            </mat-cell>
+        </ng-container>
         <ng-container matColumnDef="action">
             <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
             <mat-cell *matCellDef="let projectData">
-                <mat-icon *ngIf="!projectData.isEditing" (click)="onEdit(projectData)" style="color: #3416AD; cursor: pointer;">edit</mat-icon>
-                <mat-icon *ngIf="projectData.isEditing" (click)="onSave(projectData)" style="color: #24D600; cursor: pointer;">save</mat-icon>
+                <mat-icon *ngIf="!projectData.isEditing" (click)="onEditService(projectData)"
+                    style="color: #3416AD; cursor: pointer;">edit</mat-icon>
                 &nbsp;&nbsp;&nbsp;
                 <mat-icon (click)="onDelete(projectData)" style="color: #FF0F0F; cursor: pointer;">delete</mat-icon>
-              </mat-cell>
+            </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -38,24 +46,20 @@
 
 <div class="popup" *ngIf="popupVisible">
     <div class="popup-content">
-      <!-- Close button inside the popup -->
-      <span class="close" (click)="hidePopup()">&times;</span>
-  
-      <!-- Display details of the selected item -->
-      <h2>{{ popupItem?.name }}</h2>
-      <p><strong>Customer ID:</strong> {{ popupItem?.customerID }}</p>
-      <p><strong>Phone Number:</strong> {{ popupItem?.phoneNumber }}</p>
-      <p><strong>Email:</strong> {{ popupItem?.emailId }}</p>
-  
-      <!-- Display fields dynamically -->
-      <div *ngFor="let field of getFieldKeys(popupItem?.fields)">
-        <!-- Access the inner key-value pair and display it -->
-        <div *ngFor="let innerKey of getInnerKeys(popupItem?.fields, field)">
-          <p>{{ innerKey }} = {{ getFieldValue(popupItem?.fields, field, innerKey) }}</p>
+        <!-- Close button inside the popup -->
+        <span class="close" (click)="hidePopup()">&times;</span>
+
+        <!-- Display details of the selected item -->
+        <h2>{{ popupItem?.name }}</h2>
+        <!-- Display fields dynamically -->
+        <div *ngFor="let field of getFieldKeys(popupItem?.fields)">
+            <!-- Access the inner key-value pair and display it -->
+            <div *ngFor="let innerKey of getInnerKeys(popupItem?.fields, field)">
+                <p>{{ innerKey }} = {{ getFieldValue(popupItem?.fields, field, innerKey) }}</p>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  
-  
+</div>
+
+
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

@@ -12,11 +12,14 @@ export class AuthService {
   private apiURL = 'http://localhost:1369';
   baseUrl = environment.baseUrl;
   private tokenKey = 'authToken';
-   private user = 'user';
-   private admin = 'admin'
+  loggedIn = false;
+  private user = 'user';
+  private admin = 'admin'
   private isAuthenticated$ = new BehaviorSubject<boolean>(this.hasToken());
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+    this.loggedIn = JSON.parse(localStorage.getItem('loggedIn') || 'false');
+  }
 
   private hasToken(): boolean {
     return !!localStorage.getItem(this.tokenKey);
@@ -41,19 +44,21 @@ export class AuthService {
       .pipe(
         tap((response) => {
           localStorage.setItem(this.tokenKey, response.token);
-          
+
           console.log(response.token)
           this.loginWithToken(response.token).subscribe({
             next: (response: any) => {
               if (response) {
                 console.log("acsa")
                 console.log(response)
-                
+
                 localStorage.setItem(this.user, response.user);
                 console.log(response.user)
                 console.log("acsa")
                 localStorage.setItem(this.admin, response.admin);
                 console.log("acsa")
+                this.loggedIn = true;
+                localStorage.setItem('loggedIn', 'true');
               }
             },
             error: (err: any) => {
@@ -71,6 +76,7 @@ export class AuthService {
     const headers = new HttpHeaders({
       Token: `Bearer ${token}`,
     });
+
 
     //  return this.http.post(this.baseUrl +'loginWithToken', { headers });
     return this.http.post(this.baseUrl + 'loginWithToken', {},
@@ -90,15 +96,19 @@ export class AuthService {
     localStorage.removeItem(this.user);
     this.isAuthenticated$.next(false);
     this.router.navigate(['/base/home']);
-  }
-
+    
+      this.loggedIn = false;
+      localStorage.setItem('loggedIn', 'false'); // Remove logged-in status from localStorage
+    }
+  
   setToken(token: string): void {
     localStorage.setItem(this.tokenKey, token);
-    
+    localStorage.setItem('loggedIn', 'true');
   }
 
-  
-  
+
+
+
 
 
   getToken(): string | null {

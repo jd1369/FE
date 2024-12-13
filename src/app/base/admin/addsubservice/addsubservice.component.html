@@ -2,7 +2,7 @@
   
 <div class="modal-header">
   <div class="col">
-    <h4 class="modal-title">Login</h4>
+    <h4 class="modal-title">Create Sub Service</h4>
   </div>
   <div class="col-sm-4">
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -14,12 +14,11 @@
 <div class="container">
   <div class="modal-body">
     <form [formGroup]="subServiceForm">
-
       <div>
         <div class="col-lg-6 form-style">
           <div class="form-group pb-2">
             <fieldset class="d-flex align-items-center">
-              <input type="text" class="form-control" id="name" formControlName="name" placeholder="Service Name" />
+              <input type="text" class="form-control" id="name" formControlName="name" placeholder="Sub-Service Name" />
               <!-- Add Button -->&nbsp;&nbsp;&nbsp;
               <button type="button" class="btn btn-secondary ml-2" (click)="addField()">+</button>
             </fieldset>
@@ -47,7 +46,15 @@
           <button type="button" class="btn btn-danger" (click)="removeField(i)">&times;</button>
         </div>
       </div>
-      
+      <div class="row" style="padding-top: 20px;">
+        <div class="col-lg-6 form-style">
+          <div class="form-group pb-2">
+            <fieldset>
+              <input type="file" placeholder="img" (change)="onFileSelected($event)" accept="image/*" />
+            </fieldset>
+          </div>
+        </div>
+      </div>
       <!-- Add Button -->
       
 
