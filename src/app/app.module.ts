@@ -52,7 +52,6 @@ import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { EditprojectComponent } from './shared/projecttable/editproject/editproject.component';
 import { EidtblogComponent } from './shared/blogtable/eidtblog/eidtblog.component';
-import { ProjectdetailsComponent } from './shared/projectdetails/projectdetails.component';
 import { ServiceDetailsComponent } from './shared/servicetable/service-details/service-details.component';
 import { CamelizePipe } from './shared/servicetable/camelize-pipe.pipe';
 import { LoaderComponent } from './shared/loader/loader.component';
@@ -87,7 +86,6 @@ import { SubservicemodalComponent } from './shared/servicetable/subservice-detai
     EyepopupComponent,
     EditprojectComponent,
     EidtblogComponent,
-    ProjectdetailsComponent,
     ServiceDetailsComponent,
     CamelizePipe,
     LoaderComponent,

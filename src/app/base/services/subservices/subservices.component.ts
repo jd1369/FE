@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { SharedserviceService } from 'src/app/shared/sharedservice.service';
 import { SubservicesService } from './subservices.service';
 import { HttpClient } from '@angular/common/http';
-import { ProjectsService } from '../projects/projects.service';
 import { Router } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ProjectsService } from '../../projects/projects.service';
 @Component({
   selector: 'app-subservices',
   templateUrl: './subservices.component.html',
@@ -83,10 +83,14 @@ constructor(private http: HttpClient,
 
   getProjects(): void {
     this.projectService.getProjectList()
-      .subscribe(data => {
-        this.projects = data;
-        console.log(this.projects)
-      });
+      .subscribe({
+        next:(response:any)=>{
+
+        },
+        error:(error:any)=>{
+
+        }
+      })
   }
 
   updatePagedItems() {

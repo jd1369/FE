@@ -8,6 +8,7 @@ import { BaseComponent } from './base.component';
 import { AdminComponent } from './admin/admin.component';
 import { ServicesComponent } from './services/services.component';
 import { ProjectsComponent } from './projects/projects.component';
+
 import { HomeComponent } from './home/home.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { MatTableModule } from '@angular/material/table';
@@ -16,40 +17,34 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AboutComponent } from './about/about.component';
 import { AppModule } from '../app.module';
-import { ClientsComponent } from '../shared/clients/clients.component';
 import { AgmCoreModule } from '@agm/core';
-import { SubservicesComponent } from './subservices/subservices.component';
+import { SubservicesComponent } from './services/subservices/subservices.component';
 import { BlogComponent } from './blog/blog.component';
-import { ProjectdetailsComponent } from '../shared/projectdetails/projectdetails.component';
-import { BrowserModule } from '@angular/platform-browser';
+import { ProjectdetailsComponent } from './projects/projectdetails/projectdetails.component';
 import { SubdetailsComponent } from './subdetails/subdetails.component';
 @NgModule({
   declarations: [
   ],
   imports: [
     CommonModule,
-    BrowserModule,
+
     HttpClientModule,
     ReactiveFormsModule,
     NgbModule,
     MatTableModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY' // Replace with your API key
-    }),
+    
 
     MatPaginatorModule,
     MatButtonModule,
     //ClientsComponent,
     MatIconModule,
     MatSlideToggleModule,
-    BrowserAnimationsModule,
-    MatSortModule,
+        MatSortModule,
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
@@ -61,14 +56,11 @@ import { SubdetailsComponent } from './subdetails/subdetails.component';
         component: BaseComponent,
         children: [
           { path: 'admin', component: AdminComponent },
-          { path: 'services', component: ServicesComponent },
-          { path: 'projects', component: ProjectsComponent },
-          { path: 'projectdetails', component: ProjectdetailsComponent },
+          { path: 'services', loadChildren: () => import('./services/services.module').then(m => m.ServicesModule) },
+          { path: 'projects', loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule) },
           { path: 'home', component: HomeComponent },
           { path: 'aboutus', component: AboutusComponent },
           { path: 'about', component: AboutComponent },
-          { path: 'subservices', component: SubservicesComponent },
-          { path: 'subdetails', component: SubdetailsComponent },
           { path: 'blog', component: BlogComponent },
         ],
       },

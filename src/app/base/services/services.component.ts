@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from './services.service';
 import { Router } from '@angular/router';
 import { SharedserviceService } from 'src/app/shared/sharedservice.service';
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-services',
@@ -25,7 +26,7 @@ services:any;
   sendData(data:any) {
     console.log('123')
     this.sharedservice.setData(data);
-    this.router.navigate(['/subdetails'])
+    this.router.navigate(['base/services/subservices'])
   }
 
   fetchServices(): void {

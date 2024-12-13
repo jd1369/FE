@@ -33,6 +33,7 @@ export class BaseComponent implements OnInit {
   bannerForm!:FormGroup;
   mobileMenuOpen: boolean = false;
   @ViewChild('fileInput') fileInputRef!: ElementRef<HTMLInputElement>;
+  @ViewChild('someElement') someElement!: ElementRef;
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute,
