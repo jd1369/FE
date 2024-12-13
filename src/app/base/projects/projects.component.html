@@ -14,7 +14,7 @@
     <div class="card-header">
       <i style="font-size: 1rem" class="fa fa-info fa-sm"  (click)="openPopup(item)" title="View Details"></i>
     </div>
-    <img (click)="sendData(item)" [src]="item.images" alt="Project image">
+    <img [routerLink]="['projectdetails']" [src]="item.images" alt="Project image">
     <h3>{{ item.projectDescription }}</h3>
     <p>{{ item.projectContent }}</p>
   </div>

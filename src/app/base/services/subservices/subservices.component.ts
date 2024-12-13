@@ -78,7 +78,7 @@ constructor(private http: HttpClient,
   sendData(data:any) {
     console.log('123')
     this.sharedservice.setProjectData(data);
-    this.router.navigate(['base/projectdetails'])
+    this.router.navigate(['subServices'])
   }
 
   getProjects(): void {

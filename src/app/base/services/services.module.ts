@@ -13,16 +13,11 @@ import { ServicesComponent } from './services.component';
     CommonModule,
     RouterModule.forChild([
       {
-        path: '',
-        component: ServicesComponent, // This is the parent component
-        children: [
-          {
-            path: 'subservices', // Child route
-            component: SubservicesComponent, // Child component
-          },
-          // Add other child routes here if needed
-        ],
+        path:'',component:ServicesComponent
       },
+      {
+        path:'subservices',component:SubservicesComponent
+      }
     ]),
     HttpClientModule,
     ReactiveFormsModule,

@@ -7,23 +7,22 @@ import { ProjectsComponent } from './projects.component';
 
 @NgModule({
   declarations: [
-    ProjectdetailsComponent
+    ProjectdetailsComponent,
+    ProjectsComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild([
       {
-        path: '',
-        component: ProjectsComponent, // This is the parent component
-        children: [
-          {
-            path: 'projectdetails', // Child route
-            component: ProjectdetailsComponent, // Child component
-          },
-          // Add other child routes here if needed
-        ],
+        path: '', // Child route
+        component: ProjectsComponent, // Child component
+      },
+      {
+        path: 'projectdetails', // Child route
+        component: ProjectdetailsComponent, // Child component
       },
     ]),
-  ]
+  ],
+  exports: [RouterModule]
 })
 export class ProjectsModule { }

@@ -32,7 +32,6 @@ import { ServicesComponent } from './base/services/services.component';
 import { HomeComponent } from './base/home/home.component';
 import { AboutusComponent } from './base/aboutus/aboutus.component';
 import { AboutComponent } from './base/about/about.component';
-import { ProjectsComponent } from './base/projects/projects.component';
 import { BlogComponent } from './base/blog/blog.component';
 import { ClientsComponent } from './shared/clients/clients.component';
 import {AccordionModule} from 'primeng/accordion';
@@ -79,7 +78,6 @@ import { SubservicemodalComponent } from './shared/servicetable/subservice-detai
     ServicesComponent,
     HomeComponent,
     AboutusComponent,
-    ProjectsComponent,
     BlogComponent,
     ClientsComponent,
     ContactustableComponent,

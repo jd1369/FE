@@ -34,7 +34,7 @@ export class ProjectsComponent implements OnInit {
   sendData(data: any) {
     console.log('123');
     this.sharedservice.setProjectData(data);
-    this.router.navigate(['projects/projectdetails']);
+    this.router.navigate(['/projects/projectdetails']); 
   }
 
   // Fetch projects from API
