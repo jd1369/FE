@@ -4,7 +4,6 @@ import { ProjectdetailsService } from './projectdetails.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-projectdetails',
   templateUrl: './projectdetails.component.html',

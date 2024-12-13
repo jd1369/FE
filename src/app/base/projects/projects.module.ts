@@ -4,11 +4,11 @@ import { RouterModule } from '@angular/router';
 import { ProjectdetailsComponent } from 'src/app/base/projects/projectdetails/projectdetails.component';
 import { ProjectsComponent } from './projects.component';
 
-
 @NgModule({
   declarations: [
     ProjectdetailsComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    
   ],
   imports: [
     CommonModule,

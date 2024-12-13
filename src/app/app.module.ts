@@ -33,12 +33,12 @@ import { HomeComponent } from './base/home/home.component';
 import { AboutusComponent } from './base/aboutus/aboutus.component';
 import { AboutComponent } from './base/about/about.component';
 import { BlogComponent } from './base/blog/blog.component';
-import { ClientsComponent } from './shared/clients/clients.component';
 import {AccordionModule} from 'primeng/accordion';
 import {MenuItem} from 'primeng/api';         
 import { DropdownModule } from 'primeng/dropdown';  
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
+import { ClientsComponent } from './shared/clients/clients.component';
 
 import { ToastModule } from 'primeng/toast';
 import { CarouselModule } from 'primeng/carousel'
