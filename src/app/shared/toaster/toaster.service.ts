@@ -6,13 +6,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class ToasterService {
-  success(arg0: string, arg1: string) {
-    throw new Error('Method not implemented.');
-  }
 
   constructor(private toastr: ToastrService) { }
 
-  showSuccessMessage(message: string, p0: string) {
+  showSuccessMessage(message : string) {
     this.toastr.success(message, 'Success');
   }
 

@@ -5,6 +5,7 @@ import { AdminComponent } from '../admin.component';
 import { AddprojectService } from './addproject.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-addproject',
@@ -21,7 +22,8 @@ export class AddprojectComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
     private projectService: AddprojectService,
-    private http: HttpClient
+    private http: HttpClient,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -78,7 +80,7 @@ export class AddprojectComponent implements OnInit {
         .subscribe({
           next: (uploadResponse: any) => {
             console.log('File uploaded successfully:', uploadResponse);
-
+            this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
             // Add the uploaded file URL to the 'images' field as an array
             const fileUrl = uploadResponse.fileUrl || uploadResponse.url || '';
             formData.images = [fileUrl];

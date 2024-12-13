@@ -19,6 +19,7 @@ const routes: Routes = [
       { path: 'admin', component: AdminComponent },
       { path: 'services', component: ServicesComponent },
       { path: 'projects', component: ProjectsComponent },
+      { path: 'subservices', component: SubservicesComponent },
       { path: 'home', component: HomeComponent },
       { path: 'aboutus', component: AboutusComponent },
       { path: 'about', component: AboutComponent },

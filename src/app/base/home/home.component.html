@@ -1,10 +1,10 @@
 <div style="background:#b8b8b857 ; float: right;">
   <button class="toggle-button" (click)="toggleContent()">
-    <span class="slider" [class.active]="isToggled"></span>
+    <span class="slider" [class.active]="switchBanner"></span>
   </button>
 </div>
 
-  <div *ngIf="switchBanner; else textContent">
+  <div *ngIf="isToggled; else textContent">
     <img [src]="url"  class="image-content" />
   </div>
   <ng-template #textContent>

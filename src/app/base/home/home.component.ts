@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HomeService } from './home.service';
+import { error } from 'highcharts';
 interface Product {
   name: string;
   image: string;
@@ -48,10 +49,22 @@ export class HomeComponent implements OnInit {
   }
   
 
+
   toggleContent() {
-  console.log(this.switchBanner)
-  this.getBanner();
+    this.switchBanner = !this.switchBanner;
+
+    // Call the API to update the state
+    this.homeService.updateBannerState(this.switchBanner).subscribe({
+      next:(response:any)=>{
+        console.log(response)
+      },
+      error:(err:any)=>{
+        console.log(err)
+      }
+  });
 }
+
+
 
 
   startAutoScroll(): void {
@@ -83,10 +96,13 @@ export class HomeComponent implements OnInit {
         this.url =response.url
         this.switchBanner = response.switchBanner
         console.log(this.url)
+        console.log(this.switchBanner)
       },
       error:(err:any)=>{
         console.log(err)
       }
     })
   }
-}
+
+  
+  }

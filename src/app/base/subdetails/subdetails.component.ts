@@ -1,18 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { SharedserviceService } from 'src/app/shared/sharedservice.service';
-import { SubservicesService } from './subservices.service';
 import { HttpClient } from '@angular/common/http';
-import { ProjectsService } from '../projects/projects.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { SubservicesdetailsComponent } from 'src/app/shared/subservicesdetails/subservicesdetails.component';
+import { SharedserviceService } from 'src/app/shared/sharedservice.service';
+import { ProjectsService } from '../projects/projects.service';
+
 @Component({
-  selector: 'app-subservices',
-  templateUrl: './subservices.component.html',
-  styleUrls: ['./subservices.component.scss']
+  selector: 'app-subdetails',
+  templateUrl: './subdetails.component.html',
+  styleUrls: ['./subdetails.component.scss']
 })
-export class SubservicesComponent implements OnInit {
+export class SubdetailsComponent implements OnInit {
 constructor(private http: HttpClient,
       private projectService:ProjectsService,
       private sharedservice:SharedserviceService,

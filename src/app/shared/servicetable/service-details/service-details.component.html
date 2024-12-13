@@ -8,7 +8,7 @@
       <!-- Static Fields -->
       <div class="mb-3">
         <label for="name" class="form-label">Project Name</label>
-        <input type="text" id="name" class="form-control" formControlName="projectName" required />
+        <input type="text" id="name" class="form-control" formControlName="name" required />
       </div>
   
       <div class="mb-3">
@@ -20,10 +20,10 @@
       <div formArrayName="fields">
         <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="d-flex mb-3">
           
-          <!-- Type (Editable) -->
+          <!-- Key (Editable) -->
           <div class="col-5">
-            <label for="type-{{i}}" class="form-label">Type</label>
-            <input type="text" id="type-{{i}}" class="form-control" formControlName="type" />
+            <label for="key-{{i}}" class="form-label">Key (Type)</label>
+            <input type="text" id="key-{{i}}" class="form-control" formControlName="type" />
           </div>
   
           <!-- Value (Editable) -->

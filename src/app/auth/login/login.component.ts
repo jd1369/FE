@@ -71,6 +71,8 @@ export class LoginComponent implements OnInit {
             console.log(bearerToken)
 
             this.authService.setToken(token);
+            this.toastr.showSuccessMessage('logged');
+            this.activeModal.dismiss()
           }
         },
         error: (err: any) => {
@@ -96,6 +98,9 @@ export class LoginComponent implements OnInit {
 
   }
 
+  logOut(){
+    this.authService.logout()
+  }
 
 
   openRegisterModal(clickFrom?: any) {

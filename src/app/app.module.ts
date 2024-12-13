@@ -40,6 +40,7 @@ import {MenuItem} from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';  
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
+
 import { ToastModule } from 'primeng/toast';
 import { CarouselModule } from 'primeng/carousel'
 import { ToastrModule } from 'ngx-toastr';
@@ -54,6 +55,9 @@ import { EidtblogComponent } from './shared/blogtable/eidtblog/eidtblog.componen
 import { ProjectdetailsComponent } from './shared/projectdetails/projectdetails.component';
 import { ServiceDetailsComponent } from './shared/servicetable/service-details/service-details.component';
 import { CamelizePipe } from './shared/servicetable/camelize-pipe.pipe';
+import { SubservicesdetailsComponent } from './shared/subservicesdetails/subservicesdetails.component';
+import { LoaderComponent } from './shared/loader/loader.component';
+import { LoaderInterceptor } from './shared/loader/loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -84,7 +88,9 @@ import { CamelizePipe } from './shared/servicetable/camelize-pipe.pipe';
     EidtblogComponent,
     ProjectdetailsComponent,
     ServiceDetailsComponent,
-    CamelizePipe
+    CamelizePipe,
+    SubservicesdetailsComponent,
+    LoaderComponent
   ],
   imports: [
     AccordionModule,
@@ -96,13 +102,18 @@ import { CamelizePipe } from './shared/servicetable/camelize-pipe.pipe';
     MatFormFieldModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ToastModule,
+    ToastrModule.forRoot({
+      timeOut: 5000, // Default timeout in milliseconds (5 seconds)
+      positionClass: 'toast-top-right', // Position of the toast
+      preventDuplicates: true, // Prevent duplicate toasts
+    }),
     InputTextModule,
     TableModule,
     FormsModule,
     DropdownModule,
     ReactiveFormsModule,
     HighchartsChartModule,
+    
     NgxPaginationModule,
     ToastrModule.forRoot(
       {
@@ -119,7 +130,12 @@ import { CamelizePipe } from './shared/servicetable/camelize-pipe.pipe';
     MatIconModule,HttpClientModule,MatSlideToggleModule,
     
   ],
-  providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  
+ }
+

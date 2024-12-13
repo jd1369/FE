@@ -11,6 +11,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BaseService } from './base.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-base',
@@ -21,6 +22,7 @@ export class BaseComponent implements OnInit {
   baseUrl = environment.baseUrl;
   isAdminPage: boolean = false;
   isScrolled = false;
+  isLoggedIn = false;
   selectedFile: File | null = null;
   uploadedImageUrl: string = '';
   user: any;
@@ -35,7 +37,8 @@ export class BaseComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private fb: FormBuilder,
-    private baseService:BaseService
+    private baseService:BaseService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -60,7 +63,6 @@ export class BaseComponent implements OnInit {
 
 
   ngAfterViewInit() {
-    // Ensure the reference is available after the view is initialized
     const fileInput = this.fileInputRef.nativeElement;
     if (fileInput) {
       fileInput.addEventListener('click', () => this.triggerFileInput());
@@ -79,6 +81,11 @@ export class BaseComponent implements OnInit {
   toggleDropdown(visible: boolean) {
     this.dropdownVisible = visible;
   }
+
+  logout() {
+    this.authService.logout(); // Call logout from AuthService
+  }
+
   
 
   @HostListener('window:scroll', [])

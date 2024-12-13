@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ProjecttableService } from './projecttable.service';
 import { EditprojectComponent } from './editproject/editproject.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToasterService } from '../toaster/toaster.service';
 @Component({
   selector: 'app-projecttable',
   templateUrl: './projecttable.component.html',
@@ -16,6 +17,7 @@ export class ProjecttableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private projectService: ProjecttableService,
+    private toastr :ToasterService,
     private modalService: NgbModal,
 
   ) { }
@@ -30,6 +32,7 @@ export class ProjecttableComponent implements OnInit {
         if (response) {
           console.log(response)
           this.dataSource.data = response;
+          this.toastr.showErrorMessage('End Date is Not Selected');
         }
       },
       error: (err: any) => {
