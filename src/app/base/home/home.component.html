@@ -1,79 +1,82 @@
-<div [ngStyle]="{'background': switchBanner ? '#b8b8b8' : '#ffffff'}" style="float: right;">
+<div *ngIf="admin" [ngStyle]="{'background': switchBanner }" style="float: right;">
   <button class="toggle-button" (click)="toggleContent()">
     <span class="slider" [class.active]="switchBanner"></span>
   </button>
 </div>
 
-<div *ngIf="isToggled; else textContent">
-  <img [src]="url" class="image-content" />
+<div 
+  [ngStyle]="{
+    'background-image': isToggled ? 'url(' + url + ')' : 'none',
+    'background-color': isToggled ? 'none' : '#f0f0f0'
+  }"
+  class="heading"
+>
+  <ul style="list-style: none; padding: 0;">
+    <li class="tag">Elephant Ad Agency: Big Ideas, Bold Results.</li>
+    <li class="tag">We craft bold, Let’s make your brand unforgettable.</li>
+  </ul>
 </div>
-  <ng-template #textContent>
-    <div class="heading">
-      <ul style="list-style: none;padding: 0;">
-        <li class="tag">Creative design agency,</li>
-        <li class="tag">located in the heart of NYC.</li>
-      </ul>
-    </div>
-  </ng-template>
 
 <div class="carousel-container">
   <!-- Carousel Section -->
   <div class="carousel">
-    <div class="carousel-item" *ngFor="let item of visibleImages" [style.backgroundImage]="'url(' + item.image + ')'">
+    <div
+      class="carousel-item"
+      *ngFor="let item of visibleImages"
+      [style.backgroundImage]="'url(' + item.image + ')'"
+    >
       <div class="image-name">{{ item.name }}</div>
     </div>
   </div>
 
   <!-- Text Section -->
-  <div class="carousel-text" [routerLink]="['/base/services']"> <!-- Add routerLink -->
-    <h2>View All Services >></h2>
+  <div class="carousel-text" [routerLink]="['/base/services']">
+    <h2>View All Services</h2>
   </div>
 </div>
 
 <div class="heading">
   <h1>
-    <span class="tag1">DD.NYC® is an award-winning Manhattan-based creative
-      agency founded in 2015, specializing in branding, web
-      design, packaging, and video storytelling. With over a
-      decade of teamwork and a combined 50+ years of
-      expertise, the agency delivers innovative and impactful
-      solutions tailored to a wide range of industries, including
-      real estate, healthcare, and lifestyle.<a [routerLink]="['/base/projects']" href="#" class="highlight">See our work &rsaquo;</a></span>
+    <span class="tag1">
+      Elephant Ad Agency has a proven track record of transforming brands with powerful strategies and standout
+      campaigns. Trusted by industry leaders like KFC, Paradise, Dr. Reddy's, Apollo, and Dunzo, we take pride in
+      delivering results that inspire and exceed expectations.
+      <a [routerLink]="['/base/projects']" class="highlight">See our work &rsaquo;</a>
+    </span>
   </h1>
 </div>
-
 
 <div style="background-color: #d4d4d491;">
   <div class="stats-container">
     <div class="stat-box">
-      <p class="detail2">300+ <p>
-      <p class="detail"> successful agency projects - Brand Identity, Website Design, Product Packaging</p>
-      <div  class="about-link">
-        <a [routerLink]="['/base/aboutus']" href="#" >About Elephant &gt;</a>
+      <p class="detail2">150+</p>
+      <p class="detail">Successful agency projects - Brand Identity, Website Design, Product Packaging</p>
+      <div class="about-link">
+        <a [routerLink]="['/base/aboutus']">About Elephant &gt;</a>
       </div>
     </div>
     <div class="stat-box">
-      <p class="detail2">9 </p>
+      <p class="detail2">5</p>
       <div class="big-dash"></div>
-      <p class="detail">years in business improving digital design products for our customers</p>
+      <p class="detail">Years in business improving digital design products for our customers</p>
     </div>
     <div class="stat-box">
       <p class="detail2">9.8</p>
       <div class="big-dash"></div>
-      <p  class="detail">average NPS* we receive from our clients</p>    
+      <p class="detail">Average NPS* we receive from our clients</p>
     </div>
-  </div> 
+  </div>
 </div>
 
 <div style="background-color: #d4d4d491;">
-<div class="quote-container">
-  <span class="quote-start">“</span>
-  <p class="quote-text">
-    DD.NYC® creates innovative design solutions that inspire.<br />
-    Collaborate with a digital design agency that will make you proud.
-  </p>
-  <span class="quote-end">”</span>
-</div>
+  <div class="quote-container">
+    <span class="quote-start">“</span>
+    <p class="quote-text">
+      Elephant Ad Agency creates innovative design solutions that inspire.<br />
+      Collaborate with a digital design agency that will make you proud.
+    </p>
+    <span class="quote-end">”</span>
+  </div>
 </div>
 
 <app-clients></app-clients>

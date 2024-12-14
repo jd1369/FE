@@ -2,14 +2,16 @@
 <nav [ngClass]="{'scrolled': isScrolled}" class="navbar">
   <div class="navbar-content">
     <div class="logo">
-      <img src="assets/logo.png" alt="Logo" />
+      <img [routerLink]="['home']" src="assets/logo.png" alt="Logo" />
     </div>
     <div class="nav-links">
       <a routerLink="/base/home" routerLinkActive="active">Home</a>
-      <a routerLink="/base/aboutus" routerLinkActive="active">Contact Us</a>
+      
       <a routerLink="/base/services" routerLinkActive="active">Services</a>
-      <div class="dropdown" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
-        <a routerLink="/base/admin" routerLinkActive="active">Admin</a>
+      <a routerLink="/base/projects" routerLinkActive="active">Project</a>
+      <a  routerLink="/base/blog" routerLinkActive="active">Blog</a>
+      <div *ngIf="admin"  class="dropdown" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
+        <a   routerLink="/base/admin" routerLinkActive="active">Admin</a>
         <ul class="dropdown-menu" *ngIf="dropdownVisible">
           <li><a (click)="addProject()">Add Project</a></li>
           <li><a (click)="addService()">Add Service</a></li>
@@ -21,18 +23,19 @@
           <li><a (click)="postaBlog()">Post A Blog</a></li>
         </ul>
       </div>
+      <a routerLink="/base/aboutus" routerLinkActive="active">Contact Us</a>
       <a routerLink="/base/about" routerLinkActive="active">About Us</a>
-      <a routerLink="/base/projects" routerLinkActive="active">Project</a>
+      
     </div>
-    <div  class="login">
+    <div *ngIf="!isLoggedIn"  class="login">
       <button (click)="openLoginModal()">Login</button>
       
     </div>
-    <!-- <div class="login">
+    <div *ngIf="isLoggedIn"  class="login">
     <button class="tab-button" (click)="logout()">
       Log Out
     </button>
-  </div> -->
+  </div>
     <!-- Hamburger Menu for mobile -->
     <div class="hamburger" (click)="toggleMobileMenu()">
       <span class="bar"></span>
@@ -60,7 +63,7 @@
 <div class="dd-nyc-container">
   <div class="call-to-action">
     <p>Starting a new project or want to collaborate with us?</p><a [routerLink]="['/base/aboutus']" href="#">Let's talk ></a>
-    <p>hello&#64;dd.nyc</p>
+    <p>inf0&#64;elephantadagency.com</p>
   </div>
 
   <div class="content-section">
@@ -95,11 +98,11 @@
       <div class="dash"></div>
       <h6>Address</h6>
       <ul>
-        <li>85 Broad Street</li>
-        <li>17th Floor, Suite 17.005</li>
-        <li>New York, NY 10004</li>
-        <li>+1 212 380 1761</li>
-        <li>hello&#64;dd.nyc</li>
+        <li>The Elephant Ad Agency,</li>
+        <li>D No. 1-90/7/B/121, F No. P1,</li>
+        <li>Innovative Cyberview Apts,Patrika Nagar</li>
+        <li>Madhapur, Hyderabad,</li>
+        <li>Telangana 500081</li>
       </ul>
     </div>
 

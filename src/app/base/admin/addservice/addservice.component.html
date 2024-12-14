@@ -1,71 +1,50 @@
+<div class="modal">
+  <div class="modal-content">
+    <h2>Dynamic Form</h2>
+    <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input id="name" formControlName="name" type="text" />
+      </div>
 
-  
-<div class="modal-header">
-    <div class="col">
-      <h4 class="modal-title">Login</h4>
-    </div>
-    <div class="col-sm-4">
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-  
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
+      <div class="form-group">
+        <label for="icon">Icon:</label>
+        <input id="icon" formControlName="icon" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label for="serviceImage">Service Image:</label>
+        <input id="serviceImage" formControlName="serviceImage" type="text" />
+      </div>
+
+      <div formArrayName="fields">
+        <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i">
+          <div class="form-group">
+            <label for="key">Field Key (e.g., additionalProp1):</label>
+            <input id="key" formControlName="key" type="text" />
+          </div>
+
+          <div formGroupName="value">
+            <div class="form-group">
+              <label for="valueKey">Inner Key (e.g., movies):</label>
+              <input id="valueKey" formControlName="key" type="text" />
+            </div>
+            <div class="form-group">
+              <label for="valueValue">Inner Value (e.g., top):</label>
+              <input id="valueValue" formControlName="value" type="text" />
+            </div>
+          </div>
+
+          <button type="button" (click)="removeField(i)">Remove</button>
+        </div>
+      </div>
+
+      <button type="button" (click)="addField()">Add Field</button>
+
+      <div class="button-container">
+        <button type="submit" [disabled]="!dynamicForm.valid">Submit</button>
+        <button type="button" (click)="closeModal()">Close</button>
+      </div>
+    </form>
   </div>
-  <div class="container">
-    <div class="modal-body">
-      <form [formGroup]="serviceForm">
-  
-        <div>
-          <div class="col-lg-6 form-style">
-            <div class="form-group pb-2">
-              <fieldset class="d-flex align-items-center">
-                <input type="text" class="form-control" id="name" formControlName="name" placeholder="Service Name" />
-                <!-- Add Button -->&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-secondary ml-2" (click)="addField()">+</button>
-              </fieldset>
-            </div>
-          </div>
-        </div>
-        
-        
-        <div *ngFor="let field of additionalFields; let i = index" class="row align-items-center" style="padding-top: 20px;">
-          <div class="col-lg-5 form-style">
-            <div class="form-group pb-2">
-              <fieldset>
-                <input type="text" class="form-control" [(ngModel)]="field.name" placeholder="Field Name {{i + 1}}" />
-              </fieldset>
-            </div>
-          </div>
-          <div class="col-lg-5 form-style">
-            <div class="form-group pb-2">
-              <fieldset>
-                <input type="text" class="form-control" [(ngModel)]="field.value" placeholder="Field Value {{i + 1}}" />
-              </fieldset>
-            </div>
-          </div>
-          <div class="col-lg-1">
-            <button type="button" class="btn btn-danger" (click)="removeField(i)">&times;</button>
-          </div>
-        </div>
-        
-        <!-- Add Button -->
-        
-
-        <div class="row" style="padding-top: 20px;">
-          <div class="col-lg-6 form-style">
-            <div class="form-group pb-2">
-              <fieldset>
-                <input type="file" placeholder="img" (change)="onFileSelected($event)" accept="image/*" />
-              </fieldset>
-            </div>
-          </div>
-        </div>
-  </form>
-
-  <div class="text-center" style="padding-top: 20px;">
-      <button type="button" class="btn btn-primary" (click)="activeModal.dismiss(); onSubmit()">
-          Submit
-      </button>
-  </div>
-</div>
 </div>

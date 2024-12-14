@@ -12,13 +12,12 @@ export class AuthService {
   private apiURL = 'http://localhost:1369';
   baseUrl = environment.baseUrl;
   private tokenKey = 'authToken';
-  loggedIn = false;
+
   private user = 'user';
   private admin = 'admin'
   private isAuthenticated$ = new BehaviorSubject<boolean>(this.hasToken());
 
   constructor(private http: HttpClient, private router: Router) {
-    this.loggedIn = JSON.parse(localStorage.getItem('loggedIn') || 'false');
   }
 
   private hasToken(): boolean {
@@ -51,14 +50,14 @@ export class AuthService {
               if (response) {
                 console.log("acsa")
                 console.log(response)
-
+                this.isAuthenticated$.next(true);
                 localStorage.setItem(this.user, response.user);
                 console.log(response.user)
                 console.log("acsa")
                 localStorage.setItem(this.admin, response.admin);
                 console.log("acsa")
-                this.loggedIn = true;
-                localStorage.setItem('loggedIn', 'true');
+                window.location.reload();
+
               }
             },
             error: (err: any) => {
@@ -86,24 +85,21 @@ export class AuthService {
   }
 
 
-  register(emailId: string, name: string, phoneNumber: string,companyName:string) {
-    return this.http.post(`${this.apiURL}/register`, { name, phoneNumber, emailId,companyName });
+  register(emailId: string, name: string, phoneNumber: string, companyName: string) {
+    return this.http.post(`${this.apiURL}/register`, { name, phoneNumber, emailId, companyName });
   }
 
   logout() {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.admin);
     localStorage.removeItem(this.user);
-    this.isAuthenticated$.next(false);
+    this.isAuthenticated$.next(false); // Set authenticated state to false
     this.router.navigate(['/base/home']);
-    
-      this.loggedIn = false;
-      localStorage.setItem('loggedIn', 'false'); // Remove logged-in status from localStorage
-    }
-  
+    window.location.reload();
+  }
+
   setToken(token: string): void {
     localStorage.setItem(this.tokenKey, token);
-    localStorage.setItem('loggedIn', 'true');
   }
 
 

@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.loginForm = this.fb.group({
       phoneNumber: ['', Validators.required],
       otp: ['', Validators.required],
@@ -96,6 +97,7 @@ export class LoginComponent implements OnInit {
         if (response) {
           console.log(response)
           this.token = response
+          this.toastr.showSuccessMessage('OTP Sent Successfully');
         }
       },
       error: (err: any) => {

@@ -1,18 +1,16 @@
 <div class="header">
   <h1>
-    WE TAKE PRIDE IN EVERY <span class="highlight">DETAIL</span>, 
-    EVERY <span class="highlight">PROJECT</span>, AND EVERY <span class="highlight">SUCCESS</span>
+    Where Vision Meets Execution: Our Success Stories
   </h1>
   <p>
-    Our commitment to excellence drives us through every project we undertake. From the initial brainstorming 
-    sessions to the final deliverables, we meticulously craft each detail to ensure it meets the highest standards.
+    Explore the diverse projects that highlight our commitment to delivering exceptional results for every brand.
   </p>
 </div>
 
 <div class="grid">
   <div class="card" *ngFor="let item of items">
     <div class="card-header">
-      <i style="font-size: 1rem" class="fa fa-info fa-sm"  (click)="openPopup(item)" title="View Details"></i>
+      
     </div>
     <img [routerLink]="['projectdetails']" [queryParams]="{ id: item.id, name: item.name }" [src]="item.images" alt="Project image">
     <h3>{{ item.projectDescription }}</h3>

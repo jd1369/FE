@@ -1,43 +1,44 @@
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { NgModule } from '@angular/core';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { HomeService } from './home.service';
-import { error } from 'highcharts';
-import { FormBuilder } from '@angular/forms';
+
 interface Product {
   name: string;
   image: string;
 }
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-
-export class HomeComponent implements OnInit {
-  imageUrl:any
-  images :any=[
+export class HomeComponent implements OnInit, OnDestroy {
+  imageUrl: string = '';
+  images: Product[] = [
     { name: 'Web Development', image: 'assets/service.png' },
     { name: 'Graphic Design', image: 'assets/service1.jpg' },
     { name: 'SEO Optimization', image: 'assets/service2.jpg' },
     { name: 'Digital Marketing', image: 'assets/service3.jpg' },
-    { name: 'Content Creation', image: 'assets/service4.jpg' },
-  ]
-  visibleImages: any[] = [];
-  currentIndex = 0;
+    { name: 'Content Creation', image: 'assets/service4.jpg' }
+  ];
+  visibleImages: Product[] = [];
+  currentIndex: number = 0;
   autoScrollInterval: any;
   url: string = '';
-  isAnimating = false;
+  isAnimating: boolean = false;
   isToggled: boolean = false;
-  switchBanner:any
-  bannerForm!:any
-  serviceList:any
+  switchBanner: boolean = false;
+  bannerForm!: FormGroup;
+  serviceList: any[] = [];
+  admin:any;
+  bannerData: any;
+  user:any
   constructor(
     private http: HttpClient,
     private fb: FormBuilder,
-    private homeService:HomeService
-  ) { }
+    private homeService: HomeService
+  ) {}
 
   ngOnInit(): void {
     const now = new Date();
@@ -46,47 +47,38 @@ export class HomeComponent implements OnInit {
       name: ['banner'],
       folderName: ['banner'],
       folderPath: ['banner'],
-      url:[''],
-      createdDate:[now]
+      url: [''],
+      createdDate: [now]
     });
+
+    this.user = localStorage.getItem('user');
+    this.admin = localStorage.getItem('admin');
+
     this.getBanner();
     this.updateVisibleImages();
     this.startAutoScroll();
-     console.log(this.url);
-     this.getServices();
+    this.getServices();
   }
+
   updateVisibleImages(): void {
     const numImages = 4; // Number of visible images at a time
-    this.visibleImages = Array.from({ length: numImages }).map((_, i) => {
-      return this.images[(this.currentIndex + i) % this.images.length];
+    this.visibleImages = Array.from({ length: numImages }).map(
+      (_, i) => this.images[(this.currentIndex + i) % this.images.length]
+    );
+  }
+
+  toggleContent(): void {
+    this.switchBanner = !this.switchBanner;
+    this.isToggled = this.switchBanner;
+
+    this.homeService.updateBannerState(this.bannerData).subscribe({
+      next: (response: any) => console.log(response),
+      error: (err: any) => console.error(err)
     });
   }
-  
-
-
-  toggleContent() {
-  
-      this.isToggled = !this.isToggled;
-      this.switchBanner = !this.switchBanner; // Toggle the background color
-      FormData = this.bannerForm[0].value
-    // Call the API to update the state
-    this.homeService.updateBannerState(this.switchBanner).subscribe({
-      next:(response:any)=>{
-        console.log(response)
-      },
-      error:(err:any)=>{
-        console.log(err)
-      }
-  });
-}
-
-
-
 
   startAutoScroll(): void {
-    this.autoScrollInterval = setInterval(() => {
-      this.nextSlide();
-    }, 3000); // Time between slides
+    this.autoScrollInterval = setInterval(() => this.nextSlide(), 3000);
   }
 
   nextSlide(): void {
@@ -105,35 +97,21 @@ export class HomeComponent implements OnInit {
     clearInterval(this.autoScrollInterval);
   }
 
-  getBanner(){
+  getBanner(): void {
     this.homeService.getBanner().subscribe({
-      next:(response:any)=>{
-        console.log(response)
-        this.url =response.url
-        this.switchBanner = response.switchBanner
-        console.log(this.url)
-        console.log(this.switchBanner)
+      next: (response: any) => {
+        this.bannerData = response;
+        this.url = response.url;
+        this.switchBanner = response.switchBanner;
       },
-      error:(err:any)=>{
-        console.log(err)
-      }
-    })
+      error: (err: any) => console.error(err)
+    });
   }
 
-  getServices(){
+  getServices(): void {
     this.homeService.getAllServices().subscribe({
-      next:(response:any)=>{
-        console.log(response)
-        this.serviceList= response
-      },
-      error:(err:any)=>{
-        console.log(err)
-      }
-    })
+      next: (response: any) => (this.serviceList = response),
+      error: (err: any) => console.error(err)
+    });
   }
-
- 
-
-
-  
-  }
+}

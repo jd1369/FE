@@ -3,7 +3,7 @@
 }
 
 ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
-  background-color: #ffffff !important; /* Toggle thumb color */
+  background-color: transparent !important; /* Toggle thumb color */
 }
 
 
@@ -14,7 +14,7 @@
 
   .tag {
     display: inline-block;    
-    font-size: 100px;           
+    font-size: 67px;           
     line-height: 0.9;
     white-space: nowrap;      
     font-style: normal;
@@ -28,7 +28,8 @@
 
 .heading{
 padding: 173px 121px 145px 70px;
-background-color: #d4d4d491
+background-color: #d4d4d491;
+background-size: cover
 }
 
 .heading2 {
@@ -58,7 +59,7 @@ h1 {
 
 .tag1 {
   display: block;   
-  font-size: 28px;
+  font-size: 40px;
   width: 630px;   
   line-height: 1.25; 
   margin-left: 282px;  /* Ensures proper block formatting for the text */
@@ -210,7 +211,7 @@ text-decoration: underline;
 .toggle-button {
   width: 60px;
   height: 30px;
-  background-color: #ccc;
+  background-color:transparent;
   border-radius: 30px;
   position: relative;
   cursor: pointer;
@@ -220,9 +221,9 @@ text-decoration: underline;
 }
 
 .toggle-button .slider {
-  width: 26px;
-  height: 26px;
-  background-color: white;
+  width: 23px;
+  height: 23px;
+  background-color: transparent;
   border-radius: 50%;
   position: absolute;
   top: 2px;
@@ -232,7 +233,7 @@ text-decoration: underline;
 
 .toggle-button .slider.active {
   transform: translateX(30px);
-  background-color: #3cc194;
+  background-color: #d4d4d491;
 }
 
 .toggle-button:hover {

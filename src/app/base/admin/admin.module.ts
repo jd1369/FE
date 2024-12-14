@@ -7,7 +7,6 @@ const routes: Routes = [
     path: '',
     component: AdminComponent,
     children: [
-      { path: 'addproject', component: () => import('../../shared/addproject/addproject.component').then(m => m.AddProjectComponent) },
       // Add more subcomponent routes as necessary
     ],
   },

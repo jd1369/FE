@@ -59,7 +59,7 @@ import { ProjectdetailsComponent } from './projects/projectdetails/projectdetail
           { path: 'home', component: HomeComponent },
           { path: 'aboutus', component: AboutusComponent },
           { path: 'about', component: AboutComponent },
-          { path: 'blog', component: BlogComponent },
+          { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)},
         ],
       },
     ]),

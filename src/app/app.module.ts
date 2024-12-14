@@ -32,7 +32,6 @@ import { ServicesComponent } from './base/services/services.component';
 import { HomeComponent } from './base/home/home.component';
 import { AboutusComponent } from './base/aboutus/aboutus.component';
 import { AboutComponent } from './base/about/about.component';
-import { BlogComponent } from './base/blog/blog.component';
 import {AccordionModule} from 'primeng/accordion';
 import {MenuItem} from 'primeng/api';         
 import { DropdownModule } from 'primeng/dropdown';  
@@ -78,7 +77,6 @@ import { ClientsModule } from "./shared/clients/clients.module";
     ServicesComponent,
     HomeComponent,
     AboutusComponent,
-    BlogComponent,
     ContactustableComponent,
     EyepopupComponent,
     EditprojectComponent,

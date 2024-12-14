@@ -27,7 +27,7 @@ export class HomeService {
       Token: `Bearer ${token}`,
     });
     console.log(headers)
-    return this.http.put(`${this.baseUrl}uploadBanner`,{ switchBanner: state },{headers});
+    return this.http.put(`${this.baseUrl}uploadBanner`,state,{headers});
   }
 
   getAllServices(){

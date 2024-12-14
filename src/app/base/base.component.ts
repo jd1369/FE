@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { BaseService } from './base.service';
 import { AuthService } from '../auth/auth.service';
 import { error } from 'highcharts';
+import { SharedserviceService } from '../shared/sharedservice.service';
 
 @Component({
   selector: 'app-base',
@@ -23,13 +24,12 @@ export class BaseComponent implements OnInit {
   baseUrl = environment.baseUrl;
   isAdminPage: boolean = false;
   isScrolled = false;
-  isLoggedIn = false;
   selectedFile: File | null = null;
   uploadedImageUrl: string = '';
   user: any;
   admin: any;
   url: any;
-  loggedIn:any;
+  isLoggedIn: boolean = false;
   dropdownVisible = false;
   bannerForm!:FormGroup;
   mobileMenuOpen: boolean = false;
@@ -41,19 +41,23 @@ export class BaseComponent implements OnInit {
     private http: HttpClient,
     private fb: FormBuilder,
     private baseService:BaseService,
-    private authService: AuthService
+    private authService: AuthService,
+    private sharedService :SharedserviceService
   ) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
     this.admin = JSON.parse(localStorage.getItem('admin') || '{}');
-    this.loggedIn= JSON.parse(localStorage.getItem('loggedIn') || '{}');
-    console.log(this.loggedIn)
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.authService.isLoggedIn().subscribe((isAuthenticated) => {
+      this.isLoggedIn = isAuthenticated;
+    });
+    this.admin = JSON.parse(localStorage.getItem('admin') || '{}');
     this.isAdminPage = this.route.snapshot.routeConfig?.path === 'admin';
     console.log(this.url);
     const now = new Date();
     this.getBanner();
-    
+    console.log(this.admin)
     this.bannerForm = this.fb.group({
       id: ['banner-id-1369'],
       name: ['banner'],
@@ -65,6 +69,11 @@ export class BaseComponent implements OnInit {
 
     }
 
+    sendData(data: any) {
+      data = this.isLoggedIn
+      this.sharedService.setProjectData(data);
+   
+    }
     getBanner() {
       this.baseService.getBanner().subscribe({
         next: (response: any) => {
@@ -75,6 +84,10 @@ export class BaseComponent implements OnInit {
         }
       });
     }
+
+    // getloggedinData(){
+    //   return this.sharedService.getlogged()
+    // }
 
   ngAfterViewInit() {
     const fileInput = this.fileInputRef.nativeElement;

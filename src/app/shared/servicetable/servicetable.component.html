@@ -1,65 +1,65 @@
-<div class="table-container1">
+<div class="table-container">
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      
+        <!-- Name Column -->
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-            <mat-cell *matCellDef="let projectData"> {{projectData.name}} </mat-cell>
+            <mat-cell *matCellDef="let service"> {{ service.name }} </mat-cell>
         </ng-container>
-       
+
+        <!-- Image Column -->
         <ng-container matColumnDef="image">
             <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
-            <mat-cell *matCellDef="let projectData"> {{projectData.image}} </mat-cell>
+            <mat-cell *matCellDef="let service"> {{ service.image }} </mat-cell>
         </ng-container>
+
+        <!-- View Fields Column -->
         <ng-container matColumnDef="view">
-            <mat-header-cell *matHeaderCellDef> View </mat-header-cell>
-            <mat-cell *matCellDef="let projectData">
-                <i class="fa fa-eye" style="color: #007bff; cursor: pointer;" (click)="showPopup(projectData)"></i>
+            <mat-header-cell *matHeaderCellDef> View Fields </mat-header-cell>
+            <mat-cell *matCellDef="let service">
+                <mat-icon class="action-icon" (click)="viewFields(service)">visibility</mat-icon>
             </mat-cell>
         </ng-container>
+
+        <!-- Add Sub-Service Column -->
         <ng-container matColumnDef="addSubService">
-            <mat-header-cell *matHeaderCellDef> Add Sub Service </mat-header-cell>
-            <mat-cell *matCellDef="let projectData">
-                <i class="fa fa-plus" style="color: #007bff; cursor: pointer;" (click)="addSubService(projectData)"></i>
+            <mat-header-cell *matHeaderCellDef> Add Sub-Service </mat-header-cell>
+            <mat-cell *matCellDef="let service">
+                <mat-icon class="action-icon" (click)="addSubService(service)">add_circle</mat-icon>
             </mat-cell>
         </ng-container>
+
+        <!-- Edit Sub-Service Column -->
         <ng-container matColumnDef="editSubService">
-            <mat-header-cell *matHeaderCellDef>Edit Sub Service </mat-header-cell>
-            <mat-cell *matCellDef="let projectData">
-
-                <mat-icon (click)="subservice(projectData)" style="color: #3416AD; cursor: pointer;">edit</mat-icon>
-
+            <mat-header-cell *matHeaderCellDef> Edit Sub-Service </mat-header-cell>
+            <mat-cell *matCellDef="let service">
+                <mat-icon class="action-icon" (click)="editSubService(service)">edit</mat-icon>
             </mat-cell>
         </ng-container>
+
+        <!-- Actions Column -->
         <ng-container matColumnDef="action">
-            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-            <mat-cell *matCellDef="let projectData">
-                <mat-icon *ngIf="!projectData.isEditing" (click)="onEditService(projectData)"
-                    style="color: #3416AD; cursor: pointer;">edit</mat-icon>
-                &nbsp;&nbsp;&nbsp;
-                <mat-icon (click)="onDelete(projectData)" style="color: #FF0F0F; cursor: pointer;">delete</mat-icon>
+            <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+            <mat-cell *matCellDef="let service">
+                <mat-icon class="action-icon" (click)="editService(service)">edit</mat-icon>
+                <mat-icon class="action-icon delete-icon" (click)="deleteService(service.id)">delete</mat-icon>
             </mat-cell>
         </ng-container>
+
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
 </div>
 
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+<!-- Popup for Viewing and Editing Map Fields -->
 <div class="popup" *ngIf="popupVisible">
     <div class="popup-content">
-        <!-- Close button inside the popup -->
         <span class="close" (click)="hidePopup()">&times;</span>
-
-        <!-- Display details of the selected item -->
-        <h2>{{ popupItem?.name }}</h2>
-        <!-- Display fields dynamically -->
+        <h3>{{ popupItem?.name }}</h3>
         <div *ngFor="let field of getFieldKeys(popupItem?.fields)">
-            <!-- Access the inner key-value pair and display it -->
-            <div *ngFor="let innerKey of getInnerKeys(popupItem?.fields, field)">
-                <p>{{ innerKey }} = {{ getFieldValue(popupItem?.fields, field, innerKey) }}</p>
-            </div>
+            <p>{{ field }}: <input [(ngModel)]="popupItem.fields[field]" /></p>
         </div>
+        <button mat-raised-button color="primary" (click)="updateFields(popupItem)">Update</button>
     </div>
 </div>
-
-
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

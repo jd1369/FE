@@ -1,15 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { HttpClient } from '@angular/common/http';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { PostablogComponent } from './postablog/postablog.component';
-import { AddsubserviceComponent } from './addsubservice/addsubservice.component';
-import { AddserviceComponent } from './addservice/addservice.component';
-import { AddprojectComponent } from './addproject/addproject.component';
-import { ActivatedRoute } from '@angular/router';
 import { AdminService } from './admin.service';
 import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 
@@ -19,42 +9,42 @@ import { ToasterService } from 'src/app/shared/toaster/toaster.service';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  // Highcharts: typeof Highcharts = Highcharts;
-  chartOptions: any;
-  Highcharts = require('highcharts');
+  Highcharts = Highcharts; // Reference to Highcharts library
+  chartOptions: any; // Chart options object
   user: any;
   admin: any;
+
   constructor(
-    private http: HttpClient,
-    private modalService: NgbModal,
     private adminservice: AdminService,
-    private toastr:ToasterService
+    private toastr: ToasterService
   ) { }
 
-
   ngOnInit(): void {
-
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
     this.admin = JSON.parse(localStorage.getItem('admin') || '{}');
-    console.log(this.user)
+
+    this.initializeChartOptions(); // Initialize chart options
+    this.getChartData(); // Fetch chart data
+  }
+
+  /**
+   * Initialize the chart options with empty data.
+   */
+  initializeChartOptions(): void {
     this.chartOptions = {
       chart: {
         type: 'pie',
       },
       title: {
-        text: ' ',
+        text: 'Service Count Distribution',
       },
       credits: {
-        enabled: false
+        enabled: false,
       },
       series: [{
         type: 'pie',
-        name: 'Values',
-        data:  [
-          { name: 'Radio', y: 30 },
-          { name: 'Cinema', y: 50 },
-          { name: 'TV', y: 20 },
-        ],
+        name: 'Services',
+        data: [], // Start with empty data
       }],
       plotOptions: {
         pie: {
@@ -67,47 +57,30 @@ export class AdminComponent implements OnInit {
         },
       },
     };
-    this.getChartData()
   }
 
+  /**
+   * Fetch chart data and update the chart options.
+   */
+  getChartData(): void {
+    this.adminservice.getChartList().subscribe(
+      (data: any = {}) => {
+        // Transform the JSON object into an array of {name, y} objects
+        const chartData = Object.entries(data).map(([key, value]) => ({
+          name: key,
+          y: value
+        }));
 
-  getChartData() {
-    this.adminservice.getChartList().subscribe(data => {
-      console.log(data)
-      console.log(this.chartOptions.series[0])
-      this.chartOptions.series[0].data = data; // Update chart data dynamically with fetched data
-    });
-  }
+        // Update chart options dynamically
+        this.chartOptions.series[0].data = chartData;
 
-
-
-  onActionClick(customerId: number) {
-    console.log('Action clicked for customer with ID:', customerId);
-  }
-
-
-
-  addProject(clickFrom?: any) {
-    const modalRef = this.modalService.open(AddprojectComponent, { size: 'lg' });
-    modalRef.componentInstance.clickFrom = clickFrom;
-  };
-
-  addService(clickFrom?: any) {
-    const modalRef = this.modalService.open(AddserviceComponent, { size: 'lg' });
-    modalRef.componentInstance.clickFrom = clickFrom;
-  };
-
-  addSubService(clickFrom?: any) {
-    const modalRef = this.modalService.open(AddsubserviceComponent, { size: 'lg' });
-    modalRef.componentInstance.clickFrom = clickFrom;
-  };
-
-  newBanner() {
-
-  };
-
-  postaBlog(clickFrom?: any) {
-    const modalRef = this.modalService.open(PostablogComponent, { size: 'lg' });
-    modalRef.componentInstance.clickFrom = clickFrom;
+        // Refresh the chart
+        Highcharts.chart('chart-container', this.chartOptions);
+      },
+      error => {
+        console.error('Error fetching chart data:', error);
+        this.toastr.showErrorMessage('Failed to load chart data.');
+      }
+    );
   }
 }
