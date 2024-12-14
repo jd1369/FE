@@ -26,22 +26,17 @@ services:any;
   sendData(data:any) {
     console.log('123')
     this.sharedservice.setData(data);
-    this.router.navigate(['base/services/subservices'])
+    this.router.navigate(['base/services/subservices'],{ state: { data: data.id } })
   }
 
   fetchServices(): void {
     this.servicesService.getServiceList()
       .subscribe(data => {
         this.services = data;
-        console.log(this.services)
+
+        console.log("data:",this.services)
       });
   }
-  navigateToRoute(): void {
-    this.router.navigate(['base/services/subservices']); // Replace '/target-route' with your desired route
-  }
 
-  goToSubservice(): void {
-    this.router.navigate(['src/app/base/services/subservices/subservices.component.ts']);
-  }
 
 }

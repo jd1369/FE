@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { SubservicesComponent } from './subservices/subservices.component';
 import { ServicesComponent } from './services.component';
 @NgModule({
@@ -21,7 +20,8 @@ import { ServicesComponent } from './services.component';
     ]),
     HttpClientModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    
     
   ]
 })

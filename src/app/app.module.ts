@@ -38,7 +38,6 @@ import {MenuItem} from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';  
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
-import { ClientsComponent } from './shared/clients/clients.component';
 
 import { ToastModule } from 'primeng/toast';
 import { CarouselModule } from 'primeng/carousel'
@@ -57,6 +56,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { LoaderInterceptor } from './shared/loader/loader.interceptor';
 import { SubserviceDetailsComponent } from './shared/servicetable/subservice-details/subservice-details.component';
 import { SubservicemodalComponent } from './shared/servicetable/subservice-details/subservicemodal/subservicemodal.component';
+import { ClientsModule } from "./shared/clients/clients.module";
 
 @NgModule({
   declarations: [
@@ -79,7 +79,6 @@ import { SubservicemodalComponent } from './shared/servicetable/subservice-detai
     HomeComponent,
     AboutusComponent,
     BlogComponent,
-    ClientsComponent,
     ContactustableComponent,
     EyepopupComponent,
     EditprojectComponent,
@@ -88,7 +87,9 @@ import { SubservicemodalComponent } from './shared/servicetable/subservice-detai
     CamelizePipe,
     LoaderComponent,
     SubserviceDetailsComponent,
-    SubservicemodalComponent
+    SubservicemodalComponent,
+    
+    
   ],
   imports: [
     AccordionModule,
@@ -101,9 +102,9 @@ import { SubservicemodalComponent } from './shared/servicetable/subservice-detai
     BrowserAnimationsModule,
     AppRoutingModule,
     ToastrModule.forRoot({
-      timeOut: 5000, // Default timeout in milliseconds (5 seconds)
-      positionClass: 'toast-top-right', // Position of the toast
-      preventDuplicates: true, // Prevent duplicate toasts
+        timeOut: 5000, // Default timeout in milliseconds (5 seconds)
+        positionClass: 'toast-top-right', // Position of the toast
+        preventDuplicates: true, // Prevent duplicate toasts
     }),
     InputTextModule,
     TableModule,
@@ -111,23 +112,20 @@ import { SubservicemodalComponent } from './shared/servicetable/subservice-detai
     DropdownModule,
     ReactiveFormsModule,
     HighchartsChartModule,
-    
     NgxPaginationModule,
-    ToastrModule.forRoot(
-      {
+    ToastrModule.forRoot({
         positionClass: 'toast-top-right', // Position of the toastr
-      timeOut: 3000, // Duration of the toastr in milliseconds
-      preventDuplicates: true, // Prevent duplicate toasts
-      }
-    ),
+        timeOut: 3000, // Duration of the toastr in milliseconds
+        preventDuplicates: true, // Prevent duplicate toasts
+    }),
     NoopAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     MatButtonModule,
-    MatIconModule,HttpClientModule,MatSlideToggleModule,
-    
-  ],
+    MatIconModule, HttpClientModule, MatSlideToggleModule,
+    ClientsModule
+],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
   ],

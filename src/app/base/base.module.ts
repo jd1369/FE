@@ -25,7 +25,6 @@ import { AgmCoreModule } from '@agm/core';
 import { SubservicesComponent } from './services/subservices/subservices.component';
 import { BlogComponent } from './blog/blog.component';
 import { ProjectdetailsComponent } from './projects/projectdetails/projectdetails.component';
-import { SubdetailsComponent } from './subdetails/subdetails.component';
 @NgModule({
   declarations: [
   ],

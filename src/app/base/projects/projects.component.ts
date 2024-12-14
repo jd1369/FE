@@ -25,26 +25,40 @@ export class ProjectsComponent implements OnInit {
   popupVisible = false;
   popupItem: any;
   projects: any;
-
+  serviceId :any
   ngOnInit() {
     // Fetch projects on component initialization
     this.getProjects();
   }
 
   sendData(data: any) {
-    console.log('123');
-    this.sharedservice.setProjectData(data);
-    this.router.navigate(['/projects/projectdetails']); 
+    // console.log('123');
+    // this.sharedservice.setProjectData(data);
+    this.router.navigate(['projectdetails']); 
   }
 
   // Fetch projects from API
   getProjects(): void {
-    this.projectService.getProjectList().subscribe(data => {
-      this.items = data; // Assign API data to items
-      this.updatePagedItems(); // Update pagedItems when items are fetched
-      console.log(this.items); // Log the fetched items
+    this.projectService.getProjectList().subscribe((data: any) => {
+      if (Array.isArray(data)) {
+        this.items = data.map(project => ({
+          id: project.id || project.projectId, // Use correct keys from your API response
+          name: project.name || project.title,
+          images: project.images,
+          projectDescription: project.projectDescription,
+          projectContent: project.projectContent,
+        }));
+      } else {
+        console.error('API response is not an array:', data);
+        this.items = []; // Fallback to an empty array
+      }
+      this.updatePagedItems();
+    }, error => {
+      console.error('Error fetching projects:', error);
+      this.items = [];
     });
   }
+  
 
   updatePagedItems() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
