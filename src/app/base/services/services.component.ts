@@ -14,7 +14,8 @@ export class ServicesComponent implements OnInit {
   constructor(private http: HttpClient,
     private servicesService:ServicesService,
     private sharedservice:SharedserviceService,
-    private router: Router
+    private router: Router,
+    
   ) { }
 services:any;
 

@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServiceDetailsService } from './service-details.service';
 import { error } from 'highcharts';
 import { ToasterService } from '../../toaster/toaster.service';
@@ -11,98 +11,59 @@ import { ToasterService } from '../../toaster/toaster.service';
   styleUrls: ['./service-details.component.scss']
 })
 export class ServiceDetailsComponent implements OnInit {
-  @Input() projectData: any;  // Data passed from the parent component
-  editForm!: FormGroup;
+  dynamicForm: FormGroup;
+  @Input() isModalOpen: boolean = false;
+  @Input() data: any;
 
-  constructor(private fb: FormBuilder, private modalService: NgbModal,private serviceDetails:ServiceDetailsService,
-    private toastr :ToasterService,
-  ) {}
-
-  ngOnInit(): void {
-    if (this.projectData) {
-      this.initializeForm();
-    }
-    
+  constructor(private fb: FormBuilder) {
+    // Initialize the form with fields as an empty FormArray
+    this.dynamicForm = this.fb.group({
+      name: ['', Validators.required],
+      icon: ['', Validators.required],
+      serviceImage: ['', Validators.required],
+      fields: this.fb.array([]) // Initialize fields as FormArray
+    });
   }
 
-  // Initialize form based on projectData
-  initializeForm(): void {
-    this.editForm = this.fb.group({
-      name: [this.projectData.name],
-      image: [this.projectData.image],
-      fields: this.fb.array([])  // Initialize the FormArray for dynamic fields
-    });
-
-    this.addDynamicFields(this.projectData.fields);
+  ngOnInit(): void {
+    if (this.data) {
+      this.addDynamicFields(this.data.fields);
+    }
   }
 
   // Add dynamic fields to the form
-  addDynamicFields(fields: any): void {
-    const fieldArray = this.editForm.get('fields') as FormArray;
+  addDynamicFields(fields: any) {
+    const fieldArray = this.dynamicForm.get('fields') as FormArray;
 
-    // Iterate over the dynamic fields (e.g., additionalProp1, additionalProp2, etc.)
-    Object.keys(fields).forEach((key) => {
-      const field = fields[key];
-
-      // Initialize a FormGroup with two fields: type (key) and value
-      const control = this.fb.group({
-        type: [Object.keys(field)[0]],  // Use the key (e.g., 'movies')
-        value: [Object.values(field)[0]], // Use the value (e.g., 'hindi')
+    Object.keys(fields).forEach(key => {
+      const fieldGroup = this.fb.group({});
+      
+      Object.entries(fields[key]).forEach(([subKey, value]) => {
+        fieldGroup.addControl(subKey, this.fb.control(value));
       });
 
-      fieldArray.push(control);
+      fieldArray.push(fieldGroup);
     });
   }
 
-  // Getter for fields FormArray
+  // Helper method to get object keys for iteration in HTML
+  objectKeys(obj: any): string[] {
+    return Object.keys(obj);
+  }
+
+  // Get the 'fields' FormArray, with type casting
   get fields(): FormArray {
-    return this.editForm.get('fields') as FormArray;
+    return this.dynamicForm.get('fields') as FormArray;
   }
 
-  // Save method
-  save(): void {
-    if (this.editForm.valid) {
-      const staticFields = {
-
-        name: this.editForm.value.name,
-        image: this.editForm.value.image
-      };
-
-   
-      const transformedFields = this.editForm.value.fields.reduce((acc: any, field: any, index: number) => {
-        const key = `additionalProp${index + 1}`;  
-        acc[key] = { [field.type]: field.value };  
-        return acc;
-      }, {});
-      const serviceId = this.projectData.id;
-
-      this.serviceDetails.saveStaticFields(serviceId,staticFields).subscribe({
-        next:(response) => {
-          console.log('Static fields saved successfully:', response);
-   
-          this.serviceDetails.saveDynamicFields(serviceId,transformedFields).subscribe({
-            next:(response) => {
-              console.log('Dynamic fields saved successfully:', response);
-              this.close();
-            },
-            error:(error) => {
-              console.error('Error saving dynamic fields:', error);
-            },
-         } );
-         this.toastr.showSuccessMessage('Data Submitted Successfully');
-         this.modalService.dismissAll();
-        },
-        error:(error) => {
-          console.error('Error saving static fields:', error);
-          this.toastr.showSuccessMessage('Error While Submitting Successfully');
-        }
-      }) ;
-    }
+  // Handle form submission
+  onSubmit() {
+    console.log('Form Data:', this.dynamicForm.value);
+    this.closeModal();
   }
 
-
-  // Close method for the modal
-  close(): void {
-    this.modalService.dismissAll();
+  // Close the modal
+  closeModal() {
+    this.isModalOpen = false;
   }
 }

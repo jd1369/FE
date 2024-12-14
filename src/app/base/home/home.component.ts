@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HomeService } from './home.service';
 import { error } from 'highcharts';
+import { FormBuilder } from '@angular/forms';
 interface Product {
   name: string;
   image: string;
@@ -30,13 +31,24 @@ export class HomeComponent implements OnInit {
   isAnimating = false;
   isToggled: boolean = false;
   switchBanner:any
+  bannerForm!:any
   serviceList:any
   constructor(
     private http: HttpClient,
+    private fb: FormBuilder,
     private homeService:HomeService
   ) { }
 
   ngOnInit(): void {
+    const now = new Date();
+    this.bannerForm = this.fb.group({
+      id: ['banner-id-1369'],
+      name: ['banner'],
+      folderName: ['banner'],
+      folderPath: ['banner'],
+      url:[''],
+      createdDate:[now]
+    });
     this.getBanner();
     this.updateVisibleImages();
     this.startAutoScroll();
@@ -53,8 +65,10 @@ export class HomeComponent implements OnInit {
 
 
   toggleContent() {
-    this.switchBanner = !this.switchBanner;
-
+  
+      this.isToggled = !this.isToggled;
+      this.switchBanner = !this.switchBanner; // Toggle the background color
+      FormData = this.bannerForm[0].value
     // Call the API to update the state
     this.homeService.updateBannerState(this.switchBanner).subscribe({
       next:(response:any)=>{

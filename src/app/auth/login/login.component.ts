@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
     this.registerForm = this.fb.group({
       emailId: ['', [Validators.required, Validators.email]],
       name: ['', Validators.required],
-      phoneNumber: ['', [Validators.required]]
+      phoneNumber: ['', [Validators.required]],
+      companyName:['',[Validators.required]]
     });
   }
   setActiveTab(tab: string) {
@@ -46,11 +47,17 @@ export class LoginComponent implements OnInit {
   Register() {
     console.log("1234")
     if (this.registerForm.valid) {
-      const { emailId, name, phoneNumber } = this.registerForm.value;
+      const { emailId, name, phoneNumber,companyName } = this.registerForm.value;
       console.log(this.registerForm.value)
-      this.authService.register(emailId, name, phoneNumber).subscribe({
-        next: () => alert('Registration successful'),
-        error: (err) => console.error('Registration failed', err),
+      this.authService.register(emailId, name, phoneNumber,companyName).subscribe({
+        next: (response:any) =>{ this.toastr.showSuccessMessage('Logged In Successfully');
+          alert('Registration successful')
+        },
+
+        error: (err) => {
+          this.toastr.showErrorMessage('Logged In Failed');
+          console.error('Registration failed', err)
+        },
 
       });
     }

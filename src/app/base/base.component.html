@@ -28,11 +28,11 @@
       <button (click)="openLoginModal()">Login</button>
       
     </div>
-    <div class="login">
+    <!-- <div class="login">
     <button class="tab-button" (click)="logout()">
       Log Out
     </button>
-  </div>
+  </div> -->
     <!-- Hamburger Menu for mobile -->
     <div class="hamburger" (click)="toggleMobileMenu()">
       <span class="bar"></span>
@@ -59,7 +59,7 @@
 
 <div class="dd-nyc-container">
   <div class="call-to-action">
-    <p>Starting a new project or want to collaborate with us?</p><a href="#">Let's talk ></a>
+    <p>Starting a new project or want to collaborate with us?</p><a [routerLink]="['/base/aboutus']" href="#">Let's talk ></a>
     <p>hello&#64;dd.nyc</p>
   </div>
 

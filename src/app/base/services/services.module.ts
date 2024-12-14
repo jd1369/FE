@@ -7,7 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SubservicesComponent } from './subservices/subservices.component';
 import { ServicesComponent } from './services.component';
 @NgModule({
-  declarations: [],
+  declarations: [SubservicesComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([

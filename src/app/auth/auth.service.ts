@@ -86,8 +86,8 @@ export class AuthService {
   }
 
 
-  register(emailId: string, name: string, phoneNumber: string) {
-    return this.http.post(`${this.apiURL}/register`, { name, phoneNumber, emailId });
+  register(emailId: string, name: string, phoneNumber: string,companyName:string) {
+    return this.http.post(`${this.apiURL}/register`, { name, phoneNumber, emailId,companyName });
   }
 
   logout() {

@@ -50,8 +50,9 @@
 .nav-links {
   flex: 2;
   display: flex;
-  justify-content: space-between;
-  gap: 6rem;
+  justify-content: space-evenly;
+  gap: 3rem;
+  margin-left: 600px;
 }
 
 .nav-links a {
@@ -125,7 +126,7 @@
   display: flex;
   border: 0;
   font-weight: 600;
-  background-color: transparent;
+ // background-color: transparent;
   flex-direction: column;
   gap: 0.5rem;
   z-index: 10;

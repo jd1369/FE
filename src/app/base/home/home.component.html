@@ -1,12 +1,12 @@
-<div style="background:#b8b8b857 ; float: right;">
+<div [ngStyle]="{'background': switchBanner ? '#b8b8b8' : '#ffffff'}" style="float: right;">
   <button class="toggle-button" (click)="toggleContent()">
     <span class="slider" [class.active]="switchBanner"></span>
   </button>
 </div>
 
-  <div *ngIf="isToggled; else textContent">
-    <img [src]="url"  class="image-content" />
-  </div>
+<div *ngIf="isToggled; else textContent">
+  <img [src]="url" class="image-content" />
+</div>
   <ng-template #textContent>
     <div class="heading">
       <ul style="list-style: none;padding: 0;">
@@ -25,7 +25,7 @@
   </div>
 
   <!-- Text Section -->
-  <div class="carousel-text" [routerLink]="['/base/about']"> <!-- Add routerLink -->
+  <div class="carousel-text" [routerLink]="['/base/services']"> <!-- Add routerLink -->
     <h2>View All Services >></h2>
   </div>
 </div>
@@ -38,7 +38,7 @@
       decade of teamwork and a combined 50+ years of
       expertise, the agency delivers innovative and impactful
       solutions tailored to a wide range of industries, including
-      real estate, healthcare, and lifestyle.<a href="#" class="highlight">See our work &rsaquo;</a></span>
+      real estate, healthcare, and lifestyle.<a [routerLink]="['/base/projects']" href="#" class="highlight">See our work &rsaquo;</a></span>
   </h1>
 </div>
 

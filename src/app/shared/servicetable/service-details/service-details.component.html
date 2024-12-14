@@ -1,43 +1,36 @@
-<div class="modal-header">
-    <h4 class="modal-title">Edit Service Details</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
-  </div>
-  
-  <div class="modal-body">
-    <form [formGroup]="editForm">
-      <!-- Static Fields -->
-      <div class="mb-3">
-        <label for="name" class="form-label">Project Name</label>
-        <input type="text" id="name" class="form-control" formControlName="name" required />
+<div *ngIf="isModalOpen" class="modal-overlay">
+  <div class="modal-content">
+    <h2>Dynamic Form</h2>
+    <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" formControlName="name" required />
       </div>
-  
-      <div class="mb-3">
-        <label for="image" class="form-label">Image</label>
-        <input type="text" id="image" class="form-control" formControlName="image" required />
+
+      <div class="form-group">
+        <label for="icon">Icon:</label>
+        <input type="text" id="icon" formControlName="icon" required />
       </div>
-  
-      <!-- Dynamic Fields (FormArray) -->
+
+      <div class="form-group">
+        <label for="serviceImage">Service Image:</label>
+        <input type="text" id="serviceImage" formControlName="serviceImage" required />
+      </div>
+
+      <!-- Iterate over fields FormArray -->
       <div formArrayName="fields">
-        <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="d-flex mb-3">
-          
-          <!-- Key (Editable) -->
-          <div class="col-5">
-            <label for="key-{{i}}" class="form-label">Key (Type)</label>
-            <input type="text" id="key-{{i}}" class="form-control" formControlName="type" />
-          </div>
-  
-          <!-- Value (Editable) -->
-          <div class="col-7">
-            <label for="value-{{i}}" class="form-label">Value</label>
-            <input type="text" id="value-{{i}}" class="form-control" formControlName="value" />
+        <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="dynamic-field">
+          <div *ngFor="let key of objectKeys(field.value)">
+            <label>{{ key }}</label>
+            <input type="text" [formControlName]="key" />
           </div>
         </div>
       </div>
+
+      <div class="modal-actions">
+        <button type="button" (click)="closeModal()">Close</button>
+        <button type="submit">Submit</button>
+      </div>
     </form>
   </div>
-  
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
-    <button type="button" class="btn btn-primary" (click)="save()">Save</button>
-  </div>
-  
+</div>

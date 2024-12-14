@@ -19,4 +19,13 @@ export class BaseService {
     });
     return this.http.put(`${this.baseUrl}uploadBanner`,formData, { headers });
   }
+
+  getBanner(){
+    const token = localStorage.getItem('authToken');
+    console.log(token)
+    const headers = new HttpHeaders({
+      Token: `Bearer ${token}`,
+    });
+    return this.http.get(this.baseUrl + 'fetchBaneer',{headers})
+  }
 }

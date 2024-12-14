@@ -30,13 +30,16 @@
       <div class="input-group">
         <select class="country-code">
           <option>+91</option>
-          <option>+1</option>
-          <option>+44</option>
+          
         </select>
         <div class="input-container">
           <input type="text" id="phoneNumber" formControlName="phoneNumber" class="floating-input" placeholder=" " />
           <label for="phoneNumber" class="floating-label">Phone Number</label>
         </div>
+      </div>
+      <div class="input-container">
+        <input type="text" id="companyName" formControlName="companyName" class="floating-input" placeholder=" " />
+        <label for="companyName" class="floating-label">Company Name</label>
       </div>
       <button (click)="Register()" type="submit">Create an Account</button>
     </form> 

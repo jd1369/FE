@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BaseService } from './base.service';
 import { AuthService } from '../auth/auth.service';
+import { error } from 'highcharts';
 
 @Component({
   selector: 'app-base',
@@ -51,6 +52,7 @@ export class BaseComponent implements OnInit {
     this.isAdminPage = this.route.snapshot.routeConfig?.path === 'admin';
     console.log(this.url);
     const now = new Date();
+    this.getBanner();
     
     this.bannerForm = this.fb.group({
       id: ['banner-id-1369'],
@@ -63,7 +65,16 @@ export class BaseComponent implements OnInit {
 
     }
 
-
+    getBanner() {
+      this.baseService.getBanner().subscribe({
+        next: (response: any) => {
+          console.log(response);
+        },
+        error: (error: any) => {  // Use 'error' instead of 'err'
+          console.log(error);
+        }
+      });
+    }
 
   ngAfterViewInit() {
     const fileInput = this.fileInputRef.nativeElement;
@@ -78,9 +89,7 @@ export class BaseComponent implements OnInit {
 
  
   
- 
-  // Optional: Add this method to handle navbar collapsing when mouse leaves navbar
-  
+
   toggleDropdown(visible: boolean) {
     this.dropdownVisible = visible;
   }
