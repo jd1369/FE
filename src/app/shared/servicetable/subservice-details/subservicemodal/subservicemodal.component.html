@@ -7,7 +7,7 @@
   <form [formGroup]="editForm">
     <!-- Static Fields -->
     <div class="mb-3">
-      <label for="name" class="form-label">Project Name</label>
+      <label for="name" class="form-label">Sub Service Name</label>
       <input type="text" id="name" class="form-control" formControlName="name" required />
     </div>
 
@@ -17,7 +17,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="image" class="form-label">Service Image</label>
+      <label for="image" class="form-label">Sub Service Image</label>
       <input type="file" (change)="onImageSelect($event)" class="form-control" />
     </div>
 
@@ -32,9 +32,7 @@
           <label for="value-{{i}}" class="form-label">Value</label>
           <input type="text" id="value-{{i}}" class="form-control" formControlName="value" />
         </div>
-        <button type="button" class="btn btn-danger mt-2" (click)="deleteField(i)">
-          Delete
-        </button>
+        <button type="button" class="btn btn-danger mt-2" (click)="deleteField(i)">Delete</button>
       </div>
     </div>
   </form>

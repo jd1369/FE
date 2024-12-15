@@ -14,7 +14,20 @@ p.b{
     font-family: 'Real Text', Arial, sans-serif;
 }
 
+.background-container {
+  height: 100vh;
+  width: 100%;
+  background-image: url('../about/aboutUs1.jpeg'); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .image img{
+  background: url('../about/aboutUs1.jpeg');
  padding:  39px 18px 0px 2px;
  background-size: cover;
  height: 634px;

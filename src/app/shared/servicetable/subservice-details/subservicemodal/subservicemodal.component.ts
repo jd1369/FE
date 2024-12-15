@@ -85,9 +85,8 @@ export class SubservicemodalComponent implements OnInit {
         subServicePrice: this.editForm.value.subServicePrice
       };
 
-      const transformedFields = this.editForm.value.fields.reduce((acc: any, field: any, index: number) => {
-        const key = `additionalProp${index + 1}`;
-        acc[key] = { [field.type]: field.value };
+      const transformedFields = this.editForm.value.fields.reduce((acc: any, field: any) => {
+        acc[field.type] = field.value; // Assign dynamic key-value pairs
         return acc;
       }, {});
 

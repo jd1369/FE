@@ -79,6 +79,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       next: (response: any) => console.log(response),
       error: (err: any) => console.error(err)
     });
+    window.location.reload()
   }
 
   startAutoScroll(): void {
