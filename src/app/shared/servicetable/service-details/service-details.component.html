@@ -12,21 +12,25 @@
       </div>
   
       <div class="mb-3">
-        <label for="image" class="form-label">Image</label>
-        <input type="text" id="image" class="form-control" formControlName="image" required />
+        <label for="serviceImage" class="form-label">Service Image</label>
+        <input type="text" id="serviceImage" class="form-control" formControlName="serviceImage" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="icon" class="form-label">Icon Image</label>
+        <input type="text" id="icon" class="form-control" formControlName="icon" required />
       </div>
   
       <!-- Dynamic Fields (FormArray) -->
       <div formArrayName="fields">
         <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="d-flex mb-3">
-          
-          <!-- Key (Editable) -->
+          <!-- Key Input -->
           <div class="col-5">
-            <label for="key-{{i}}" class="form-label">Key (Type)</label>
+            <label for="key-{{i}}" class="form-label">Key</label>
             <input type="text" id="key-{{i}}" class="form-control" formControlName="type" />
           </div>
-  
-          <!-- Value (Editable) -->
+      
+          <!-- Value Input -->
           <div class="col-7">
             <label for="value-{{i}}" class="form-label">Value</label>
             <input type="text" id="value-{{i}}" class="form-control" formControlName="value" />

@@ -22,13 +22,18 @@ export class ServiceDetailsService {
         console.log(token)
         const headers = new HttpHeaders({
           Token: `Bearer ${token}`,
-        });
-    return this.http.patch<any>(`${this.baseUrl}/${serviceId}/updateServiceFields`, staticFields);
+        })
+    return this.http.patch<any>(`${this.baseUrl}${serviceId}/updateServiceFields`, staticFields,{headers});
   }
 
 
   saveDynamicFields(serviceId: string, fields: any): Observable<any> {
-    return this.http.patch<any>(`${serviceId}/updateServiceMapFiels`, fields);
+    const token = localStorage.getItem('authToken');
+        console.log(token)
+        const headers = new HttpHeaders({
+          Token: `Bearer ${token}`,
+        });
+    return this.http.patch<any>(`${serviceId}/updateServiceMapFiels`, fields,{headers});
   }
 
   deleteDynamicField(key: string): Observable<any> {
