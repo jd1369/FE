@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../auth.service';
 import { LoginComponent } from '../login/login.component';
+import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +17,7 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private modalService: NgbModal,
+     private toastr: ToasterService
   ) { }
 
   ngOnInit(): void {
@@ -33,8 +35,9 @@ export class RegisterComponent implements OnInit {
       const { emailId, name, phoneNumber,companyName } = this.registerForm.value;
       console.log(this.registerForm.value)
       this.authService.register(emailId, name, phoneNumber,companyName).subscribe({
-        next: () => alert('Registration successful'),
-        error: (err) => console.error('Registration failed', err),
+        next: () => this.toastr.showSuccessMessage('Registered Successfully'),
+        
+        error: (err) => this.toastr.showInfoMessage('Registration Failed'),
         
       });
     }
