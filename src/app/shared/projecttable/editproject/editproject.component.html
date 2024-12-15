@@ -26,12 +26,12 @@
         </div>
         <div class="mb-3">
             <label for="images" class="form-label">Image</label>
-            <input type="text" id="images" class="form-control" [(ngModel)]="projectData.images" name="images"
-                required />
+            <input type="file" id="images" class="form-control" (change)="onFileSelected($event)" 
+            name="images" required  />
         </div>
     </form>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
-    <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+    <button type="button" class="btn btn-primary" (click)="onSubmit()">Save</button>
 </div>

@@ -52,7 +52,6 @@ export class BaseComponent implements OnInit {
     this.authService.isLoggedIn().subscribe((isAuthenticated) => {
       this.isLoggedIn = isAuthenticated;
     });
-    this.admin = JSON.parse(localStorage.getItem('admin') || '{}');
     this.isAdminPage = this.route.snapshot.routeConfig?.path === 'admin';
     console.log(this.url);
     const now = new Date();

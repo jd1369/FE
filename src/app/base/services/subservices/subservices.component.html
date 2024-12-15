@@ -1,40 +1,49 @@
 <div class="details">
-    <h1>
-        Our commitment to excellence drives us through every project we undertake. From the initial brainstorming 
-        sessions to the final deliverables, we meticulously craft each detail to ensure it meets the highest standards.
-    </h1>
-    <p>
-      Our commitment to excellence drives us through every project we undertake. From the initial brainstorming 
-      sessions to the final deliverables, we meticulously craft each detail to ensure it meets the highest standards.
-    </p>
-  </div>
+  <h1>
+    Our commitment to excellence drives us through every project we undertake. From the initial brainstorming
+    sessions to the final deliverables, we meticulously craft each detail to ensure it meets the highest standards.
+  </h1>
+  <p>
+    Our commitment to excellence drives us through every project we undertake. From the initial brainstorming
+    sessions to the final deliverables, we meticulously craft each detail to ensure it meets the highest standards.
+  </p>
+</div>
 
-  <div class="grid">
-    <div class="card" *ngFor="let item of pagedItems">
-      <div class="card-header">
-        <i style="font-size: 1rem" class="fa fa-info fa-sm" (click)="openPopup(item)" title="View Details"></i>
-      </div>
-      <img [src]="item.image" alt="Project image">
-      <h3>{{ item.name }}</h3>
-      <p>{{ item.projectContent }}</p>
+<div class="grid">
+  <div class="card" *ngFor="let item of pagedItems">
+    <div class="card-header">
+      <i style="font-size: 1rem" class="fa fa-info fa-sm" (click)="openPopup(item)" title="View Details"></i>
     </div>
+    <img [src]="item.image" alt="Project image">
+    <h3>{{ item.name }}</h3>
+    <p>{{ item.projectContent }}</p>
+
+    <button style="margin-right: 255px;
+      border-radius: 1px;
+      width: 213px;
+      background: white;
+      border: 1px solid;
+      bottom: 27px;
+      height: 35px;
+      position: absolute;color: red;">Login to View</button>
   </div>
+</div>
 
 
 
-  <div class="popup" *ngIf="popupVisible">
-    <div class="popup-content">
-      <span class="close" (click)="hidePopup()">&times;</span>
-      <h2>{{ popupItem?.name }}</h2>
-      <p>{{ popupItem?.projectContent || popupItem?.subtitle }}</p>
-    </div>
+<div class="popup" *ngIf="popupVisible">
+  <div class="popup-content">
+    <span class="close" (click)="hidePopup()">&times;</span>
+    <h2>{{ popupItem?.name }}</h2>
+    <p>{{ popupItem?.projectContent || popupItem?.subtitle }}</p>
   </div>
-  <div class="popup" *ngIf="popupVisible">
-    <div class="popup-content">
-      <!-- Close button inside the popup -->
-      <span class="close" (click)="hidePopup()">&times;</span>
-      <!-- Display details of the selected item -->
-      <h2>{{ popupItem?.projectDescription }}</h2>
-      <p>{{ popupItem?.projectContent || popupItem?.subtitle }}</p>
-    </div>
+</div>
+<div class="popup" *ngIf="popupVisible">
+  <div class="popup-content">
+    <!-- Close button inside the popup -->
+    <span class="close" (click)="hidePopup()">&times;</span>
+    <!-- Display details of the selected item -->
+    <h2>{{ popupItem?.projectDescription }}</h2>
+    <p>{{ popupItem?.projectContent || popupItem?.subtitle }}</p>
   </div>
+</div>

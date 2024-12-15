@@ -27,21 +27,18 @@ export class ServicesService {
 
  
 
-  getServiceList(){
+  getServiceList() {
     const token = localStorage.getItem('authToken');
-    console.log(token)
-    if(this.admin||this.user){
-    const headers = new HttpHeaders({
-      Token: `Bearer ${token}`,
-    });
+    console.log('Auth Token:', token);
   
-    return this.http.get(this.baseUrl + 'fetchAllServices',{headers})
-  }
-  else{
-    const headers = new HttpHeaders({
-      Token: `Bearer `,
-    });
-    return this.http.get(this.baseUrl + 'fetchAllServices',{headers})
-  }
+    const headers = token
+      ? new HttpHeaders({ Token: `Bearer ${token}` })
+      : new HttpHeaders({Token:`Bearer `});
+      console.log("AbortController",headers)
+    if (this.admin || this.user) {
+      return this.http.get(`${this.baseUrl}fetchAllServices`, { headers });
+    } else {
+      return this.http.get(`${this.baseUrl}fetchAllServices`, { headers });
+    }
   }
 }

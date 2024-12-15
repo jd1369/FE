@@ -110,7 +110,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getServices(): void {
     this.homeService.getAllServices().subscribe({
-      next: (response: any) => (this.serviceList = response),
+      next: (response: any) => (this.serviceList = response,
+        console.log(this.serviceList)
+        
+      ),
       error: (err: any) => console.error(err)
     });
   }

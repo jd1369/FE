@@ -1,61 +1,143 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddserviceService } from './addservice.service';
-import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
+import { AddserviceService } from './addservice.service';
+import { map, catchError, of, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-addservice',
   templateUrl: './addservice.component.html',
-  styleUrls: ['./addservice.component.scss']
+  styleUrls: ['./addservice.component.scss'],
 })
 export class AddserviceComponent implements OnInit {
-  dynamicForm!: FormGroup;
+  baseUrl = environment.baseUrl;
+  form!: FormGroup;
+  iconPreview: string | ArrayBuffer | null = null;
+  serviceImagePreview: string | ArrayBuffer | null = null;
+  serviceImageFile: File | null = null;
+  iconFile: File | null = null;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private addservice: AddserviceService
+  ) {}
 
   ngOnInit(): void {
-    // Initialize the form
-    this.dynamicForm = this.fb.group({
+    this.form = this.fb.group({
       name: ['', Validators.required],
-      icon: ['', Validators.required],
-      serviceImage: ['', Validators.required],
-      fields: this.fb.array([]) // Dynamic form array for additional properties
+      icon: [''],
+      serviceImage: [''],
+      fields: this.fb.group({
+        additionalProps: this.fb.array([]),
+      }),
     });
   }
 
-  // Getter for the fields array
-  get fields() {
-    return (this.dynamicForm.get('fields') as FormArray);
+  get additionalProps(): FormArray {
+    return (this.form.get('fields') as FormGroup).get('additionalProps') as FormArray;
   }
 
-  // Function to add a new dynamic field with a key and value
-  addField(): void {
-    const fieldGroup = this.fb.group({
-      key: ['', Validators.required],  // Key for the field, like 'additionalProp1'
-      value: this.fb.group({
-        key: ['', Validators.required],  // Inner key, like 'movies'
-        value: ['', Validators.required]  // Inner value, like 'top'
-      })
+  addAdditionalProp(): void {
+    const propGroup = this.fb.group({
+      key: ['', Validators.required],
+      value: ['', Validators.required],
     });
-    this.fields.push(fieldGroup);
+    this.additionalProps.push(propGroup);
   }
 
-  // Function to remove a dynamic field
-  removeField(index: number): void {
-    this.fields.removeAt(index);
+  removeAdditionalProp(index: number): void {
+    this.additionalProps.removeAt(index);
   }
 
-  // Submit function to capture the form data
-  onSubmit(): void {
-    if (this.dynamicForm.valid) {
-      console.log(this.dynamicForm.value);
-    } else {
-      console.log('Form is not valid');
+  onIconChange(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.iconFile = file;
     }
   }
-  closeModal(){
-    
+
+  onServiceImageChange(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.serviceImageFile = file;
+    }
+  }
+
+  onSubmit() {
+    const formData: any = { ...this.form.value };
+
+    // Handle file uploads
+    const uploadRequests = [];
+
+    if (this.serviceImageFile) {
+      const fileUploadFormData = new FormData();
+      fileUploadFormData.append('file', this.serviceImageFile, this.serviceImageFile.name);
+
+      const uploadRequest = this.http.post(this.baseUrl + 'upload', fileUploadFormData, { responseType: 'json' }).pipe(
+        map((uploadResponse: any) => {
+          const fileUrl = uploadResponse.fileUrl || uploadResponse.url || '';
+          formData.serviceImage = fileUrl;  // Store the single string URL instead of an array
+        }),
+        catchError((err) => {
+          console.error('Service Image Upload failed!', err);
+          return of(null);
+        })
+      );
+      uploadRequests.push(uploadRequest);
+    }
+
+    if (this.iconFile) {
+      const fileUploadFormData = new FormData();
+      fileUploadFormData.append('file', this.iconFile, this.iconFile.name);
+
+      const uploadRequest = this.http.post(this.baseUrl + 'upload', fileUploadFormData, { responseType: 'json' }).pipe(
+        map((uploadResponse: any) => {
+          const fileUrl = uploadResponse.fileUrl || uploadResponse.url || '';
+          formData.icon = fileUrl;  // Store the single string URL instead of an array
+        }),
+        catchError((err) => {
+          console.error('Icon Upload failed!', err);
+          return of(null);
+        })
+      );
+      uploadRequests.push(uploadRequest);
+    }
+
+    // After uploading files, process the additional props and submit
+    forkJoin(uploadRequests).subscribe({
+      next: () => {
+        // Transform additionalProps into the structure with dynamic keys like 'additionalProps', 'additionalProps2'
+        const transformedProps = formData.fields.additionalProps.reduce((acc: any, prop: any, index: number) => {
+          const propName = `additionalProps${index + 1}`; // Creating dynamic key names like additionalProps, additionalProps2, etc.
+          acc[propName] = {
+            [prop.key]: prop.value,
+          };
+          return acc;
+        }, {});
+
+        const jsonData = {
+          ...formData,
+          fields: transformedProps,
+        };
+
+        this.submitProject(jsonData);
+      },
+      error: (err) => {
+        console.error('File upload error:', err);
+      }
+    });
+  }
+
+  private submitProject(formData: any): void {
+    this.addservice.addService(formData).subscribe({
+      next: (response: any) => {
+        console.log('Service added successfully:', response);
+      },
+      error: (err: any) => {
+        console.error('Error adding service:', err);
+      },
+    });
   }
 }

@@ -9,12 +9,14 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./contactustable.component.scss']
 })
 export class ContactustableComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'email', 'projectDetials'];
+  displayedColumns: string[] = ['name', 'email', 'tellUsAboutYourProject'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource(); // MatTableDataSource for pagination
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(
     private contactusService: ContactustableService
-  ) { }
+  ) { 
+    
+  }
 
   ngOnInit(): void {
     this.getcontactData();

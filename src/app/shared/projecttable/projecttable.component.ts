@@ -11,7 +11,7 @@ import { ToasterService } from '../toaster/toaster.service';
   styleUrls: ['./projecttable.component.scss']
 })
 export class ProjecttableComponent implements OnInit {
-  displayedColumns: string[] = ['projectName', 'projectDescription', 'projectContent', 'image', 'action'];
+  displayedColumns: string[] = ['projectName', 'projectDescription', 'projectContent', 'images', 'action'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource(); // MatTableDataSource for pagination
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
