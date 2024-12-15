@@ -66,17 +66,20 @@ export class ServicetableComponent implements OnInit {
         this.dataSource.data = this.dataSource.data.filter(item => item.customerID !== row.customerID);
         this.getServiceData();
         this.toastr.showInfoMessage('Data Deleted Successfully');
+        window.location.reload();
+
       },
       error: (err: any) => {
         console.error('Error deleting row:', err);
         this.toastr.showErrorMessage('Data Deleted Successfully');
+        window.location.reload();
       },
     });
   }
 
   openDetailsModal(projectData:any){
     console.log(projectData)
- const modalRef = this.modalService.open(ServiceDetailsComponent);
+ const modalRef = this.modalService.open(ServiceDetailsComponent,{ size: 'lg' });
     modalRef.componentInstance.projectData = { ...projectData };
   }
 

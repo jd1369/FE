@@ -33,10 +33,15 @@ export class ServiceDetailsService {
         const headers = new HttpHeaders({
           Token: `Bearer ${token}`,
         });
-    return this.http.patch<any>(`${serviceId}/updateServiceMapFiels`, fields,{headers});
+    return this.http.patch<any>(`${serviceId}/updateServiceMapFields`, fields,{headers});
   }
 
-  deleteDynamicField(key: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/deleteDynamicField/${key}`);
+  deleteField(serviceId: string, key: string): Observable<any> {
+    const token = localStorage.getItem('authToken');
+    console.log(token)
+    const headers = new HttpHeaders({
+      Token: `Bearer ${token}`,
+    });
+    return this.http.delete(`${this.baseUrl}deleteAMapFieldFromService/${serviceId}/${key}`,{headers});
   }
 }
