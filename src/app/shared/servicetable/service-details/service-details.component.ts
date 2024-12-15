@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ServicetableService } from '../servicetable.service'; // Import service for API calls
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ServiceDetailsService } from './service-details.service';
+import { error } from 'highcharts';
+import { ToasterService } from '../../toaster/toaster.service';
 
 @Component({
   selector: 'app-service-details',
@@ -9,68 +11,98 @@ import { ServiceDetailsService } from './service-details.service';
   styleUrls: ['./service-details.component.scss']
 })
 export class ServiceDetailsComponent implements OnInit {
-  @Input() projectData: any;
-  iconUrl: string | undefined;
-  serviceImageUrl: string | undefined;
-serviceId:any
-  constructor(
-    public modal: NgbActiveModal,
-    private detailsserver: ServiceDetailsService
+  @Input() projectData: any;  // Data passed from the parent component
+  editForm!: FormGroup;
+
+  constructor(private fb: FormBuilder, private modalService: NgbModal,private serviceDetails:ServiceDetailsService,
+    private toastr :ToasterService,
   ) {}
 
   ngOnInit(): void {
-    // Initialize URLs for file previews
-    if (this.projectData.icon && this.projectData.icon[0]) {
-      this.iconUrl = this.projectData.icon[0];
+    if (this.projectData) {
+      this.initializeForm();
     }
-    if (this.projectData.serviceImage && this.projectData.serviceImage[0]) {
-      this.serviceImageUrl = this.projectData.serviceImage[0];
-    }
+    
   }
 
-  // Handle file change for icon and serviceImage
-  onFileChange(event: any, type: string) {
-    const file = event.target.files[0];
-    if (type === 'icon') {
-      this.iconUrl = URL.createObjectURL(file); // Show preview
-      this.projectData.icon = [file]; // Assign the file to the project data
-    } else if (type === 'serviceImage') {
-      this.serviceImageUrl = URL.createObjectURL(file); // Show preview
-      this.projectData.serviceImage = [file]; // Assign the file to the project data
-    }
-  }
-
-  // Add a new key-value pair to the fields
-  addNewKeyValue() {
-    this.projectData.fields.additionalProps.push({ key: '', value: '' });
-  }
-
-  // Delete a key-value pair by index
-  deleteKeyValue(index: number) {
-    this.projectData.fields.additionalProps.splice(index, 1);
-  }
-
-  // Handle the form submission
-  onSubmit() {
-    // First, update the static fields (name, icon, serviceImage) using one API call
-    this.detailsserver.updateStaticFields(this.projectData).subscribe({
-      next: (response: any) => {
-        console.log('Static fields updated successfully', response);
-        
-        // Now, update the dynamic key-value fields using another API call
-        this.detailsserver.updateDynamicFields(this.serviceId,this.projectData.fields.additionalProps).subscribe({
-          next: (response: any) => {
-            console.log('Dynamic fields updated successfully', response);
-            this.modal.close('Save clicked');
-          },
-          error: (err: any) => {
-            console.error('Error updating dynamic fields', err);
-          }
-        });
-      },
-      error: (err: any) => {
-        console.error('Error updating static fields', err);
-      }
+  // Initialize form based on projectData
+  initializeForm(): void {
+    this.editForm = this.fb.group({
+      name: [this.projectData.name],
+      image: [this.projectData.image],
+      fields: this.fb.array([])  // Initialize the FormArray for dynamic fields
     });
+
+    this.addDynamicFields(this.projectData.fields);
+  }
+
+  // Add dynamic fields to the form
+  addDynamicFields(fields: any): void {
+    const fieldArray = this.editForm.get('fields') as FormArray;
+
+    // Iterate over the dynamic fields (e.g., additionalProp1, additionalProp2, etc.)
+    Object.keys(fields).forEach((key) => {
+      const field = fields[key];
+
+      // Initialize a FormGroup with two fields: type (key) and value
+      const control = this.fb.group({
+        type: [Object.keys(field)[0]],  // Use the key (e.g., 'movies')
+        value: [Object.values(field)[0]], // Use the value (e.g., 'hindi')
+      });
+
+      fieldArray.push(control);
+    });
+  }
+
+  // Getter for fields FormArray
+  get fields(): FormArray {
+    return this.editForm.get('fields') as FormArray;
+  }
+
+  
+  save(): void {
+   
+      const staticFields = {
+
+        name: this.editForm.value.name,
+        image: this.editForm.value.image
+      };
+
+   
+      const transformedFields = this.editForm.value.fields.reduce((acc: any, field: any, index: number) => {
+        const key = `additionalProp${index + 1}`;  
+        acc[key] = { [field.type]: field.value };  
+        return acc;
+      }, {});
+      const serviceId = this.projectData.id;
+
+      this.serviceDetails.saveStaticFields(serviceId,staticFields).subscribe({
+        next:(response:any) => {
+          console.log('Static fields saved successfully:', response);
+   
+          this.serviceDetails.saveDynamicFields(serviceId,transformedFields).subscribe({
+            next:(response:any) => {
+              console.log('Dynamic fields saved successfully:', response);
+              this.close();
+            },
+            error:(error:any) => {
+              console.error('Error saving dynamic fields:', error);
+            },
+         } );
+         this.toastr.showSuccessMessage('Data Submitted Successfully');
+         this.modalService.dismissAll();
+        },
+        error:(error:any) => {
+          console.error('Error saving static fields:', error);
+          this.toastr.showSuccessMessage('Error While Submitting Successfully');
+        }
+      }) ;
+    
+  }
+
+
+  // Close method for the modal
+  close(): void {
+    this.modalService.dismissAll();
   }
 }

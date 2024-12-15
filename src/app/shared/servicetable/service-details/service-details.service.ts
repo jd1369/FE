@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs'; // You need to import Observable
 import { environment } from 'src/environments/environment';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -17,15 +16,18 @@ export class ServiceDetailsService {
   }
 
   // Other methods
-  updateStaticFields(serviceId:any): Observable<any> {
+  saveStaticFields(serviceId: any, staticFields:any): Observable<any> {
     const formData = new FormData();
-   
-
-    return this.http.patch<any>(`${this.baseUrl}/${serviceId}/updateServiceFields`, formData);
+     const token = localStorage.getItem('authToken');
+        console.log(token)
+        const headers = new HttpHeaders({
+          Token: `Bearer ${token}`,
+        });
+    return this.http.patch<any>(`${this.baseUrl}/${serviceId}/updateServiceFields`, staticFields);
   }
 
 
-  updateDynamicFields(serviceId: string, fields: any): Observable<any> {
+  saveDynamicFields(serviceId: string, fields: any): Observable<any> {
     return this.http.patch<any>(`${serviceId}/updateServiceMapFiels`, fields);
   }
 

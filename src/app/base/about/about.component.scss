@@ -1,5 +1,9 @@
+.header{
+  padding:32px 150px 0px 150px;
+}
+
 p.a{
-    margin-top: 90px;
+    margin-top: 25px;
     font-size: 16px;
     font-family: 'Real Text', Arial, sans-serif;
 }
@@ -10,6 +14,17 @@ p.b{
     font-family: 'Real Text', Arial, sans-serif;
 }
 
+.image img{
+ padding:  39px 18px 0px 2px;
+ background-size: cover;
+ height: 634px;
+ width: 100%;
+}
+
+.planning{
+  background: url('../about/aboutUs1.jpeg');
+  background-size: 100%;
+}
 p.c{
   font-family: 'Real Text', Arial, sans-serif;
 }
@@ -19,9 +34,13 @@ p.c{
     font-family: 'Real Text', Arial, sans-serif;
 }
 
-.h1{
-    padding: 100px;
+.header h1{
+    
     font-family: 'Real Text', Arial, sans-serif;
+    font-size: 28px;
+  font-weight: bold;
+  line-height: 1.5;
+  font-family: 'Real Text', Arial, sans-serif;
 }
 
 /* General Container */

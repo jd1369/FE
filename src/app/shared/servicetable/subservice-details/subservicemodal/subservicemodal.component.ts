@@ -72,11 +72,11 @@ export class SubservicemodalComponent implements OnInit {
       }, {});
       const serviceId = this.projectData.id;
 
-      this.serviceDetails.updateDynamicFields(serviceId,staticFields).subscribe({
+      this.serviceDetails.saveStaticFields(serviceId,staticFields).subscribe({
         next:(response:any) => {
           console.log('Static fields saved successfully:', response);
    
-          this.serviceDetails.updateStaticFields(serviceId).subscribe({
+          this.serviceDetails.saveDynamicFields(serviceId,transformedFields).subscribe({
             next:(response:any) => {
               console.log('Dynamic fields saved successfully:', response);
               this.close();

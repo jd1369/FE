@@ -1,29 +1,74 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="addservice-form">
-  <label for="name">Name:</label>
-  <input id="name" formControlName="name" required />
 
-  <label for="icon">Icon:</label>
-  <input type="file" id="icon" (change)="onIconChange($event)" required />
-
-  <label for="serviceImage">Service Image:</label>
-  <input type="file" id="serviceImage" (change)="onServiceImageChange($event)" required />
-
-  <div formGroupName="fields">
-    <div formArrayName="additionalProps">
-      <div *ngFor="let prop of additionalProps.controls; let i = index" [formGroupName]="i">
-        <label for="key">Key:</label>
-        <input id="key" formControlName="key" required />
-
-        <label for="value">Value:</label>
-        <input id="value" formControlName="value" required />
-
-        <button type="button" (click)="removeAdditionalProp(i)">Remove</button>
-      </div>
+  
+<div class="modal-header">
+    <div class="col">
+      <h4 class="modal-title">Login</h4>
     </div>
-
-    <button type="button" (click)="addAdditionalProp()">Add Additional Property</button>
+    <div class="col-sm-4">
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
   </div>
+  <div class="container">
+    <div class="modal-body">
+      <form [formGroup]="serviceForm">
+  
+        <div>
+          <div class="col-lg-6 form-style">
+            <div class="form-group pb-2">
+              <fieldset class="d-flex align-items-center">
+                <input type="text" class="form-control" id="name" formControlName="name" placeholder="Service Name" />
+                <!-- Add Button -->&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary ml-2" (click)="addField()">+</button>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div formArrayName="fields">
+          <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="form-group">
+            <label>Field {{i + 1}}</label>
+            <div class="form-row">
+              <div class="col">
+                <input formControlName="key" class="form-control" placeholder="Key (e.g., place, location)" />
+              </div>
+              <div class="col">
+                <input formControlName="value" class="form-control" placeholder="Value (e.g., hyd, kphb)" />
+              </div>
+            </div>
+            <button type="button" class="btn btn-danger" (click)="removeField(i)">Remove Field</button>
+          </div>
+        </div>
+        <!-- Add Button -->
+        
 
-  <button type="submit">Submit</button>
-</form>
+        <div class="row" style="padding-top: 20px;">
+          <div class="col-lg-6 form-style">
+            <div class="form-group pb-2">
+              <fieldset>
+                <input type="file" placeholder="serviceImage" (change)="onServiceImageSelected($event)" accept="image/*" />
+              </fieldset>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="padding-top: 20px;">
+          <div class="col-lg-6 form-style">
+            <div class="form-group pb-2">
+              <fieldset>
+                <input type="file" placeholder="icon" (change)="onIconSelected($event)" accept="image/*" />
+              </fieldset>
+            </div>
+          </div>
+        </div>
+  </form>
 
+  <div class="text-center" style="padding-top: 20px;">
+      <button type="button" class="btn btn-primary" (click)="activeModal.dismiss(); onSubmit()">
+          Submit
+      </button>
+  </div>
+</div>
+</div>

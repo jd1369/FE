@@ -1,43 +1,43 @@
 <div class="modal-header">
-  <h5 class="modal-title">Edit Service Details</h5>
-  <button type="button" class="close" (click)="modal.dismiss('Cross click')">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="modal-body">
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="serviceName">Service Name</label>
-      <input type="text" id="serviceName" class="form-control" [(ngModel)]="projectData.name" name="name" required />
-    </div>
-
-    <div class="form-group">
-      <label for="iconFile">Icon</label>
-      <input type="file" id="iconFile" class="form-control" (change)="onFileChange($event, 'icon')" />
-      <img *ngIf="iconUrl" [src]="iconUrl" alt="Icon Preview" class="preview-image" />
-    </div>
-
-    <div class="form-group">
-      <label for="serviceImageFile">Service Image</label>
-      <input type="file" id="serviceImageFile" class="form-control" (change)="onFileChange($event, 'serviceImage')" />
-      <img *ngIf="serviceImageUrl" [src]="serviceImageUrl" alt="Service Image Preview" class="preview-image" />
-    </div>
-
-    <div *ngFor="let field of projectData.fields.additionalProps; let i = index" class="form-group">
-      <label for="key{{i}}">Key</label>
-      <input type="text" id="key{{i}}" class="form-control" [(ngModel)]="field.key" name="key{{i}}" required />
-
-      <label for="value{{i}}">Value</label>
-      <input type="text" id="value{{i}}" class="form-control" [(ngModel)]="field.value" name="value{{i}}" required />
-      
-      <button type="button" class="btn btn-danger" (click)="deleteKeyValue(i)">Delete</button>
-    </div>
-
-    <button type="button" class="btn btn-primary" (click)="addNewKeyValue()">Add New Key-Value Pair</button>
-
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
-      <button type="submit" class="btn btn-primary">Save Changes</button>
-    </div>
-  </form>
-</div>
+    <h4 class="modal-title">Edit Service Details</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+  </div>
+  
+  <div class="modal-body">
+    <form [formGroup]="editForm">
+      <!-- Static Fields -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Project Name</label>
+        <input type="text" id="name" class="form-control" formControlName="name" required />
+      </div>
+  
+      <div class="mb-3">
+        <label for="image" class="form-label">Image</label>
+        <input type="text" id="image" class="form-control" formControlName="image" required />
+      </div>
+  
+      <!-- Dynamic Fields (FormArray) -->
+      <div formArrayName="fields">
+        <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="d-flex mb-3">
+          
+          <!-- Key (Editable) -->
+          <div class="col-5">
+            <label for="key-{{i}}" class="form-label">Key (Type)</label>
+            <input type="text" id="key-{{i}}" class="form-control" formControlName="type" />
+          </div>
+  
+          <!-- Value (Editable) -->
+          <div class="col-7">
+            <label for="value-{{i}}" class="form-label">Value</label>
+            <input type="text" id="value-{{i}}" class="form-control" formControlName="value" />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+    <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+  </div>
+  

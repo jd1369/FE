@@ -68,10 +68,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   toggleContent(): void {
-    this.switchBanner = !this.switchBanner;
-    this.isToggled = this.switchBanner;
+    this.bannerData
+    const formData = this.bannerData
+    console.log(formData)
+    
+    formData.switchBanner = !formData.switchBanner
+    
 
-    this.homeService.updateBannerState(this.bannerData).subscribe({
+    this.homeService.updateBannerState(formData).subscribe({
       next: (response: any) => console.log(response),
       error: (err: any) => console.error(err)
     });

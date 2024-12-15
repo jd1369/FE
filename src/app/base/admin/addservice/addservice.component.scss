@@ -1,87 +1,66 @@
-/* General form styling */
-.addservice-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-  }
+.btn-primary {
+  background: #188725;
+  width: 160px;
+  height: 40px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 22px;
+  color: #FFFFFF;
+}
+
+.modal-header {
+  padding: 5px;
+  background-color: #000000;
   
-  .addservice-form label {
-    font-weight: bold;
-    margin-top: 10px;
-    display: block;
-  }
-  
-  .addservice-form input[type="text"],
-  .addservice-form input[type="file"],
-  .addservice-form button {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .addservice-form button {
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    border: none;
-  }
-  
-  .addservice-form button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .addservice-form button[type="button"] {
-    background-color: #f44336;
-  }
-  
-  .addservice-form button[type="button"]:hover {
-    background-color: #e53935;
-  }
-  
-  .addservice-form button:hover {
-    background-color: #45a049;
-  }
-  
-  /* Preview image styling */
-  .preview-image {
-    max-width: 100%;
-    max-height: 200px;
-    margin-top: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-  }
-  
-  /* Input container styling */
-  .addservice-form div {
-    margin-bottom: 15px;
-  }
-  
-  /* Form field inside an array */
-  .addservice-form .additional-prop {
-    margin-bottom: 10px;
-  }
-  
-  .addservice-form .additional-prop input {
-    width: 45%;
-    margin-right: 5%;
-  }
-  
-  /* Add button styling */
-  .addservice-form .add-button {
-    width: 100%;
-    padding: 8px;
-    margin-top: 10px;
-    background-color: #2196F3;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
+  fieldset {
+      border: 2px solid #007bff; /* Light blue border */
+      padding: 15px;
+      border-radius: 8px;
+      width: 300px;
+      margin: 20px auto;
+      background-color: #f9f9f9; /* Light background color */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    }
+    
+    input[type="file"] {
+      display: block;
+      margin: 10px 0;
+      padding: 5px;
+      font-size: 14px;
+    }
+}
+.h4{
+  margin: 0 0px 0px;
+}
+
+.modal-title {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 36px;
+  color: #ffffff;
+  margin-top: 10px;
+
+}
+
+.close {
+  width: 30px;
+  height: 30px;
+  background: rgba(240, 240, 240, 0.75);
+  border: none;
+  font-size: 17px;
+  border-radius: 50%;
+  position: absolute; 
+  top: 10px; 
+  right: 10px; 
+  cursor: pointer;
+
+}
+
+
+
+
+
