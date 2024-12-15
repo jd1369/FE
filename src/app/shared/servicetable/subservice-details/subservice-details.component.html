@@ -14,13 +14,11 @@
               <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
               <mat-cell *matCellDef="let projectData"> {{projectData.emailId}} </mat-cell>
           </ng-container>
-          <ng-container matColumnDef="editSubService">
-              <mat-header-cell *matHeaderCellDef>Edit Sub Service </mat-header-cell>
-              <mat-cell *matCellDef="let projectData">
-  
-                  <mat-icon (click)="onEdit(projectData)" style="color: #3416AD; cursor: pointer;">edit</mat-icon>
-              </mat-cell>
-          </ng-container>
+          <ng-container matColumnDef="subServicePrice">
+            <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+            <mat-cell *matCellDef="let projectData"> {{projectData.subServicePrice}} </mat-cell>
+        </ng-container>
+         
           <ng-container matColumnDef="action">
               <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
               <mat-cell *matCellDef="let projectData">

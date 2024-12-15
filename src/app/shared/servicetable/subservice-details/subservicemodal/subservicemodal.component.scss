@@ -1,0 +1,163 @@
+/* Modal Styles */
+.modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal-title {
+    font-size: 1.25rem;
+    margin: 0;
+  }
+  
+  .btn-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #000;
+  }
+  
+  .modal-body {
+    padding: 30px 98px 28px 15px;
+    background-color: #fff;
+  }
+  
+  .modal-footer {
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    text-align: right;
+  }
+  
+  /* Form Styles */
+  form .form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  form .form-control {
+    border-radius: .25rem;
+    box-shadow: none;
+    padding: .375rem .75rem;
+    margin-bottom: 10px;
+  }
+  
+  .mb-3 {
+    margin-bottom: 1rem;
+  }
+  
+  /* File Inputs */
+  input[type="file"] {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    margin-top: .5rem;
+  }
+  
+  input[type="file"]:focus {
+    outline: none;
+    border-color: #80bdff;
+  }
+  
+  /* Dynamic Fields Section */
+  form .d-flex {
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem; /* Adds spacing between each field block */
+  }
+  
+  form .col-5,
+  form .col-7 {
+    padding-right: .5rem;
+  }
+  
+  form .col-7 {
+    padding-left: .5rem;
+  }
+  
+  form .col-5 input,
+  form .col-7 input {
+    width: 100%; /* Ensures the inputs take up available space */
+  }
+  
+  /* Delete Button Styles */
+  form button.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: .25rem .75rem;
+    font-size: .875rem;
+    cursor: pointer;
+    margin-left: 1rem;
+    border-radius: .25rem; /* Adds rounded corners to the button */
+  }
+  
+  form button.btn-danger:hover {
+    background-color: #c82333;
+  }
+  
+  /* Modal Button Styles */
+  button.btn-secondary,
+  button.btn-primary {
+    padding: 10px 20px;
+    border-radius: .25rem;
+    font-size: 1rem;
+  }
+  
+  button.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+  }
+  
+  button.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  button.btn-secondary:hover {
+    background-color: #5a6268;
+  }
+  
+  button.btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  /* Styling the "Delete" button within the dynamic fields */
+  .form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .form-group button {
+    margin-left: 10px; /* Gives space between the value and the delete button */
+    font-size: 14px;
+    padding: .25rem .75rem;
+  }
+  
+  .form-group .col-7 {
+    display: flex;
+    justify-content: space-between;
+  }
+  .modal-dialog {
+    max-width: 80%; /* Set to a custom width */
+    width: auto;  /* Allow it to adjust automatically */
+  }
+  
+  /* Optionally, you can also set a min-height if needed */
+  .modal-content {
+    min-height: 400px; /* Set a minimum height for the modal */
+  }

@@ -10,19 +10,31 @@ export class SubservicemodalService {
 baseUrl= environment.baseUrl;
   constructor(private http: HttpClient) { }
  
-  getServiceList() {
+  saveStaticFields(subServiceId:any,serviceId: any, staticFields:any): Observable<any> {
+    const formData = new FormData();
+     const token = localStorage.getItem('authToken');
+        console.log(token)
+        const headers = new HttpHeaders({
+          Token: `Bearer ${token}`,
+        })
+    return this.http.patch<any>(`${this.baseUrl}${subServiceId}/${serviceId}/updateSubServiceFields`, staticFields,{headers});
+  }
+
+
+  saveDynamicFields(serviceId: string, subServiceId:any,fields: any): Observable<any> {
     const token = localStorage.getItem('authToken');
-    console.log(token)
+        console.log(token)
+        const headers = new HttpHeaders({
+          Token: `Bearer ${token}`,
+        });
+    return this.http.patch<any>(`${serviceId}/updateServiceMapFields/${subServiceId}`, fields,{headers});
+  }
+
+  deleteField(serviceId: string,subServiceId:any, key: string): Observable<any> {
+    const token = localStorage.getItem('authToken')
     const headers = new HttpHeaders({
       Token: `Bearer ${token}`,
     });
-    console.log(headers)
-    return this.http.get(`${this.baseUrl}fetchAllServices`, { headers });
-  }
-  updateProject(project: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/projects/${project.customerID}`, project); // Replace `customerID` with your unique identifier field
-  }
-  deleteProject(customerID: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/projects/${customerID}`);
+    return this.http.delete(`${this.baseUrl}deleteAMapFieldFromSubService/${serviceId}/sub-services/${subServiceId}/fields/${key}`,{headers});
   }
 }

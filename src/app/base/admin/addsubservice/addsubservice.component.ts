@@ -31,6 +31,7 @@ export class AddsubserviceComponent implements OnInit {
      this.subServiceForm = this.fb.group({
        name: ['', Validators.required],
        image: [''],
+       subServicePrice:[''],
        fields: this.fb.array([]),  // Initialize the form array for dynamic fields
      });
    }
@@ -99,7 +100,7 @@ export class AddsubserviceComponent implements OnInit {
            });
        } else {
          formData.image = [];
-         this.submitProject(formData);
+        // this.submitProject(formData);
        }
      } else {
        console.error('Form is invalid!');
@@ -108,6 +109,7 @@ export class AddsubserviceComponent implements OnInit {
  
    // Submit the project to the backend
    private submitProject(formData: any): void {
+    console.log("cakked")
      this.addService.addSubService(this.serviceId,formData).subscribe({
        next: (response: any) => {
          console.log('Service added successfully:', response);

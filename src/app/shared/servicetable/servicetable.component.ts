@@ -21,7 +21,7 @@ export class ServicetableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private serviceServer: ServicetableService,
     private modalService: NgbModal,
-    private toastr :ToasterService,
+    private toastr :ToasterService
     
   ) { }
 

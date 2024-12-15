@@ -19,7 +19,7 @@ export class ServiceDetailsComponent implements OnInit {
   baseUrl = environment.baseUrl;
   selectedFile: File | null = null;
   iconFile: File | null = null;
-
+  key!:string
   constructor(
     private fb: FormBuilder,
     private modalService: NgbModal,
