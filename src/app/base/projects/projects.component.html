@@ -1,4 +1,4 @@
-<div class="header">
+<div class="details">
   <h1>
     Where Vision Meets Execution: Our Success Stories
   </h1>
@@ -13,8 +13,7 @@
       
     </div>
     <img [routerLink]="['projectdetails']" [queryParams]="{ id: item.id, name: item.name }" [src]="item.images" alt="Project image">
-    <h3>{{ item.projectDescription }}</h3>
-    <p>{{ item.projectContent }}</p>
+    <h1 >{{ item.projectName }}</h1>
   </div>
 </div>
 

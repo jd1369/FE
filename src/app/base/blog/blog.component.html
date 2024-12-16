@@ -1,4 +1,4 @@
-<div class="header">
+<div class="details">
     <h1>
         Insights & Innovations: Our Blog
     </h1>
@@ -11,9 +11,8 @@
       <div class="card-header">
         
       </div>
-      <img [routerLink]="['blogdetails']" [queryParams]="{ id: item.id, name: item.name }" [src]="item.images" alt="Project image">
-      <h3>{{ item.projectDescription }}</h3>
-      <p>{{ item.projectContent }}</p>
+      <img [routerLink]="['blogdetails']" [queryParams]="{ id: item.blogId, name: item.blogName }" [src]="item.image" alt="Blog image">
+      <h3>{{ item.blogName }}</h3>
     </div>
   </div>
   

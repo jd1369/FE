@@ -1,12 +1,15 @@
 .details {
-    padding: 82px 90px 0px 209px;
+    padding: 45px 90px 0px 209px;
   }
   
   .details h1 {
-    font-family: 'Real Text', Arial, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
     text-align: center;
+    line-height: 1;
+    font-family: 'Real Text', Arial, sans-serif;
     word-wrap: break-word;  /* Ensure text wraps to the next line */
-    padding-bottom: 50px;
+    padding-bottom: 0px;
   }
   
   .details .a {
@@ -15,9 +18,12 @@
   }
   
   .details p {
+    font-size: 16px;
+    text-align: center;
     font-family: 'Real Text', Arial, sans-serif;
     word-wrap: break-word;  /* Ensure text wraps to the next line */
     white-space: normal;     /* Allow text to wrap normally */
+    padding: 16px;
   }
   
   .details img {
@@ -94,34 +100,7 @@
  
   }
 
-  .details {
-    padding: 82px 90px 0px 209px;
-  }
-  
-  .details h1 {
-    font-family: 'Real Text', Arial, sans-serif;
-    text-align: center;
-    word-wrap: break-word;  /* Ensure text wraps to the next line */
-    padding-bottom: 30px;
-  }
-  
-  .details .a {
-    font-family: 'Real Text', Arial, sans-serif;
-    word-wrap: break-word;  /* Ensure text wraps to the next line */
-  }
-  
-  .details p {
-    font-family: 'Real Text', Arial, sans-serif;
-    word-wrap: break-word;  /* Ensure text wraps to the next line */
-    white-space: normal;     /* Allow text to wrap normally */
-  }
-  
-  .details img {
-    width: 100%;
-    height: 200px;
-    margin-top: 50px;
-    margin-bottom: 59px;
-  }
+ 
   
   /* Popup Background Overlay */
 .popup {

@@ -1,5 +1,6 @@
 <div *ngIf="admin" [ngStyle]="{'background': switchBanner }" style="float: right;">
   <button class="toggle-button" (click)="toggleContent()">
+
     <span class="slider" [class.active]="switchBanner"></span>
   </button>
 </div>
@@ -23,7 +24,7 @@
     <div
       class="carousel-item"
       *ngFor="let service of serviceList"
-      [style.backgroundImage]="'url(' + service.serviceImahe + ')'"
+      [style.backgroundImage]="'url(' + service.serviceImage + ')'"
     >
       <div class="image-name">{{ service.name }}</div>
     </div>

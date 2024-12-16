@@ -15,7 +15,6 @@ export class EditprojectComponent implements OnInit {
   @Input() projectData :any
   baseUrl = environment.baseUrl;
   selectedFile: File | null = null;
-
   projectForm!:FormGroup
   constructor(public activeModal: NgbActiveModal,
     private editService :EditprojectService,
@@ -27,6 +26,7 @@ export class EditprojectComponent implements OnInit {
 
   ngOnInit(): void {
     const now = new Date()
+    console.log(this.projectData)
     this.projectData.lastModifiedDate = new Date().toISOString();
     this.projectForm = this.fb.group({
       projectName: [this.projectData.projectName],

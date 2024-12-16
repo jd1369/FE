@@ -47,13 +47,7 @@ export class BlogComponent implements OnInit {
     this.blogservice.getBlogdetails().subscribe((data: any) => {
       if (Array.isArray(data)) {
         
-        this.items = data.map(project => ({
-          id: project.id || project.projectId, // Use correct keys from your API response
-          name: project.name || project.title,
-          images: project.images,
-          projectDescription: project.projectDescription,
-          projectContent: project.projectContent,
-        }));
+        this.items = data
       } else {
         console.error('API response is not an array:', data);
         this.items = []; // Fallback to an empty array

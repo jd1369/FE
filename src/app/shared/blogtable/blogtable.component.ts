@@ -60,7 +60,7 @@ export class BlogtableComponent implements OnInit {
     row.isEditing = false;
     console.log('Saving row:', row);
 
-    this.blogService.updateProject(row).subscribe({
+    this.blogService.saveProject(row).subscribe({
       next: (response: any) => {
         console.log('Row updated successfully:', response);
       },
@@ -72,7 +72,7 @@ export class BlogtableComponent implements OnInit {
 
   onDelete(row: any): void {
     console.log('Delete clicked for:', row);
-    this.blogService.deleteProject(row.projectId).subscribe({
+    this.blogService.deleteProject(row.blogId).subscribe({
       next: () => {
         console.log('Row deleted successfully');
         this.dataSource.data = this.dataSource.data.filter(item => item.customerID !== row.customerID);

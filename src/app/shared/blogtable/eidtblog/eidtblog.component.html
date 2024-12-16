@@ -2,35 +2,81 @@
     <h4 class="modal-title">Edit Blog</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
 </div>
+
 <div class="modal-body">
-    <form #editForm="ngForm">
+    <form [formGroup]="blogForm" (ngSubmit)="onSubmit()" novalidate>
+        <!-- Blog Name -->
         <div class="mb-3">
             <label for="blogName" class="form-label">Blog Name</label>
-            <input type="text" id="blogName" class="form-control" [(ngModel)]="blogData.blogName" name="blogName" required />
+            <input
+                type="text"
+                id="blogName"
+                class="form-control"
+                formControlName="blogName"
+                required
+            />
+            <div *ngIf="blogForm.get('blogName')?.invalid && blogForm.get('blogName')?.touched" class="text-danger">
+                Blog Name is required.
+            </div>
         </div>
+
+        <!-- Blog Description -->
         <div class="mb-3">
             <label for="blogDescription" class="form-label">Blog Description</label>
-            <textarea id="blogDescription" class="form-control" [(ngModel)]="blogData.blogDescription"
-                name="blogDescription" required></textarea>
+            <textarea
+                id="blogDescription"
+                class="form-control"
+                formControlName="blogDescription"
+                required
+            ></textarea>
+            <div *ngIf="blogForm.get('blogDescription')?.invalid && blogForm.get('blogDescription')?.touched" class="text-danger">
+                Blog Description is required.
+            </div>
         </div>
+
+        <!-- Blog Content -->
         <div class="mb-3">
             <label for="blogContent" class="form-label">Blog Content</label>
-            <textarea id="blogContent" class="form-control" [(ngModel)]="blogData.blogContent"
-                name="blogContent" required></textarea>
+            <textarea
+                id="blogContent"
+                class="form-control"
+                formControlName="blogContent"
+                required
+            ></textarea>
+            <div *ngIf="blogForm.get('blogContent')?.invalid && blogForm.get('blogContent')?.touched" class="text-danger">
+                Blog Content is required.
+            </div>
         </div>
-        <!-- <div class="mb-3">
-            <label for="lastModifiedDate" class="form-label">ModifiedDate</label>
-            <input type="date" id="lastModifiedDate" class="form-control" [(ngModel)]="blogData.lastModifiedDate" name="lastModifiedDate"
-                required />
-        </div> -->
+
+        <!-- File Upload -->
         <div class="mb-3">
-            <label for="image" class="form-label">Image</label>
-            <input type="text" id="image" class="form-control" [(ngModel)]="blogData.image" name="image"
-                required />
+            <label for="images" class="form-label">Image</label>
+            <input
+                type="file"
+                id="images"
+                class="form-control"
+                (change)="onFileSelected($event)"
+                accept="image/*"
+            />
+            <div *ngIf="selectedFile" class="mt-2">
+                <small class="text-muted">Selected file: {{ selectedFile?.name }}</small>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mb-3 text-end">
+            <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+            <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="!blogForm.valid"
+            >
+                Save
+            </button>
         </div>
     </form>
 </div>
+
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
-    <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+    <!-- Footer can remain empty or contain additional actions -->
 </div>

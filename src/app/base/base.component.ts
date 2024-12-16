@@ -22,12 +22,12 @@ import { SharedserviceService } from '../shared/sharedservice.service';
 })
 export class BaseComponent implements OnInit {
   baseUrl = environment.baseUrl;
+  admin: boolean = false;
   isAdminPage: boolean = false;
   isScrolled = false;
   selectedFile: File | null = null;
   uploadedImageUrl: string = '';
   user: any;
-  admin: any;
   url: any;
   isLoggedIn: boolean = false;
   dropdownVisible = false;

@@ -15,6 +15,7 @@ export class BlogdetailsComponent implements OnInit {
   blogContent:any;
   blogDescription:any
   image:any
+  items:any
   constructor(
     private sharedservice:SharedserviceService,
         private http: HttpClient,
@@ -28,7 +29,32 @@ export class BlogdetailsComponent implements OnInit {
       this.blogName = params['name'];
       console.log('Received Query Params:', params);
     });
+    this.getProjectDescription()
   }
+
+  getProjectDescription(){
+    this.blogdetailService.getBlogDetails(this.blogId).subscribe({
+      next:(response:any)=>{
+        console.log(response)
+        this.items = response
+        console.log(this.items)
+        this.blogName = this.items.blogName
+        this.blogDescription = this.items.blogDescription
+        this.image = this.items.image
+        this.blogContent = this.items.blogContent
+        console.log(this.image)
+      },
+      error:(err:any)=>{
+        console.log(err.error)
+        this.items = err.error
+        this.blogName = this.items.blogName
+        this.blogDescription = this.items.blogDescription
+        this.image = this.items.image
+        this.blogContent = this.items.blogContent
+      }
+    })
+  }
+  
 
  
 

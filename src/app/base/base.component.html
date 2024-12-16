@@ -6,11 +6,10 @@
     </div>
     <div class="nav-links">
       <a routerLink="/base/home" routerLinkActive="active">Home</a>
-      
       <a routerLink="/base/services" routerLinkActive="active">Services</a>
       <a routerLink="/base/projects" routerLinkActive="active">Project</a>
       <a  routerLink="/base/blog" routerLinkActive="active">Blog</a>
-      <div *ngIf="admin"  class="dropdown" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
+      <div *ngIf="admin==true"  class="dropdown" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
         <a   routerLink="/base/admin" routerLinkActive="active">Admin</a>
         <ul class="dropdown-menu" *ngIf="dropdownVisible">
           <li><a (click)="addProject()">Add Project</a></li>

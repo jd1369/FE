@@ -10,7 +10,7 @@ export class EidtblogService {
 baseUrl= environment.baseUrl;
   constructor(private http: HttpClient) { }
   
-  saveBlog(): Observable<any> {
+  saveBlog(blogData: any): Observable<any> {
     const token = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       Token: `Bearer ${token}`,

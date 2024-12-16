@@ -1,125 +1,246 @@
-/* Header Section */
-.header {
-    text-align: center;
-    margin-bottom: 30px;
+.details {
+  padding: 45px 90px 0px 209px;
+}
+
+.details h1 {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  font-family: 'Real Text', Arial, sans-serif;
+  word-wrap: break-word;  /* Ensure text wraps to the next line */
+  padding-bottom: 0px;
+}
+
+.details .a {
+  font-family: 'Real Text', Arial, sans-serif;
+  word-wrap: break-word;  /* Ensure text wraps to the next line */
+}
+
+.details p {
+  font-size: 16px;
+  text-align: center;
+  font-family: 'Real Text', Arial, sans-serif;
+  word-wrap: break-word;  /* Ensure text wraps to the next line */
+  white-space: normal;     /* Allow text to wrap normally */
+  padding: 16px;
+}
+
+.details img {
+  width: 100%;
+  height: 200px;
+  margin-top: 50px;
+  margin-bottom: 59px;
+}
+
+/* Card Styles */
+.card {
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px; /* Fixed width for the card */
+  height: 350px; /* Fixed height for the card */
+  overflow: hidden; /* Prevent overflow if content exceeds */
+  position: relative; /* To position the icon correctly */
+  margin: 0 auto; /* Center the card within the grid */
+  align-items: center;
+}
+
+.card img {
+  width: 100%; /* Ensure the image takes up the full width of the card */
+  height: 150px; /* Fixed height for the image */
+  object-fit: cover; /* Ensures the image is cropped to fit */
+  border-radius: 4px;
+  
+}
+
+.card h3 {
+  font-size: 16px;
+  font-family: 'Real Text', Arial, sans-serif;
+  font-weight: bold;
+  margin: 10px 0 5px;
+}
+
+.card p {
+  font-size: 14px;
+  font-family: 'Real Text', Arial, sans-serif;
+  color: #777;
+  overflow: hidden; /* Hide any text overflow */
+  text-overflow: ellipsis; /* Add ellipsis if text overflows */
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+/* Card Header Icon */
+.card-header i {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.card-header i:hover {
+  color: #007bff; /* Change the color on hover */
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0px;
+  max-width: 926px;
+  margin: 0 auto;
+  margin-bottom: 70px;
+  row-gap: 46px;
+  column-gap: 20px;
+}
+
+.login{
+  height :43px;
+  background-color : white;
+  border:0
+
+}
+
+.grid img {
+  width: 200px; /* Set a fixed width */
+  height: 150px; /* Set a fixed height */
+  object-fit: cover; /* Ensures the image fits within the set dimensions while maintaining aspect ratio */
+  margin-bottom: 35px;
+  display: block; /* Ensures no unwanted inline spacing below the image */
+  align-items: center;
+}
+
+.grid h1, .grid p {
+  word-wrap: break-word; /* Ensures long text wraps properly */
+  margin: 10px 0; /* Adds some spacing for better readability */
+}
+
+.grid h1 {
+  font-size: 22px;
+    font-weight: 600;
+    font-family: "Real Text", Arial, sans-serif;
+    line-height: 1;
     margin-top: 30px;
-    
-  }
-  .header h1 {
-    font-size: 28px;
-    font-weight: bold;
-    line-height: 1.5;
-    font-family: 'Real Text', Arial, sans-serif;
-  }
-  .header h1 .highlight {
-    color: #f4c20d;
-  }
-  .header p {
-    font-size: 16px;
-    font-family: 'Real Text', Arial, sans-serif;
-    color: #555;
-    max-width: 800px;
-    margin: 10px auto 0;
-  }
-  
-  /* Grid Layout */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    max-width: 900px;
-    margin: 0 auto;
-    margin-bottom: 70px;
-  }
-  
-  /* Card Styles */
-  .card {
-    text-align: center;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  .card img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-  }
-  .card h3 {
-    font-size: 16px;
-    font-family: 'Real Text', Arial, sans-serif;
-    font-weight: bold;
-    margin: 10px 0 5px;
-  }
-  .card p {
-    font-size: 14px;
-    font-family: 'Real Text', Arial, sans-serif;
-    color: #777;
-  }
-  
-  /* Pagination Controls */
-  .pagination-controls {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
+}
 
-  .card-header i {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .card-header i:hover {
-    color: #007bff;  /* Change the color on hover */
-  }
 
-  .popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    max-width: 90%; /* Ensure it fits within the viewport */
-    width: 500px; /* Default width */
-    max-height: 80%; /* Prevent the popup from exceeding viewport height */
-    overflow: auto; /* Make the popup scrollable if content exceeds max-height */
-  }
-  
-  .popup-content {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    text-align: left;
-    color: #333;
-  }
-  
-  .popup h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    word-wrap: break-word; /* Ensure long words break to the next line */
-  }
-  
-  .popup p {
-    font-size: 1rem;
-    line-height: 1.5;
-    word-wrap: break-word; /* Ensure long words break to the next line */
-  }
-  
-  .close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 1.5rem;
-    color: #aaa;
-    cursor: pointer;
-  }
-  
-  .close:hover {
-    color: #333;
-  }
-  
+
+/* Popup Background Overlay */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears above other content */
+  opacity: 0; /* Initially hidden */
+  pointer-events: none; /* Prevent clicks while hidden */
+  transition: opacity 0.3s ease-in-out; /* Smooth fade-in/fade-out effect */
+}
+
+/* Show Popup */
+.popup.ng-trigger.ng-trigger-fadeInOut {
+  opacity: 1;
+  pointer-events: auto; /* Enable interaction */
+}
+
+/* Popup Content */
+.popup-content {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  width: 80%;  /* Adjust width for mobile responsiveness */
+  max-width: 500px;  /* Maximum width for larger screens */
+  max-height: 80%;  /* Ensure the popup doesn't exceed the screen height */
+  overflow-y: auto;  /* Add scroll if content exceeds height */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);  /* Add subtle shadow */
+  position: relative;
+}
+
+/* Close Button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close:hover {
+  color: #333;  /* Change color when hovering */
+}
+/* Popup Background Overlay */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears above other content */
+  opacity: 0; /* Initially hidden */
+  pointer-events: none; /* Prevent clicks while hidden */
+  transition: opacity 0.3s ease-in-out; /* Smooth fade-in/fade-out effect */
+}
+
+/* Show Popup */
+.popup.show {
+  opacity: 1;
+  pointer-events: auto; /* Enable interaction */
+}
+
+/* Popup Content */
+.popup-content {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  width: 80%;  /* Adjust width for mobile responsiveness */
+  max-width: 500px;  /* Maximum width for larger screens */
+  max-height: 80%;  /* Ensure the popup doesn't exceed the screen height */
+  overflow-y: auto;  /* Add scroll if content exceeds height */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);  /* Add subtle shadow */
+  position: relative;
+}
+
+/* Close Button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close:hover {
+  color: #333;  /* Change color when hovering */
+}
+
+/* Heading Styles */
+.popup h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  word-wrap: break-word;  /* Ensure long words wrap */
+}
+
+/* Paragraph Styles */
+.popup p {
+  font-size: 1rem;
+  line-height: 1.5;
+  word-wrap: break-word;  /* Ensure long words break to the next line */
+  color: #555;  /* Set color for the text */
+}

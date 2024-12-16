@@ -16,14 +16,82 @@ p.b{
 
 .background-container {
   height: 100vh;
+  position: relative; 
+  margin-top: 62px;
   width: 100%;
   background-image: url('../about/aboutUs1.jpeg'); /* Replace with your image path */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  // justify-content: center;
+  // align-items: center;
+}
+
+.text-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align content to the left */
+ // justify-content: space-between; /* Space out heading and list */
+  padding: 20px; /* Add padding for better spacing */
+  color: rgb(0, 0, 0); /* Text color for better contrast on the image */
+}
+ul{
+  display: flex ;
+  flex-direction: column;
+  list-style: none;
+  padding: 56px 12px 11px 199px;
+}
+.ul li{
+  line-height: 10px;
+}
+
+.styled-list {
+  list-style: none; /* Remove default bullets */
+  padding: 0; /* Remove default padding */
+  margin: 211px 0px 0px 472px /* Adjust left margin for alignment */
+}
+
+.styled-list li {
+  font-size: 1.5rem; /* Adjust list font size */
+  margin: 10px 0; /* Add spacing between items */
+  font-weight: 600;
+  color: white; /* List item color */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Add shadow for contrast */
+  position: relative; /* Required for custom bullet */
+  padding-left: 25px; /* Space for the custom bullet */
+}
+
+/* Custom bullet styles */
+.styled-list li::before {
+  
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #FFD700; /* Golden color for the bullet */
+  font-size: 1.5rem;
+}
+.heading {
+  text-align: center;
+  width: 100%; /* Center-align the heading */
+  font-size: 3rem; /* Adjust font size */
+  margin-top: 20px;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: auto 0; /* Vertically center the list */
+}
+
+.feature-list li {
+  font-size: 1.5rem; /* Adjust list font size */
+  margin: 10px 0; /* Add spacing between list items */
 }
 
 .image img{
