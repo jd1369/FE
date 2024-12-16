@@ -12,7 +12,7 @@
     <div class="card-header">
       
     </div>
-    <img [routerLink]="['projectdetails']" [queryParams]="{ id: item.id, name: item.name }" [src]="item.images" alt="Project image">
+    <img [routerLink]="['projectdetails']" [queryParams]="{ id: item.projectId, name: item.projectName }" [src]="item.images" alt="Project image">
     <h1 >{{ item.projectName }}</h1>
   </div>
 </div>

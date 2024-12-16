@@ -1,5 +1,5 @@
 .btn-primary {
-  background: #188725;
+  background: #000000;
   width: 160px;
   height: 40px;
   font-family: 'Open Sans';
@@ -12,27 +12,7 @@
 
 .modal-header {
   padding: 5px;
-  background-color: #000000;
-  
-  fieldset {
-      border: 2px solid #007bff; /* Light blue border */
-      padding: 15px;
-      border-radius: 8px;
-      width: 300px;
-      margin: 20px auto;
-      background-color: #f9f9f9; /* Light background color */
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    }
-    
-    input[type="file"] {
-      display: block;
-      margin: 10px 0;
-      padding: 5px;
-      font-size: 14px;
-    }
-}
-.h4{
-  margin: 0 0px 0px;
+
 }
 
 .modal-title {
@@ -41,8 +21,7 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 36px;
-  color: #ffffff;
-  margin-top: 10px;
+  color: #16469D;
 
 }
 
