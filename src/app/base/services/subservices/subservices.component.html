@@ -14,7 +14,7 @@
     </div>
     <img [src]="item.image" alt="Project image">
     <h3>{{ item.name }}</h3>
-    <p>{{ item.projectContent }}</p>
+    <p>{{item.fields.key}}: {{item.fields.value}}</p>
 
     <button *ngIf="user != true && admin != true"  style="margin-right: 255px;
       border-radius: 1px;

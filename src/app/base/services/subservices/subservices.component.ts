@@ -20,56 +20,14 @@ constructor(private http: HttpClient,
       private renderer: Renderer2,
        private route: ActivatedRoute
     ) { }
-  items: any[] = [
-    {
-      title: 'THE ADIDAS SUPER BOWL WINNING THROW',
-      subtitle: 'Some descriptive text here', 
-      image: 'assets/service1.jpg',
-      description: 'detailed description of the Adidas Super Bowl winning throw project.'
-    },
-    {
-      title: 'THE ADIDAS SUPER BOWL WINNING THROW',
-      subtitle: 'Some  text here', 
-      image: 'assets/service1.jpg',
-      description: 'This is r Bowl winning throw project.'
-    },
-    {
-      title: 'THE ADIDAS SUPER BOWL WINNING THROW',
-      subtitle: 'Some descriptive text here', 
-      image: 'assets/service2.jpg',
-      description: 'This is a detailed description of the Adidas Super Bowl winning throw project.'
-    },
-    {
-      title: 'THE ADIDAS SUPER BOWL WINNING THROW',
-      subtitle: 'Some descriptive text here', 
-      image: 'assets/service3.jpg',
-      description: 'This is a detailed description of the Adidas Super Bowl winning throw project.'
-    },
-    {
-      title: 'THE ADIDAS SUPER BOWL WINNING THROW',
-      subtitle: 'Some descriptive text here', 
-      image: 'assets/service4.jpg',
-      description: 'This is a detailed description of the Adidas Super Bowl winning throw project.'
-    },
-    {
-      title: 'THE ADIDAS SUPER BOWL WINNING THROW',
-      subtitle: 'Some descriptive text here', 
-      image: 'assets/service4.jpg',
-      description: 'This is a detailed description of the Adidas Super Bowl winning throw project.'
-    },
-    {
-      title: 'THE ADIDAS SUPER BOWL WINNING THROW',
-      subtitle: 'Some descriptive text here', 
-      image: 'assets/service4.jpg',
-      description: 'This is a detailed description of the Adidas Super Bowl winning throw project.'
-    },
-  ];
+
   @ViewChild('gridContainer', { static: true }) gridContainer!: ElementRef;
   subServiceData:any
   selectedItem: any = null;
   pagedItems: any[] = [];
   itemsPerPage: number = 6;
   currentPage: number = 1;
+  item:any
   serviceId:any;
   user:boolean =false
   admin:boolean =false
@@ -97,26 +55,42 @@ constructor(private http: HttpClient,
     this.subsevice.getSubServiceList(this.serviceId).subscribe({
       next: (response: any) => {
         console.log('Received data from service:', response);
-        this.items = response;  // Store the response data
+        if (Array.isArray(response)) {
+          console.log(response)
+          this.item = response;  // Store the response data if it's an array
+        } else {
+          this.item = [];  // Set to an empty array if the data is not in the expected format
+          console.error('Received data is not an array:', response);
+        }
         this.updatePagedItems();  // Update paged items based on the data
       },
       error: (error: any) => {
         console.error('Error fetching data:', error);
+        this.item = [];  // Set item to an empty array in case of error
+        this.updatePagedItems();
       },
     });
   }
+  
 
   // Method to update paged items for pagination
   updatePagedItems() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    this.pagedItems = this.items.slice(startIndex, endIndex);
+    if (Array.isArray(this.item)) {
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
+      this.pagedItems = this.item.slice(startIndex, endIndex);
+    } else {
+      // Handle the case where `this.item` is not an array or is undefined
+      console.warn('Item data is not an array or is undefined:', this.item);
+      this.pagedItems = [];  // Clear pagedItems if `item` is invalid
+    }
   }
 
   // Method to handle opening a popup
   openPopup(item: any): void {
     console.log('openPopup called');
     this.popupItem = item;
+    console.log(item)
     this.popupVisible = true;
   }
 
