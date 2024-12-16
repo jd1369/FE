@@ -15,7 +15,8 @@ interface Product {
 })
 export class HomeComponent implements OnInit, OnDestroy {
   imageUrl: string = '';
-  images: Product[] = [
+  
+serviceImage: Product[] = [
     { name: 'Web Development', image: 'assets/service.png' },
     { name: 'Graphic Design', image: 'assets/service1.jpg' },
     { name: 'SEO Optimization', image: 'assets/service2.jpg' },
@@ -53,17 +54,19 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.user = localStorage.getItem('user');
     this.admin = localStorage.getItem('admin');
-
+    
+    this.getServices();
     this.getBanner();
+    this.nextSlide()
     this.updateVisibleImages();
     this.startAutoScroll();
-    this.getServices();
+    
   }
 
   updateVisibleImages(): void {
     const numImages = 4; // Number of visible images at a time
     this.visibleImages = Array.from({ length: numImages }).map(
-      (_, i) => this.images[(this.currentIndex + i) % this.images.length]
+      (_, i) => this.serviceImage[(this.currentIndex + i) % this.serviceImage.length]
     );
   }
 
@@ -90,12 +93,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.isAnimating) return;
 
     this.isAnimating = true;
-    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+    this.currentIndex = (this.currentIndex + 1) % this.serviceImage.length;
     this.updateVisibleImages();
 
     setTimeout(() => {
       this.isAnimating = false;
-    }, 1000);
+    }, 1000); // Ensure image transition completes
   }
 
   ngOnDestroy(): void {

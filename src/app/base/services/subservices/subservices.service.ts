@@ -15,7 +15,7 @@ export class SubservicesService {
     const headers = new HttpHeaders({
       Token: `Bearer ${token}`,
     });
-    return this.http.get(this.baseUrl+ service+'/fetchAllSubServicesForAService', {headers});
+    return this.http.get(this.baseUrl+ `${service}/fetchAllSubServicesForAService`, {headers});
   }
 
   uploadImage(formData: any) {

@@ -23,8 +23,8 @@
   <div class="carousel">
     <div
       class="carousel-item"
-      *ngFor="let service of serviceList"
-      [style.backgroundImage]="'url(' + service.serviceImage + ')'"
+      *ngFor="let service of visibleImages"
+      [style.backgroundImage]="'url(' + service.image + ')'"
     >
       <div class="image-name">{{ service.name }}</div>
     </div>
