@@ -1,69 +1,101 @@
-
 <div class="modal-container">
 
   <div class="left-section">
-    <img src="assets/logo.png" alt="Left Section Image" />
-    <div class="icon-list">
-  <li><i class="fa fa-star fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; Fast & Secure Login</li>
-  <br>
-    <li><i class="fa fa-shield fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Get instant rates for all advertising media</li>
-    <br>
-  <li><i class="fa fa-tag fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Amazing deals on media buying</li>
-</div>
+    <img src="assets/logo.png" alt="Logo" />
+    <ul class="icon-list">
+      <li>
+        <i class="fa fa-star fa-2x"></i>
+        <span>Fast & Secure Login</span>
+      </li>
+      <li>
+        <i class="fa fa-shield fa-2x"></i>
+        <span>Get instant rates for all advertising media</span>
+      </li>
+      <li>
+        <i class="fa fa-tag fa-2x"></i>
+        <span>Amazing deals on media buying</span>
+      </li>
+    </ul>
   </div>
-
 
   <div class="right-section">
 
+    <!-- Tabs -->
     <div class="tabs">
-      <button class="tab-button" [class.active]="activeTab === 'register'" (click)="setActiveTab('register')">
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === 'register'" 
+        (click)="setActiveTab('register')">
         Register
       </button>
-      <button class="tab-button" [class.active]="activeTab === 'login'" (click)="setActiveTab('login')">
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === 'login'" 
+        (click)="setActiveTab('login')">
         Login
       </button>
     </div>
-   
 
-    <form [formGroup]="registerForm" *ngIf="activeTab === 'register'" class="form-container">
+    <!-- Register Form -->
+    <form [formGroup]="registerForm" *ngIf="activeTab === 'register'" class="form-container" (ngSubmit)="Register()">
       <div class="input-container">
-        <input type="text" id="name" formControlName="name" class="floating-input" placeholder=" " />
-        <label for="name" class="floating-label">Your Name</label>
-      </div>
-      <div class="input-container">
-        <input type="emailId" id="emailId" formControlName="emailId" class="floating-input" placeholder=" " />
-        <label for="emailId" class="floating-label">Your Email</label>
-      </div>
-      <div class="input-group">
-        <select class="country-code">
-          <option>+91</option>
-          
-        </select>
-        <div class="input-container">
-          <input type="text" id="phoneNumber" formControlName="phoneNumber" class="floating-input" placeholder=" " />
-          <label for="phoneNumber" class="floating-label">Phone Number</label>
+        <input type="text" formControlName="name" class="floating-input" placeholder=" " />
+        <label class="floating-label">Your Name</label>
+        <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="error-message">
+          Name is required (min. 3 characters).
         </div>
       </div>
+
       <div class="input-container">
-        <input type="text" id="companyName" formControlName="companyName" class="floating-input" placeholder=" " />
-        <label for="companyName" class="floating-label">Company Name</label>
+        <input type="email" formControlName="emailId" class="floating-input" placeholder=" " />
+        <label class="floating-label">Your Email</label>
+        <div *ngIf="registerForm.get('emailId')?.invalid && registerForm.get('emailId')?.touched" class="error-message">
+          Enter a valid email address.
+        </div>
       </div>
-      <button (click)="Register()" type="submit">Create an Account</button>
-    </form> 
-    
-    <form [formGroup]="loginForm"*ngIf="activeTab === 'login'" class="form-container">
+
+      <div class="input-group">
+        <div class="input-container">
+          <input type="text" formControlName="phoneNumber" class="floating-input" placeholder=" " />
+          <label class="floating-label">Phone Number</label>
+          <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched" class="error-message">
+            Valid 10-digit number is required.
+          </div>
+        </div>
+      </div>
+
       <div class="input-container">
-        <input type="text" id="phoneNumber"  formControlName="phoneNumber" class="floating-input" placeholder=" " />
-        <label for="phoneNumber" class="floating-label">Phone Number</label>
+        <input type="text" formControlName="companyName" class="floating-input" placeholder=" " />
+        <label class="floating-label">Company Name</label>
+        <div *ngIf="registerForm.get('companyName')?.invalid && registerForm.get('companyName')?.touched" class="error-message">
+          Company name is required.
+        </div>
       </div>
-      <div class="input-container">
-        <input type="text" id="otp"  formControlName="otp" class="floating-input" placeholder=" " />
-        <label for="otp" class="floating-label">OTP</label>
-        
-      </div>
-      <span class="link" (click)="getOtp()" style="margin-left: 30px;text-align: right; cursor: pointer;">Get OTP</span>
-      <button (click)="Login()" type="submit">Login</button>
+
+      <button type="submit" [disabled]="registerForm.invalid">Create an Account</button>
     </form>
-    
+
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" *ngIf="activeTab === 'login'" class="form-container" (ngSubmit)="Login()">
+      <div class="input-container">
+        <input type="text" formControlName="phoneNumber" class="floating-input" placeholder=" " />
+        <label class="floating-label">Phone Number</label>
+        <div *ngIf="loginForm.get('phoneNumber')?.invalid && loginForm.get('phoneNumber')?.touched" class="error-message">
+          Valid 10-digit number is required.
+        </div>
+      </div>
+
+      <div class="input-container">
+        <input type="text" formControlName="otp" class="floating-input" placeholder=" " />
+        <label class="floating-label">OTP</label>
+        <div *ngIf="loginForm.get('otp')?.invalid && loginForm.get('otp')?.touched" class="error-message">
+          OTP must be 6 digits.
+        </div>
+      </div>
+
+      <span class="link" (click)="getOtp()">Get OTP</span>
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+
   </div>
 </div>

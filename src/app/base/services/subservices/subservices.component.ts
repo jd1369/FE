@@ -90,7 +90,7 @@ constructor(private http: HttpClient,
   openPopup(item: any): void {
     console.log('openPopup called');
     this.popupItem = item;
-    console.log(item)
+    console.log(item.fields.key)
     this.popupVisible = true;
   }
 

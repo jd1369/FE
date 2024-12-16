@@ -28,17 +28,16 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.loginForm = this.fb.group({
-      phoneNumber: ['', Validators.required],
-      otp: ['', Validators.required],
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      otp: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
     });
-
+  
     this.registerForm = this.fb.group({
       emailId: ['', [Validators.required, Validators.email]],
-      name: ['', Validators.required],
-      phoneNumber: ['', [Validators.required]],
-      companyName:['',[Validators.required]]
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      companyName: ['', [Validators.required, Validators.minLength(2)]],
     });
   }
   setActiveTab(tab: string) {

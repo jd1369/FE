@@ -10,43 +10,54 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-bottom: 4px solid #3cc194;
+  max-width: 800px; /* Ensures consistency on large screens */
+  width: 90%; /* Allows scaling */
   transition: width 0.3s ease, height 0.3s ease;
-  border-bottom: 4px solid #333;
-  border-bottom: 4px solid #3cc194;; /* Red border */
-  border-bottom: 4px solid #3cc194;; /* Red border */
 }
-.modal-container::after {
 
-  background-color: #333; /* Dark grey color */
- // margin-top: -4px; /* Adjust this value to ensure no gap between the red and dark gray borders */
-}
-/* Left Half (Image Section) */
+/* Left Section */
 .left-section {
   flex: 1;
-  background: #ffffff;
-}
-.icon-list {
-  list-style-type: none;  /* Remove the dots */
-  padding: 23px 0px 1px 46px;             /* Remove the default padding */
-}
-
-.left-section img {
-  width: 100%;
-  height: 43%;
-}
-
-/* Right Half (Form Section) */
-.right-section {
-  flex: 1;
+  background: #f9f9f9;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  
-  background: white;
-  min-height: 400px; /* Set a minimum height */
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 
+.left-section img {
+  width: 80%;
+  max-width: 300px; /* Ensures scaling for smaller screens */
+  height: auto;
+}
+
+.icon-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.icon-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem; /* Scales with viewport */
+}
+
+/* Right Section */
+.right-section {
+  flex: 1.2;
+  padding: 20px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
 
 /* Tabs */
 .tabs {
@@ -60,140 +71,108 @@
   flex: 1;
   text-align: center;
   padding: 10px;
-  font-size: 16px;
-  border: none;
+  font-size: 1rem;
   background: none;
+  border: none;
   cursor: pointer;
 }
 
 .tab-button.active {
   font-weight: bold;
-  color: #3cc194;;
-  border-bottom: 2px solid #3cc194;;
+  color: #3cc194;
+  border-bottom: 2px solid #3cc194;
 }
 
 /* Form Styling */
-form {
+.form-container {
   display: flex;
   flex-direction: column;
-  
-  gap: 15px;
+  gap: 20px;
+  width: 100%;
 }
 
-form h3 {
-  font-size: 18px;
-  font-weight: bold;
+.input-container {
+  position: relative;
+  width: 100%;
 }
 
-form label {
-  font-size: 14px;
-  display: flex;
-  flex-direction: column;
-}
-
-
-form input,
-form select {
-  border-radius:0;
+.floating-input {
+  width: 100%;
   padding: 10px;
-  border: none; /* Remove all other borders */
-  border-bottom: 2px solid #bfbfbf; /* Add a bottom border */
- // border-radius: 4px;
-  font-size: 14px;
-  outline: 0;
+  padding-top: 20px; /* Space for label */
+  font-size: clamp(14px, 1rem, 18px);
+  border: none;
+  border-bottom: 2px solid #bfbfbf;
+  background: none;
+  outline: none;
+  transition: border-color 0.3s ease;
 }
 
-form .checkbox-container {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  font-size: 12px;
+.floating-input:focus {
+  border-color: #3cc194;
 }
 
+.floating-label {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: clamp(12px, 0.9rem, 16px);
+  color: #aaa;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.floating-input:focus + .floating-label,
+.floating-input:not(:placeholder-shown) + .floating-label {
+  top: 0;
+  font-size: 0.8rem;
+  color: #3cc194;
+}
+
+/* Validation Message */
+.error-message {
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+  color: red;
+  font-size: 0.8rem;
+}
+
+/* Button Styling */
 form button {
-  background: #3cc194;;
+  background: #3cc194;
   color: white;
   padding: 10px;
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: bold;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
+form button:disabled {
+  background: #ddd;
+  cursor: not-allowed;
+}
+
 form button:hover {
-  background: #3cc194;;
+  background: #2ea47b;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal-container {
+    flex-direction: column;
+    width: 95%;
+  }
 
-/* Form Styling */
-.form-container {
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100% ;
+  .left-section {
+    display: none; /* Hide left section on mobile */
+  }
+
+  .right-section {
+    flex: 1;
+    width: 100%;
+  }
 }
-
-/* Input Group Styling */
-.input-group {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Space between the dropdown and the input */
-}
-
-.country-code {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  //border-radius: 4px;
-  outline: none;
-  background: white;
-  width: 80px; /* Set a fixed width for dropdown */
-  appearance: none; /* Remove default browser styles */
-  box-sizing: border-box;
-  text-align: center; /* Center-align the text */
-}
-
-/* Input Container */
-.input-container {
-  position: relative;
-  width: 100%;
-  flex: 1;
-}
-
-/* Floating Input */
-.floating-input {
-  width: 100%;
-  padding: 10px;
-  padding-top: 20px; /* Space for the label */
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-  box-sizing: border-box;
-  background: none;
-}
-
-/* Floating Label */
-.floating-label {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  font-size: 16px;
-  color: #aaa;
-  pointer-events: none;
-  transition: 0.3s ease;
-}
-
-/* On Focus or Value */
-.floating-input:focus + .floating-label,
-.floating-input:not(:placeholder-shown) + .floating-label {
-  top: 0;
-  font-size: 12px;
- // color: #007bff;
-}
-
