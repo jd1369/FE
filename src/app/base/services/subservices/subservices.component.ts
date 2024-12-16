@@ -71,6 +71,8 @@ constructor(private http: HttpClient,
   itemsPerPage: number = 6;
   currentPage: number = 1;
   serviceId:any;
+  user:boolean =false
+  admin:boolean =false
   image:any
   serviceName:any;
   popupVisible = false;
@@ -82,6 +84,8 @@ constructor(private http: HttpClient,
       this.serviceName = params['name'];
       console.log('Received Query Params:', params);
     });
+    this.admin = JSON.parse(localStorage.getItem('admin') || '{}');
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
 
     console.log('Service ID:', this.serviceId);
     this.updatePagedItems();
@@ -90,7 +94,7 @@ constructor(private http: HttpClient,
 
   // Fetch the data using the service
   getSubServices(): void {
-    this.subsevice.getSubServiceData(this.serviceId).subscribe({
+    this.subsevice.getSubServiceList(this.serviceId).subscribe({
       next: (response: any) => {
         console.log('Received data from service:', response);
         this.items = response;  // Store the response data

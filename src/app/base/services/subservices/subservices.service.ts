@@ -10,12 +10,15 @@ export class SubservicesService {
  baseUrl= environment.baseUrl;
   constructor(private http: HttpClient) { }
   
-  getSubServiceData(service:any): Observable<any> {
+  getSubServiceList(serviceId:any) {
     const token = localStorage.getItem('authToken');
+    console.log(serviceId)
+    
     const headers = new HttpHeaders({
       Token: `Bearer ${token}`,
     });
-    return this.http.get(this.baseUrl+ `${service}/fetchAllSubServicesForAService`, {headers});
+    console.log(headers)
+    return this.http.get(`${this.baseUrl}${serviceId}/fetchAllSubServicesForAService`, { headers });
   }
 
   uploadImage(formData: any) {

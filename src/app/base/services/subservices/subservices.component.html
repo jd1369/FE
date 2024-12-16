@@ -16,7 +16,7 @@
     <h3>{{ item.name }}</h3>
     <p>{{ item.projectContent }}</p>
 
-    <button style="margin-right: 255px;
+    <button *ngIf="user != true && admin != true"  style="margin-right: 255px;
       border-radius: 1px;
       width: 213px;
       background: white;
@@ -24,6 +24,7 @@
       bottom: 27px;
       height: 35px;
       position: absolute;color: red;">Login to View</button>
+      <p *ngIf="user == true || admin == true">Price:{{item.subServicePrice}}</p>
   </div>
 </div>
 
