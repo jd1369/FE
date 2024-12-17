@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
@@ -32,9 +32,9 @@ import { ServicesComponent } from './base/services/services.component';
 import { HomeComponent } from './base/home/home.component';
 import { AboutusComponent } from './base/aboutus/aboutus.component';
 import { AboutComponent } from './base/about/about.component';
-import {AccordionModule} from 'primeng/accordion';
-import {MenuItem} from 'primeng/api';         
-import { DropdownModule } from 'primeng/dropdown';  
+import { AccordionModule } from 'primeng/accordion';
+import { MenuItem } from 'primeng/api';
+import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 
@@ -86,8 +86,8 @@ import { ClientsModule } from "./shared/clients/clients.module";
     LoaderComponent,
     SubserviceDetailsComponent,
     SubservicemodalComponent,
-    
-    
+
+
   ],
   imports: [
     AccordionModule,
@@ -100,9 +100,9 @@ import { ClientsModule } from "./shared/clients/clients.module";
     BrowserAnimationsModule,
     AppRoutingModule,
     ToastrModule.forRoot({
-        timeOut: 5000, // Default timeout in milliseconds (5 seconds)
-        positionClass: 'toast-top-right', // Position of the toast
-        preventDuplicates: true, // Prevent duplicate toasts
+      timeOut: 5000, // Default timeout in milliseconds (5 seconds)
+      positionClass: 'toast-top-right', // Position of the toast
+      preventDuplicates: true, // Prevent duplicate toasts
     }),
     InputTextModule,
     TableModule,
@@ -112,9 +112,9 @@ import { ClientsModule } from "./shared/clients/clients.module";
     HighchartsChartModule,
     NgxPaginationModule,
     ToastrModule.forRoot({
-        positionClass: 'toast-top-right', // Position of the toastr
-        timeOut: 3000, // Duration of the toastr in milliseconds
-        preventDuplicates: true, // Prevent duplicate toasts
+      positionClass: 'toast-top-right', // Position of the toastr
+      timeOut: 3000, // Duration of the toastr in milliseconds
+      preventDuplicates: true, // Prevent duplicate toasts
     }),
     NoopAnimationsModule,
     MatTableModule,
@@ -123,13 +123,18 @@ import { ClientsModule } from "./shared/clients/clients.module";
     MatButtonModule,
     MatIconModule, HttpClientModule, MatSlideToggleModule,
     ClientsModule
-],
-  providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+  ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoaderInterceptor,  // Register the interceptor
+    multi: true
+  } 
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  
- }
+
+}
 

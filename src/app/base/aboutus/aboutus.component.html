@@ -1,54 +1,78 @@
 <div class="project-container">
-    <h2 >Lets do big things with big ideas at Elephant Ad Agency</h2>
+    <h2>Lets do big things with big ideas at Elephant Ad Agency</h2>
 
     <div class="modal-body">
         <form [formGroup]="contactForm">
-            
+            <!-- Name Field -->
+            <div class="col-lg-6 form-style">
+                <div class="form-group pb-2">
+                    <fieldset>
+                        <input type="text" class="form-control" id="name" formControlName="name"
+                            placeholder="Your Name" />
+                        <div *ngIf="f['name']?.touched && f['name']?.invalid" class="text-danger">
+                            <small *ngIf="f['name']?.hasError('required')">Name is required.</small>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="col-lg-6 form-style">
+                <div class="form-group pb-2">
+                    <fieldset>
+                        <input type="email" class="form-control" id="email" formControlName="email"
+                            placeholder="Your EmailId" />
+                        <div *ngIf="f['email']?.touched && f['email']?.invalid" class="text-danger">
+                            <small *ngIf="f['email']?.hasError('required')">Email is required.</small>
+                            <small *ngIf="f['email']?.hasError('email')">Please enter a valid email address.</small>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <!-- Project Description Field -->
+            <div class="row">
                 <div class="col-lg-6 form-style">
                     <div class="form-group pb-2">
                         <fieldset>
-                            <input   type="text" class="form-control" id="name" formControlName="name"
-                                placeholder="Your Name" />
+                            <input type="text" class="form-control" id="tellUsAboutYourProject"
+                                formControlName="tellUsAboutYourProject" placeholder="Tell us about your Project" />
+                            <div *ngIf="f['tellUsAboutYourProject']?.touched && f['tellUsAboutYourProject']?.invalid"
+                                class="text-danger">
+                                <small *ngIf="f['tellUsAboutYourProject']?.hasError('required')">Project description is
+                                    required.</small>
+                            </div>
                         </fieldset>
                     </div>
                 </div>
 
+                <!-- Submit Button -->
                 <div class="col-lg-6 form-style">
                     <div class="form-group pb-2">
-                        <fieldset>
-                            <input type="email" class="form-control" id="email" formControlName="email"
-                                placeholder="Your EmailId" />
-                        </fieldset>
-                    </div>
-                </div>
-                <div class="row">
-                <div class="col-lg-6 form-style">
-                    <div class="form-group pb-2">
-                        <fieldset>
-                            <input type="text" class="form-control" id="tellUsAboutYourProject" formControlName="tellUsAboutYourProject"
-                                placeholder="Tell us about your Project" />
-                        </fieldset>
-                    </div>
-                </div>
-                <div class="col-lg-6 form-style">
-                    <div class="form-group pb-2">
-                        <button  style="margin-right: 255px;border-radius: 1px;width: 100px;"type="button" class="button" (click)="onSubmit()">
+                        <button style="margin-right: 255px; border-radius: 1px; width: 100px;" type="submit"
+                            class="button" [disabled]="contactForm.invalid">
                             Submit
-                          </button>
+                        </button>
                     </div>
                 </div>
-                </div>
-                
+            </div>
         </form>
-    </div>
-    <div>
-        <a href="https://www.google.com/maps/place/The+Elephant+Ad+Agency/@17.4463946,78.3827925,15z/data=!4m6!3m5!1s0x3bcb913bfb974ef7:0x35328a12e4b50832!8m2!3d17.4463946!4d78.3827925!16s%2Fg%2F11jc9t515b?hl=en-IN&entry=ttu&g_ep=EgoyMDI0MTIwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">
-        <img style="height: 458px; padding-top: 100px;" src="/assets/images/Location.png" alt="location">
-    </a>
-        <p style="text-align: center;margin-left: 585px;height: 10px;font-family: 'Real Text', sans-serif;font-size: 16px;">_________</p>
-        <p style="font-size: 11px; margin-left: 758px;height: 20px;font-family: 'Real Text', sans-serif;font-size: 16px;">+91 8008770440 &nbsp;&nbsp;+91 8008783823</p>
-        <p style="font-size: 11px; margin-left: 723px;font-family: 'Real Text', sans-serif;font-size: 16px;">info&#64; elephantadagency.com</p>
+
     </div>
 
-    
+    <!-- Additional Information Section -->
+    <div>
+        <a href="https://www.google.com/maps/place/The+Elephant+Ad+Agency/@17.4463946,78.3827925,15z/data=!4m6!3m5!1s0x3bcb913bfb974ef7:0x35328a12e4b50832!8m2!3d17.4463946!4d78.3827925!16s%2Fg%2F11jc9t515b?hl=en-IN&entry=ttu&g_ep=EgoyMDI0MTIwNC4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank">
+            <img style="height: 458px; padding-top: 100px;" src="/assets/images/Location.png" alt="location">
+        </a>
+        <p
+            style="text-align: center; margin-left: 585px; height: 10px; font-family: 'Real Text', sans-serif; font-size: 16px;">
+            _________</p>
+        <p
+            style="font-size: 11px; margin-left: 758px; height: 20px; font-family: 'Real Text', sans-serif; font-size: 16px;">
+            +91 8008770440 &nbsp;&nbsp;+91 8008783823</p>
+        <p style="font-size: 11px; margin-left: 723px; font-family: 'Real Text', sans-serif; font-size: 16px;">info&#64;
+            elephantadagency.com</p>
+    </div>
 </div>

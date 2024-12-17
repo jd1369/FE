@@ -32,16 +32,7 @@ background-color: #d4d4d491;
 background-size: cover
 }
 
-.heading2 {
-  display: flex;
-  justify-content: center; /* Centers the heading horizontally */
-  align-items: center;    /* Centers the heading vertically */
-  height: 100vh;          /* Full viewport height */
-  padding: 20px;          /* Add some padding */
-  background-color: #ffffff; /* Optional background color */
-  box-sizing: border-box; /* Ensures padding doesn't affect centering */
-  text-align: left;       /* Aligns text to the left */
-}
+
 
 h1 {
   max-width: 800px;       /* Limit the width of the content for proper alignment */
