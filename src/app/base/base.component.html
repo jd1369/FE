@@ -1,4 +1,3 @@
-
 <nav [ngClass]="{'scrolled': isScrolled}" class="navbar">
   <div class="navbar-content">
     <div class="logo">
@@ -8,10 +7,11 @@
       <a routerLink="/base/home" routerLinkActive="active">Home</a>
       <a routerLink="/base/services" routerLinkActive="active">Services</a>
       <a routerLink="/base/projects" routerLinkActive="active">Project</a>
-      <a  routerLink="/base/blog" routerLinkActive="active">Blog</a>
-      <div *ngIf="admin == true" class="dropdown" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
+      <a routerLink="/base/blog" routerLinkActive="active">Blog</a>
+      <div *ngIf="admin == true" class="dropdown" (mouseenter)="toggleDropdown(true)"
+        (mouseleave)="toggleDropdown(false)">
         <a routerLink="/base/admin" routerLinkActive="active">Admin</a>
-        <ul class="dropdown-menu" *ngIf="dropdownVisible">
+        <ul class="dropdown-menu" >
           <li><a (click)="addProject()">Add Project</a></li>
           <li><a (click)="addService()">Add Service</a></li>
           <li><a (click)="fileInputRef.nativeElement.click()">New Banner</a>
@@ -23,17 +23,17 @@
       </div>
       <a routerLink="/base/aboutus" routerLinkActive="active">Contact Us</a>
       <a routerLink="/base/about" routerLinkActive="active">About Us</a>
-      
+
     </div>
-    <div *ngIf="!isLoggedIn"  class="login">
+    <div *ngIf="!isLoggedIn" class="login">
       <button (click)="openLoginModal()">Login</button>
-      
+
     </div>
-    <div *ngIf="isLoggedIn"  class="login">
-    <button class="tab-button" (click)="logout()">
-      Log Out
-    </button>
-  </div>
+    <div *ngIf="isLoggedIn" class="login">
+      <button class="tab-button" (click)="logout()">
+        Log Out
+      </button>
+    </div>
     <!-- Hamburger Menu for mobile -->
     <div class="hamburger" (click)="toggleMobileMenu()">
       <span class="bar"></span>
@@ -60,7 +60,8 @@
 
 <div class="dd-nyc-container">
   <div class="call-to-action">
-    <p>Starting a new project or want to collaborate with us?</p><a [routerLink]="['/base/aboutus']" href="#">Let's talk ></a>
+    <p>Starting a new project or want to collaborate with us?</p><a [routerLink]="['/base/aboutus']" href="#">Let's talk
+      ></a>
     <p>inf0&#64;elephantadagency.com</p>
   </div>
 

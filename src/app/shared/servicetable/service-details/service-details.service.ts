@@ -33,7 +33,7 @@ export class ServiceDetailsService {
     console.log('Auth Token:', token);  // Ensure the token is correct
     
     const headers = new HttpHeaders({
-      'Token': `Bearer ${token}`,
+      Token: `Bearer ${token}`,
       'Content-Type': 'application/json',  // Ensure the correct Content-Type is set
     });
   

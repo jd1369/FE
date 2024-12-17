@@ -22,20 +22,50 @@ export class SubservicemodalService {
 
 
 
-  saveDynamicFields(serviceId: string, subServiceId: any, fields: any): Observable<any> {
-    console.log('Fields being sent:', fields);  // Inspect the fields before sending
+  // saveDynamicFields(serviceId: string, subServiceId: any, fields: any): Observable<any> {
+  //   console.log('Fields being sent:', fields);  // Inspect the fields before sending
 
-    const token = localStorage.getItem('authToken');
-    console.log('Auth Token:', token);  // Ensure the token is correct
+  //   const token = localStorage.getItem('authToken');
+  //   console.log('Auth Token:', token);  // Ensure the token is correct
 
-    const headers = new HttpHeaders({
-      Token: `Bearer ${token}`,
-        // Ensure the correct Content-Type is set
-    });
+  //   const headers = new HttpHeaders({
+  //     Token: `Bearer ${token}`,
+  //       // Ensure the correct Content-Type is set
+  //   });
 
-    // Send the PATCH request with the fields
-    return this.http.patch<any>(`${serviceId}/updateSubServiceFields/${subServiceId}/fields` , { headers });
-  }
+  //   // Send the PATCH request with the fields
+  //   return this.http.patch<any>(`${serviceId}/updateSubServiceFields/${subServiceId}/fields` , { headers });
+  // }
+
+//   saveDynamicFields(serviceId: string, subServiceId: string, fields: any): Observable<any> {
+//     console.log('Fields being sent:', fields);
+//     console.log(serviceId)
+//     console.log(subServiceId)
+//     let obj = JSON.stringify(fields)
+//     console.log(obj)  // Inspect the fields before sending
+//     const token = localStorage.getItem('authToken');
+//     console.log('Auth Token:', token);
+//     const headers = new HttpHeaders({
+//       'Token': `Bearer ${token}`,
+      
+//     });
+//     return this.http.patch<any>(`${this.baseUrl}${serviceId}/updateSubServiceMapFields/${subServiceId}/fields`,fields, { headers });  // Headers should be part of the options object
+// }
+
+saveDynamicFields(serviceId: string,subServiceId:string, fields: any): Observable<any> {
+  console.log('Fields being sent:', fields);  // Inspect the fields before sending
+  
+  const token = localStorage.getItem('authToken');
+  console.log('Auth Token:', token);  // Ensure the token is correct
+  
+  const headers = new HttpHeaders({
+    Token: `Bearer ${token}`,
+    'Content-Type': 'application/json',  // Ensure the correct Content-Type is set
+  });
+
+  // Send the PATCH request with the fields
+  return this.http.patch<any>(`${this.baseUrl}${serviceId}/updateSubServiceMapFields/${subServiceId}/fields`,fields, { headers });
+}
 
 
   // saveDynamicFields(serviceId: string, subServiceId:any,fields: any): Observable<any> {

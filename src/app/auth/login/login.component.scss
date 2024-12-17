@@ -14,6 +14,7 @@
   max-width: 800px; /* Ensures consistency on large screens */
   width: 90%; /* Allows scaling */
   transition: width 0.3s ease, height 0.3s ease;
+  height: auto; /* Make sure modal height adjusts dynamically */
 }
 
 /* Left Section */
@@ -46,12 +47,12 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
-  font-size: 0.9rem; /* Scales with viewport */
+  font-size: 0.9rem;
 }
 
 /* Right Section */
 .right-section {
-  flex: 1.2;
+  flex: 1;
   padding: 20px;
   background: white;
   display: flex;
@@ -160,6 +161,29 @@ form button:hover {
   background: #2ea47b;
 }
 
+/* OTP Input Container */
+.otp-input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.otp-input-container .floating-input {
+  flex: 1; /* Ensure the input takes available space */
+}
+
+.otp-input-container .link {
+  margin-left: 10px;
+  color: #3cc194;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+
+.otp-input-container .link:hover {
+  color: #2ea47b;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .modal-container {
@@ -173,6 +197,14 @@ form button:hover {
 
   .right-section {
     flex: 1;
+    width: 100%;
+  }
+
+  .tabs {
+    flex-direction: column; /* Stack tabs on smaller screens */
+  }
+
+  .tab-button {
     width: 100%;
   }
 }

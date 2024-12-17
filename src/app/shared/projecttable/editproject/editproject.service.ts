@@ -21,4 +21,12 @@ baseUrl= environment.baseUrl;
   uploadImage(formData: any) {
     return this.http.post(this.baseUrl+'upload', formData);
   }
+  deleteProject(customerID: number): Observable<void> {
+    const token = localStorage.getItem('authToken');
+    console.log(token)
+    const headers = new HttpHeaders({
+      Token: `Bearer ${token}`,
+    });
+    return this.http.delete<void>(`${this.baseUrl}deleteServiceById/${customerID}`,{headers});
+  }
 }

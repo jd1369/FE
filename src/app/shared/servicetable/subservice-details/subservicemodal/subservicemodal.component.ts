@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceDetailsService } from '../../service-details/service-details.service';
 import { SubservicemodalService } from './subservicemodal.service';
 import { ToasterService } from 'src/app/shared/toaster/toaster.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-subservicemodal',
@@ -44,17 +45,13 @@ export class SubservicemodalComponent implements OnInit {
   // Add dynamic fields to the form
   addDynamicFields(fields: any): void {
     const fieldArray = this.editForm.get('fields') as FormArray;
-
+  
     if (fields && typeof fields === 'object') {
-      Object.keys(fields).forEach((key) => {
-        const field = fields[key];
-
-        // Initialize a FormGroup with two fields: type (key) and value
+      Object.entries(fields).forEach(([key, value]) => {
         const control = this.fb.group({
-          type: [Object.keys(field)[0]],  // Use the key (e.g., 'movies')
-          value: [Object.values(field)[0]], // Use the value (e.g., 'hindi')
+          type: [key, Validators.required],  // Key as 'type'
+          value: [value, Validators.required]  // Corresponding value
         });
-
         fieldArray.push(control);
       });
     }
@@ -79,38 +76,33 @@ export class SubservicemodalComponent implements OnInit {
   // Save method
   save(): void {
     if (this.editForm.valid) {
-      const staticFields = {
-        name: this.editForm.value.name,
-        image: this.editForm.value.image,
-        subServicePrice: this.editForm.value.subServicePrice
-      };
-
+      // Step 1: Transform fields into a key-value object
       const transformedFields = this.editForm.value.fields.reduce((acc: any, field: any) => {
-        acc[field.type] = field.value; // Assign dynamic key-value pairs
+        acc[field.type] = field.value; // Convert to key-value pairs
         return acc;
       }, {});
-
-      const subserviceId = this.projectData.id;
-
-      // First save static fields, then save dynamic fields if successful
-      this.subservicemodal.saveStaticFields(this.serviceId,subserviceId, staticFields).subscribe({
-        next: (response: any) => {
-          console.log('Static fields saved successfully:', response);
-          
-          this.subservicemodal.saveDynamicFields(this.serviceId, subserviceId,transformedFields).subscribe({
-            next: (response: any) => {
-              console.log('Dynamic fields saved successfully:', response);
-              this.close();  // Close modal after saving
-            },
-            error: (error: any) => {
-              console.error('Error saving dynamic fields:', error);
-            }
-          });
-        },
-        error: (error: any) => {
-          console.error('Error saving static fields:', error);
-        }
-      });
+  
+      console.log('Transformed Fields Payload:', transformedFields); // Debug: log payload
+  
+      const subServiceId = this.projectData.id;
+  
+      // Step 2: Call the API to update fields
+      this.subservicemodal
+        .saveDynamicFields(this.serviceId, subServiceId, transformedFields)
+        .subscribe({
+          next: (response: any) => {
+            console.log('Fields updated successfully:', response);
+            this.toastr.showSuccessMessage('Fields updated successfully');
+            this.close(); // Close modal
+          },
+          error: (error: any) => {
+            console.error('Error updating fields:', error);
+            this.toastr.showErrorMessage('Failed to update fields');
+          }
+        });
+    } else {
+      console.error('Form is invalid:', this.editForm.errors);
+      this.toastr.showErrorMessage('Invalid form. Please check the fields.');
     }
   }
 
@@ -134,7 +126,8 @@ export class SubservicemodalComponent implements OnInit {
           },
           error: (err) => {
             console.error('Error deleting field:', err);
-            this.toastr.showErrorMessage('Error deleting field');
+            this.toastr.showSuccessMessage('Field deleted successfully');
+            window.location.reload();
           },
         });
     }

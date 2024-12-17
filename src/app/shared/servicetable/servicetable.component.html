@@ -10,12 +10,7 @@
             <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
             <mat-cell *matCellDef="let projectData"> {{projectData.image}} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="view">
-            <mat-header-cell *matHeaderCellDef> View </mat-header-cell>
-            <mat-cell *matCellDef="let projectData">
-                <i  (click)="showPopup(projectData)">View Details</i>
-            </mat-cell>
-        </ng-container>
+        
         <ng-container matColumnDef="addSubService">
             <mat-header-cell *matHeaderCellDef> Add Sub Service </mat-header-cell>
             <mat-cell *matCellDef="let projectData">

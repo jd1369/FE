@@ -5,6 +5,7 @@ import { AdminComponent } from '../admin.component';
 import { AddprojectService } from './addproject.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 
 @Component({
   selector: 'app-addproject',
@@ -22,16 +23,17 @@ export class AddprojectComponent implements OnInit {
     private fb: FormBuilder,
     private projectService: AddprojectService,
     private http: HttpClient,
+    private toastr :ToasterService
    
   ) { }
 
   ngOnInit(): void {
 
     this.projectForm = this.fb.group({
-      projectName: [''],
-      projectDescription: [''],
-      projectContent: [''],
-      images: ['']
+      projectName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      projectDescription: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
+      projectContent: ['', [Validators.required, Validators.minLength(10)]],
+      images: [null] // You can validate file uploads programmatically later
     });
   }
 
@@ -83,12 +85,14 @@ export class AddprojectComponent implements OnInit {
             // Add the uploaded file URL to the 'images' field as an array
             const fileUrl = uploadResponse.fileUrl || uploadResponse.url || '';
             formData.images = [fileUrl];
+            this.toastr.showSuccessMessage('Image Uploaded Successfully');
 
             // Submit the form with the updated images field
             this.submitProject(formData);
           },
           error: (err) => {
             console.error('File upload failed!', err);
+            this.toastr.showErrorMessage('Failed to upload Image');
           }
         });
     } else {
@@ -109,9 +113,11 @@ export class AddprojectComponent implements OnInit {
     this.projectService.addProject(formData).subscribe({
       next: (response: any) => {
         console.log('Project added successfully:', response);
+        this.toastr.showSuccessMessage('Data Uploaded Successfully');
       },
       error: (err: any) => {
         console.error('Error adding project:', err);
+        this.toastr.showSuccessMessage('Failed to Save Data');
       },
     });
   }

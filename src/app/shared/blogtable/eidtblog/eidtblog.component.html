@@ -1,82 +1,57 @@
 <div class="modal-header">
-    <h4 class="modal-title">Edit Blog</h4>
+    <h4 class="modal-title">Edit Blog Details</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
 </div>
 
 <div class="modal-body">
-    <form [formGroup]="blogForm" (ngSubmit)="onSubmit()" novalidate>
-        <!-- Blog Name -->
-        <div class="mb-3">
-            <label for="blogName" class="form-label">Blog Name</label>
-            <input
-                type="text"
-                id="blogName"
-                class="form-control"
-                formControlName="blogName"
-                required
-            />
-            <div *ngIf="blogForm.get('blogName')?.invalid && blogForm.get('blogName')?.touched" class="text-danger">
-                Blog Name is required.
-            </div>
+    <form [formGroup]="editForm">
+      <!-- Blog Name -->
+      <div class="mb-3">
+        <label for="blogName" class="form-label">Blog Name</label>
+        <input type="text" id="blogName" class="form-control" formControlName="blogName" required />
+        <div *ngIf="editForm.get('blogName')?.touched && editForm.get('blogName')?.invalid">
+          <small *ngIf="editForm.get('blogName')?.hasError('required')" class="text-danger">Blog Name is required.</small>
+          <small *ngIf="editForm.get('blogName')?.hasError('minlength')" class="text-danger">Blog Name must be at least 3 characters.</small>
         </div>
+      </div>
 
-        <!-- Blog Description -->
-        <div class="mb-3">
-            <label for="blogDescription" class="form-label">Blog Description</label>
-            <textarea
-                id="blogDescription"
-                class="form-control"
-                formControlName="blogDescription"
-                required
-            ></textarea>
-            <div *ngIf="blogForm.get('blogDescription')?.invalid && blogForm.get('blogDescription')?.touched" class="text-danger">
-                Blog Description is required.
-            </div>
+      <!-- Blog Description -->
+      <div class="mb-3">
+        <label for="blogDescription" class="form-label">Blog Description</label>
+        <input type="text" id="blogDescription" class="form-control" formControlName="blogDescription" required />
+        <div *ngIf="editForm.get('blogDescription')?.touched && editForm.get('blogDescription')?.invalid">
+          <small *ngIf="editForm.get('blogDescription')?.hasError('required')" class="text-danger">Blog Description is required.</small>
+          <small *ngIf="editForm.get('blogDescription')?.hasError('minlength')" class="text-danger">Blog Description must be at least 10 characters.</small>
         </div>
+      </div>
 
-        <!-- Blog Content -->
-        <div class="mb-3">
-            <label for="blogContent" class="form-label">Blog Content</label>
-            <textarea
-                id="blogContent"
-                class="form-control"
-                formControlName="blogContent"
-                required
-            ></textarea>
-            <div *ngIf="blogForm.get('blogContent')?.invalid && blogForm.get('blogContent')?.touched" class="text-danger">
-                Blog Content is required.
-            </div>
-        </div>
+      <!-- Blog Content -->
+      <div class="mb-3">
+        <label for="blogContent" class="form-label">Blog Content</label>
+        <input type="text" id="blogContent" class="form-control" formControlName="blogContent" required />
+        <div *ngIf="editForm.get('blogContent')?.touched && editForm.get('blogContent')?.invalid">
+          <small *ngIf="editForm.get('blogContent')?.hasError('required')" class="text-danger">Blog Content is required.</small>
+                </div>
+      </div>
 
-        <!-- File Upload -->
-        <div class="mb-3">
-            <label for="images" class="form-label">Image</label>
-            <input
-                type="file"
-                id="images"
-                class="form-control"
-                (change)="onFileSelected($event)"
-                accept="image/*"
-            />
-            <div *ngIf="selectedFile" class="mt-2">
-                <small class="text-muted">Selected file: {{ selectedFile?.name }}</small>
-            </div>
+      <!-- Published Date -->
+      <div class="mb-3">
+        <label for="publishingTimeOfBlog" class="form-label">Published Date</label>
+        <input type="date" id="publishingTimeOfBlog" class="form-control" formControlName="publishingTimeOfBlog" required />
+        <div *ngIf="editForm.get('publishingTimeOfBlog')?.touched && editForm.get('publishingTimeOfBlog')?.invalid">
+          <small *ngIf="editForm.get('publishingTimeOfBlog')?.hasError('required')" class="text-danger">Publishing Date is required.</small>
         </div>
+      </div>
 
-        <!-- Submit Button -->
-        <div class="mb-3 text-end">
-            <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
-            <button
-                type="submit"
-                class="btn btn-primary"
-                [disabled]="!blogForm.valid"
-            >
-                Save
-            </button>
-        </div>
+      <!-- Image -->
+      <div class="mb-3">
+        <label for="images" class="form-label">Image</label>
+        <input type="file" placeholder="images" (change)="onFileSelected($event)" accept="image/*" />
+      </div>
     </form>
 </div>
 
 <div class="modal-footer">
-    <!-- Footer can remain empty or contain additional actions -->
+    <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+    <button type="button" class="btn btn-primary" (click)="save()">Save</button>
 </div>

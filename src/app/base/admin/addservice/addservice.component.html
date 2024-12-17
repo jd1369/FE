@@ -1,74 +1,70 @@
-
-  
 <div class="modal-header">
-    <div class="col">
-      <h4 class="modal-title">Add Service</h4>
-    </div>
-    <div class="col-sm-4">
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-  
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
+  <div class="col">
+    <h4 class="modal-title">Add Service</h4>
   </div>
-  <div class="container">
-    <div class="modal-body">
-      <form [formGroup]="serviceForm">
-  
-        <div>
-          <div class="col-lg-6 form-style">
-            <div class="form-group pb-2">
-              <fieldset class="d-flex align-items-center">
-                <input type="text" class="form-control" id="name" formControlName="name" placeholder="Service Name" />
-                <!-- Add Button -->&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-secondary ml-2" (click)="addField()">+</button>
-              </fieldset>
-            </div>
-          </div>
-        </div>
-        
-        
-        <div formArrayName="fields">
-          <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="form-group">
-            <label>Field {{i + 1}}</label>
-            <div class="form-row">
-              <div class="col">
-                <input formControlName="key" class="form-control" placeholder="Key (e.g., place, location)" />
-              </div>
-              <div class="col">
-                <input formControlName="value" class="form-control" placeholder="Value (e.g., hyd, kphb)" />
-              </div>
-            </div>
-            <button type="button" class="btn btn-danger" (click)="removeField(i)">Remove Field</button>
-          </div>
-        </div>
-        <!-- Add Button -->
-        
-
-        <div class="row" style="padding-top: 20px;">
-          <div class="col-lg-6 form-style">
-            <div class="form-group pb-2">
-              <fieldset>
-                <input type="file" placeholder="serviceImage" (change)="onServiceImageSelected($event)" accept="image/*" />
-              </fieldset>
-            </div>
-          </div>
-        </div>
-        <div class="row" style="padding-top: 20px;">
-          <div class="col-lg-6 form-style">
-            <div class="form-group pb-2">
-              <fieldset>
-                <input type="file" placeholder="icon" (change)="onIconSelected($event)" accept="image/*" />
-              </fieldset>
-            </div>
-          </div>
-        </div>
-  </form>
-
-  <div class="text-center" style="padding-top: 20px;">
-      <button type="button" class="btn btn-primary" (click)="activeModal.dismiss(); onSubmit()">
-          Submit
-      </button>
+  <div class="col-sm-4">
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
 </div>
+
+<div class="container">
+  <div class="modal-body">
+    <form [formGroup]="serviceForm" novalidate>
+      <!-- Service Name -->
+      <div class="form-group">
+        <input type="text" class="form-control" id="name" formControlName="name" placeholder="Service Name"
+          [ngClass]="{'is-invalid': serviceForm.get('name')?.invalid && serviceForm.get('name')?.touched}" />
+        <div *ngIf="serviceForm.get('name')?.invalid && serviceForm.get('name')?.touched" class="invalid-feedback">
+          <div *ngIf="serviceForm.get('name')?.errors?.['required']">Service Name is required.</div>
+          <div *ngIf="serviceForm.get('name')?.errors?.['minlength']">Minimum 3 characters required.</div>
+        </div>
+      </div>
+
+      <!-- Dynamic Fields -->
+      <div formArrayName="fields">
+        <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="form-group">
+          <label>Field {{i + 1}}</label>
+          <div class="form-row">
+            <div class="col">
+              <input formControlName="key" class="form-control" placeholder="Key (e.g., place, location)"
+                [ngClass]="{'is-invalid': field.get('key')?.invalid && field.get('key')?.touched}" />
+              <div *ngIf="field.get('key')?.invalid && field.get('key')?.touched" class="invalid-feedback">
+                Key is required (min 2 characters).
+              </div>
+            </div>
+            <div class="col">
+              <input formControlName="value" class="form-control" placeholder="Value (e.g., hyd, kphb)"
+                [ngClass]="{'is-invalid': field.get('value')?.invalid && field.get('value')?.touched}" />
+              <div *ngIf="field.get('value')?.invalid && field.get('value')?.touched" class="invalid-feedback">
+                Value is required (min 2 characters).
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-danger mt-2" (click)="removeField(i)">Remove Field</button>
+        </div>
+      </div>
+
+      <!-- Add Field Button -->
+      <button type="button" class="btn btn-secondary mt-2" (click)="addField()">+ Add Field</button>
+
+      <!-- Service Image -->
+      <div class="form-group mt-3">
+        <input type="file" (change)="onServiceImageSelected($event)" accept="image/*" class="form-control-file" />
+        <div *ngIf="fileError" class="text-danger mt-1">{{ fileError }}</div>
+      </div>
+
+      <!-- Icon Image -->
+      <div class="form-group mt-3">
+        <input type="file" (change)="onIconSelected($event)" accept="image/*" class="form-control-file" />
+        <div *ngIf="iconFileError" class="text-danger mt-1">{{ iconFileError }}</div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center mt-4">
+        <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+      </div>
+    </form>
+  </div>
 </div>

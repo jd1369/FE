@@ -4,6 +4,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddserviceService } from './addservice.service';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 
 @Component({
   selector: 'app-addservice',
@@ -16,23 +18,24 @@ export class AddserviceComponent implements OnInit {
   selectedFile: File | null = null;
   iconFile: File | null = null;
   uploadedImageUrl: string = '';
-  
+  fileError: string = '';
+iconFileError: string = '';
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
     private addService: AddserviceService,
-    private http: HttpClient
+    private http: HttpClient,
+    private toastr :ToasterService
   ) { }
 
   ngOnInit(): void {
     this.serviceForm = this.fb.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       serviceImage: [''],
       icon: [''],
-      fields: this.fb.array([]),  // Initialize the form array for dynamic fields
+      fields: this.fb.array([]),
     });
   }
-
   // Get the fields FormArray
   get fields() {
     return this.serviceForm.get('fields') as FormArray;
@@ -41,10 +44,9 @@ export class AddserviceComponent implements OnInit {
   // Add dynamic field (key-value pair)
   addField() {
     const fieldGroup = this.fb.group({
-      key: ['', Validators.required], // Key for the field (e.g., 'place', 'location')
-      value: ['', Validators.required]  // Value for the field (e.g., 'hyd', 'kphb')
+      key: ['', [Validators.required, Validators.minLength(2)]],
+      value: ['', [Validators.required, Validators.minLength(2)]],
     });
-
     this.fields.push(fieldGroup);
   }
 
@@ -104,16 +106,20 @@ export class AddserviceComponent implements OnInit {
                     next: (uploadResponse: any) => {
                       const fileUrl = uploadResponse.fileUrl || uploadResponse.url || '';
                       formData.icon = fileUrl;
+                      this.toastr.showSuccessMessage('Image Uploded Successfully');
+
                       this.submitProject(formData);
                     },
                     error: (err) => {
                       console.error('Icon file upload failed!', err);
+                      this.toastr.showErrorMessage('Failed To Upload Icon');
                     }
                   });
               }
             },
             error: (err) => {
               console.error('Service image upload failed!', err);
+              this.toastr.showErrorMessage('Failed To Upload Service Image');
             }
           });
       } else {
@@ -130,9 +136,11 @@ export class AddserviceComponent implements OnInit {
     this.addService.addService(formData).subscribe({
       next: (response: any) => {
         console.log('Service added successfully:', response);
+        this.toastr.showSuccessMessage('Data Saved Successfully');
       },
       error: (err: any) => {
         console.error('Error adding service:', err);
+        this.toastr.showErrorMessage('Failed to Save Data');
       },
     });
   }

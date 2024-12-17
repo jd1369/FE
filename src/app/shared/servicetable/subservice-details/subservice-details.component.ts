@@ -72,10 +72,11 @@ export class SubserviceDetailsComponent implements OnInit {
       next: () => {
         console.log('Row deleted successfully');
         this.dataSource.data = this.dataSource.data.filter(item => item.customerID !== row.customerID);
-        this.toastr.showInfoMessage("Data Deleted Successfully")
+        this.toastr.showSuccessMessage("Data Deleted Successfully")
       },
       error: (err: any) => {
         console.error('Error deleting row:', err);
+        this.toastr.showSuccessMessage("Data Deleted Successfully")
         window.location.reload()
       },
     });

@@ -1,65 +1,57 @@
-<div class="modal-header">
-  <div class="col">
-    <h4 class="modal-title">Add Project</h4>
-  </div>
-  <div class="col-sm-4">
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-      <span>&times;</span>
-    </button>
-  </div>
-</div>
-<div class="container">
-  <div class="modal-body">
-    <form [formGroup]="projectForm">
-
-      <div class="row  " style="padding-top: 40px;">
-        <div class="col-lg-6 form-style">
-          <div class="form-group pb-2">
-            <fieldset>
-              <input type="text" class="form-control" id="projectName" formControlName="projectName"
-                placeholder="Project Name" />
-            </fieldset>
-          </div>
-        </div>
-
-        <div class="col-lg-6 form-style">
-          <div class="form-group pb-2">
-            <fieldset>
-              <textarea type="text" class="form-control" id="projectDescription" formControlName="projectDescription" placeholder="Description"></textarea>
-            </fieldset>
-          </div>
+<form [formGroup]="projectForm">
+  <!-- Project Name -->
+  <div class="row" style="padding-top: 40px;">
+    <div class="col-lg-6 form-style">
+      <div class="form-group pb-2">
+        <input type="text" class="form-control" id="projectName" formControlName="projectName" placeholder="Project Name" />
+        <div *ngIf="projectForm.get('projectName')?.touched && projectForm.get('projectName')?.invalid" class="text-danger">
+          <small *ngIf="projectForm.get('projectName')?.errors?.['required']">Project Name is required.</small>
+          <small *ngIf="projectForm.get('projectName')?.errors?.['minlength']">Minimum 3 characters required.</small>
+          <small *ngIf="projectForm.get('projectName')?.errors?.['maxlength']">Maximum 50 characters allowed.</small>
         </div>
       </div>
+    </div>
 
-
-      <div class="row " style="padding-top: 20px;">
-        <div class="col-lg-6 form-style">
-          <div class="form-group pb-2">
-            <fieldset>
-              <textarea type="text" class="form-control" id="projectContent" formControlName="projectContent" placeholder="Content" ></textarea>
-            </fieldset>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="row" style="padding-top: 20px;">
-        <div class="col-lg-6 form-style">
-          <div class="form-group pb-2">
-            <fieldset>
-              <input type="file" placeholder="img" (change)="onFileSelected($event)" accept="image/*" />
-            </fieldset>
-          </div>
+    <!-- Project Description -->
+    <div class="col-lg-6 form-style">
+      <div class="form-group pb-2">
+        <textarea class="form-control" id="projectDescription" formControlName="projectDescription" placeholder="Description"></textarea>
+        <div *ngIf="projectForm.get('projectDescription')?.touched && projectForm.get('projectDescription')?.invalid" class="text-danger">
+          <small *ngIf="projectForm.get('projectDescription')?.errors?.['required']">Description is required.</small>
+          <small *ngIf="projectForm.get('projectDescription')?.errors?.['minlength']">Minimum 10 characters required.</small>
+          <small *ngIf="projectForm.get('projectDescription')?.errors?.['maxlength']">Maximum 200 characters allowed.</small>
         </div>
       </div>
-
-    </form>
-
-    <div class="text-center " style="padding-top: 50px;">
-      <button type="button" class="btn btn-primary" (click)="activeModal.dismiss();onSubmit()">
-        Submit
-      </button>
-
     </div>
   </div>
-</div>
+
+  <!-- Project Content -->
+  <div class="row" style="padding-top: 20px;">
+    <div class="col-lg-6 form-style">
+      <div class="form-group pb-2">
+        <textarea class="form-control" id="projectContent" formControlName="projectContent" placeholder="Content"></textarea>
+        <div *ngIf="projectForm.get('projectContent')?.touched && projectForm.get('projectContent')?.invalid" class="text-danger">
+          <small *ngIf="projectForm.get('projectContent')?.errors?.['required']">Content is required.</small>
+          <small *ngIf="projectForm.get('projectContent')?.errors?.['minlength']">Minimum 10 characters required.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- File Upload -->
+  <div class="row" style="padding-top: 20px;">
+    <div class="col-lg-6 form-style">
+      <div class="form-group pb-2">
+        <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+        <div *ngIf="projectForm.get('images')?.errors?.['required']" class="text-danger">
+          <small>Image upload is required.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="text-center" style="padding-top: 50px;">
+    <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+  </div>
+</form>

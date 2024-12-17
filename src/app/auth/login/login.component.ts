@@ -78,8 +78,9 @@ export class LoginComponent implements OnInit {
             console.log(bearerToken)
 
             this.authService.setToken(token);
-            this.toastr.showSuccessMessage('Logged In Successfully');
+            
             this.activeModal.dismiss()
+            this.toastr.showSuccessMessage('Logged In Successfully');
           }
         },
         error: (err: any) => {

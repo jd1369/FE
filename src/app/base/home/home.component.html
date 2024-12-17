@@ -5,13 +5,10 @@
   </button>
 </div>
 
-<div 
-  [ngStyle]="{
+<div [ngStyle]="{
     'background-image': switchBanner ? 'url(' + url + ')' : 'none',
     'background-color': switchBanner ? 'none' : '#f0f0f0'
-  }"
-  class="heading"
->
+  }" class="heading">
   <ul style="list-style: none; padding: 0;">
     <li class="tag">Elephant Ad Agency: Big Ideas, Bold Results.</li>
     <li class="tag">We craft bold, Let’s make your brand unforgettable.</li>
@@ -21,11 +18,8 @@
 <div class="carousel-container">
   <!-- Carousel Section -->
   <div class="carousel">
-    <div
-      class="carousel-item"
-      *ngFor="let service of visibleImages"
-      [style.backgroundImage]="'url(' + service.image + ')'"
-    >
+    <div class="carousel-item" *ngFor="let service of visibleImages"
+      [style.backgroundImage]="'url(' + service.image + ')'">
       <div class="image-name">{{ service.name }}</div>
     </div>
   </div>

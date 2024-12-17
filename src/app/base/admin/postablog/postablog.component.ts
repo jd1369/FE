@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { PostablogService } from './postablog.service';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 @Component({
   selector: 'app-postablog',
   templateUrl: './postablog.component.html',
@@ -18,14 +19,15 @@ export class PostablogComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
     private blogService:PostablogService,
-    private http: HttpClient
+    private http: HttpClient,
+    private toastr: ToasterService
   ) { }
   ngOnInit(): void {
     this.blogForm = this.fb.group({
-      blogName: [''],
-      blogDescription: [''],
-      blogContent: [''],
-      authorName:[''],
+      blogName: ['', [Validators.required, Validators.minLength(3)]],
+      blogDescription: ['', [Validators.required, Validators.minLength(10)]],
+      blogContent: ['', [Validators.required, Validators.minLength(20)]],
+      authorName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]],
       image: ['']
     });
   }
@@ -51,10 +53,12 @@ export class PostablogComponent implements OnInit {
               console.log('File uploaded successfully:', uploadResponse);
               const fileUrl = uploadResponse.fileUrl || uploadResponse.url || '';
               formData.image = fileUrl;
+              this.toastr.showSuccessMessage('Iamge uploaded Successfully');
               this.submitProject(formData);
             },
             error: (err) => {
               console.error('File upload failed!', err);
+              this.toastr.showErrorMessage('Failed to Upload Image');
             }
           });
       } else {
@@ -72,9 +76,13 @@ export class PostablogComponent implements OnInit {
       this.blogService.addBlog(formData).subscribe({
         next: (response: any) => {
           console.log('Project added successfully:', response);
+          this.toastr.showSuccessMessage('Data Saved Successfully');
+
         },
         error: (err: any) => {
           console.error('Error adding project:', err);
+           this.toastr.showErrorMessage('Failed To send Data');
+
         },
       });
     }

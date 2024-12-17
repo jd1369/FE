@@ -1,5 +1,4 @@
 <div class="modal-container">
-
   <div class="left-section">
     <img src="assets/logo.png" alt="Logo" />
     <ul class="icon-list">
@@ -19,7 +18,6 @@
   </div>
 
   <div class="right-section">
-
     <!-- Tabs -->
     <div class="tabs">
       <button 
@@ -54,13 +52,11 @@
         </div>
       </div>
 
-      <div class="input-group">
-        <div class="input-container">
-          <input type="text" formControlName="phoneNumber" class="floating-input" placeholder=" " />
-          <label class="floating-label">Phone Number</label>
-          <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched" class="error-message">
-            Valid 10-digit number is required.
-          </div>
+      <div class="input-container">
+        <input type="text" formControlName="phoneNumber" class="floating-input" placeholder=" " />
+        <label class="floating-label">Phone Number</label>
+        <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched" class="error-message">
+          Valid 10-digit number is required.
         </div>
       </div>
 
@@ -86,16 +82,17 @@
       </div>
 
       <div class="input-container">
-        <input type="text" formControlName="otp" class="floating-input" placeholder=" " />
-        <label class="floating-label">OTP</label>
-        <div *ngIf="loginForm.get('otp')?.invalid && loginForm.get('otp')?.touched" class="error-message">
-          OTP must be 6 digits.
+        <div class="otp-input-container">
+          <input type="text" formControlName="otp" class="floating-input" placeholder=" " />
+          <label class="floating-label">OTP</label>
+          <div *ngIf="loginForm.get('otp')?.invalid && loginForm.get('otp')?.touched" class="error-message">
+            OTP must be 6 digits.
+          </div>
+          <span class="link" (click)="getOtp()">Get OTP</span>
         </div>
       </div>
 
-      <span class="link" (click)="getOtp()">Get OTP</span>
       <button type="submit" [disabled]="loginForm.invalid">Login</button>
     </form>
-
   </div>
 </div>

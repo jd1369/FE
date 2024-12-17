@@ -5,6 +5,7 @@ import { SharedserviceService } from 'src/app/shared/sharedservice.service';
 import { AddsubserviceService } from './addsubservice.service';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 @Component({
   selector: 'app-addsubservice',
   templateUrl: './addsubservice.component.html',
@@ -22,7 +23,8 @@ export class AddsubserviceComponent implements OnInit {
      public activeModal: NgbActiveModal,
      private fb: FormBuilder,
      private addService: AddsubserviceService,
-     private http: HttpClient
+     private http: HttpClient,
+     private toastr :ToasterService
    ) { }
  
    ngOnInit(): void {
@@ -90,12 +92,13 @@ export class AddsubserviceComponent implements OnInit {
              next: (uploadResponse: any) => {
                const fileUrl = uploadResponse.fileUrl || uploadResponse.url || '';
                formData.image = fileUrl;
- 
+               this.toastr.showSuccessMessage('Image Uploaded Successfully');
                // Upload the icon image if selected
                this.submitProject(formData);
              },
              error: (err) => {
                console.error('Service image upload failed!', err);
+               this.toastr.showErrorMessage('Failed to Uploaded Image');
              }
            });
        } else {
@@ -113,9 +116,13 @@ export class AddsubserviceComponent implements OnInit {
      this.addService.addSubService(this.serviceId,formData).subscribe({
        next: (response: any) => {
          console.log('Service added successfully:', response);
+         this.toastr.showSuccessMessage('Data Saved Successfully');
+
        },
        error: (err: any) => {
          console.error('Error adding service:', err);
+         this.toastr.showErrorMessage('Failed to Save Data');
+
        },
      });
    }

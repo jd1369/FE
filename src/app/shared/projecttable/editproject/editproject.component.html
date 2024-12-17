@@ -1,37 +1,41 @@
 <div class="modal-header">
-    <h4 class="modal-title">Edit Project</h4>
+    <h4 class="modal-title">Edit Service Details</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
 </div>
+
 <div class="modal-body">
-    <form #editForm="ngForm">
+    <form [formGroup]="editForm">
+        <!-- Static Fields -->
         <div class="mb-3">
             <label for="projectName" class="form-label">Project Name</label>
-            <input type="text" id="projectName" class="form-control" [(ngModel)]="projectData.projectName"
-                name="projectName" required />
+            <input type="text" id="projectName" class="form-control" formControlName="projectName" required />
         </div>
+
         <div class="mb-3">
             <label for="projectDescription" class="form-label">Project Description</label>
-            <textarea id="projectDescription" class="form-control" [(ngModel)]="projectData.projectDescription"
-                name="projectDescription" required></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="projectContent" class="form-label">Project Content</label>
-            <textarea id="projectContent" class="form-control" [(ngModel)]="projectData.projectContent"
-                name="projectContent" required></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="lastModifiedDate" class="form-label">ModifiedDate</label>
-            <input type="date" id="lastModifiedDate" class="form-control" [(ngModel)]="projectData.lastModifiedDate" name="lastModifiedDate"
+            <input type="text" id="projectDescription" class="form-control" formControlName="projectDescription"
                 required />
         </div>
+
         <div class="mb-3">
-            <label for="images" class="form-label">Image</label>
-            <input type="file" id="images" class="form-control" (change)="onFileSelected($event)" 
-            name="images" required  />
+            <label for="projectContent" class="form-label">Project Content</label>
+            <input type="text" id="projectContent" class="form-control" formControlName="projectContent" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="lastModifiedDate" class="form-label">Modified Date</label>
+            <input type="date" id="lastModifiedDate" class="form-control" formControlName="lastModifiedDate" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="images" class="form-label">Images</label>
+            <input type="file" placeholder="images" (change)="onFilesSelected($event)" accept="image/*" multiple />
         </div>
     </form>
 </div>
+
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
-    <button type="button" class="btn btn-primary" (click)="onSubmit()">Save</button>
+    <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+    <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
 </div>

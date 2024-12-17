@@ -10,15 +10,23 @@ export class EidtblogService {
 baseUrl= environment.baseUrl;
   constructor(private http: HttpClient) { }
   
-  saveBlog(blogData: any): Observable<any> {
+  saveProject(formData: any): Observable<any> {
     const token = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       Token: `Bearer ${token}`,
     });
-    return this.http.put(this.baseUrl+'updateBlog',{headers});
+    return this.http.put(this.baseUrl+'updateBlog', formData,{headers});
   }
 
   uploadImage(formData: any) {
     return this.http.post(this.baseUrl+'upload', formData);
+  }
+  deleteProject(customerID: number): Observable<void> {
+    const token = localStorage.getItem('authToken');
+    console.log(token)
+    const headers = new HttpHeaders({
+      Token: `Bearer ${token}`,
+    });
+    return this.http.delete<void>(`${this.baseUrl}deleteBlogById/${customerID}`,{headers});
   }
 }
