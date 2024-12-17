@@ -4,7 +4,8 @@ import { RouterModule } from '@angular/router';
 import { ProjectdetailsComponent } from 'src/app/base/projects/projectdetails/projectdetails.component';
 import { ProjectsComponent } from './projects.component';
 import { ClientsModule } from "../../shared/clients/clients.module";
-
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
 @NgModule({
   declarations: [
     ProjectdetailsComponent,
@@ -13,6 +14,8 @@ import { ClientsModule } from "../../shared/clients/clients.module";
   ],
   imports: [
     CommonModule,
+    CardModule,
+    ButtonModule,
     RouterModule.forChild([
         {
             path: '', // Child route

@@ -41,6 +41,7 @@ export class ProjectsComponent implements OnInit {
   getProjects(): void {
     this.projectService.getProjectList().subscribe((data: any) => {
       if (Array.isArray(data)) {
+        console.log(data)
         this.items = data
       } else {
         console.error('API response is not an array:', data);

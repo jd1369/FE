@@ -31,7 +31,7 @@
 
     </div>
     <div *ngIf="isLoggedIn" class="login">
-      <button class="tab-button" (click)="logout()">
+      <button  (click)="logout()">
         Log Out
       </button>
     </div>
@@ -71,12 +71,12 @@
       <div class="dash"></div>
       <h6>Company</h6>
       <ul>
-        <li>Work</li>
+        <li routerLink="/base/about" routerLinkActive="active">Work</li>
         <li>Agency</li>
-        <li>Services</li>
+        <li routerLink="/base/services" routerLinkActive="active">Services</li>
         <li>Industries</li>
         <li>Client Testimonials</li>
-        <li>Contact</li>
+        <li routerLink="/base/aboutus" routerLinkActive="active">Contact</li>
         <li>Website Accessibility</li>
       </ul>
     </div>

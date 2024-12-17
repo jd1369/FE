@@ -11,10 +11,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-bottom: 4px solid #3cc194;
-  max-width: 800px; /* Ensures consistency on large screens */
-  width: 90%; /* Allows scaling */
+  /* Ensures consistency on large screens */
+  /* Allows scaling */
+  min-height: 433px;
+  min-width: 737px;
   transition: width 0.3s ease, height 0.3s ease;
-  height: auto; /* Make sure modal height adjusts dynamically */
+  height: auto;
+  /* Make sure modal height adjusts dynamically */
 }
 
 /* Left Section */
@@ -25,13 +28,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   gap: 20px;
+  border-right: 1px solid #3cc194 ;
 }
 
 .left-section img {
   width: 80%;
-  max-width: 300px; /* Ensures scaling for smaller screens */
+  max-width: 300px;
+  /* Ensures scaling for smaller screens */
   height: auto;
 }
 
@@ -100,7 +105,8 @@
 .floating-input {
   width: 100%;
   padding: 10px;
-  padding-top: 20px; /* Space for label */
+  padding-top: 20px;
+  /* Space for label */
   font-size: clamp(14px, 1rem, 18px);
   border: none;
   border-bottom: 2px solid #bfbfbf;
@@ -124,8 +130,8 @@
   transition: 0.3s ease;
 }
 
-.floating-input:focus + .floating-label,
-.floating-input:not(:placeholder-shown) + .floating-label {
+.floating-input:focus+.floating-label,
+.floating-input:not(:placeholder-shown)+.floating-label {
   top: 0;
   font-size: 0.8rem;
   color: #3cc194;
@@ -169,7 +175,8 @@ form button:hover {
 }
 
 .otp-input-container .floating-input {
-  flex: 1; /* Ensure the input takes available space */
+  flex: 1;
+  /* Ensure the input takes available space */
 }
 
 .otp-input-container .link {
@@ -192,7 +199,8 @@ form button:hover {
   }
 
   .left-section {
-    display: none; /* Hide left section on mobile */
+    display: none;
+    /* Hide left section on mobile */
   }
 
   .right-section {
@@ -201,7 +209,8 @@ form button:hover {
   }
 
   .tabs {
-    flex-direction: column; /* Stack tabs on smaller screens */
+    flex-direction: column;
+    /* Stack tabs on smaller screens */
   }
 
   .tab-button {

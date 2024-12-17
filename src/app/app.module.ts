@@ -37,7 +37,12 @@ import { MenuItem } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
-
+import { 
+	IgxButtonModule,
+	IgxIconModule,
+	IgxCardModule,
+	IgxRippleModule
+ } from "igniteui-angular";
 import { ToastModule } from 'primeng/toast';
 import { CarouselModule } from 'primeng/carousel'
 import { ToastrModule } from 'ngx-toastr';
@@ -97,6 +102,10 @@ import { ClientsModule } from "./shared/clients/clients.module";
     MatListModule,
     CarouselModule,
     MatFormFieldModule,
+    IgxButtonModule,
+    IgxIconModule,
+    IgxCardModule,
+    IgxRippleModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     ToastrModule.forRoot({
