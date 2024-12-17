@@ -4,7 +4,7 @@
     background-color: #fffcfc57
   }
   .ser{
-    padding:300px 50px 300px 83px
+    padding:301px 50px 202px  61px
 
   }
   
@@ -12,7 +12,8 @@
     display: grid
 ;
     grid-template-columns: repeat(5, 1fr);
-    grid-gap: 150px;
+    row-gap: 156px;
+    column-gap: 75px;
     align-items: center;
     justify-content: space-between;
     justify-items: center;
@@ -27,8 +28,8 @@
   }
   
   .service-item img {
-    width: 116.2px;
-    height: 51px;
+    width:150px;
+    //height: 51px;
   }
   
   .service-item p {

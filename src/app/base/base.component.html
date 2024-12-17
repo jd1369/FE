@@ -1,13 +1,14 @@
 <nav [ngClass]="{'scrolled': isScrolled}" class="navbar">
   <div class="navbar-content">
     <div class="logo">
-      <img [routerLink]="['home']" src="assets/logo.png" alt="Logo" />
+      <img [routerLink]="['/base/home']" src="assets/Logo2.png" alt="Logo" />
     </div>
-    <div class="nav-links">
-      <a routerLink="/base/home" routerLinkActive="active">Home</a>
+    <div class="nav-links" > 
+      <a routerLink="/base/about" routerLinkActive="active">Work</a>
       <a routerLink="/base/services" routerLinkActive="active">Services</a>
       <a routerLink="/base/projects" routerLinkActive="active">Project</a>
-      <a routerLink="/base/blog" routerLinkActive="active">Blog</a>
+      <a routerLink="/base/aboutus" routerLinkActive="active">Contact</a>
+      
       <div *ngIf="admin == true" class="dropdown" (mouseenter)="toggleDropdown(true)"
         (mouseleave)="toggleDropdown(false)">
         <a routerLink="/base/admin" routerLinkActive="active">Admin</a>
@@ -21,8 +22,8 @@
           <li><a (click)="postaBlog()">Post A Blog</a></li>
         </ul>
       </div>
-      <a routerLink="/base/aboutus" routerLinkActive="active">Contact Us</a>
-      <a routerLink="/base/about" routerLinkActive="active">About Us</a>
+     
+      
 
     </div>
     <div *ngIf="!isLoggedIn" class="login">
@@ -84,6 +85,7 @@
       <div class="dash"></div>
       <h6>Services</h6>
       <ul>
+        <li routerLink="/base/blog" routerLinkActive="active">Blog</li>
         <li>Web Design</li>
         <li>WordPress Websites</li>
         <li>Branding</li>

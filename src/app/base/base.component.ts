@@ -115,6 +115,7 @@ export class BaseComponent implements OnInit {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.scrollY > 0; // Change threshold as needed
+    
   }
 
 

@@ -14,24 +14,29 @@
 
   .tag {
     display: inline-block;    
-    font-size: 67px;           
-    line-height: 0.9;
+    font-size: 93px;           
+    line-height: 1;
     white-space: nowrap;      
     font-style: normal;
-    font-family: 'Real Text', Arial, sans-serif;
+    font-family: 'Manrope', sans-serif;
     word-wrap: normal;        
     z-index: 7;
+    font-weight: 600;
     letter-spacing: -6px;
   }
   
 
 
 .heading{
-padding: 173px 121px 145px 70px;
+padding: 211px 0px 145px 41px;
 background-color: #d4d4d491;
 background-size: cover
 }
 
+dl, ol, ul {
+  margin-top: 0;
+  margin-bottom: 6rem;
+}
 
 
 h1 {
@@ -50,18 +55,19 @@ h1 {
 
 .tag1 {
   display: block;   
-  font-size: 40px;
+  font-size: 33px;
   width: 630px;   
+  font-weight: 400;
   line-height: 1.25; 
   margin-left: 282px;  /* Ensures proper block formatting for the text */
-  font-family: 'Real Text', Arial, sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
 
 .highlight {
   color: #3cc194;         /* Orange color for the link */
   font-weight: bold;
   text-decoration: none;  /* Removes underline */
-  font-family: 'Real Text', Arial, sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
 
 .highlight:hover {
@@ -176,7 +182,7 @@ text-align: left;
 margin-top: 80px;
 font-size: 22px;
 //margin-left: 20px; /* Optional: Add a margin for better spacing */
-font-family: 'Real Text', Arial, sans-serif;
+font-family: 'Manrope', sans-serif;
 }
 
 .about-link a {
@@ -234,7 +240,7 @@ text-decoration: underline;
 
 .detail {
   font-size: 36px; /* Adjusted for smaller text size */
-  font-family: 'Real Text', Arial, sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-weight: 700;
   line-height: 1.2; /* Controls spacing between lines */
   display: block; /* Ensures proper block-level alignment */
@@ -246,12 +252,13 @@ text-decoration: underline;
 
 .detail2 {
   font-size: 100px; /* Adjusted for large numbers */
-  font-family: 'Real Text', Arial, sans-serif;
-  font-weight: 400;
-  line-height: 1; /* Slightly tighter spacing for large numbers */
-  display: block;
-  padding-bottom: 30px;
-  border-bottom: 1px solid;
+  font-size: 100px;
+    font-family: "Manrope", sans-serif;
+    font-weight: 600;
+    line-height: 1;
+    display: block;
+    padding-bottom: 30px;
+    border-bottom: 1px solid;
 }
 
 .img{
@@ -262,7 +269,7 @@ text-decoration: underline;
 .quote-container {
   position: relative;
  width: 100%;
-  font-family: 'Real Text', Arial, sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-weight: 700;
   line-height: 1.4;
   text-align: left;
@@ -270,8 +277,8 @@ text-decoration: underline;
 }
 
 .quote-text {
-  font-size: 92px;
-  font-weight: 400;
+  font-size: 94px;
+  font-weight: 600;
   line-height: 1.03;
   letter-spacing: -0.05em; 
   display: inline-block;
@@ -297,7 +304,10 @@ text-decoration: underline;
   font-size: 76px; /* Adjust size of the closing quote */
   color: #3cc194; /* Orange color for quotation marks */
   float: right;
-  margin-top: -143px; /* Aligns with the last line of the quote */
-  margin-right: 160px;
+  margin-top: -139px; /* Aligns with the last line of the quote */
+  margin-right: 530px;
 }
+
+
+
 
