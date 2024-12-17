@@ -64,7 +64,7 @@ saveDynamicFields(serviceId: string,subServiceId:string, fields: any): Observabl
   });
 
   // Send the PATCH request with the fields
-  return this.http.patch<any>(`${this.baseUrl}${serviceId}/updateSubServiceMapFields/${subServiceId}/fields`,fields, { headers });
+  return this.http.patch<any>(`${this.baseUrl}${serviceId}/updateSubServiceFields/${subServiceId}/fields`,fields, { headers });
 }
 
 
