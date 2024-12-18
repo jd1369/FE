@@ -6,13 +6,14 @@ import { Router } from '@angular/router';
 import { SharedserviceService } from '../sharedservice.service';
 import { EidtblogComponent } from './eidtblog/eidtblog.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToasterService } from '../toaster/toaster.service';
 @Component({
   selector: 'app-blogtable',
   templateUrl: './blogtable.component.html',
   styleUrls: ['./blogtable.component.scss']
 })
 export class BlogtableComponent implements OnInit {
-  displayedColumns: string[] = ['blogName', 'blogDescription', 'blogContent','modifiedDate','publishedDate','image','action','view'];
+  displayedColumns: string[] = ['blogName', 'blogDescription', 'blogContent','modifiedDate','publishedDate','image','action'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource(); // MatTableDataSource for pagination
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -21,6 +22,7 @@ export class BlogtableComponent implements OnInit {
      private router: Router,
      private sharedservice :SharedserviceService,
       private modalService: NgbModal,
+      private toastr:ToasterService
   ) { }
 
   ngOnInit(): void {
@@ -63,9 +65,11 @@ export class BlogtableComponent implements OnInit {
     this.blogService.saveProject(row).subscribe({
       next: (response: any) => {
         console.log('Row updated successfully:', response);
+        this.toastr.showSuccessMessage("Data Successfully Updated")
       },
       error: (err: any) => {
         console.error('Error saving row:', err);
+        this.toastr.showErrorMessage("Failed to Edit Data")
       },
     });
   }
@@ -76,10 +80,14 @@ export class BlogtableComponent implements OnInit {
       next: () => {
         console.log('Row deleted successfully');
         this.dataSource.data = this.dataSource.data.filter(item => item.customerID !== row.customerID);
+        this.toastr.showSuccessMessage("Data Deleted Successfully")
+        
         this.getBlogData();
+
       },
       error: (err: any) => {
         console.error('Error deleting row:', err);
+        this.toastr.showSuccessMessage("Failed to Delete Data")
       },
     });
   }

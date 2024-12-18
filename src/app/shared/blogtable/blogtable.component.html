@@ -13,17 +13,13 @@
             <mat-header-cell *matHeaderCellDef> Blog Content </mat-header-cell>
             <mat-cell *matCellDef="let blogData"> {{blogData.blogContent}} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="modifiedDate">
-            <mat-header-cell *matHeaderCellDef>Modified Date </mat-header-cell>
-            <mat-cell *matCellDef="let blogData"> {{blogData.modifiedDate}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="publishedDate">
-            <mat-header-cell *matHeaderCellDef>Published Date </mat-header-cell>
-            <mat-cell *matCellDef="let blogData"> {{blogData.publishedDate}} </mat-cell>
-        </ng-container>
+        
         <ng-container matColumnDef="image">
             <mat-header-cell *matHeaderCellDef>Image </mat-header-cell>
-            <mat-cell *matCellDef="let blogData"> <a href="{{blogData.image}}" target="_blank">{{blogData.image}}</a> </mat-cell>
+            <mat-cell *matCellDef="let blogData">
+                <img [src]="blogData.image" alt="Blog Image" class="table-image" />
+
+                 </mat-cell>
         </ng-container>
         <ng-container matColumnDef="action">
             <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
@@ -34,12 +30,15 @@
                 <mat-icon (click)="onDelete(blogData)" style="color: #FF0F0F; cursor: pointer;">delete</mat-icon>
               </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="view">
-            <mat-header-cell *matHeaderCellDef> View </mat-header-cell>
-            <mat-cell *matCellDef="let blogData">
-              <i class="fa fa-eye" style="color: #007bff; cursor: pointer;" (click)="onView(blogData)"></i>
-            </mat-cell>
-          </ng-container>
+        <ng-container matColumnDef="modifiedDate">
+            <mat-header-cell *matHeaderCellDef>Modified Date </mat-header-cell>
+            <mat-cell *matCellDef="let blogData"> {{blogData.modifiedDate}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="publishedDate">
+            <mat-header-cell *matHeaderCellDef>Published Date </mat-header-cell>
+            <mat-cell *matCellDef="let blogData"> {{blogData.publishedDate}} </mat-cell>
+        </ng-container> 
+        
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>

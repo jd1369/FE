@@ -1,178 +1,45 @@
-/* Modal Container */
-.modal-container {
-  display: flex;
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  margin: auto;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-bottom: 4px solid #3cc194;
-  max-width: 800px; /* Ensures consistency on large screens */
-  width: 90%; /* Allows scaling */
-  transition: width 0.3s ease, height 0.3s ease;
+.btn-primary {
+  background: #000000;
+  width: 160px;
+  height: 40px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 22px;
+  color: #FFFFFF;
 }
 
-/* Left Section */
-.left-section {
-  flex: 1;
-  background: #f9f9f9;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
+.modal-header {
+  padding: 5px;
+
 }
 
-.left-section img {
-  width: 80%;
-  max-width: 300px; /* Ensures scaling for smaller screens */
-  height: auto;
+.modal-title {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 36px;
+  color: #16469D;
+
 }
 
-.icon-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-}
-
-.icon-list li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-  font-size: 0.9rem; /* Scales with viewport */
-}
-
-/* Right Section */
-.right-section {
-  flex: 1.2;
-  padding: 20px;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-/* Tabs */
-.tabs {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #ddd;
-}
-
-.tab-button {
-  flex: 1;
-  text-align: center;
-  padding: 10px;
-  font-size: 1rem;
-  background: none;
+.close {
+  width: 30px;
+  height: 30px;
+  background: rgba(240, 240, 240, 0.75);
   border: none;
+  font-size: 17px;
+  border-radius: 50%;
+  position: absolute; 
+  top: 10px; 
+  right: 10px; 
   cursor: pointer;
+
 }
 
-.tab-button.active {
-  font-weight: bold;
-  color: #3cc194;
-  border-bottom: 2px solid #3cc194;
-}
 
-/* Form Styling */
-.form-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-}
 
-.input-container {
-  position: relative;
-  width: 100%;
-}
 
-.floating-input {
-  width: 100%;
-  padding: 10px;
-  padding-top: 20px; /* Space for label */
-  font-size: clamp(14px, 1rem, 18px);
-  border: none;
-  border-bottom: 2px solid #bfbfbf;
-  background: none;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
 
-.floating-input:focus {
-  border-color: #3cc194;
-}
-
-.floating-label {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  font-size: clamp(12px, 0.9rem, 16px);
-  color: #aaa;
-  pointer-events: none;
-  transition: 0.3s ease;
-}
-
-.floating-input:focus + .floating-label,
-.floating-input:not(:placeholder-shown) + .floating-label {
-  top: 0;
-  font-size: 0.8rem;
-  color: #3cc194;
-}
-
-/* Validation Message */
-.error-message {
-  position: absolute;
-  bottom: -18px;
-  left: 0;
-  color: red;
-  font-size: 0.8rem;
-}
-
-/* Button Styling */
-form button {
-  background: #3cc194;
-  color: white;
-  padding: 10px;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-form button:disabled {
-  background: #ddd;
-  cursor: not-allowed;
-}
-
-form button:hover {
-  background: #2ea47b;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .modal-container {
-    flex-direction: column;
-    width: 95%;
-  }
-
-  .left-section {
-    display: none; /* Hide left section on mobile */
-  }
-
-  .right-section {
-    flex: 1;
-    width: 100%;
-  }
-}

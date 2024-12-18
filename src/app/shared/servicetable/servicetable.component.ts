@@ -14,7 +14,7 @@ import { AddserviceComponent } from 'src/app/base/admin/addservice/addservice.co
   styleUrls: ['./servicetable.component.scss']
 })
 export class ServicetableComponent implements OnInit {
-  displayedColumns: string[] = [ 'name', 'image','addSubService','editSubService','action'];
+  displayedColumns: string[] = [ 'name','icon' ,'serviceImage','addSubService','editSubService','action'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource(); // MatTableDataSource for pagination
   popupVisible = false;
   popupItem: any = null;

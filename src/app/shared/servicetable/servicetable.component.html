@@ -6,9 +6,17 @@
             <mat-cell *matCellDef="let projectData"> {{projectData.name}} </mat-cell>
         </ng-container>
        
-        <ng-container matColumnDef="image">
+        <ng-container matColumnDef="icon">
             <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
-            <mat-cell *matCellDef="let projectData"> {{projectData.image}} </mat-cell>
+            <mat-cell *matCellDef="let projectData">
+                <img [src]="projectData.icon" alt="Project Image" class="table-image" />
+                </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="serviceImage">
+            <mat-header-cell *matHeaderCellDef>Service Image </mat-header-cell>
+            <mat-cell *matCellDef="let projectData">
+                <img [src]="projectData.serviceImage" alt="Project Image" class="table-image" />
+                </mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="addSubService">

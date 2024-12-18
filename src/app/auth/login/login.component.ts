@@ -30,16 +30,27 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-      otp: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
+      otp: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]], 
     });
   
     this.registerForm = this.fb.group({
-      emailId: ['', [Validators.required, Validators.email]],
+      emailId: ['', [Validators.required, Validators.email,this.emailDomainValidator]],
       name: ['', [Validators.required, Validators.minLength(3)]],
       phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       companyName: ['', [Validators.required, Validators.minLength(2)]],
     });
   }
+
+  emailDomainValidator(control: any) {
+    const email = control.value;
+    if (email && email.endsWith('@gmail.com')) {
+      return { invalidEmailDomain: 'Only company Email is allowed for registration' };
+    }
+    return null;
+  }
+
+
+
   setActiveTab(tab: string) {
     this.activeTab = tab;
   }
@@ -52,6 +63,7 @@ export class LoginComponent implements OnInit {
       this.authService.register(emailId, name, phoneNumber,companyName).subscribe({
         next: (response:any) =>{ this.toastr.showSuccessMessage('Logged In Successfully');
           alert('Registration successful')
+          this.activeModal.dismiss()
         },
 
         error: (err) => {

@@ -5,7 +5,10 @@
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
       <mat-cell *matCellDef="let customerData"> {{customerData.name}} </mat-cell>
     </ng-container>
-
+    <ng-container matColumnDef="emailId">
+      <mat-header-cell *matHeaderCellDef> Email Id </mat-header-cell>
+      <mat-cell *matCellDef="let customerData"> {{customerData.emailId}} </mat-cell>
+    </ng-container> 
     <!-- Weight Column -->
     <ng-container matColumnDef="phoneNumber">
       <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
@@ -13,10 +16,7 @@
     </ng-container>
 
     <!-- Symbol Column -->
-    <ng-container matColumnDef="emailId">
-      <mat-header-cell *matHeaderCellDef> Email Id </mat-header-cell>
-      <mat-cell *matCellDef="let customerData"> {{customerData.emailId}} </mat-cell>
-    </ng-container>
+    
 
     <ng-container matColumnDef="companyName">
       <mat-header-cell *matHeaderCellDef>Company Name </mat-header-cell>
@@ -32,6 +32,12 @@
       <mat-header-cell *matHeaderCellDef>Sub-Services Clicked</mat-header-cell>
       <mat-cell *matCellDef="let customerData"> {{customerData.subServicesClickedOn}} </mat-cell>
     </ng-container>
+
+    <ng-container matColumnDef="clickedOnFetchAllServices">
+      <mat-header-cell *matHeaderCellDef> Email Id </mat-header-cell>
+      <mat-cell *matCellDef="let customerData"> {{customerData.clickedOnFetchAllServices}} </mat-cell>
+    </ng-container>
+
 
     <ng-container matColumnDef="user">
       <mat-header-cell *matHeaderCellDef>User </mat-header-cell>

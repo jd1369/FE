@@ -112,5 +112,9 @@ export class SubserviceDetailsComponent implements OnInit {
     this.popupVisible = true;
   }
 
+  close(): void {
+    this.modalService.dismissAll();
+  }
+
 
 }

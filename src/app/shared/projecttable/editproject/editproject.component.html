@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title">Edit Service Details</h4>
+    <h4 class="modal-title">Edit Project Details</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
 </div>
 
@@ -22,10 +22,10 @@
             <input type="text" id="projectContent" class="form-control" formControlName="projectContent" required />
         </div>
 
-        <div class="mb-3">
+        <!-- <div class="mb-3">
             <label for="lastModifiedDate" class="form-label">Modified Date</label>
             <input type="date" id="lastModifiedDate" class="form-control" formControlName="lastModifiedDate" required />
-        </div>
+        </div> -->
 
         <div class="mb-3">
             <label for="images" class="form-label">Images</label>
@@ -37,5 +37,4 @@
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
     <button type="button" class="btn btn-primary" (click)="save()">Save</button>
-    <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
 </div>

@@ -1,7 +1,7 @@
 <div class="table-container1">
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="projectName">
-            <mat-header-cell *matHeaderCellDef> Project Id. </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Project Name </mat-header-cell>
             <mat-cell *matCellDef="let projectData"> {{projectData.projectName}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="projectDescription">
@@ -14,7 +14,10 @@
         </ng-container>
         <ng-container matColumnDef="images">
             <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
-            <mat-cell *matCellDef="let projectData"> {{projectData.images}} </mat-cell>
+            <mat-cell *matCellDef="let projectData"> 
+                <img [src]="projectData.images" alt="Project Image" class="table-image" />
+
+            </mat-cell>
         </ng-container>
         <ng-container matColumnDef="action">
             <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>

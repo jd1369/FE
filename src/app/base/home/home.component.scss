@@ -92,7 +92,7 @@ overflow: hidden;
 display: flex;
 flex-wrap: nowrap; /* Prevent wrapping */
 overflow: hidden; /* Hide extra images */
-width: 369%; /* Decrease carousel width */
+width: 100%; /* Decrease carousel width */
 transition: transform 1s ease-in-out;
 padding: 20px 0px 20px 95px
 }

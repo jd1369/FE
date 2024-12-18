@@ -51,12 +51,14 @@
 
       <!-- Service Image -->
       <div class="form-group mt-3">
+        <label>Service Image</label>
         <input type="file" (change)="onServiceImageSelected($event)" accept="image/*" class="form-control-file" />
         <div *ngIf="fileError" class="text-danger mt-1">{{ fileError }}</div>
       </div>
 
       <!-- Icon Image -->
       <div class="form-group mt-3">
+        <label>Icon Image</label>
         <input type="file" (change)="onIconSelected($event)" accept="image/*" class="form-control-file" />
         <div *ngIf="iconFileError" class="text-danger mt-1">{{ iconFileError }}</div>
       </div>

@@ -108,3 +108,10 @@
   width: 40px;
   overflow: hidden
 }
+
+.table-container1 .table-image {
+  width: 77px; /* Adjust width as needed */
+  height: 36px; /* Adjust height to maintain aspect ratio */
+  object-fit: cover; /* Ensure the image fits nicely within the bounds */
+  border-radius: 1px; /* Optional: Add rounded corners */
+}

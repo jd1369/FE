@@ -1,5 +1,6 @@
 .details {
-  padding: 45px 90px 0px 209px;
+  padding: 45px 201px 119px 201px;
+  background-color: rgb(240, 240, 240);
 }
 
 .details h1 {
@@ -7,31 +8,33 @@
   font-weight: bold;
   text-align: center;
   line-height: 1;
-  font-family: 'Real Text', Arial, sans-serif;
+  font-family: 'Manrope', sans-serif;
   word-wrap: break-word;  /* Ensure text wraps to the next line */
   padding-bottom: 0px;
 }
 
 .details .a {
-  font-family: 'Real Text', Arial, sans-serif;
+  font-family: 'Manrope', sans-serif;
   word-wrap: break-word;  /* Ensure text wraps to the next line */
 }
 
 .details p {
   font-size: 16px;
+  text-wrap: pretty;
   text-align: center;
-  font-family: 'Real Text', Arial, sans-serif;
+  font-weight: 400;
+  font-family: 'Manrope', sans-serif;
   word-wrap: break-word;  /* Ensure text wraps to the next line */
   white-space: normal;     /* Allow text to wrap normally */
   padding: 16px;
+  text-align: left;
+  text-indent: 39px;
 }
-
 .details img {
-  width: 100%;
-  height: 316px;
+  width: 31%;
+  height: 310px;
   margin-top: 50px;
   margin-bottom: 59px;
-  padding: 0px 85px 0px 86px;
 }
 
 /* Card Styles */
@@ -39,7 +42,6 @@
   text-align: center;
   background-color: #fff;
   border: 1px solid #ddd;
-  
   padding: 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   width: 250px; /* Fixed width for the card */
@@ -47,7 +49,6 @@
   overflow: hidden; /* Prevent overflow if content exceeds */
   position: relative; /* To position the icon correctly */
   margin: 0 auto; /* Center the card within the grid */
-  align-items: center;
 }
 
 .card img {
@@ -55,19 +56,18 @@
   height: 150px; /* Fixed height for the image */
   object-fit: cover; /* Ensures the image is cropped to fit */
   border-radius: 4px;
-  
 }
 
 .card h3 {
   font-size: 16px;
-  font-family: 'Real Text', Arial, sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-weight: bold;
   margin: 10px 0 5px;
 }
 
 .card p {
   font-size: 14px;
-  font-family: 'Real Text', Arial, sans-serif;
+  font-family: 'Manrope', sans-serif;
   color: #777;
   overflow: hidden; /* Hide any text overflow */
   text-overflow: ellipsis; /* Add ellipsis if text overflows */
@@ -91,12 +91,10 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0px;
-  max-width: 926px;
+  gap: 33px;
+  max-width: 1076px;
   margin: 0 auto;
   margin-bottom: 70px;
-  row-gap: 46px;
-  column-gap: 20px;
 }
 
 .login{
@@ -104,28 +102,6 @@
   background-color : white;
   border:0
 
-}
-
-.grid img {
-  width: 200px; /* Set a fixed width */
-  height: 150px; /* Set a fixed height */
-  object-fit: cover; /* Ensures the image fits within the set dimensions while maintaining aspect ratio */
-  margin-bottom: 35px;
-  display: block; /* Ensures no unwanted inline spacing below the image */
-  align-items: center;
-}
-
-.grid h1, .grid p {
-  word-wrap: break-word; /* Ensures long text wraps properly */
-  margin: 10px 0; /* Adds some spacing for better readability */
-}
-
-.grid h1 {
-  font-size: 22px;
-    font-weight: 600;
-    font-family: "Real Text", Arial, sans-serif;
-    line-height: 1;
-    margin-top: 30px;
 }
 
 

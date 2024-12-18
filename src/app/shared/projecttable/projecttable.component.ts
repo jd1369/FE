@@ -76,7 +76,7 @@ export class ProjecttableComponent implements OnInit {
       },
       error: (err: any) => {
         console.error('Error deleting row:', err);
-        this.toastr.showErrorMessage('Error Deleting Row');
+        this.toastr.showSuccessMessage('Data Deleted Successfully');
       },
     });
   }

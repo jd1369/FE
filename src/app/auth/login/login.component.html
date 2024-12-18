@@ -53,7 +53,7 @@
       </div>
 
       <div class="input-container">
-        <input type="text" formControlName="phoneNumber" class="floating-input" placeholder=" " />
+        <input type="text" [maxLength]="10" formControlName="phoneNumber" class="floating-input" placeholder=" " />
         <label class="floating-label">Phone Number</label>
         <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched" class="error-message">
           Valid 10-digit number is required.
@@ -74,21 +74,22 @@
     <!-- Login Form -->
     <form [formGroup]="loginForm" *ngIf="activeTab === 'login'" class="form-container" (ngSubmit)="Login()">
       <div class="input-container">
-        <input type="text" formControlName="phoneNumber" class="floating-input" placeholder=" " />
+        <input type="text" maxlength="10" formControlName="phoneNumber" class="floating-input" placeholder=" " />
         <label class="floating-label">Phone Number</label>
         <div *ngIf="loginForm.get('phoneNumber')?.invalid && loginForm.get('phoneNumber')?.touched" class="error-message">
           Valid 10-digit number is required.
         </div>
+        <span class="link" (click)="getOtp()">Get OTP</span>
       </div>
 
       <div class="input-container">
         <div class="otp-input-container">
-          <input type="text" formControlName="otp" class="floating-input" placeholder=" " />
+          <input type="text" maxlength="6" formControlName="otp" class="floating-input" placeholder=" " />
           <label class="floating-label">OTP</label>
           <div *ngIf="loginForm.get('otp')?.invalid && loginForm.get('otp')?.touched" class="error-message">
             OTP must be 6 digits.
           </div>
-          <span class="link" (click)="getOtp()">Get OTP</span>
+          
         </div>
       </div>
 
