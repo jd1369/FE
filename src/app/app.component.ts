@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoaderService } from './shared/loader/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +9,8 @@ import { LoaderService } from './shared/loader/loader.service';
 export class AppComponent {
   isLoading = false;
   title = 'Elephant';
-  constructor(private route: Router,
-    private loaderService: LoaderService
+  constructor(private route: Router
   ) {
-    this.loaderService.isLoading$.subscribe((loading) => {
-      this.isLoading = loading;
-    });
+    
   }
 }

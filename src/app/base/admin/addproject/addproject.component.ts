@@ -65,47 +65,7 @@ export class AddprojectComponent implements OnInit {
   }
 
 
-
-
-  //  onSubmit(): void {
-  //   console.log("Form submitted");
-
-  //   if (this.projectForm.valid) {
-  //     const formData: any = { ...this.projectForm.value }; // Initialize form data as plain JSON object
-
-  //     // Check if a file is selected for upload
-  //     if (this.selectedFile) {
-  //       const fileUploadFormData = new FormData();
-  //       fileUploadFormData.append('file', this.selectedFile, this.selectedFile.name);
-
-  //       // Upload the file and get the response
-  //       this.http.post(this.baseUrl + 'upload', fileUploadFormData, { responseType: 'json' })
-  //         .subscribe({
-  //           next: (uploadResponse: any) => {
-  //             console.log('File uploaded successfully:', uploadResponse);
-
-  //             // Add the uploaded file URL to the 'images' field as an array
-  //             const fileUrl = uploadResponse.fileUrl || uploadResponse.url || '';
-  //             formData.images = [fileUrl];
-  //             this.toastr.showSuccessMessage('Image Uploaded Successfully');
-
-  //             // Submit the form with the updated images field
-  //             this.submitProject(formData);
-  //           },
-  //           error: (err) => {
-  //             console.error('File upload failed!', err);
-  //             this.toastr.showErrorMessage('Failed to upload Image');
-  //           }
-  //         });
-  //     } else {
-  //       // If no file is selected, set 'images' as an empty array
-  //       formData.images = [];
-  //       this.submitProject(formData);
-  //     }
-  //   } else {
-  //     console.error('Form is invalid!');
-  //   }
-  // }
+ 
 
 
   onSubmit(): void {

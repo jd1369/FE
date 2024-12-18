@@ -46,8 +46,8 @@ export class EidtblogComponent implements OnInit {
         ],
         lastModifiedDate: [this.date], // No validation needed for date
         publishingTimeOfBlog: [
-          this.blogData.publishingTimeOfBlog,
-          [Validators.required]
+          this.date
+          
         ],
         image: [null] // Handle image upload separately
       });

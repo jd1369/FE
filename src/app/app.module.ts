@@ -57,8 +57,6 @@ import { EditprojectComponent } from './shared/projecttable/editproject/editproj
 import { EidtblogComponent } from './shared/blogtable/eidtblog/eidtblog.component';
 import { ServiceDetailsComponent } from './shared/servicetable/service-details/service-details.component';
 import { CamelizePipe } from './shared/servicetable/camelize-pipe.pipe';
-import { LoaderComponent } from './shared/loader/loader.component';
-import { LoaderInterceptor } from './shared/loader/loader.interceptor';
 import { SubserviceDetailsComponent } from './shared/servicetable/subservice-details/subservice-details.component';
 import { SubservicemodalComponent } from './shared/servicetable/subservice-details/subservicemodal/subservicemodal.component';
 import { ClientsModule } from "./shared/clients/clients.module";
@@ -93,7 +91,6 @@ import { MatCardModule } from "@angular/material/card";
     EidtblogComponent,
     ServiceDetailsComponent,
     CamelizePipe,
-    LoaderComponent,
     SubserviceDetailsComponent,
     SubservicemodalComponent,
 
@@ -143,7 +140,7 @@ import { MatCardModule } from "@angular/material/card";
     ClientsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-  { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+ 
   ],
   bootstrap: [AppComponent]
 })
