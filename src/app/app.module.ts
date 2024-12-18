@@ -64,7 +64,6 @@ import {  MatSelectModule } from '@angular/material/select';  // Correct import
 import { MatInputModule } from '@angular/material/input';  
 import { NgHttpLoaderModule } from 'ng-http-loader'; // <============
 import { MatCardModule } from "@angular/material/card";
-
 @NgModule({
   declarations: [
     AboutComponent,
