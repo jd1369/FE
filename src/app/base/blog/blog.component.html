@@ -8,7 +8,7 @@
   
   <div class="grid">
     <div class="card" *ngFor="let item of items">
-      <div class="card-header">
+      <div >
         
       </div>
       <img [routerLink]="['blogdetails']" [queryParams]="{ id: item.blogId, name: item.blogName }" [src]="item.image" alt="Blog image">

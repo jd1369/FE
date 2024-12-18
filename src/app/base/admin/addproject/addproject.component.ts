@@ -119,16 +119,19 @@ export class AddprojectComponent implements OnInit {
   
       // Get the files from the form
       const selectedFiles: FileList = this.projectForm.get('images')?.value;
-      console.log(selectedFiles)
-      if (selectedFiles && selectedFiles.length > 0) {
-        // Append files to FormData under 'files[]'
-        Array.from(selectedFiles).forEach((file: File) => {
-          formData.append('files[]', file, file.name);
-          console.log(formData)
-        });
+      console.log(selectedFiles);
+  
+      if (selectedFiles && selectedFiles.length >= 1) {
+        // Append the files under the 'files' key
+        formData.append('files', selectedFiles[0], selectedFiles[0].name);
+        formData.append('files', selectedFiles[1], selectedFiles[1].name);
+  
+        // Append the folder name under the 'folderName' key
+        const folderName = 'folder'; // Folder name string
+        formData.append('folderName', folderName);
   
         // Make the POST request to upload files
-        this.http.post(this.baseUrl + 'upload', formData, { responseType: 'json' })
+        this.http.post(this.baseUrl + 'uploadMultipleImages', formData, { responseType: 'json' })
           .subscribe({
             next: (response: any) => {
               console.log('Files uploaded successfully:', response);
@@ -141,20 +144,25 @@ export class AddprojectComponent implements OnInit {
             }
           });
       } else {
-        console.error('No files selected!');
+        console.error('Please select exactly two files!');
+        this.toastr.showErrorMessage('Please select exactly two files!');
       }
     } else {
       console.error('Form is invalid!');
+      this.toastr.showErrorMessage('Form is invalid!');
     }
   }
-
-
-
-
-
+  
   private submitProject(uploadResponse: any): void {
     const formData: any = { ...this.projectForm.value };
-    formData.fileUrls = uploadResponse.fileUrls || []; // Adjust based on your server's response
+    console.log(uploadResponse.uploadedImages);
+  
+    const imageUrls = uploadResponse.uploadedImages?.map((image: any) => image.url) || [];
+
+    formData.images = imageUrls;
+  
+    console.log('Final form data:', formData);
+  
     this.projectService.addProject(formData).subscribe({
       next: (response: any) => {
         console.log('Project added successfully:', response);
@@ -167,5 +175,6 @@ export class AddprojectComponent implements OnInit {
       },
     });
   }
+  
 
 }

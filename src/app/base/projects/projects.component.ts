@@ -56,9 +56,16 @@ export class ProjectsComponent implements OnInit {
   
 
   updatePagedItems() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    this.pagedItems = this.items.slice(startIndex, endIndex);
+    if (Array.isArray(this.items)) {
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
+      this.pagedItems = this.items.slice(startIndex, endIndex);
+      console.log(this.pagedItems)
+    } else {
+      // Handle the case where `this.item` is not an array or is undefined
+      console.warn('Item data is not an array or is undefined:', this.items);
+      this.pagedItems = [];  // Clear pagedItems if `item` is invalid
+    }
   }
 
   openPopup(item: any): void {

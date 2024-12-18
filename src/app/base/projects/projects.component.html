@@ -1,4 +1,4 @@
-<div class="details">
+<!-- <div class="services-container">
   <h1>
     Where Vision Meets Execution: Our Success Stories
   </h1>
@@ -7,43 +7,37 @@
   </p>
 </div>
 
-<div class="grid">
+<div class="services-grid">
   <div class="card" *ngFor="let item of items">
     <div class="card-header">
       
     </div>
-    <img [routerLink]="['projectdetails']" [queryParams]="{ id: item.projectId, name: item.projectName }" [src]="item.images" alt="Project image">
+    <img [routerLink]="['projectdetails']" [queryParams]="{ id: item.projectId, name: item.projectName }" [src]="item.images[0]" alt="Project image">
     <h1 >{{ item.projectName }}</h1>
   </div>
-</div>
+</div> -->
 
 
-
-<div class="popup" *ngIf="popupVisible">
-  <div class="popup-content">
-    <span class="close" (click)="hidePopup()">&times;</span>
-    <h2>{{ popupItem?.projectDescription }}</h2>
-    <p>{{ popupItem?.projectContent || popupItem?.subtitle }}</p>
-  </div>
-</div>
-
-
-<!--card.component.html>-->
-
-<!-- <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
-  <ng-template pTemplate="header">
-      <img alt="Card" class="w-full" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
-  </ng-template>
-  <ng-template pTemplate="title"> Advanced Card </ng-template>
-  <ng-template pTemplate="subtitle"> Card subtitle </ng-template>
+<div class="details">
+  <h1> Where Vision Meets Execution: Our Success Stories</h1>
   <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-      quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
+    Explore the diverse projects that highlight our commitment to delivering exceptional results for every brand.
   </p>
-  <ng-template pTemplate="footer">
-      <div class="flex gap-4 mt-1">
-        <p-button label="Cancel" severity="secondary" class="w-full" styleClass="w-full"></p-button>
-        <p-button label="Save" class="w-full" styleClass="w-full"></p-button>
-      </div>
-  </ng-template>
-</p-card> -->
+</div>
+
+<div class="grid" >
+ 
+  <div  class="card" *ngFor="let item of pagedItems">
+    <img [src]="item.images[0]" alt="Project image">
+    <div class="card-body" style="padding-left: 8px; background-color: rgb(240, 240, 240); display: flex; flex-direction: column; height: 100%;">
+      <h3 style=" color: #302f2f;">{{ item.projectName }}</h3>  
+    </div>
+  </div>
+  
+</div>
+
+
+
+
+
+
