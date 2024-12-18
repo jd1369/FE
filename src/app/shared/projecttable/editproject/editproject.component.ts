@@ -4,7 +4,7 @@ import { EditprojectService } from './editproject.service';
 import { ToasterService } from '../../toaster/toaster.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-editproject',
@@ -12,60 +12,62 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./editproject.component.scss']
 })
 export class EditprojectComponent implements OnInit {
- @Input() projectData: any; // Data passed from the parent component
-   editForm!: FormGroup;
-   baseUrl = environment.baseUrl;
-   selectedFile:any
-   iconFile: File | null = null;
-   key!:string
-   date:any
-   constructor(
-     private fb: FormBuilder,
-     private modalService: NgbActiveModal,
-     private editService: EditprojectService,
-     private toastr: ToasterService,
-     private http: HttpClient
-   ) {}
- 
-   ngOnInit(): void {
-    this.date = new Date()
+  @Input() projectData: any; // Data passed from the parent component
+  editForm!: FormGroup;
+  baseUrl = environment.baseUrl;
+  selectedFiles: FileList | null = null;
+  now:any
+  constructor(
+    private fb: FormBuilder,
+    private modalService: NgbActiveModal,
+    private editService: EditprojectService,
+    private toastr: ToasterService,
+    private http: HttpClient
+  ) {}
+
+  ngOnInit(): void {
     // Initialize the form with the passed data
+    this.now = new Date()
     this.editForm = this.fb.group({
       projectName: [this.projectData.projectName, [Validators.required]],
       projectDescription: [this.projectData.projectDescription, [Validators.required]],
       projectContent: [this.projectData.projectContent, [Validators.required]],
-      lastModifiedDate: [this.date],
-      images: [null] // Handle the images upload separately
+      images: [''] ,// Handle file uploads programmatically
+      lastModifiedDate:[this.now]
     });
   }
 
   // Handle file selection
   onFilesSelected(event: any): void {
-    this.selectedFile = Array.from(event.target.files);
+    this.selectedFiles = event.target.files;
   }
 
   // Save the edited form data
   save(): void {
     if (this.editForm.valid) {
-      const formData = { ...this.projectData, ...this.editForm.value };
-
-      if (this.selectedFile.length > 0) {
-        // Create FormData for multiple files
-        const fileUploadFormData = new FormData();
-        this.selectedFile.forEach((file :any, index:any) => {
-          fileUploadFormData.append('files', file, file.name);
+      const formData = new FormData();
+      formData.append('projectName', this.editForm.get('projectName')?.value);
+      formData.append('projectDescription', this.editForm.get('projectDescription')?.value);
+      formData.append('projectContent', this.editForm.get('projectContent')?.value);
+      formData.append('lastModifiedDate',this.now)
+      // Add selected files to the FormData
+      if (this.selectedFiles && this.selectedFiles.length > 0) {
+        Array.from(this.selectedFiles).forEach((file) => {
+          formData.append('files', file, file.name);
         });
 
-        this.http.post(this.baseUrl + 'upload', fileUploadFormData, { responseType: 'json' })
+        const folderName = 'folder'; // Optional: folder name for uploaded files
+        formData.append('folderName', folderName);
+
+        this.http.post(this.baseUrl + 'uploadMultipleImages', formData, { responseType: 'json' })
           .subscribe({
             next: (uploadResponse: any) => {
               console.log('Files uploaded successfully:', uploadResponse);
-              const fileUrls = uploadResponse.fileUrls || uploadResponse.urls || [];
-              formData.images = fileUrls; // Update the form data with the uploaded images URLs
-              this.toastr.showSuccessMessage('Files Uploaded');
+              const fileUrls = uploadResponse.uploadedImages?.map((image: any) => image.url) || [];
+              this.editForm.patchValue({ images: fileUrls });
 
               // After the images are uploaded, submit the project data
-              this.submitProject(formData);
+              this.submitProject();
             },
             error: (err) => {
               console.error('File upload failed!', err);
@@ -73,41 +75,43 @@ export class EditprojectComponent implements OnInit {
             }
           });
       } else {
-        // If no files are selected, just submit the form without images
-        this.submitProject(formData);
+        console.error('Please select at least one file!');
+        this.toastr.showErrorMessage('Please select at least one file!');
       }
     } else {
-      console.log('Form is invalid');
+      console.error('Form is invalid!');
+      this.toastr.showErrorMessage('Form is invalid!');
     }
   }
 
-  // Submit the project data (after images upload, if applicable)
-  submitProject(formData: any): void {
-    this.editService.saveProject(formData).subscribe(
-      (response) => {
-        console.log('Project updated successfully', response);
-        this.toastr.showSuccessMessage('Data updated successfully!');
+  // Submit the project data
+  private submitProject(): void {
+    const formData: any = { ...this.projectData, ...this.editForm.value };
+    this.editService.saveProject(formData).subscribe({
+      next: (response: any) => {
+        console.log('Project updated successfully:', response);
+        this.toastr.showSuccessMessage('Project Updated Successfully');
         this.modalService.close('Save');
       },
-      (error) => {
-        console.error('Error updating project', error);
-        this.toastr.showErrorMessage('Failed to update Data');
+      error: (err: any) => {
+        console.error('Error updating project:', err);
+        this.toastr.showErrorMessage('Failed to Update Project');
       }
-    );
+    });
   }
 
   // Delete the project
   delete(): void {
-    this.editService.deleteProject(this.projectData.id).subscribe(
-      (response:any) => {
-        console.log('Project deleted successfully', response);
+    this.editService.deleteProject(this.projectData.id).subscribe({
+      next: (response: any) => {
+        console.log('Project deleted successfully:', response);
         this.modalService.close('Delete');
       },
-      (error:any) => {
-        console.error('Error deleting project', error);
-        this.toastr.showErrorMessage('Failed to delete project');
+      error: (err: any) => {
+        console.error('Error deleting project:', err);
+        this.toastr.showErrorMessage('Failed to Delete Project');
       }
-    );
+    });
   }
 
   // Close the modal
