@@ -1,0 +1,4 @@
+ngx-loading-bar {
+    z-index: 9999; /* Ensure it's above modals */
+    position: fixed; /* Make it overlay the entire screen */
+  }
