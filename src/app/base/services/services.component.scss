@@ -1,82 +1,131 @@
 .services-container {
-    text-align: center;
-    margin: 20px;
+  text-align: center;
+  margin: 20px auto;
+  width: 100%; /* Ensures the container takes up full width */
+  max-width: 1200px; /* Set maximum width for large screens */
+  padding: 0 20px; /* Add padding on both sides */
+  box-sizing: border-box; /* Prevent padding from affecting overall width */
+  margin-bottom: 130px;
+}
+
+.services-container p {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+}
+
+.services-container h1 {
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1.5;
+  font-family: 'Manrope', sans-serif;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 6 items per row */
+  gap: 10px; /* Grid gap between items */
+  margin-top: 30px; /* Space between the heading and the grid */
+  grid-auto-rows: minmax(150px, auto); /* Ensures rows are consistent */
+  opacity: 0; /* Start with opacity 0 for fade-in animation */
+    animation: fadeIn 1s forwards; /* Fade-in animation for the grid */
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
   }
-  
-  .services-container p{
-    font-family: 'Real Text', Arial, sans-serif;
-    font-size: 16px;
-    font-family: 'Real Text', Arial, sans-serif;
+  100% {
+      opacity: 1;
   }
-  .services-container h1{
-    font-size: 28px;
-    font-weight: bold;
-    line-height: 1.5;
-    font-family: 'Real Text', Arial, sans-serif;
+}
+
+.card {
+  width: 100%;
+  background-color: #f4f4f4; /* Background color for the card */
+  border: 1px solid #ccc; /* Border for the card */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  min-height: 200px; /* Ensure each card has a minimum height */
+  opacity: 0; /* Cards start with 0 opacity */
+    animation: cardFadeIn 0.5s ease-in-out forwards; 
+}
+
+@keyframes cardFadeIn {
+  0% {
+      opacity: 0;
+      transform: translateY(10px); /* Cards start from below */
   }
-  
+  100% {
+      opacity: 1;
+      transform: translateY(0); /* Cards move to normal position */
+  }
+}
+
+.card img {
+  width: 75px; /* Fixed width for the image */
+  height: 113px; /* Fixed height for the image */
+  object-fit: contain; /* Ensures image keeps its aspect ratio */
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s, box-shadow 0.3s ease-in-out; /* Hover transition */
+
+}
+
+.service-item p {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Manrope', sans-serif;
+}
+
+/* Fixed grid layout with no scaling */
+
+/* For large desktops (>= 1600px) */
+@media (min-width: 1600px) {
   .services-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 items per row */
-    gap: 20px; /* Space between items */
-    margin: 78px 170px;
+      grid-template-columns: repeat(7, 1fr); /* 7 items per row */
   }
-  
+}
+
+/* For desktops (>= 1200px and < 1600px) */
+@media (min-width: 1200px) and (max-width: 1599px) {
   .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
-    gap: 20px;
+      grid-template-columns: repeat(7, 1fr); /* 6 items per row */
   }
-  
-  .card {
-    width: 176px;
-    height: 197px;
-    background-color: #f4f4f4; /* Optional: background color for the card */
-    border: 1px solid #ccc; /* Optional: border for the card */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 10px;
-    box-sizing: border-box; /* Ensure padding doesn't affect the total size */
-    text-align: center;
+}
+
+/* For medium desktops and laptops (1024px - 1199px) */
+@media (max-width: 1199px) and (min-width: 1024px) {
+  .services-grid {
+      grid-template-columns: repeat(5, 1fr); /* 5 items per row */
   }
-  
-  .card img {
-    min-width: 48px;  /* Adjust image size */
-    min-height: 93px; /* Adjust image size */
-    object-fit: contain; /* Ensure image maintains aspect ratio without distortion */
-    margin-bottom: 10px; /* Optional: space between image and text */
-    width: 1px;
+}
+
+/* For tablets (<= 768px) */
+@media (max-width: 768px) {
+  .services-grid {
+      grid-template-columns: repeat(4, 1fr); /* 4 items per row */
   }
-  
-  .card p {
-    font-size: 14px; /* Adjust text size if necessary */
-    color: #333; /* Optional: text color */
-    margin: 0;
+}
+
+/* For mobile devices (<= 480px) */
+@media (max-width: 480px) {
+  .services-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 items per row */
   }
-  
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
-  }
-  
-  
-  
-  .service-item p {
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: 500;
-    font-family: 'Real Text', Arial, sans-serif;
-  }
-  @media (max-width: 768px) {
-    .services-grid {
-      grid-template-columns: repeat(3, 1fr); /* 3 items per row for tablets */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .services-grid {
-      grid-template-columns: repeat(2, 1fr); /* 2 items per row for mobile */
-    }
-  }  
+}

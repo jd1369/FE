@@ -35,6 +35,7 @@
     "highcharts": "^10.3.3",
     "highcharts-angular": "^3.0.0",
     "igniteui-angular": "^14.2.40",
+    "ng-http-loader": "^12.0.0",
     "ng2-charts": "^7.0.0",
     "ngx-pagination": "^6.0.3",
     "ngx-toastr": "^14.3.0",

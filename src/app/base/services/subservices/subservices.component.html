@@ -1,48 +1,42 @@
 <div class="details">
-  <h1>
-    Dive Deeper into Our Solutions
-  </h1>
+  <h1> {{serviceName}}</h1>
   <p>
-    Explore the specialized services crafted to meet your unique needs.
+    Dive Deeper into Our Solutions
   </p>
 </div>
 
-<div class="grid">
-  <div class="card" *ngFor="let item of pagedItems">
-    <div class="card-header">
-      <i style="font-size: 1rem" class="fa fa-info fa-sm" (click)="openPopup(item)" title="View Details"></i>
+<div class="grid" [ngClass]="{'blurred': popupVisible}">
+ 
+  <div  class="card" *ngFor="let item of pagedItems">
+    <img  (click)="openPopup(item)" [src]="item.image" alt="Project image">
+    <div class="card-body" style="padding-left: 8px; background-color: rgb(240, 240, 240); display: flex; flex-direction: column; height: 100%;">
+      <h3 style=" color: #302f2f;">{{ item.name }}</h3>
+      <div *ngFor="let key of objectKeys(item.fields)">
+        <p style=" color: #605e5e;"><strong>{{ key }}:</strong> {{ item.fields[key] }}</p>
+      </div>
+      <p  style=" color: #322f2f;" *ngIf="user == true || admin == true">Price: {{item.subServicePrice}}</p>
+      <div class="login-btn-wrapper" *ngIf="user != true && admin != true" style="margin-top: auto;">
+        <button style="margin-bottom: 10px;"  (click)="openLoginModal()" class="login">Login to View</button>
+      </div>
     </div>
-    <img [src]="item.image" alt="Project image">
-    <h3>{{ item.name }}</h3>
-    <p>{{item.fields.key}}: {{item.fields.value}}</p>
-
-    <button *ngIf="user != true && admin != true"  style="margin-right: 255px;
-      border-radius: 1px;
-      width: 213px;
-      background: white;
-      border: 1px solid;
-      bottom: 27px;
-      height: 35px;
-      position: absolute;color: red;">Login to View</button>
-      <p *ngIf="user == true || admin == true">Price:{{item.subServicePrice}}</p>
   </div>
+  
 </div>
 
-
-
+<div class="overlay" *ngIf="popupVisible" (click)="hidePopup()"></div>
 <div class="popup" *ngIf="popupVisible">
   <div class="popup-content">
     <span class="close" (click)="hidePopup()">&times;</span>
     <h2>{{ popupItem?.name }}</h2>
-    <p>{{ popupItem?.projectContent || popupItem?.subtitle }}</p>
+    <div *ngIf="popupItem?.fields">
+      <div *ngFor="let key of objectKeys(popupItem.fields)">
+        <p ><strong>{{ key }}:</strong> {{ popupItem.fields[key] }}</p>
+      </div>
+    </div>
+   <span *ngIf="user != false || admin != false"><p >Price :{{popupItem.subServicePrice}}</p></span> 
   </div>
 </div>
-<div class="popup" *ngIf="popupVisible">
-  <div class="popup-content">
-    <!-- Close button inside the popup -->
-    <span class="close" (click)="hidePopup()">&times;</span>
-    <!-- Display details of the selected item -->
-    <h2>{{ popupItem?.projectDescription }}</h2>
-    <p>{{ popupItem?.projectContent || popupItem?.subtitle }}</p>
-  </div>
-</div>
+
+
+
+

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { AdminService } from './admin.service';
 import { ToasterService } from 'src/app/shared/toaster/toaster.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-admin',
@@ -13,7 +14,9 @@ export class AdminComponent implements OnInit {
   chartOptions: any; // Chart options object
   user: any;
   admin: any;
-
+  services: { id: string; name: string }[] = [];
+  selectedServices: string[] = [];
+  projectNameControl = new FormControl();
   constructor(
     private adminservice: AdminService,
     private toastr: ToasterService
@@ -25,6 +28,7 @@ export class AdminComponent implements OnInit {
 
     this.initializeChartOptions(); // Initialize chart options
     this.getChartData(); // Fetch chart data
+    this.getTopServices()
   }
 
   /**
@@ -58,6 +62,54 @@ export class AdminComponent implements OnInit {
       },
     };
   }
+
+  onSelectionChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedServices = Array.from(selectElement.selectedOptions).map(
+      (option) => option.value
+    );
+  }
+
+  getTopServices(){
+    this.adminservice.getDropdown().subscribe({
+      next:(resposne:any)=>{
+        console.log(resposne)
+        this.services = resposne
+      },
+
+      error:(err:any)=>{
+        console.log(err)
+      }
+    })
+  }
+
+
+  updateServices(){
+    const selectedValues = this.projectNameControl.value;  // Get selected values from mat-select
+
+    if (selectedValues && selectedValues.length < 5) {
+
+      return this.toastr.showErrorMessage("Need five services")
+    }
+      // Construct the payload
+      const payload = {
+        serviceIds: selectedValues
+      };
+
+    
+    this.adminservice.updateServiceList(payload).subscribe({
+      next:(resposne:any)=>{
+       this.toastr.showSuccessMessage("Updated Successfully")
+      },
+
+      error:(err:any)=>{
+        console.log(err)
+        
+      }
+    })
+  
+}
+
 
   /**
    * Fetch chart data and update the chart options.

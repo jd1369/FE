@@ -46,11 +46,31 @@
   <div class="card shadow mb-2">
     <h2>Service Details</h2>
     <div class="card-body chart">
+      <div class="row">
+        <div class="col-lg-10 d-flex justify-content-between align-items-center">
+          <!-- Select Dropdown -->
+          <div class="mb-2 w-75">
+            <label for="projectName" class="form-label labels">Select Top 5 Services</label>
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Services</mat-label>
+              <mat-select [formControl]="projectNameControl" multiple>
+                <mat-option *ngFor="let service of services" [value]="service">
+                  {{ service }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+  
+          <!-- Submit Button on the right -->
+          <button mat-raised-button (click)="updateServices()">Submit</button>
+        </div>
+      </div>
       <div class="table-container2">
         <app-servicetable></app-servicetable>
       </div>
     </div>
   </div>
+  
 
   &nbsp;
   <div class="card shadow mb-2">

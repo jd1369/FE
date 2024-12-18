@@ -47,12 +47,11 @@
         <!-- Display details of the selected item -->
         <h2>{{ popupItem?.name }}</h2>
         <!-- Display fields dynamically -->
-        <div *ngFor="let field of getFieldKeys(popupItem?.fields)">
-            <!-- Access the inner key-value pair and display it -->
+        <!-- <div *ngFor="let field of getFieldKeys(popupItem?.fields)">
             <div *ngFor="let innerKey of getInnerKeys(popupItem?.fields, field)">
                 <p>{{ innerKey }} = {{ getFieldValue(popupItem?.fields, field, innerKey) }}</p>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 

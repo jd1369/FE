@@ -1,5 +1,6 @@
 .details {
-  padding: 45px 90px 119px 209px;
+  padding: 45px 201px 119px 201px;
+  background-color: rgb(240, 240, 240);
 }
 
 .details h1 {
@@ -7,13 +8,13 @@
   font-weight: bold;
   text-align: center;
   line-height: 1;
-  font-family: 'Real Text', Arial, sans-serif;
+  font-family: 'Manrope', sans-serif;
   word-wrap: break-word;  /* Ensure text wraps to the next line */
   padding-bottom: 0px;
 }
 
 .details .a {
-  font-family: 'Real Text', Arial, sans-serif;
+  font-family: 'Manrope', sans-serif;
   word-wrap: break-word;  /* Ensure text wraps to the next line */
 }
 
@@ -21,12 +22,14 @@
   font-size: 16px;
   text-wrap: pretty;
   text-align: center;
-  font-family: 'Real Text', Arial, sans-serif;
+  font-weight: 400;
+  font-family: 'Manrope', sans-serif;
   word-wrap: break-word;  /* Ensure text wraps to the next line */
   white-space: normal;     /* Allow text to wrap normally */
   padding: 16px;
+  text-align: left;
+  text-indent: 39px;
 }
-
 .details img {
   width: 31%;
   height: 310px;
@@ -57,14 +60,14 @@
 
 .card h3 {
   font-size: 16px;
-  font-family: 'Real Text', Arial, sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-weight: bold;
   margin: 10px 0 5px;
 }
 
 .card p {
   font-size: 14px;
-  font-family: 'Real Text', Arial, sans-serif;
+  font-family: 'Manrope', sans-serif;
   color: #777;
   overflow: hidden; /* Hide any text overflow */
   text-overflow: ellipsis; /* Add ellipsis if text overflows */

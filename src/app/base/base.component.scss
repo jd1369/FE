@@ -106,6 +106,42 @@
   color: white;
 }
 
+/* Dropdown menu */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  border: 0;
+  font-weight: 600;
+ // background-color: transparent;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 10;
+  min-width: 100px;
+}
+
+.dropdown-menu li a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  font-family: 'Manrope', sans-serif;
+
+}
+
+.dropdown-menu li a:hover {
+  color: #ffdd57;
+  text-decoration: underline;
+}
+
 /* Content padding */
 .content {
   padding-top: 100px; /* Ensure space under navbar */
@@ -270,7 +306,8 @@
   line-height: 1.2em;
   margin-bottom: 2rem;
   font-size: 5vw; /* Make font size relative to viewport */
-  font-family: 'Real Text', Arial, sans-serif;
+  font-family: 'Manrope', sans-serif;
+
   word-wrap: break-word;
   padding: 0px 15vw 0px 0px; /* Adjust padding for larger screens */
 }
@@ -301,12 +338,14 @@
 .section h6 {
   font-size: 1.2rem; /* Use relative font size */
   margin-bottom: 1rem;
-  font-family: 'Real Text', Arial, sans-serif;
+    font-family: 'Manrope', sans-serif;
+
   line-height: 1.25;
 }
 
 .section ul {
-  font-family: 'Real Text', Arial, sans-serif;
+    font-family: 'Manrope', sans-serif;
+
   list-style: none;
   line-height: 1.5; /* Adjust line height for better readability */
   padding: 0;
@@ -325,7 +364,8 @@
   border: none;
   padding: 0.9rem 1.3rem;
   font-size: 1.1rem;
-  font-family: 'Real Text', Arial, sans-serif;
+    font-family: 'Manrope', sans-serif;
+
   border-radius: 1px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;

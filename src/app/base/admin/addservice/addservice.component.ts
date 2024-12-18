@@ -137,6 +137,8 @@ iconFileError: string = '';
       next: (response: any) => {
         console.log('Service added successfully:', response);
         this.toastr.showSuccessMessage('Data Saved Successfully');
+        this.activeModal.dismiss()
+        window.location.reload()
       },
       error: (err: any) => {
         console.error('Error adding service:', err);

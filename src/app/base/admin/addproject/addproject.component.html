@@ -42,7 +42,7 @@
   <div class="row" style="padding-top: 20px;">
     <div class="col-lg-6 form-style">
       <div class="form-group pb-2">
-        <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+        <input type="file" (change)="onFileSelected($event)" accept="image/*" multiple/>
         <div *ngIf="projectForm.get('images')?.errors?.['required']" class="text-danger">
           <small>Image upload is required.</small>
         </div>

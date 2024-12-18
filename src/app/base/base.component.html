@@ -9,14 +9,13 @@
       <a routerLink="/base/projects" routerLinkActive="active">Project</a>
       <a routerLink="/base/aboutus" routerLinkActive="active">Contact</a>
       
-      <div *ngIf="admin == true" class="dropdown" (mouseenter)="toggleDropdown(true)"
-        (mouseleave)="toggleDropdown(false)">
-        <a routerLink="/base/admin" routerLinkActive="active">Admin</a>
-        <ul class="dropdown-menu" >
+      <div *ngIf="admin==true"  class="dropdown" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
+        <a   routerLink="/base/admin" routerLinkActive="active">Admin</a>
+        <ul class="dropdown-menu" *ngIf="dropdownVisible">
           <li><a (click)="addProject()">Add Project</a></li>
           <li><a (click)="addService()">Add Service</a></li>
           <li><a (click)="fileInputRef.nativeElement.click()">New Banner</a>
-            <input #fileInput type="file" placeholder="img" (change)="onFileSelected($event); onSubmit();"
+            <input #fileInput type="file" placeholder="img" (change)="onFileSelected($event);onSubmit();"
               accept="image/*" style="display: none;" />
           </li>
           <li><a (click)="postaBlog()">Post A Blog</a></li>

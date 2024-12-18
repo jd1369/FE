@@ -117,6 +117,8 @@ export class AddsubserviceComponent implements OnInit {
        next: (response: any) => {
          console.log('Service added successfully:', response);
          this.toastr.showSuccessMessage('Data Saved Successfully');
+         this.activeModal.dismiss()
+
 
        },
        error: (err: any) => {

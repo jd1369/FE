@@ -11,6 +11,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
+import { MatOption} from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
@@ -61,6 +62,10 @@ import { LoaderInterceptor } from './shared/loader/loader.interceptor';
 import { SubserviceDetailsComponent } from './shared/servicetable/subservice-details/subservice-details.component';
 import { SubservicemodalComponent } from './shared/servicetable/subservice-details/subservicemodal/subservicemodal.component';
 import { ClientsModule } from "./shared/clients/clients.module";
+import {  MatSelectModule } from '@angular/material/select';  // Correct import
+import { MatInputModule } from '@angular/material/input';  
+import { NgHttpLoaderModule } from 'ng-http-loader'; // <============
+import { MatCardModule } from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -99,9 +104,11 @@ import { ClientsModule } from "./shared/clients/clients.module";
     ButtonModule,
     TagModule,
     BrowserModule,
+    NgHttpLoaderModule.forRoot(), // < Loader============ Don't forget to call 'forRoot()'!
     MatListModule,
     CarouselModule,
     MatFormFieldModule,
+    MatCardModule,
     IgxButtonModule,
     IgxIconModule,
     IgxCardModule,
@@ -129,17 +136,14 @@ import { ClientsModule } from "./shared/clients/clients.module";
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatSelectModule,
+    MatInputModule,
     MatButtonModule,
     MatIconModule, HttpClientModule, MatSlideToggleModule,
     ClientsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: LoaderInterceptor,  // Register the interceptor
-    multi: true
-  } 
   ],
   bootstrap: [AppComponent]
 })

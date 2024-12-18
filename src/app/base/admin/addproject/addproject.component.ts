@@ -106,6 +106,54 @@ export class AddprojectComponent implements OnInit {
 }
 
 
+// onSubmit(): void {
+//   console.log("Form submitted");
+
+//   if (this.projectForm.valid) {
+//     const formData: any = { ...this.projectForm.value }; // Initialize form data as plain JSON object
+//     const selectedFiles: FileList = this.projectForm.get('images')?.value;
+
+//     if (selectedFiles && selectedFiles.length > 0) {
+//       const fileUploadFormData = new FormData();
+
+//       // Iterate through the selected files and append them to the FormData under the same key
+//       Array.from(selectedFiles).forEach((file: File) => {
+//         fileUploadFormData.append('files[]', file, file.name);
+//       });
+
+//       // Upload the files to the server
+//       this.http.post(this.baseUrl + 'upload', fileUploadFormData, { responseType: 'json' })
+//         .subscribe({
+//           next: (uploadResponse: any) => {
+//             console.log('Files uploaded successfully:', uploadResponse);
+
+//             // Assuming the server responds with an array of file URLs
+//             const fileUrls = uploadResponse.fileUrls || uploadResponse.urls || [];
+
+//             // Add the uploaded file URLs to the 'images' field in formData
+//             formData.images = fileUrls;
+//             this.toastr.showSuccessMessage('Images Uploaded Successfully');
+
+//             // Submit the form with the updated images field
+//             this.submitProject(formData);
+//           },
+//           error: (err) => {
+//             console.error('File upload failed!', err);
+//             this.toastr.showErrorMessage('Failed to upload Images');
+//           }
+//         });
+//     } else {
+//       // If no files are selected, set 'images' as an empty array
+//       formData.images = [];
+//       this.submitProject(formData);
+//     }
+//   } else {
+//     console.error('Form is invalid!');
+//   }
+// }
+
+
+
 
   
   // Helper method to submit the project form
@@ -114,6 +162,7 @@ export class AddprojectComponent implements OnInit {
       next: (response: any) => {
         console.log('Project added successfully:', response);
         this.toastr.showSuccessMessage('Data Uploaded Successfully');
+        this.activeModal.dismiss()
       },
       error: (err: any) => {
         console.error('Error adding project:', err);

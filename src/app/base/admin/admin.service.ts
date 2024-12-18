@@ -19,4 +19,29 @@ export class AdminService {
     console.log(headers)
     return this.http.get(`${this.baseUrl}serviceClickCounts-PieChart`, { headers });
   }
+  
+  getDropdown()
+  {
+    const token = localStorage.getItem('authToken');
+    console.log(token)
+    const headers = new HttpHeaders({
+      Token: `Bearer ${token}`,
+    });
+    return this.http.get(`${this.baseUrl}namesOfServices`,{headers})
+    
+  }
+  
+
+  updateServiceList(serviceIds:any){
+    {
+      const token = localStorage.getItem('authToken');
+      console.log(token)
+      const headers = new HttpHeaders({
+        Token: `Bearer `,
+      });
+      return this.http.post(`${this.baseUrl}topFiveServices`,serviceIds,{headers})
+
+  }
+}
+
 }

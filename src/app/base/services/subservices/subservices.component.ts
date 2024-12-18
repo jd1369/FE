@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ProjectsService } from '../../projects/projects.service';
+import { LoginComponent } from 'src/app/auth/login/login.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-subservices',
   templateUrl: './subservices.component.html',
@@ -18,6 +20,7 @@ constructor(private http: HttpClient,
       private sharedservice:SharedserviceService,
       private router: Router,
       private renderer: Renderer2,
+      private modalService: NgbModal,
        private route: ActivatedRoute
     ) { }
 
@@ -71,7 +74,10 @@ constructor(private http: HttpClient,
       },
     });
   }
-  
+   openLoginModal(clickFrom?: any) {
+      const modalRef = this.modalService.open(LoginComponent, { size: 'lg' });
+      modalRef.componentInstance.clickFrom = clickFrom;
+    };
 
   // Method to update paged items for pagination
   updatePagedItems() {
@@ -85,12 +91,15 @@ constructor(private http: HttpClient,
       this.pagedItems = [];  // Clear pagedItems if `item` is invalid
     }
   }
-
+  objectKeys(obj: any): string[] {
+    return Object.keys(obj); // Returns an array of keys from the object
+  }
   // Method to handle opening a popup
   openPopup(item: any): void {
     console.log('openPopup called');
     this.popupItem = item;
-    console.log(item.fields.key)
+    
+    console.log(item.fields)
     this.popupVisible = true;
   }
 

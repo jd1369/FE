@@ -7,7 +7,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BaseComponent } from './base.component';
 import { AdminComponent } from './admin/admin.component';
 import { ServicesComponent } from './services/services.component';
-
 import { HomeComponent } from './home/home.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { MatTableModule } from '@angular/material/table';
@@ -27,6 +26,7 @@ import { BlogComponent } from './blog/blog.component';
 import { ProjectdetailsComponent } from './projects/projectdetails/projectdetails.component';
 @NgModule({
   declarations: [
+    
   ],
   imports: [
     CommonModule,
@@ -34,6 +34,7 @@ import { ProjectdetailsComponent } from './projects/projectdetails/projectdetail
     HttpClientModule,
     ReactiveFormsModule,
     NgbModule,
+    
     MatTableModule,
     
 
