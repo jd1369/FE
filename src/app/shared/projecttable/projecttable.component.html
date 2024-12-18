@@ -15,9 +15,16 @@
         <ng-container matColumnDef="images">
             <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
             <mat-cell *matCellDef="let projectData"> 
-                <img [src]="projectData.images" alt="Project Image" class="table-image" />
-
+                <ng-container *ngIf="projectData.images.length === 1">
+                    <img [src]="projectData.images[0]" alt="Project Image" class="table-image single-image" />
+                </ng-container>
+                <ng-container *ngIf="projectData.images.length === 2" class="image-pair">
+                    <img [src]="projectData.images[0]" alt="Project Image 1" class="table-image image-side" />
+                    &nbsp;
+                    <img [src]="projectData.images[1]" alt="Project Image 2" class="table-image image-side" />
+                </ng-container>
             </mat-cell>
+            
         </ng-container>
         <ng-container matColumnDef="action">
             <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>

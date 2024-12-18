@@ -28,7 +28,7 @@
 <div class="grid" >
  
   <div  class="card" *ngFor="let item of pagedItems">
-    <img [src]="item.images[0]" alt="Project image">
+    <img [routerLink]="['projectdetails']" [queryParams]="{ id: item.projectId, name: item.projectName }" [src]="item.images[0]" alt="Project image">
     <div class="card-body" style="padding-left: 8px; background-color: rgb(240, 240, 240); display: flex; flex-direction: column; height: 100%;">
       <h3 style=" color: #302f2f;">{{ item.projectName }}</h3>  
     </div>

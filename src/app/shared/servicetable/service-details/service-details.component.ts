@@ -163,4 +163,13 @@ export class ServiceDetailsComponent implements OnInit {
         });
     }
   }
+
+  addField(): void {
+    const newField = this.fb.group({
+      type: ['', Validators.required], // Default empty key
+      value: ['', Validators.required], // Default empty value
+    });
+  
+    this.fields.push(newField);
+  }
 }

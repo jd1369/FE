@@ -3,12 +3,15 @@
     <div>
         <p>{{projectDescription}}</p>
     </div>
-    <img [src]=image alt="about">
+    <div class="image-container">
+        <img *ngIf="image.length === 1" [src]="image[0]" alt="about" class="single-image">
+        <div *ngIf="image.length === 2" class="image-pair">
+            <img [src]="image[0]" alt="about" class="image-side">
+            <img [src]="image[1]" alt="about" class="image-side">
+        </div>
+    </div>
     <div>
         <p>{{projectContent}}</p>
     </div>
 </div>
 <app-clients></app-clients>
-
-
-
