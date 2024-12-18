@@ -62,7 +62,6 @@ export class LoginComponent implements OnInit {
       console.log(this.registerForm.value)
       this.authService.register(emailId, name, phoneNumber,companyName).subscribe({
         next: (response:any) =>{ this.toastr.showSuccessMessage('Logged In Successfully');
-          alert('Registration successful')
           this.activeModal.dismiss()
         },
 

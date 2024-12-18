@@ -217,3 +217,27 @@ form button:hover {
     width: 100%;
   }
 }
+
+
+
+.phone-number-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px; /* Space between input and link */
+}
+
+.phone-number-container .floating-input {
+  flex: 1; /* Make the input take up available space */
+}
+
+.phone-number-container .link {
+  color: #3cc194;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  white-space: nowrap; /* Prevent link text from wrapping */
+}
+
+.phone-number-container .link:hover {
+  color: #2ea47b;
+}

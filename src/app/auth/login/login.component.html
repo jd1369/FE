@@ -48,7 +48,7 @@
         <input type="email" formControlName="emailId" class="floating-input" placeholder=" " />
         <label class="floating-label">Your Email</label>
         <div *ngIf="registerForm.get('emailId')?.invalid && registerForm.get('emailId')?.touched" class="error-message">
-          Enter a valid email address.
+          Enter a company email address.
         </div>
       </div>
 
@@ -79,7 +79,7 @@
         <div *ngIf="loginForm.get('phoneNumber')?.invalid && loginForm.get('phoneNumber')?.touched" class="error-message">
           Valid 10-digit number is required.
         </div>
-        <span class="link" (click)="getOtp()">Get OTP</span>
+        
       </div>
 
       <div class="input-container">

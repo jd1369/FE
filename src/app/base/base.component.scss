@@ -40,6 +40,7 @@
 .logo {
   flex: 1;
   display: flex;
+  cursor: pointer;
   flex-wrap: nowrap;
   align-items: center;
   margin-bottom: 6px;
@@ -128,6 +129,7 @@
   gap: 0.5rem;
   z-index: 10;
   min-width: 100px;
+  background-color: rgb(240, 240, 240);;
 }
 
 .dropdown-menu li a {

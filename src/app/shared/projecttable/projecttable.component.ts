@@ -58,6 +58,8 @@ export class ProjecttableComponent implements OnInit {
     this.projectService.updateProject(row).subscribe({
       next: (response: any) => {
         console.log('Row updated successfully:', response);
+        this.getProjectData();
+        window.location.reload()
       },
       error: (err: any) => {
         console.error('Error saving row:', err);
@@ -72,11 +74,14 @@ export class ProjecttableComponent implements OnInit {
         console.log('Row deleted successfully');
         this.dataSource.data = this.dataSource.data.filter(item => item.customerID !== row.customerID);
         this.getProjectData();
+        window.location.reload()
         this.toastr.showSuccessMessage('Data Deleted Successfully');
       },
       error: (err: any) => {
         console.error('Error deleting row:', err);
+        window.location.reload()
         this.toastr.showSuccessMessage('Data Deleted Successfully');
+        
       },
     });
   }

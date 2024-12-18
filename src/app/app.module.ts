@@ -104,7 +104,7 @@ import { MatCardModule } from "@angular/material/card";
     ButtonModule,
     TagModule,
     BrowserModule,
-    NgHttpLoaderModule.forRoot(), // < Loader============ Don't forget to call 'forRoot()'!
+    NgHttpLoaderModule.forRoot(),// < Loader============ Don't forget to call 'forRoot()'!
     MatListModule,
     CarouselModule,
     MatFormFieldModule,

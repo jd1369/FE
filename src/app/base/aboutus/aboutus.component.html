@@ -26,7 +26,7 @@
                             placeholder="Your EmailId" />
                         <div *ngIf="f['email']?.touched && f['email']?.invalid" class="text-danger">
                             <small *ngIf="f['email']?.hasError('required')">Email is required.</small>
-                            <small *ngIf="f['email']?.hasError('email')">Please enter a valid email address.</small>
+                            <small *ngIf="f['email']?.hasError('email')">Please enter your company email address.</small>
                         </div>
                     </fieldset>
                 </div>
