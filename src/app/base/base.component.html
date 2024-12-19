@@ -1,16 +1,20 @@
 <nav [ngClass]="{'scrolled': isScrolled}" class="navbar">
   <div class="navbar-content">
     <div class="logo">
-      <img [routerLink]="['/base/home']" src="assets/Logo2.png" alt="Logo" />
+      <img style="height: 43px; width: 148px; margin-bottom: 4px; margin-top: 10px;"
+       [routerLink]="['/base/home']"
+       [src]="isScrolled ? 'assets/logoScrolled.png' : 'assets/Logo2.png'"
+       alt="Logo" />
     </div>
-    <div class="nav-links" > 
+    <div class="nav-links">
       <a routerLink="/base/about" routerLinkActive="active">Work</a>
       <a routerLink="/base/services" routerLinkActive="active">Services</a>
       <a routerLink="/base/projects" routerLinkActive="active">Project</a>
       <a routerLink="/base/aboutus" routerLinkActive="active">Contact</a>
-      
-      <div *ngIf="admin==true"  class="dropdown" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
-        <a   routerLink="/base/admin" routerLinkActive="active">Admin</a>
+
+      <div *ngIf="admin==true" class="dropdown" (mouseenter)="toggleDropdown(true)"
+        (mouseleave)="toggleDropdown(false)">
+        <a routerLink="/base/admin" routerLinkActive="active">Admin</a>
         <ul class="dropdown-menu" *ngIf="dropdownVisible">
           <li><a (click)="addProject()">Add Project</a></li>
           <li><a (click)="addService()">Add Service</a></li>
@@ -21,8 +25,8 @@
           <li><a (click)="postaBlog()">Post A Blog</a></li>
         </ul>
       </div>
-     
-      
+
+
 
     </div>
     <div *ngIf="!isLoggedIn" class="login">
@@ -30,7 +34,7 @@
 
     </div>
     <div *ngIf="isLoggedIn" class="login">
-      <button  (click)="logout()">
+      <button (click)="logout()">
         Log Out
       </button>
     </div>
@@ -60,9 +64,8 @@
 
 <div class="dd-nyc-container">
   <div class="call-to-action">
-    <p>Starting a new project or want to collaborate with us?</p><a [routerLink]="['/base/aboutus']" href="#">Let's talk
-      ></a>
-    <p>inf0&#64;elephantadagency.com</p>
+    <p>Starting a new project or want to collaborate with us?</p><a [routerLink]="['/base/aboutus']" href="#">Let's talk ></a>
+   <p> <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&ifkv=AeZLP99f26btAVcW-s7D59XHeJctbRL0UkEOKVO8I1_Wt0Jric3wKvrFUg_OCdRMXR_8YxucJOwQ&osid=1&passive=1209600&service=mail&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-1456324225%3A1734607696130768&ddm=1" style="color: #575757;">info&#64;elephantadagency.com</a></p>
   </div>
 
   <div class="content-section">
@@ -110,10 +113,14 @@
       <div class="dash"></div>
       <h6>Connect</h6>
       <ul>
-        <li><a style="text-decoration: none;color: white;" href="https://www.youtube.com/channel/UCx1G-yzTLxK7lxTmtNlH4Cw">Youtube</a></li>
-        <li><a style="text-decoration: none;color: white;" href="https://www.facebook.com/Elephant.adagency/">Facebook</a></li>
-        <li><a style="text-decoration: none;color: white;" href="https://www.instagram.com/elephant.adagency/?hl=en">Instagram</a></li>
-        <li><a style="text-decoration: none;color: white;" href="https://in.linkedin.com/company/the-elephant-ad-agency">Linked In</a></li>
+        <li><a style="text-decoration: none;color: white;"
+            href="https://www.youtube.com/channel/UCx1G-yzTLxK7lxTmtNlH4Cw">Youtube</a></li>
+        <li><a style="text-decoration: none;color: white;"
+            href="https://www.facebook.com/Elephant.adagency/">Facebook</a></li>
+        <li><a style="text-decoration: none;color: white;"
+            href="https://www.instagram.com/elephant.adagency/?hl=en">Instagram</a></li>
+        <li><a style="text-decoration: none;color: white;"
+            href="https://in.linkedin.com/company/the-elephant-ad-agency">Linked In</a></li>
         <li routerLink="/base/aboutus" routerLinkActive="active">Contact</li>
       </ul>
     </div>

@@ -1,5 +1,5 @@
 <div class="details">
-    <h1>
+    <h1> 
         Insights & Innovations: Our Blog
     </h1>
     <p>
@@ -8,11 +8,10 @@
   
   <div class="grid">
     <div class="card" *ngFor="let item of items">
-      <div >
-        
-      </div>
       <img [routerLink]="['blogdetails']" [queryParams]="{ id: item.blogId, name: item.blogName }" [src]="item.image" alt="Blog image">
+      <div class="card-body" style="padding-left: 8px; background-color: rgb(240, 240, 240); display: flex; flex-direction: column; height: 100%;">
       <h3>{{ item.blogName }}</h3>
+      </div>
     </div>
   </div>
   

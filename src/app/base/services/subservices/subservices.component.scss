@@ -54,7 +54,7 @@
   
   .card img {
     width: 100%; /* Ensure the image takes up the full width of the card */
-    height: 150px; /* Fixed height for the image */
+    height: 100%; /* Fixed height for the image */
     object-fit: cover; /* Ensures the image is cropped to fit */
     border-radius: 4px;
   }
@@ -62,10 +62,11 @@
   .card h3 {
     font-size: 16px;
       font-family: 'Manrope', sans-serif;
-
-    font-weight: 500;
+line-height: 10px;
+    font-weight: 700;
     text-align: left;
     margin: 10px 0 5px;
+    margin-bottom: 10px;
   }
   
   .card p {
@@ -102,7 +103,7 @@ text-align: left;
     grid-template-columns: repeat(4, 1fr);
     gap: 33px;
     max-width: 1076px;
-    margin: 0 auto;
+    margin: 42px auto;
     margin-bottom: 70px;
   }
   

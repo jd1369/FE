@@ -14,14 +14,14 @@
 
   .tag {
     display: inline-block;    
-    font-size: 93px;           
+    font-size: 90px;           
     line-height: 1;
     white-space: nowrap;      
     font-style: normal;
     font-family: 'Manrope', sans-serif;
     word-wrap: normal;        
     z-index: 7;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: -6px;
   }
   
@@ -88,9 +88,10 @@ cursor: pointer;
 overflow: hidden;
 }
 .heading.text-image {
-  background-size: 50%;  /* Reduces the size of the background image to 50% */
-  background-position: center;  /* Centers the image within the div */
-  background-repeat: no-repeat;  /* Prevents repeating the image */
+  background-size: 13%;
+  background-repeat: no-repeat;
+  background-position-x: 899px;
+  background-position-y: 121px; /* Prevents repeating the image */
 }
 
 
@@ -247,7 +248,7 @@ text-decoration: underline;
 .detail {
   font-size: 36px; /* Adjusted for smaller text size */
   font-family: 'Manrope', sans-serif;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.2; /* Controls spacing between lines */
   display: block; /* Ensures proper block-level alignment */
   text-align: left;
@@ -260,7 +261,7 @@ text-decoration: underline;
   font-size: 100px; /* Adjusted for large numbers */
   font-size: 100px;
     font-family: "Manrope", sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 1;
     display: block;
     padding-bottom: 30px;
@@ -288,7 +289,7 @@ text-decoration: underline;
   line-height: 1.03;
   letter-spacing: -0.05em; 
   display: inline-block;
-  padding: 159px 10px 107px 95px;
+  padding: 159px 10px 151px  95px;
   text-align: left;
   width: 100%;
   height: 100%;
@@ -298,20 +299,20 @@ text-decoration: underline;
 }
 
 .quote-start {
-  font-size: 76px; /* Adjust size of the opening quote */
+  font-size: 168px; /* Adjust size of the opening quote */
   color: #3cc194; /* Orange color for quotation marks */
   position: absolute;
   top: 28;
-  left: 94px; /* Adjust position to match the design */
-  padding-top: 109px;
+  left: 85px; /* Adjust position to match the design */
+  padding-top: 61px;
 }
 
 .quote-end {
-  font-size: 76px; /* Adjust size of the closing quote */
+  font-size: 168px; /* Adjust size of the closing quote */
   color: #3cc194; /* Orange color for quotation marks */
   float: right;
-  margin-top: -139px; /* Aligns with the last line of the quote */
-  margin-right: 530px;
+  margin-top: -223px; /* Aligns with the last line of the quote */
+  margin-right: 596px;
 }
 
 

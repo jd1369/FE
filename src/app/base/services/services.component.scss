@@ -1,11 +1,11 @@
 .services-container {
   text-align: center;
-  margin: 20px auto;
+  margin: 49px auto;
   width: 100%; /* Ensures the container takes up full width */
   max-width: 1200px; /* Set maximum width for large screens */
   padding: 0 20px; /* Add padding on both sides */
   box-sizing: border-box; /* Prevent padding from affecting overall width */
-  margin-bottom: 130px;
+  margin-bottom: 195px;
 }
 
 .services-container p {
@@ -23,9 +23,8 @@
 .services-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr); /* 6 items per row */
-  gap: 10px; /* Grid gap between items */
   margin-top: 30px; /* Space between the heading and the grid */
-  grid-auto-rows: minmax(150px, auto); /* Ensures rows are consistent */
+  grid-auto-rows: minmax(200px, auto); /* Ensures rows are consistent */
   opacity: 0; /* Start with opacity 0 for fade-in animation */
     animation: fadeIn 1s forwards; /* Fade-in animation for the grid */
 }
@@ -40,9 +39,9 @@
 }
 
 .card {
-  width: 100%;
-  background-color: #f4f4f4; /* Background color for the card */
-  border: 1px solid #ccc; /* Border for the card */
+  width: 79%;
+  background-color: #ffffff; /* Background color for the card */
+  border:1px solid #ffffff; /* Border for the card */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,7 +49,7 @@
   padding: 20px;
   box-sizing: border-box;
   text-align: center;
-  min-height: 200px; /* Ensure each card has a minimum height */
+  max-height: 156px; /* Ensure each card has a minimum height */
   opacity: 0; /* Cards start with 0 opacity */
     animation: cardFadeIn 0.5s ease-in-out forwards; 
 }
@@ -67,16 +66,21 @@
 }
 
 .card img {
-  width: 75px; /* Fixed width for the image */
-  height: 113px; /* Fixed height for the image */
-  object-fit: contain; /* Ensures image keeps its aspect ratio */
-  margin-bottom: 10px;
+
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  margin-bottom: 4px;
+  border-radius: 50%;
+  /* padding: 11px; */
+  padding-bottom: 2px;
 }
 
 .card p {
   font-size: 14px;
   color: #333;
   margin: 0;
+  font-weight: 610;
 }
 
 .card:hover {

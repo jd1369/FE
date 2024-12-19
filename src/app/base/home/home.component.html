@@ -1,20 +1,22 @@
-<div *ngIf="admin" [ngStyle]="{'background': switchBanner }" style="float: right;">
-  <button class="toggle-button" (click)="toggleContent()">
-
-    <span class="slider" [class.active]="switchBanner"></span>
-  </button>
-</div>
-
 <div [ngStyle]="{
-    'background-image': switchBanner ? 'url(' + url + ')' : 'url(/assets/textimage.png)',
-    'background-color': switchBanner ? 'none' : '#f0f0f0'
-  }"[class.text-image]="!switchBanner" class="heading">
-  <ul class="title">
-   
-    <li class="tag">Big Ideas, Bold Results.</li>
-    <li class="tag">Let’s make your brand unforgettable.</li>
-  </ul>
+  'background-image': switchBanner 
+      ? 'url(' + url + '), url(/assets/icon.png)' 
+      : 'url(/assets/watermark.png), url(/assets/icon.png)',
+  'background-color': switchBanner ? 'transparent' : '#f0f0f0',
+
+  'background-position': '694px -276px, 902px 137px',
+  'background-repeat': 'no-repeat, no-repeat',
+  'background-size': '772px, 180px',
+  'background-clip': 'padding-box'
+}" 
+[class.text-image]="!switchBanner" 
+class="heading">
+<ul class="title">
+  <li class="tag">Big Ideas, Bold Results</li>
+  <li class="tag">Let’s make your brand unforgettable.</li>
+</ul>
 </div>
+
 
 <div class="carousel-container">
   <!-- Carousel Section -->

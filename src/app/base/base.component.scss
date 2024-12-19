@@ -13,7 +13,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 0.4rem 1rem 0px 3em; /* Relative units for responsive padding */
+  padding: 0.4rem 3.7rem 4px 3.7em; /* Relative units for responsive padding */
   background-color: rgb(240, 240, 240);
   transition: background-color 0.3s ease;
   z-index: 1000;
@@ -47,7 +47,7 @@
 }
 
 .logo img {
-  height: 3rem; /* Relative height for logo */
+  height: 3.4em; /* Relative height for logo */
   max-width: 100%;
 }
 
@@ -64,11 +64,11 @@
 .nav-links a {
   text-decoration: none;
   color: rgb(0, 0, 0);
-  font-weight: 550;
+  font-weight: 400;
   font-style: normal;
   transition: color 0.3s ease;
   font-family: 'Manrope', sans-serif;
-  font-size: 1.2em; /* Relative font size */
+  font-size: 1em; /* Relative font size */
 }
 
 .navbar.scrolled .nav-links a {
@@ -99,11 +99,11 @@
   color: rgb(0, 0, 0);
   border: none;
   border-radius: 5px;
-  font-weight: bold;
+  font-weight: 600;
   font-family: 'Manrope', sans-serif;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
-  font-size: 1rem;
+  font-size: 1em;
 }
 
 .login button:hover {
@@ -276,7 +276,7 @@
   flex: 1;
   min-width: 100%;
   min-height: 100%;
-  background: rgb(203 203 203 / 0%);
+  background: rgb(221 221 221 / 46%);
   transition: padding-top 0.3s ease-in-out;
   background-size: cover;
   background-position: center;

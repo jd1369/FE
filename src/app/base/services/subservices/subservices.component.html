@@ -1,16 +1,11 @@
-<div class="details">
-  <h1> {{serviceName}}</h1>
-  <p>
-    Dive Deeper into Our Solutions
-  </p>
-</div>
+
 
 <div class="grid" [ngClass]="{'blurred': popupVisible}">
  
   <div  class="card" *ngFor="let item of pagedItems">
     <img  (click)="openPopup(item)" [src]="item.image" alt="Project image">
     <div class="card-body" style="padding-left: 8px; background-color: rgb(240, 240, 240); display: flex; flex-direction: column; height: 100%;">
-      <h3 style=" color: #302f2f;">{{ item.name }}</h3>
+      <h3 style=" color: #302f2f;text-align: center;">{{ item.name }}</h3>
       <div *ngFor="let key of objectKeys(item.fields)">
         <p style=" color: #605e5e;"><strong>{{ key }}:</strong> {{ item.fields[key] }}</p>
       </div>
