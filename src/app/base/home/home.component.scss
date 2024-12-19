@@ -87,6 +87,11 @@ box-sizing: border-box;
 cursor: pointer;
 overflow: hidden;
 }
+.heading.text-image {
+  background-size: 50%;  /* Reduces the size of the background image to 50% */
+  background-position: center;  /* Centers the image within the div */
+  background-repeat: no-repeat;  /* Prevents repeating the image */
+}
 
 
 .carousel {

@@ -1,33 +1,28 @@
 .project-container {
   text-align: center;
-  //margin: 20px;
   padding: 0px 70px;
   margin-top: 50px;
 }
 
 h2 {
-  font-family: 'Real Text', sans-serif;
-  font-weight: 600; /* Black */
-
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
   text-align: center;
   line-height: 90.1%;
   font-size: 42px;
-  font-weight: 600;
   letter-spacing: -0.05rem;
   position: relative;
-  display:block;
+  display: block;
 }
 
 .form-style input {
   border: 0;
   width: 142%;
-  opacity: 1;
-  font-family: 'Real Text', sans-serif;
-  font-weight: inherit;
+  font-family: 'Manrope', sans-serif;
   height: 56px;
   line-height: 1.65;
   padding: 12px 0px;
-  background-size: 100%,1px,0,2px ;
+  background-size: 100%, 1px, 0, 2px;
   font-size: 1.3em;
   border-radius: 0;
   border-bottom: 1px solid #333333;
@@ -41,31 +36,47 @@ h2 {
 }
 
 .button {
+  padding: 0.5rem 1rem;
   background-color: #3cc194;
-  color: black;
+  color: rgb(0, 0, 0);
   border: none;
-  padding: 0.6rem 0.5rem;
-  font-size: 1.1rem;
-  font-weight: 600;
   border-radius: 5px;
-  font-family: 'Real Text', sans-serif;
-  /* Slightly rounded corners */
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 1rem;
 }
 
-.pb-2{
-padding-bottom: 2.5rem!important;
+.pb-2 {
+  padding-bottom: 2.5rem!important;
 }
 
-.modal-body{
+.modal-body {
   padding: 50px 0px;
-}
-
-.p{
-  font-family: 'Real Text', sans-serif;
 }
 
 ul {
   list-style-type: none;
+}
+
+/* Parent container with relative positioning */
+.col {
+  position: relative;
+}
+
+/* Logo on top of the image */
+.logo-overlay {
+  position: absolute;
+  top: 0px;
+  left: 118px;
+  width: 170px;
+  height: 189px;
+  z-index: 87;
+  width: 248px;
+}
+
+/* Optional: Style the image if needed */
+.col img {
+  /* Ensure the image fills its container */
+  max-width: 500px;  /* Limit the image size */
 }

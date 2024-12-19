@@ -6,9 +6,9 @@
 </div>
 
 <div [ngStyle]="{
-    'background-image': switchBanner ? 'url(' + url + ')' : 'none',
+    'background-image': switchBanner ? 'url(' + url + ')' : 'url(/assets/textimage.png)',
     'background-color': switchBanner ? 'none' : '#f0f0f0'
-  }" class="heading">
+  }"[class.text-image]="!switchBanner" class="heading">
   <ul class="title">
    
     <li class="tag">Big Ideas, Bold Results.</li>

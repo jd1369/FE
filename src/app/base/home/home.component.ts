@@ -17,11 +17,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   imageUrl: string = '';
   
 serviceImage: Product[] = [
-    { name: 'Web Development', image: 'assets/service.png' },
-    { name: 'Graphic Design', image: 'assets/service1.jpg' },
-    { name: 'SEO Optimization', image: 'assets/service2.jpg' },
-    { name: 'Digital Marketing', image: 'assets/service3.jpg' },
-    { name: 'Content Creation', image: 'assets/service4.jpg' }
+    { name: 'Web Development', image: 'assets/sservice.png' },
+    { name: 'Graphic Design', image: 'assets/sersafcvice1.jpg' },
+    { name: 'SEO Optimization', image: 'assets/servicasce2.jpg' },
+    { name: 'Digital Marketing', image: 'assets/sesacrvice3.jpg' },
+    { name: 'Content Creation', image: 'assets/servicasce4.jpg' }
   ];
   visibleImages: Product[] = [];
   currentIndex: number = 0;
@@ -65,9 +65,11 @@ serviceImage: Product[] = [
 
   updateVisibleImages(): void {
     const numImages = 4; // Number of visible images at a time
-    this.visibleImages = Array.from({ length: numImages }).map(
-      (_, i) => this.serviceImage[(this.currentIndex + i) % this.serviceImage.length]
-    );
+    if (this.serviceList.length > 0) {
+      this.visibleImages = Array.from({ length: numImages }).map(
+        (_, i) => this.serviceList[(this.currentIndex + i) % this.serviceList.length]
+      );
+    }
   }
 
   toggleContent(): void {
@@ -118,10 +120,14 @@ serviceImage: Product[] = [
 
   getServices(): void {
     this.homeService.getAllServices().subscribe({
-      next: (response: any) => (this.serviceList = response,
-        console.log(this.serviceList)
-        
-      ),
+      next: (response: any) => {
+        // Assuming response is an array of service objects
+        this.serviceList = response.map((service: any) => ({
+          name: service.name,
+          image: service.serviceImage, // Extract the serviceImage field for carousel
+        }));
+        this.updateVisibleImages(); // Update visible images after fetching
+      },
       error: (err: any) => console.error(err)
     });
   }

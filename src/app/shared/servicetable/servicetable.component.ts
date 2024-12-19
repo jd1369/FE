@@ -71,7 +71,7 @@ export class ServicetableComponent implements OnInit {
       },
       error: (err: any) => {
         console.error('Error deleting row:', err);
-        this.toastr.showErrorMessage('Data Deleted Successfully');
+        this.toastr.showSuccessMessage('Data Deleted Successfully');
         window.location.reload();
       },
     });

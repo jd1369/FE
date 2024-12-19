@@ -81,10 +81,11 @@ export class AddprojectComponent implements OnInit {
       const selectedFiles: FileList = this.projectForm.get('images')?.value;
       console.log(selectedFiles);
   
-      if (selectedFiles && selectedFiles.length >= 1) {
-        // Append the files under the 'files' key
-        formData.append('files', selectedFiles[0], selectedFiles[0].name);
-        formData.append('files', selectedFiles[1], selectedFiles[1].name);
+      if (selectedFiles && selectedFiles.length > 0) {
+        // Loop through selected files and append each file to the form data
+        for (let i = 0; i < selectedFiles.length; i++) {
+          formData.append('files', selectedFiles[i], selectedFiles[i].name);
+        }
   
         // Append the folder name under the 'folderName' key
         const folderName = 'folder'; // Folder name string
@@ -104,14 +105,15 @@ export class AddprojectComponent implements OnInit {
             }
           });
       } else {
-        console.error('Please select exactly two files!');
-        this.toastr.showErrorMessage('Please select exactly two files!');
+        console.error('Please select at least one file!');
+        this.toastr.showErrorMessage('Please select at least one file!');
       }
     } else {
       console.error('Form is invalid!');
       this.toastr.showErrorMessage('Form is invalid!');
     }
   }
+  
   
   private submitProject(uploadResponse: any): void {
     const formData: any = { ...this.projectForm.value };
