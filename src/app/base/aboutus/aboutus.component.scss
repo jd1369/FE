@@ -26,13 +26,17 @@ h2 {
   font-size: 1.3em;
   border-radius: 0;
   border-bottom: 1px solid #333333;
+  background: rgb(221 221 221 / 0%)
+
 }
 
 .form-style input:focus {
   border-bottom: 1px solid #007bff;
   box-shadow: none;
   outline: 0;
-  background-color: #ffffff;
+  background-color:rgb(221 221 221 / 0%)
+  //background: rgba(221, 221, 221, 0.46);
+
 }
 
 .button {

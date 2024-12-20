@@ -76,6 +76,7 @@
       <div class="input-container">
         <input type="text" maxlength="10" formControlName="phoneNumber" class="floating-input" placeholder=" " />
         <label class="floating-label">Phone Number</label>
+        <p type="button" (click)="getOtp()" class="otp">Get OTP</p>
         <div *ngIf="loginForm.get('phoneNumber')?.invalid && loginForm.get('phoneNumber')?.touched" class="error-message">
           Valid 10-digit number is required.
         </div>

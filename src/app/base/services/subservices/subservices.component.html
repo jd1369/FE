@@ -1,23 +1,35 @@
-
-
 <div class="grid" [ngClass]="{'blurred': popupVisible}">
- 
-  <div  class="card" *ngFor="let item of pagedItems">
-    <img  (click)="openPopup(item)" [src]="item.image" alt="Project image">
+  <div class="card" *ngFor="let item of pagedItems">
+    <img (click)="openPopup(item)" [src]="item.image" alt="Project image">
     <div class="card-body" style="padding-left: 8px; background-color: rgb(240, 240, 240); display: flex; flex-direction: column; height: 100%;">
       <h3 style=" color: #302f2f;text-align: center;">{{ item.name }}</h3>
       <div *ngFor="let key of objectKeys(item.fields)">
         <p style=" color: #605e5e;"><strong>{{ key }}:</strong> {{ item.fields[key] }}</p>
       </div>
-      <p  style=" color: #322f2f;" *ngIf="user == true || admin == true">Price: {{item.subServicePrice}}</p>
+      
+      <p style=" color: #322f2f;" *ngIf="user == true || admin == true">Price: {{item.subServicePrice}}</p>
+      
+      <!-- Show additional details above the 'See More' button -->
+      <div *ngIf="item.showMoreDetails">
+        <p><strong>Additional Details:</strong> {{ item.additionalDetails }}</p>
+      </div>
+      
+      <!-- 'See More' button for logged-in users -->
+      <div *ngIf="user || admin">
+        <button class="see-more-btn" (click)="toggleDetails(item)">
+          {{ item.showMoreDetails ? 'See Less' : 'See More' }}
+        </button>
+      </div>
+
+      <!-- Login button for non-logged in users -->
       <div class="login-btn-wrapper" *ngIf="user != true && admin != true" style="margin-top: auto;">
-        <button style="margin-bottom: 10px;"  (click)="openLoginModal()" class="login">Login to View</button>
+        <button style="margin-bottom: 10px;" (click)="openLoginModal()" class="login">Login to View</button>
       </div>
     </div>
   </div>
-  
 </div>
 
+<!-- Popup Container -->
 <div class="overlay" *ngIf="popupVisible" (click)="hidePopup()"></div>
 <div class="popup" *ngIf="popupVisible">
   <div class="popup-content">
@@ -28,10 +40,6 @@
         <p ><strong>{{ key }}:</strong> {{ popupItem.fields[key] }}</p>
       </div>
     </div>
-   <span *ngIf="user != false || admin != false"><p >Price :{{popupItem.subServicePrice}}</p></span> 
+    <span *ngIf="(user === true || admin === true)"><p >Price :{{popupItem.subServicePrice}}</p></span> 
   </div>
 </div>
-
-
-
-

@@ -33,6 +33,7 @@ constructor(private http: HttpClient,
   item:any
   serviceId:any;
   user:boolean =false
+  showMoreDetails: boolean = false;
   admin:boolean =false
   image:any
   serviceName:any;
@@ -51,6 +52,10 @@ constructor(private http: HttpClient,
     console.log('Service ID:', this.serviceId);
     this.updatePagedItems();
     this.getSubServices();  // Fetch the data when component initializes
+  }
+
+  toggleDetails(item: any): void {
+    item.showMoreDetails = !item.showMoreDetails; // Toggle the flag to show/hide the details
   }
 
   // Fetch the data using the service
