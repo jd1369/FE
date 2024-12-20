@@ -24,6 +24,7 @@ import { AgmCoreModule } from '@agm/core';
 import { SubservicesComponent } from './services/subservices/subservices.component';
 import { BlogComponent } from './blog/blog.component';
 import { ProjectdetailsComponent } from './projects/projectdetails/projectdetails.component';
+import { AuthGuard } from '../auth/auth.guard';
 @NgModule({
   declarations: [
     
@@ -54,7 +55,7 @@ import { ProjectdetailsComponent } from './projects/projectdetails/projectdetail
         path: '',
         component: BaseComponent,
         children: [
-          { path: 'admin', component: AdminComponent },
+          { path: 'admin', component: AdminComponent,canActivate:[AuthGuard] },
           { path: 'services', loadChildren: () => import('./services/services.module').then(m => m.ServicesModule) },
           { path: 'projects', loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule) },
           { path: 'home', component: HomeComponent },

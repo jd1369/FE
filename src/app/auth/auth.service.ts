@@ -28,6 +28,11 @@ export class AuthService {
     return this.isAuthenticated$.asObservable();
   }
 
+  isAdmin(): boolean {
+    
+    const userRole = localStorage.getItem('userRole');  // Example of how you might get the user role
+    return userRole === 'admin';  // Return true if the role is "admin"
+  }
 
 
 
