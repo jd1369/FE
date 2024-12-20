@@ -1,236 +1,23 @@
-// .header{
-//   padding:32px 150px 0px 150px;
-// }
-
-// p.a{
-//     margin-top: 25px;
-//     font-size: 16px;
-//     font-family: 'Real Text', Arial, sans-serif;
-// }
-
-// p.b{
-//     margin-top: 45px;
-//     font-size: 16px;
-//     font-family: 'Real Text', Arial, sans-serif;
-// }
-
-// .background-container {
-//   height: 100vh;
-//   position: relative; 
-//   margin-top: 62px;
-//   width: 100%;
-//   background-image: url('../about/aboutUs1.jpeg'); /* Replace with your image path */
-//   background-size: cover;
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   display: flex;
-//   // justify-content: center;
-//   // align-items: center;
-// }
-
-// .text-overlay {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start; /* Align content to the left */
-//  // justify-content: space-between; /* Space out heading and list */
-//   padding: 20px; /* Add padding for better spacing */
-//   color: rgb(0, 0, 0); /* Text color for better contrast on the image */
-// }
-// ul{
-//   display: flex ;
-//   flex-direction: column;
-//   list-style: none;
-//   padding: 56px 12px 11px 199px;
-// }
-// .ul li{
-//   line-height: 10px;
-// }
-
-// .styled-list {
-//   list-style: none; /* Remove default bullets */
-//   padding: 0; /* Remove default padding */
-//   margin: 211px 0px 0px 472px /* Adjust left margin for alignment */
-// }
-
-// .styled-list li {
-//   font-size: 1.5rem; /* Adjust list font size */
-//   margin: 10px 0; /* Add spacing between items */
-//   font-weight: 600;
-//   color: white; /* List item color */
-//   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Add shadow for contrast */
-//   position: relative; /* Required for custom bullet */
-//   padding-left: 25px; /* Space for the custom bullet */
-// }
-
-// /* Custom bullet styles */
-// .styled-list li::before {
-  
-//   position: absolute;
-//   left: 0;
-//   top: 0;
-//   color: #FFD700; /* Golden color for the bullet */
-//   font-size: 1.5rem;
-// }
-// .heading {
-//   text-align: center;
-//   width: 100%; /* Center-align the heading */
-//   font-size: 3rem; /* Adjust font size */
-//   margin-top: 20px;
-// }
-
-// .feature-list {
-//   list-style: none;
-//   padding: 0;
-//   margin: auto 0; /* Vertically center the list */
-// }
-
-// .feature-list li {
-//   font-size: 1.5rem; /* Adjust list font size */
-//   margin: 10px 0; /* Add spacing between list items */
-// }
-
-// .image img{
-//   background: url('../about/aboutUs1.jpeg');
-//  padding:  39px 18px 0px 2px;
-//  background-size: cover;
-//  height: 634px;
-//  width: 100%;
-// }
-
-// .planning{
-//   background: url('../about/aboutUs1.jpeg');
-//   background-size: 100%;
-// }
-// p.c{
-//   font-family: 'Real Text', Arial, sans-serif;
-// }
-
-// .button{
-//     margin-left: 233px;
-//     font-family: 'Real Text', Arial, sans-serif;
-// }
-
-// .header h1{
-    
-//     font-family: 'Real Text', Arial, sans-serif;
-//     font-size: 28px;
-//   font-weight: bold;
-//   line-height: 1.5;
-//   font-family: 'Real Text', Arial, sans-serif;
-// }
-
-// /* General Container */
-// // .container {
-// //     max-width: 1200px;
-// //     margin: 0 auto;
-// //     text-align: center;
-// //     padding: 20px;
-// //   }
-  
-//   .header-text {
-//     font-size: 2rem;
-//     font-weight: 600;
-//     margin-bottom: 40px;
-//     font-family: 'Real Text', Arial, sans-serif;
-//   }
-  
-//   .features {
-//     display: flex;
-//     justify-content: space-between;
-//     margin-top: 65px;
-//   }
-  
-//   .feature-item {
-//     flex: 1;
-//     min-width: 250px;
-//     max-width: 300px;
-//     text-align: center;
-//   }
-  
-//   .icon {
-//     height: 60px;
-//     width: 60px;
-//     margin: 0 auto 20px;
-//   }
-  
-//   .human-icon {
-//     border: 2px solid black;
-//     border-radius: 50%;
-//     position: relative;
-//   }
-  
-//   .human-icon::before,
-//   .human-icon::after {
-//     content: "";
-//     position: absolute;
-//     background-color: black;
-//   }
-  
-//   .human-icon::before {
-//     height: 20px;
-//     width: 20px;
-//     top: 10px;
-//     left: 50%;
-//     transform: translateX(-50%);
-//     border-radius: 50%;
-//   }
-  
-//   .human-icon::after {
-//     height: 20px;
-//     width: 60%;
-//     top: 35px;
-//     left: 20%;
-//     border-top: 2px solid black;
-//   }
-  
-//   .tech-icon {
-//     background: radial-gradient(circle, black 2px, transparent 3px);
-//     height: 60px;
-//     width: 60px;
-//   }
-  
-//   .value-icon {
-//     border-left: 2px solid black;
-//     border-top: 2px solid black;
-    
-//     height: 40px;
-//     width: 30px;
-//     transform: rotate(0deg);
-//   }
-  
-//   .view-work-button {
-//     background: none;
-//     border: 1px solid black;
-//     padding: 7px 12px;
-//     margin-top: 40px;
-//     cursor: pointer;
-//     font-family: 'Real Text', Arial, sans-serif;
-//   }
-  
-
-
 .about-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40px 80px;
-  background-color: #f9f9f9;
+  padding: 2.9vw 7vw 5.3vw;
+  
 }
 
 .about-content {
   display: flex;
   max-width: 1200px;
+  justify-content: space-between;
   margin: 0 auto;
+  gap: 20px; /* Add some spacing between text and image */
 }
 
 .about-text {
   max-width: 50%;
   line-height: 1.8;
+  font-family: 'Manrope', sans-serif;
 }
 
 .about-label {
@@ -246,19 +33,393 @@
 }
 
 .about-text h1 {
-  font-size: 36px;
+  font-size: 3.3rem;
   font-weight: bold;
   margin-bottom: 20px;
+  font-family: 'Manrope', sans-serif;
   color: #333;
+  line-height: 3.3rem;
 }
 
 .about-text p {
   font-size: 16px;
   color: #555;
+  font-family: 'Manrope', sans-serif;
+  margin-bottom: 0;
+}
+
+.about-image {
+  display: flex;
+  align-items: center; /* Center image vertically */
+  justify-content: center; /* Optional: Center image horizontally within the container */
+ 
+  margin-top: 50px;
+  margin-bottom: 59px;
 }
 
 .about-image img {
   max-width: 450px;
+  object-position: center;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Baneer*/
+
+.banner{
+  padding: 0 100px 120px;
+}
+.banner p{
+  font-size: 40px;
+  font-family: 'Manrope', sans-serif;
+  text-align: center;
+}
+
+.banner h3{
+  text-align: center;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 5.94rem;
+  line-height: 9.636rem;
+}
+
+
+
+.why-us-container {
+  padding: 2rem;
+  background-color: #1a1a1a;
+  font-family: 'Manrope', sans-serif;
+  color: #fff;
+  text-align: center;
+}
+
+.section-header {
+  margin-bottom: 2rem;
+}
+
+.section-header .tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #555;
+  color: #fff;
+  font-size: 0.875rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  font-family: 'Manrope', sans-serif;
+}
+
+.section-header h4{
+  font-family: 'Manrope', sans-serif;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background-color: #292929;
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card .icon {
+  font-size: 2rem;
+  color: #9b59b6;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+  font-family: 'Manrope', sans-serif;
+}
+.card h4{
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+  font-weight: 600;
+  font-family: 'Manrope', sans-serif;
+}
+
+.card p {
+  font-size: 0.9rem;
+  font-family: 'Manrope', sans-serif;
+  line-height: 1.5;
+}
+
+/* Color Adjustments for Cards */
+.tailored-approach {
+  background-color: #3cc194;
+  color: #000000;
+}
+
+.business-outcomes {
+  background-color: #444;
+  color:#3cc194
+}
+
+.radical-transparency {
+  background-color: #3cc194;
+  color: #444;
+}
+
+.outperform {
+  background-color: #444;
+  color:#3cc194
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Rule */
+.culture-container {
+  padding: 2rem;
+  color: #1a1a1a;
+  font-family: 'Manrope', sans-serif;
+  background-color: #ffffff;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-header .tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #000;
+  color: #fff;
+  font-size: 0.875rem;
+  font-family: 'Manrope', sans-serif;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-size: 2.6rem;
+  font-weight: bold;
+  font-family: 'Manrope', sans-serif;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px 65px;
+  padding-top: 34px;
+}
+
+.rule-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.number {
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+  color: #000;
+  flex-shrink: 0;
+  font-family: 'Manrope', sans-serif;
+  width: 40px;
+  text-align: left;
+}
+
+.content h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: 'Manrope', sans-serif;
+  margin: 0 0 0.5rem;
+  color: #000;
+}
+
+.content p {
+  font-size: 0.9rem;
+  font-family: 'Manrope', sans-serif;
+  line-height: 1.6;
+  color: #555;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .rules-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rule-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .number {
+    width: auto;
+  }
+}
+
+
+/* image */
+
+
+.careers-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  padding-bottom: 100px;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.left-section {
+  flex: 1;
+  position: relative;
+  margin-right: 2rem;
+  top: 93px;
+}
+
+.background-image img {
+  width: 38vw;
+  border-radius: 0.5rem;
+  margin-top: 27px;
+  height: 23vw;
+}
+
+.quote-box {
+  position: inherit;
+  left: 4rem;
+  background-color: #3cc194;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  max-width: 80%;
+  bottom: 131px;
+  height: 249px;
+}
+
+.quote-box p {
+  margin: 0;
+  color: #1a1a1a;
+  font-size: 1.3rem;
+  font-family: 'Manrope', sans-serif;
+  line-height: 1.2;
+}
+
+.quote-box .author {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  font-family: 'Manrope', sans-serif;
+  font-weight: bold;
+  bottom: 40px;
+  position: absolute;
+}
+
+.right-section {
+  flex: 1;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 0.875rem;
+  font-weight: bold;
+  font-family: 'Manrope', sans-serif;
+  border-radius: 10rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 0 1rem;
+  line-height: 53px;
+  font-family: 'Manrope', sans-serif;
+}
+
+.description {
+  font-size: 1rem;
+  font-family: 'Manrope', sans-serif;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #b8a7ff;
+  color: #1a1a1a;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: 'Manrope', sans-serif;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-button span {
+  margin-left: 0.5rem;
+  font-size: 1.25rem;
+  font-family: 'Manrope', sans-serif;
+
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .careers-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .left-section {
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .quote-box {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    max-width: 100%;
+  }
+}
+
+.custom-size-container {
+  width: 500px; /* Set your desired width */
+  height: 300px; /* Set your desired height */
+  overflow: hidden; /* Ensures no overflow */
+  display: flex; /* Centers image horizontally/vertically if needed */
+  justify-content: center;
+  align-items: center;
+}
+
+.fill-space {
+  width: 100%;
+  height: 100vh; /* Adjust height as needed */
+  background-image: url('/assets/service.png');
+  background-size: cover; /* Ensures the image fills the container */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Avoids tiling */
 }
