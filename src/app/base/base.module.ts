@@ -25,9 +25,12 @@ import { SubservicesComponent } from './services/subservices/subservices.compone
 import { BlogComponent } from './blog/blog.component';
 import { ProjectdetailsComponent } from './projects/projectdetails/projectdetails.component';
 import { AuthGuard } from '../auth/auth.guard';
+import { PrivacyComponent } from './privacy/privacy.component';
 @NgModule({
   declarations: [
     
+  
+    PrivacyComponent
   ],
   imports: [
     CommonModule,
@@ -61,6 +64,7 @@ import { AuthGuard } from '../auth/auth.guard';
           { path: 'home', component: HomeComponent },
           { path: 'aboutus', component: AboutusComponent },
           { path: 'about', component: AboutComponent },
+          { path: 'privacy', component: PrivacyComponent },
           { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)},
         ],
       },
