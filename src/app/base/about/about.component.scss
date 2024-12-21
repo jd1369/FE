@@ -283,12 +283,13 @@
 
 .careers-section {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem;
-  padding-bottom: 100px;
-  background-color: #1a1a1a;
-  color: #ffffff;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    padding-bottom: 150px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding-top: 150px;
 }
 
 .left-section {
@@ -307,13 +308,14 @@
 
 .quote-box {
   position: inherit;
-  left: 4rem;
-  background-color: #3cc194;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  max-width: 80%;
-  bottom: 131px;
-  height: 249px;
+    left: 6rem;
+    background-color: #3cc194;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    max-width: 80%;
+    bottom: 130px;
+    height: 172px;
+    top: -89px;
 }
 
 .quote-box p {
@@ -340,14 +342,14 @@
 
 .tag {
   display: inline-block;
-  padding: 0.5rem 1rem;
-  background-color: #ffffff;
-  color: #000000;
-  font-size: 0.875rem;
-  font-weight: bold;
-  font-family: 'Manrope', sans-serif;
-  border-radius: 10rem;
-  margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 0.875rem;
+    font-weight: bold;
+    font-family: "Manrope", sans-serif;
+    border-radius: 10rem;
+    margin-bottom: 2rem;
 }
 
 h2 {
