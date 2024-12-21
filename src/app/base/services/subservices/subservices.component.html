@@ -1,31 +1,30 @@
 <div class="grid" [ngClass]="{'blurred': popupVisible}">
   <div class="card" *ngFor="let item of pagedItems">
-    <img (click)="openPopup(item)" [src]="item.image" alt="Project image">
-    <div class="card-body" style="padding-left: 8px; background-color: rgb(240, 240, 240); display: flex; flex-direction: column; height: 100%;">
-      <h3 style=" color: #302f2f;text-align: center;">{{ item.name }}</h3>
-      <div *ngFor="let key of objectKeys(item.fields)">
-        <p style=" color: #605e5e;"><strong>{{ key }}:</strong> {{ item.fields[key] }}</p>
-      </div>
-      
-      <p style=" color: #322f2f;" *ngIf="user == true || admin == true">Price: {{item.subServicePrice}}</p>
-      
-      <!-- Show additional details above the 'See More' button -->
-      <div *ngIf="item.showMoreDetails">
-        <p><strong>Additional Details:</strong> {{ item.additionalDetails }}</p>
-      </div>
-      
-      <!-- 'See More' button for logged-in users -->
-      <div *ngIf="user || admin">
-        <button class="see-more-btn" (click)="toggleDetails(item)">
-          {{ item.showMoreDetails ? 'See Less' : 'See More' }}
-        </button>
-      </div>
-
-      <!-- Login button for non-logged in users -->
-      <div class="login-btn-wrapper" *ngIf="user != true && admin != true" style="margin-top: auto;">
-        <button style="margin-bottom: 10px;" (click)="openLoginModal()" class="login">Login to View</button>
-      </div>
+    <div class="image-container">
+      <i 
+        class="fa fa-chevron-circle-right overlay-icon" 
+        (click)="openPopup(item)" 
+        title="View Details" 
+        aria-hidden="true">
+      </i>
+      <img [src]="item.image" alt="Project image">
     </div>
+    <div class="card-body">
+      <h3 style="text-align: center;">{{ item.name }}</h3>
+      
+      <!-- Display only the first two fields -->
+      <div *ngFor="let key of objectKeys(item.fields).slice(0, 2)">
+        <p><strong>{{ key }}:</strong> {{ item.fields[key] }}</p>
+      </div>
+      
+      <p style="font-weight: bold;" *ngIf="user || admin">Price: {{ item.subServicePrice }}</p>
+      <div class="login-btn-wrapper" *ngIf="!user && !admin">
+        <button (click)="openLoginModal()" class="login">Login to View Price</button>
+      </div>
+      <!-- Login button for non-logged-in users -->
+      
+    </div>
+    
   </div>
 </div>
 
@@ -35,11 +34,12 @@
   <div class="popup-content">
     <span class="close" (click)="hidePopup()">&times;</span>
     <h2>{{ popupItem?.name }}</h2>
-    <div *ngIf="popupItem?.fields">
-      <div *ngFor="let key of objectKeys(popupItem.fields)">
-        <p ><strong>{{ key }}:</strong> {{ popupItem.fields[key] }}</p>
-      </div>
+    
+    <!-- Display all fields in the popup -->
+    <div *ngFor="let key of objectKeys(popupItem?.fields)">
+      <p><strong>{{ key }}:</strong> {{ popupItem.fields[key] }}</p>
     </div>
-    <span *ngIf="(user === true || admin === true)"><p >Price :{{popupItem.subServicePrice}}</p></span> 
+    
+    <p *ngIf="user || admin">Price: {{ popupItem?.subServicePrice }}</p>
   </div>
 </div>

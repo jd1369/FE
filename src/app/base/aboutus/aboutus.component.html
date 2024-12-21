@@ -4,67 +4,17 @@
     <div class="modal-body">
         <div class="row">
             <div class="col">
-                <form [formGroup]="contactForm">
-                    <!-- Name Field -->
-                    <div class="col-lg-6 form-style">
-                        <div class="form-group pb-2">
-                            <fieldset>
-                                <input type="text" class="form-control" id="name" formControlName="name"
-                                    placeholder="Your Name" />
-                                <div *ngIf="f['name']?.touched && f['name']?.invalid" class="text-danger">
-                                    <small *ngIf="f['name']?.hasError('required')">Name is required.</small>
-                                </div>
-                            </fieldset>
-                        </div>
-                    </div>
-
-                    <!-- Email Field -->
-                    <div class="col-lg-6 form-style">
-                        <div class="form-group pb-2">
-                            <fieldset>
-                                <input type="email" class="form-control" id="email" formControlName="email"
-                                    placeholder="Your EmailId" />
-                                <div *ngIf="f['email']?.touched && f['email']?.invalid" class="text-danger">
-                                    <small *ngIf="f['email']?.hasError('required')">Email is required.</small>
-                                    <small *ngIf="f['email']?.hasError('email')">Please enter your company email address.</small>
-                                </div>
-                            </fieldset>
-                        </div>
-                    </div>
-
-                    <!-- Project Description Field -->
-                    <div class="col-lg-6 form-style">
-                        <div class="form-group pb-2">
-                            <fieldset>
-                                <input type="text" class="form-control" id="tellUsAboutYourProject"
-                                    formControlName="tellUsAboutYourProject" placeholder="Tell us about your Project" />
-                                <div *ngIf="f['tellUsAboutYourProject']?.touched && f['tellUsAboutYourProject']?.invalid"
-                                    class="text-danger">
-                                    <small *ngIf="f['tellUsAboutYourProject']?.hasError('required')">Project description is required.</small>
-                                </div>
-                            </fieldset>
-                        </div> 
-                    </div>
-                    <!-- Submit Button -->
-                    <div class="col-lg-6 form-style">
-                        <div class="form-group pb-2">
-                            <button (click)="onSubmit()" style="margin-right: 255px; width: 100px;" type="submit"
-                                class="button" [disabled]="contactForm.invalid">
-                                Submit
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div class="col">
-                <a href="https://www.google.com/maps/place/The+Elephant+Ad+Agency/@17.4463946,78.3827925,15z/data=!4m6!3m5!1s0x3bcb913bfb974ef7:0x35328a12e4b50832!8m2!3d17.4463946!4d78.3827925!16s%2Fg%2F11jc9t515b?hl=en-IN&entry=ttu&g_ep=EgoyMDI0MTIwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">
-                    <img style="height: 310px;" src="/assets/images/Location.png" alt="location">
+                <a href="https://www.google.com/maps/place/The+Elephant+Ad+Agency/@17.4463946,78.3827925,15z/data=!4m6!3m5!1s0x3bcb913bfb974ef7:0x35328a12e4b50832!8m2!3d17.4463946!4d78.3827925!16s%2Fg%2F11jc9t515b?hl=en-IN&entry=ttu&g_ep=EgoyMDI0MTIwNC4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank">
+                    <img style="height: 353px;" src="/assets/map.png" alt="location">
                 </a>
-                <div></div>
-                <img  src="/assets/textimage.png" alt="logo" class="logo-overlay">
-                
-                <ul>
+                <div> <a href="https://www.google.com/maps/place/The+Elephant+Ad+Agency/@17.4463946,78.3827925,15z/data=!4m6!3m5!1s0x3bcb913bfb974ef7:0x35328a12e4b50832!8m2!3d17.4463946!4d78.3827925!16s%2Fg%2F11jc9t515b?hl=en-IN&entry=ttu&g_ep=EgoyMDI0MTIwNC4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank">
+
+                        <img src="/assets/mapLogo.png" alt="logo" class="logo-overlay">
+                    </a>
+                </div>
+                <!-- <ul>
                     <li style="text-align: center; margin-left: 271px; height: 10px; font-family: 'Real Text', sans-serif; font-size: 29px;">
                         _________
                     </li>
@@ -75,8 +25,80 @@
                     <li style="font-size: 11px; margin-left: 378px; font-family: 'Real Text', sans-serif; font-size: 16px;">
                         info&#64;elephantadagency.com
                     </li>
-                </ul>
+                </ul> -->
             </div>
+            <div class="col">
+                <!-- <div>
+                    <div class="max-w-full mx-auto rounded-lg overflow-hidden">
+                        <div class="px-6 py-4">
+                            <h3 class="text-lg font-medium text-gray-900">Our Address</h3>
+                            <p class="mt-1 text-gray-600">123 Main St, San Francisco, CA 94105</p>
+                        </div>
+                        <div class="border-t border-gray-200 px-6 py-4">
+                            <h3 class="text-lg font-medium text-gray-900">Hours</h3>
+                            <p class="mt-1 text-gray-600">Monday - Friday: 9am - 5pm</p>
+                            <p class="mt-1 text-gray-600">Saturday: 10am - 4pm</p>
+                            <p class="mt-1 text-gray-600">Sunday: Closed</p>
+                        </div>
+                        <div class="border-t border-gray-200 px-6 py-4">
+                            <h3 class="text-lg font-medium text-gray-900">Contact</h3>
+                            <p class="mt-1 text-gray-600">Email: infoexample.com</p>
+                            <p class="mt-1 text-gray-600">Phone: +1 23494 34993</p>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="rules-grid">
+                    <div class="rule-card">
+
+                        <div class="content">
+                            <h3>Our Address</h3>
+                            <p>
+                                D No. 1-90/7/B/121, F No. P1, Innovative
+                            </p>
+                            <p>
+                                Cyberview Apts, Patrika Nagar, Madhapur,
+                            </p>
+                            <p>
+                                Hyderabad, Telangana 500081
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="rule-card">
+
+                        <div class="content">
+                            <h3>Hours</h3>
+                            <p>
+                                Monday - Friday: 10am - 7pm        
+                            </p>
+                            <p>
+                                Saturday: 10am - 5pm
+                            </p>
+                            <p>
+                                Sunday: Closed
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="rule-card">
+
+                        <div class="content">
+                            <h3>Contact</h3>
+                            <p>
+                                Email: info&commat;example.com
+                            </p>
+                            <p>
+                                Phone: +91 8008770440, +91 8008783823
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>

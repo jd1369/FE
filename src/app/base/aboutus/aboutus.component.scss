@@ -1,18 +1,19 @@
 .project-container {
   text-align: center;
-  padding: 0px 70px;
+  padding: 0px 38px 100px 152px;
   margin-top: 50px;
 }
 
 h2 {
   font-family: 'Manrope', sans-serif;
   font-weight: 600;
-  text-align: center;
+  text-align: left;
   line-height: 90.1%;
   font-size: 42px;
   letter-spacing: -0.05rem;
   position: relative;
   display: block;
+  padding-left: 83px;
 }
 
 .form-style input {
@@ -56,7 +57,7 @@ h2 {
 }
 
 .modal-body {
-  padding: 50px 0px;
+  padding: 50px 0px 0px 189px
 }
 
 ul {
@@ -71,16 +72,109 @@ ul {
 /* Logo on top of the image */
 .logo-overlay {
   position: absolute;
-    top: 86px;
-    left: 274px;
-    width: 170px;
-    height: 149px;
-    z-index: 87;
-    width: 184px;
+  top: 105px;
+  left: 186px;
+  width: 170px;
+  height: 109px;
+  z-index: 87;
+  width: 135px;
 }
 
 /* Optional: Style the image if needed */
 .col img {
   /* Ensure the image fills its container */
-  max-width: 500px;  /* Limit the image size */
+  max-width: 545px;  /* Limit the image size */
+}
+
+/* Rule */
+.culture-container {
+  padding: 120px 100px;
+  color: #1a1a1a;
+  font-family: 'Manrope', sans-serif;
+  background-color: #ffffff;
+}
+
+.section-header {
+  text-align: left;
+  margin-bottom: 2rem;
+  padding-right: 550px;
+}
+
+.section-header .tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #000;
+  color: #fff;
+  font-size: 0.875rem;
+  font-family: 'Manrope', sans-serif;
+  border-radius: 56px;
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-size: 2.6rem;
+  font-weight: bold;
+  font-family: 'Manrope', sans-serif;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 30px 65px;
+}
+
+.rule-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.number {
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+  color: #000;
+  flex-shrink: 0;
+  font-family: 'Manrope', sans-serif;
+  width: 40px;
+  text-align: left;
+}
+
+.content h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: 'Manrope', sans-serif;
+  margin: 0 0 0.5rem;
+  color: #000;
+  text-align: left;
+}
+
+.content p {
+  font-size: 0.9rem;
+  font-family: 'Manrope', sans-serif;
+  line-height: 1.6;
+  color: #555;
+  margin: 0;
+  text-align: left;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .rules-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rule-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .number {
+    width: auto;
+  }
 }

@@ -1,130 +1,119 @@
+// Simplified imports by removing unused modules
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { SharedserviceService } from 'src/app/shared/sharedservice.service';
-import { SubservicesService } from './subservices.service';
-import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { ProjectsService } from '../../projects/projects.service';
-import { LoginComponent } from 'src/app/auth/login/login.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient } from '@angular/common/http';
+
+import { ProjectsService } from '../../projects/projects.service';
+import { SubservicesService } from './subservices.service';
+import { SharedserviceService } from 'src/app/shared/sharedservice.service';
+import { LoginComponent } from 'src/app/auth/login/login.component';
+
 @Component({
   selector: 'app-subservices',
   templateUrl: './subservices.component.html',
   styleUrls: ['./subservices.component.scss']
 })
 export class SubservicesComponent implements OnInit {
-constructor(private http: HttpClient,
-      private projectService:ProjectsService,
-      private subsevice : SubservicesService,
-      private sharedservice:SharedserviceService,
-      private router: Router,
-      private renderer: Renderer2,
-      private modalService: NgbModal,
-       private route: ActivatedRoute
-    ) { }
 
   @ViewChild('gridContainer', { static: true }) gridContainer!: ElementRef;
-  subServiceData:any
+
+  // Class properties
+  subServiceData: any;
   selectedItem: any = null;
   pagedItems: any[] = [];
   itemsPerPage: number = 6;
   currentPage: number = 1;
-  item:any
-  serviceId:any;
-  user:boolean =false
-  showMoreDetails: boolean = false;
-  admin:boolean =false
-  image:any
-  serviceName:any;
-  popupVisible = false;
+  item: any;
+  serviceId: any;
+  user: boolean = false;
+  admin: boolean = false;
+  serviceName: any;
+  popupVisible: boolean = false;
   popupItem: any;
-  projects:any;
+
+  constructor(
+    private http: HttpClient,
+    private projectService: ProjectsService,
+    private subservice: SubservicesService,
+    private sharedservice: SharedserviceService,
+    private router: Router,
+    private renderer: Renderer2,
+    private modalService: NgbModal,
+    private route: ActivatedRoute
+  ) {}
+
   ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
+    // Extract query parameters and initialize component data
+    this.route.queryParams.subscribe(params => {
       this.serviceId = params['id'];
       this.serviceName = params['name'];
-      console.log('Received Query Params:', params);
     });
-    this.admin = JSON.parse(localStorage.getItem('admin') || '{}');
-    this.user = JSON.parse(localStorage.getItem('user') || '{}');
 
-    console.log('Service ID:', this.serviceId);
+    // Check user and admin roles
+    this.admin = JSON.parse(localStorage.getItem('admin') || 'false');
+    this.user = JSON.parse(localStorage.getItem('user') || 'false');
+
     this.updatePagedItems();
-    this.getSubServices();  // Fetch the data when component initializes
+    this.getSubServices();
   }
 
+  // Toggle additional details for a specific item
   toggleDetails(item: any): void {
-    item.showMoreDetails = !item.showMoreDetails; // Toggle the flag to show/hide the details
+    item.showMoreDetails = !item.showMoreDetails;
   }
 
-  // Fetch the data using the service
+  // Fetch sub-services data using the service
   getSubServices(): void {
-    this.subsevice.getSubServiceList(this.serviceId).subscribe({
+    this.subservice.getSubServiceList(this.serviceId).subscribe({
       next: (response: any) => {
-        console.log('Received data from service:', response);
         if (Array.isArray(response)) {
-          console.log(response)
-          this.item = response;  // Store the response data if it's an array
+          this.item = response;
         } else {
-          this.item = [];  // Set to an empty array if the data is not in the expected format
-          console.error('Received data is not an array:', response);
+          this.item = [];
+          console.error('Unexpected response format:', response);
         }
-        this.updatePagedItems();  // Update paged items based on the data
-      },
-      error: (error: any) => {
-        console.error('Error fetching data:', error);
-        this.item = [];  // Set item to an empty array in case of error
         this.updatePagedItems();
       },
+      error: (error: any) => {
+        console.error('Error fetching sub-services:', error);
+        this.item = [];
+        this.updatePagedItems();
+      }
     });
   }
-   openLoginModal(clickFrom?: any) {
-      const modalRef = this.modalService.open(LoginComponent, { size: 'lg' });
-      modalRef.componentInstance.clickFrom = clickFrom;
-    };
 
-  // Method to update paged items for pagination
-  updatePagedItems() {
+  // Open login modal
+  openLoginModal(clickFrom?: any): void {
+    const modalRef = this.modalService.open(LoginComponent, { size: 'lg' });
+    modalRef.componentInstance.clickFrom = clickFrom;
+  }
+
+  // Update items displayed for the current page
+  updatePagedItems(): void {
     if (Array.isArray(this.item)) {
       const startIndex = (this.currentPage - 1) * this.itemsPerPage;
       const endIndex = startIndex + this.itemsPerPage;
       this.pagedItems = this.item.slice(startIndex, endIndex);
     } else {
-      // Handle the case where `this.item` is not an array or is undefined
-      console.warn('Item data is not an array or is undefined:', this.item);
-      this.pagedItems = [];  // Clear pagedItems if `item` is invalid
+      console.warn('Invalid data format for pagination:', this.item);
+      this.pagedItems = [];
     }
   }
-  objectKeys(obj: any): string[] {
-    return Object.keys(obj); // Returns an array of keys from the object
+
+  // Helper to get object keys
+  objectKeys(obj: object): string[] {
+    return Object.keys(obj);
   }
-  // Method to handle opening a popup
+
+  // Open popup for a specific item
   openPopup(item: any): void {
-    console.log('openPopup called');
     this.popupItem = item;
-    
-    console.log(item.fields)
     this.popupVisible = true;
   }
 
-  // Method to hide the popup
+  // Hide popup
   hidePopup(): void {
-    console.log('hidePopup called');
-    this.popupVisible = false;
-    this.popupItem = null;
-  }
-
-  // Show popup on item click
-  showPopup(item: any): void {
-    console.log('showPopup called');
-    this.popupItem = item;
-    this.popupVisible = true;
-  }
-
-  // Hide popup on hover
-  hidePopupOnHover(): void {
-    console.log('hidePopupOnHover called');
     this.popupVisible = false;
     this.popupItem = null;
   }
