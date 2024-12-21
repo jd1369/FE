@@ -7,9 +7,9 @@
        alt="Logo" />
     </div>
     <div class="nav-links">
-      <a routerLink="/base/about" routerLinkActive="active">Work</a>
+      <a routerLink="/base/about" routerLinkActive="active">About</a>
       <a routerLink="/base/services" routerLinkActive="active">Services</a>
-      <a routerLink="/base/projects" routerLinkActive="active">Project</a>
+      <a routerLink="/base/projects" routerLinkActive="active">Work</a>
       <a routerLink="/base/aboutus" routerLinkActive="active">Contact</a>
 
       <div *ngIf="admin==true" class="dropdown" (mouseenter)="toggleDropdown(true)"
@@ -73,13 +73,13 @@
       <div class="dash"></div>
       <h6>Company</h6>
       <ul>
+        <li routerLink="/base/home" routerLinkActive="active">Home</li>
         <li routerLink="/base/about" routerLinkActive="active">Work</li>
-        <li>Agency</li>
         <li routerLink="/base/services" routerLinkActive="active">Services</li>
-        <li>Industries</li>
-        <li>Client Testimonials</li>
+        <li routerLink="/base/projects" routerLinkActive="active">Projects</li>
+        <li routerLink="/base/blog" routerLinkActive="active">Blog</li>
         <li routerLink="/base/aboutus" routerLinkActive="active">Contact</li>
-        <li>Website Accessibility</li>
+        <li>Privacy Policy</li>
       </ul>
     </div>
 
@@ -87,13 +87,13 @@
       <div class="dash"></div>
       <h6>Services</h6>
       <ul>
-        <li routerLink="/base/blog" routerLinkActive="active">Blog</li>
-        <li>Web Design</li>
-        <li>WordPress Websites</li>
-        <li>Branding</li>
-        <li>Packaging Design</li>
-        <li>Graphic Design</li>
-        <li>Real Estate Design</li>
+        <li routerLink="/base/services" routerLinkActive="active">Blog</li>
+        <li routerLink="/base/services" routerLinkActive="active">Web Design</li>
+        <li routerLink="/base/services" routerLinkActive="active">WordPress Websites</li>
+        <li routerLink="/base/services" routerLinkActive="active">Branding</li>
+        <li routerLink="/base/services" routerLinkActive="active">Packaging Design</li>
+        <li routerLink="/base/services" routerLinkActive="active">Graphic Design</li>
+        <li routerLink="/base/services" routerLinkActive="active">Real Estate Design</li>
       </ul>
     </div>
 
