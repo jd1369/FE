@@ -30,13 +30,13 @@
                 <mat-icon (click)="onDelete(blogData)" style="color: #FF0F0F; cursor: pointer;">delete</mat-icon>
               </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="modifiedDate">
+        <ng-container matColumnDef="lastModifiedDate">
             <mat-header-cell *matHeaderCellDef>Modified Date </mat-header-cell>
-            <mat-cell *matCellDef="let blogData"> {{blogData.modifiedDate}} </mat-cell>
+            <mat-cell *matCellDef="let blogData"> {{blogData.lastModifiedDate}} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="publishedDate">
+        <ng-container matColumnDef="publishingTimeOfBlog">
             <mat-header-cell *matHeaderCellDef>Published Date </mat-header-cell>
-            <mat-cell *matCellDef="let blogData"> {{blogData.publishedDate}} </mat-cell>
+            <mat-cell *matCellDef="let blogData"> {{blogData.publishingTimeOfBlog}} </mat-cell>
         </ng-container> 
         
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

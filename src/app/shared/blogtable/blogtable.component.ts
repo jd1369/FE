@@ -13,7 +13,7 @@ import { ToasterService } from '../toaster/toaster.service';
   styleUrls: ['./blogtable.component.scss']
 })
 export class BlogtableComponent implements OnInit {
-  displayedColumns: string[] = ['blogName', 'blogDescription', 'blogContent','modifiedDate','publishedDate','image','action'];
+  displayedColumns: string[] = ['blogName', 'blogDescription', 'blogContent','lastModifiedDate','publishingTimeOfBlog','image','action'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource(); // MatTableDataSource for pagination
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

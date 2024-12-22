@@ -52,7 +52,7 @@ export class BlogComponent implements OnInit {
         console.error('API response is not an array:', data);
         this.items = []; // Fallback to an empty array
       }
-      this.updatePagedItems();
+     // this.updatePagedItems();
     }, error => {
       console.error('Error fetching projects:', error);
       this.items = [];
@@ -60,11 +60,11 @@ export class BlogComponent implements OnInit {
   }
   
 
-  updatePagedItems() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    this.pagedItems = this.items.slice(startIndex, endIndex);
-  }
+  // updatePagedItems() {
+  //   const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+  //   const endIndex = startIndex + this.itemsPerPage;
+  //   this.pagedItems = this.items.slice(startIndex, endIndex);
+  // }
 
   openPopup(item: any): void {
     console.log('openPopup called');
@@ -91,8 +91,8 @@ export class BlogComponent implements OnInit {
   }
 
   // Pagination logic
-  onPageChange(page: number) {
-    this.currentPage = page;
-    this.updatePagedItems();
-  }
+  // onPageChange(page: number) {
+  //   this.currentPage = page;
+  //   this.updatePagedItems();
+  // }
 }

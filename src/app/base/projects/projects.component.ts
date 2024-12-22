@@ -57,8 +57,8 @@ export class ProjectsComponent implements OnInit {
 
   updatePagedItems() {
     if (Array.isArray(this.items)) {
-      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-      const endIndex = startIndex + this.itemsPerPage;
+      const startIndex = (this.currentPage - 1) * this.items.length;
+      const endIndex = startIndex + this.items.length;
       this.pagedItems = this.items.slice(startIndex, endIndex);
       console.log(this.pagedItems)
     } else {

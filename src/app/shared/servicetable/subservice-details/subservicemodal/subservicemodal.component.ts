@@ -76,6 +76,11 @@ export class SubservicemodalComponent implements OnInit {
   // Save method
   save(): void {
     if (this.editForm.valid) {
+      const staticFields = {
+        name: this.editForm.value.name,
+        subServicePrice: this.editForm.value.subServicePrice,
+        image:this.editForm.value.image
+      };
       // Step 1: Transform fields into a key-value object
       const transformedFields = this.editForm.value.fields.reduce((acc: any, field: any) => {
         acc[field.type] = field.value; // Convert to key-value pairs
@@ -85,6 +90,19 @@ export class SubservicemodalComponent implements OnInit {
       console.log('Transformed Fields Payload:', transformedFields); // Debug: log payload
   
       const subServiceId = this.projectData.id;
+      this.subservicemodal
+        .saveStaticFields(this.serviceId, subServiceId, staticFields)
+        .subscribe({
+          next: (response: any) => {
+            console.log('Fields updated successfully:', response);
+            this.toastr.showSuccessMessage('Fields updated successfully');
+            this.close(); // Close modal
+          },
+          error: (error: any) => {
+            console.error('Error updating fields:', error);
+            this.toastr.showErrorMessage('Failed to update fields');
+          }
+        })
   
       // Step 2: Call the API to update fields
       this.subservicemodal

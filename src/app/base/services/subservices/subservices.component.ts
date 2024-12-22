@@ -92,8 +92,8 @@ export class SubservicesComponent implements OnInit {
   // Update items displayed for the current page
   updatePagedItems(): void {
     if (Array.isArray(this.item)) {
-      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-      const endIndex = startIndex + this.itemsPerPage;
+      const startIndex = (this.currentPage - 1) * this.item.length;
+      const endIndex = startIndex + this.item.length;
       this.pagedItems = this.item.slice(startIndex, endIndex);
     } else {
       console.warn('Invalid data format for pagination:', this.item);

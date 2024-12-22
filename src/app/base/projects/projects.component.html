@@ -31,7 +31,7 @@
     <img [routerLink]="['projectdetails']" [queryParams]="{ id: item.projectId, name: item.projectName }" [src]="item.images[0]" alt="Project image">
     <div class="card-body" style="padding-left: 8px; background-color: rgb(240, 240, 240); display: flex; flex-direction: column; height: 100%;">
       <h3 style=" color: #302f2f;">{{ item.projectName }}</h3>  
-      <p style=" color: #302f2f;">A read more, see less button is essential when creating a webpage and we need to describe or show reviews of a product; most times, it’s used to display a glimpse of a</p>
+      <p style=" color: #302f2f;">{{item.projectDescription}}</p>
     </div>
   </div>
   
