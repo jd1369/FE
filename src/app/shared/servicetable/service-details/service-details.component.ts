@@ -30,7 +30,7 @@ export class ServiceDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.editForm = this.fb.group({
-      name: ['', Validators.required],
+      name: [''],
       serviceImage: [''],
       icon: [''],
       fields: this.fb.array([]), // Initialize the form array for dynamic fields

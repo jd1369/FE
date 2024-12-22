@@ -29,9 +29,9 @@ export class EditprojectComponent implements OnInit {
     // Initialize the form with the passed data
     this.now = new Date()
     this.editForm = this.fb.group({
-      projectName: [this.projectData.projectName, [Validators.required]],
-      projectDescription: [this.projectData.projectDescription, [Validators.required]],
-      projectContent: [this.projectData.projectContent, [Validators.required]],
+      projectName: [this.projectData.projectName],
+      projectDescription: [this.projectData.projectDescription],
+      projectContent: [this.projectData.projectContent],
       images: [''] ,// Handle file uploads programmatically
       lastModifiedDate:[this.now]
     });
