@@ -59,7 +59,6 @@ export class LoginComponent implements OnInit {
     console.log("1234")
     if (this.registerForm.valid) {
       const { emailId, name, phoneNumber,companyName } = this.registerForm.value;
-      console.log(this.registerForm.value)
       this.authService.register(emailId, name, phoneNumber,companyName).subscribe({
         next: (response:any) =>{ this.toastr.showSuccessMessage('Logged In Successfully');
           this.activeModal.dismiss()
@@ -67,7 +66,6 @@ export class LoginComponent implements OnInit {
 
         error: (err) => {
           this.toastr.showErrorMessage('Logged In Failed');
-          console.error('Registration failed', err)
         },
 
       });
@@ -78,49 +76,55 @@ export class LoginComponent implements OnInit {
   Login() {
     if (this.loginForm.valid) {
       const { phoneNumber, otp } = this.loginForm.value;
-
-      
       this.authService.login(phoneNumber, otp).subscribe({
         next: (response: any) => {
           if (response && response.token) { 
             console.log(response);
             const token = response.token;
             const bearerToken = `Bearer ${token}`;
-            console.log(bearerToken)
-
+            console.log(bearerToken);
+  
             this.authService.setToken(token);
-            
-            this.activeModal.dismiss()
+  
+            this.activeModal.dismiss();
             this.toastr.showSuccessMessage('Logged In Successfully');
+            
+            // Navigate to the home page or dashboard
+            // this.router.navigate(['/']);
+           
           }
         },
         error: (err: any) => {
-          console.error('Login failed', err);
+          this.toastr.showErrorMessage('Login Failed');
         },
       });
+    } else {
+      this.toastr.showErrorMessage('Please fill all fields correctly.');
     }
-    console.log("Form submission attempted.");
   }
   getOtp() {
     const phoneNumber = this.loginForm.value.phoneNumber
     this.authService.getOtp(phoneNumber).subscribe({
       next: (response: any) => {
         if (response) {
-          console.log(response)
           this.token = response
           this.toastr.showSuccessMessage('OTP Sent Successfully');
         }
       },
       error: (err: any) => {
-        console.log("error")
       },
     })
 
   }
 
-  logOut(){
-    this.authService.logout()
-    this.toastr.showInfoMessage('Logged In Successfully');
+  logOut() {
+    this.authService.logout();
+    this.toastr.showInfoMessage('Logged Out Successfully');
+    this.router.navigate(['/base/home']).then(success => {
+      console.log('Navigated to /base/home:', success);
+    }).catch(err => {
+      console.error('Navigation error:', err);
+    });
   }
 
 

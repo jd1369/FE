@@ -52,11 +52,10 @@ export class BaseComponent implements OnInit {
     this.authService.isLoggedIn().subscribe((isAuthenticated) => {
       this.isLoggedIn = isAuthenticated;
     });
+    
     this.isAdminPage = this.route.snapshot.routeConfig?.path === 'admin';
-    console.log(this.url);
     const now = new Date();
     this.getBanner();
-    console.log(this.admin)
     this.bannerForm = this.fb.group({
       id: ['banner-id-1369'],
       name: ['banner'],
@@ -65,7 +64,6 @@ export class BaseComponent implements OnInit {
       url:[''],
       createdDate:[now]
     });
-
     }
 
     sendData(data: any) {
@@ -138,14 +136,12 @@ export class BaseComponent implements OnInit {
   }
   triggerFileInput() {
     const fileInput = document.querySelector('#fileInput') as HTMLElement;
-    fileInput.click(); // This will work now without the error
+    fileInput.click(); 
   }
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      console.log(file)
       this.selectedFile = file;
-      // this.upload(this.selectedFile)
     }
   }
 
@@ -154,7 +150,6 @@ export class BaseComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', selectedFile, selectedFile.name);
       const token = localStorage.getItem('authToken');
-      console.log(token)
       const headers = new HttpHeaders({
         Token: `Bearer ${token}`,
       });
@@ -164,56 +159,14 @@ export class BaseComponent implements OnInit {
       })
         .subscribe({
           next: (response) => {
-            console.log(response)
             this.url = response
           },
           error: (err) => {
-            console.error('Upload failed!', err)
           }
         });
     }
   }
 
-  onSubmit(): void {
-    console.log("Form submitted");
-  
-    if (this.bannerForm.valid) {
-      const formData: any = { ...this.bannerForm.value };
-      if (this.selectedFile) {
-        const fileUploadFormData = new FormData();
-        fileUploadFormData.append('file', this.selectedFile, this.selectedFile.name);
-        this.http.post(this.baseUrl + 'upload', fileUploadFormData, { responseType: 'json' })
-          .subscribe({
-            next: (uploadResponse: any) => {
-              console.log('File uploaded successfully:', uploadResponse);
-              const fileUrl = uploadResponse;
-              console.log(formData)
-              formData.url = fileUrl.url;
-              console.log(formData) 
-              this.baseService.submitBaneer(formData).subscribe({
-                next:(response:any)=>{
-                  console.log(response)
-                },
-                error:(err:any)=>{
-                  console.log(err)
-                },
-              })
-            },
-            error: (err) => {
-              console.error('File upload failed!', err);
-            }
-          });
-      } else {
-        formData.images = [];
-        this.submitProject(formData);
-      }
-    } else {
-      console.error('Form is invalid!');
-    }
-  }
-   submitProject(formData: FormData): void {
-   
-  }
 
   toggleMobileMenu() {
     this.mobileMenuOpen = !this.mobileMenuOpen;

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HomeService } from './home.service';
+import { Router } from '@angular/router';
 
 interface Product {
   name: string;
@@ -38,7 +39,8 @@ serviceImage: Product[] = [
   constructor(
     private http: HttpClient,
     private fb: FormBuilder,
-    private homeService: HomeService
+    private homeService: HomeService,
+    private route:Router
   ) {}
 
   ngOnInit(): void {
@@ -60,7 +62,7 @@ serviceImage: Product[] = [
     this.nextSlide()
     this.updateVisibleImages();
     this.startAutoScroll();
-    
+    console.log('Router config:', this.route.config);
   }
 
   updateVisibleImages(): void {
